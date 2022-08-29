@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utilities/colors.dart';
+import '../../utilities/colors.dart';
 import 'components/body.dart';
 
 class OnBoardingScreen extends StatelessWidget {
