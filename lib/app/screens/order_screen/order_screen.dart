@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
@@ -28,7 +29,7 @@ class OrderScreen extends StatelessWidget {
         padding:
             EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 10),
         width: size.width,
-        height: 110,
+        height: 130,
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           boxShadow: [
@@ -54,16 +55,43 @@ class OrderScreen extends StatelessWidget {
                 )
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Text(
               "*)Dengan ini Anda menyetujui semua kebijakan privasi dan ketentuan penggunaan yang berlaku",
               style: text4(neutral500, light),
             ),
+            const SizedBox(
+              height: 5,
+            ),
             RoundedButton(
               text: "Lanjutkan Pembayaran",
-              ontap: () {},
+              ontap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset("assets/img/icon-subscribe.png"),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Tetap terhubung dengan kami untuk mendapatkan informasi fitur terbaru dan pembaharuan sistem serta penawaran program peningkatan keahlian",
+                                style: text3(neutral500, regular),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ));
+              },
             ),
           ],
         ),
-      ), body: const Body(),);
+      ),
+      body: const Body(),
+    );
   }
 }

@@ -4,9 +4,15 @@ import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 import 'build_card.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  double value = 3;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,7 +26,7 @@ class Body extends StatelessWidget {
             child: Text(
               "Tinggal selangkah lagi, segera selesaikan pembayaran Anda!",
               style: text4(neutral500, regular),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.justify,
             ),
           ),
           const SizedBox(
@@ -80,6 +86,19 @@ class Body extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
+          Slider(
+            inactiveColor: const Color(0xFFE2FEE4),
+            activeColor: primary,
+            value: value,
+            onChanged: (value) {
+              setState(() {
+                this.value = value;
+              });
+            },
+            min: 3,
+            max: 10,
+            label: value.round().toString(),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -92,6 +111,9 @@ class Body extends StatelessWidget {
                 style: text3(neutral500, regular),
               )
             ],
+          ),
+          const SizedBox(
+            height: 5,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,12 +128,73 @@ class Body extends StatelessWidget {
               )
             ],
           ),
+          const SizedBox(
+            height: 5,
+          ),
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              decoration: const BoxDecoration(color: Color(0xFFFFE002)),
-              child: const Text("Bonus: Jasa Konsultasi RAB (Disc. 25%)"),
+              padding:
+                  const EdgeInsets.only(left: 2, right: 10, top: 2, bottom: 2),
+              decoration: const BoxDecoration(
+                  color: Color(0xFFFFE002),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10))),
+              child: RichText(
+                  text: TextSpan(
+                      text: "Bonus:",
+                      style: text4(neutral500, medium),
+                      children: [
+                    TextSpan(
+                        text: " Jasa Konsultasi RAB ",
+                        style: text4(neutral500, light)),
+                    TextSpan(
+                        text: "(Disc. 25%)",
+                        style: text4(const Color(0xFFEA1823), light))
+                  ])),
             ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            width: size.width,
+            decoration: BoxDecoration(
+                border: Border.all(color: const Color(0xFFE6E6E6)),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Memiliki kode promo?"),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: const BoxDecoration(
+                      color: primary,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.wallet_giftcard_rounded,
+                        color: neutral100,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "Gunakan",
+                        style: text3(neutral100, regular),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 150,
           ),
         ],
       ),
