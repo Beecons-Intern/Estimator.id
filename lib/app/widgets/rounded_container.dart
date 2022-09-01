@@ -1,8 +1,6 @@
 import 'package:estimator_id/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../utilities/text_styles.dart';
-
 class RoundedContainer extends StatelessWidget {
   const RoundedContainer({Key? key, required this.child}) : super(key: key);
 

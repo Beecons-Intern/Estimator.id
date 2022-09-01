@@ -163,7 +163,7 @@ class _BodyState extends State<Body> {
             width: size.width,
             decoration: BoxDecoration(
                 border: Border.all(color: const Color(0xFFE6E6E6)),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
