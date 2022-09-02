@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'app/screens/onboarding_screen/onboarding_screen.dart';
 import 'app/utilities/colors.dart';
+import 'app/widgets/rounded_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,34 +22,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Diskon Akun Premium",
-            style: text1(neutral500, bold),
-          ),
-          centerTitle: true,
-          leading: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: neutral500,
-          ),
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [],
-          ),
-        ));
+    return Scaffold();
   }
 }
