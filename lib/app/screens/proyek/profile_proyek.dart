@@ -1,23 +1,42 @@
-import 'package:estimator_id/app/screens/proyek/component/cari_proyek.dart';
+import 'package:estimator_id/app/screens/proyek/staggered_grid.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
-import 'component/List_project.dart';
 
 class ProfileProyek extends StatelessWidget {
   const ProfileProyek({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            cari_proyek(),
-            ListProjek(height: height),
-          ],
-        ),
+      body: Column(
+        children: [
+          Container(
+            width: 355,
+            height: 55,
+            margin: EdgeInsets.only(
+                top: size.height * 0.08, bottom: size.height * 0.01),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Cari Proyek Saya"),
+                  Icon(Icons.search),
+                ],
+              ),
+            ),
+          ),
+          Center(
+            child: SizedBox(
+              width: size.width * 0.95,
+              height: size.height * 0.84,
+              child: stairedLayout(context),
+            ),
+          ),
+        ],
       ),
     );
   }
