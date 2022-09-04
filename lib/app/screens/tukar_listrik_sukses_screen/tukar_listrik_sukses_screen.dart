@@ -1,38 +1,12 @@
-import 'package:dotted_line/dotted_line.dart';
-import 'package:estimator_id/app/utilities/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
-import 'app/screens/home_screen/home_screen.dart';
-import 'app/screens/onboarding_screen/onboarding_screen.dart';
-import 'app/utilities/colors.dart';
-import 'app/widgets/rounded_button.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import '../../utilities/colors.dart';
+import '../../utilities/text_styles.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Estimator',
-      theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const MyHomePage(),
-    );
-  }
-}
+class TukarListrikSuksesScreen extends StatelessWidget {
+  const TukarListrikSuksesScreen({Key? key}) : super(key: key);
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
