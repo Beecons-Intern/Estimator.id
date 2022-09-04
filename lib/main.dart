@@ -2,6 +2,7 @@ import 'package:estimator_id/app/screens/login_screen/login_screen.dart';
 import 'package:estimator_id/app/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'app/screens/register_screen/register_screen.dart';
 import 'app/utilities/colors.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const LoginScreen(),
+      home: const RegisterScreen(),
     );
   }
 }
