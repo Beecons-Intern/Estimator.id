@@ -1,6 +1,7 @@
 import 'package:estimator_id/app/screens/login_screen/login_screen.dart';
 import 'package:estimator_id/app/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'app/screens/onboarding_screen/onboarding_screen.dart';
 
 import 'app/screens/register_screen/register_screen.dart';
 import 'app/utilities/colors.dart';
@@ -21,9 +22,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
