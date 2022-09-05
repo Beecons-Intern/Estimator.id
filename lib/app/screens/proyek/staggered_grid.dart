@@ -20,6 +20,7 @@ Widget staggeredGrid(BuildContext context) {
       crossAxisCount: 2,
     ),
     itemCount: 10,
+    primary: true,
     itemBuilder: (context, index) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -34,6 +35,7 @@ Widget staggeredGrid(BuildContext context) {
 Widget quiltedLayout(BuildContext context) {
   return GridView.custom(
     gridDelegate: SliverQuiltedGridDelegate(
+      repeatPattern: QuiltedGridRepeatPattern.same,
       crossAxisCount: 2,
       mainAxisSpacing: 6,
       crossAxisSpacing: 6,
@@ -60,11 +62,12 @@ Widget quiltedLayout(BuildContext context) {
 
 Widget stairedLayout(BuildContext context) {
   return GridView.custom(
+      scrollDirection: Axis.vertical,
       gridDelegate: SliverStairedGridDelegate(
         mainAxisSpacing: 6,
         crossAxisSpacing: 6,
         startCrossAxisDirectionReversed: true,
-        pattern: [
+        pattern: const [
           StairedGridTile(0.5, 1),
           StairedGridTile(0.5, 3 / 4),
           StairedGridTile(0.5, 1),

@@ -9,6 +9,7 @@ class ProfileProyek extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             width: 355,
