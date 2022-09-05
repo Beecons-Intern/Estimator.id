@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../utilities/colors.dart';
 import '../utilities/text_styles.dart';
 
-class RoundedButton extends StatelessWidget {
-  const RoundedButton({Key? key, required this.text, required this.ontap})
+class OutlineButton extends StatelessWidget {
+  const OutlineButton({Key? key, required this.text, required this.ontap})
       : super(key: key);
 
   final String text;
@@ -16,14 +16,14 @@ class RoundedButton extends StatelessWidget {
       onTap: ontap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: const BoxDecoration(
-            color: primary,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+        decoration: BoxDecoration(
+            border: Border.all(color: primary, width: 2),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: Center(
           child: Text(
             text,
             style: const TextStyle(
-                color: neutral100, fontSize: 14, fontWeight: semibold),
+                color: primary, fontSize: 14, fontWeight: semibold),
           ),
         ),
       ),
