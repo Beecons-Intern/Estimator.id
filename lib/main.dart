@@ -1,9 +1,6 @@
-import 'package:estimator_id/app/utilities/text_styles.dart';
+
 import 'package:flutter/material.dart';
-import 'app/utilities/colors.dart';
-import 'app/widgets/build_textfields.dart';
-import 'app/widgets/outline_button.dart';
-import 'app/widgets/rounded_button.dart';
+import 'app/route/page_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const MyHomePage(),
+      routes: AppPage.pages,
+      initialRoute: '/',
     );
   }
 }
@@ -31,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold();
+    // Size size = MediaQuery.of(context).size;
+    return const Scaffold();
   }
 }

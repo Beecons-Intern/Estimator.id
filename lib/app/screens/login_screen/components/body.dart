@@ -3,6 +3,7 @@ import 'package:estimator_id/app/widgets/rounded_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
 import '../../../widgets/build_textfields.dart';
 import '../../../widgets/rounded_button.dart';
@@ -80,7 +81,10 @@ class Body extends StatelessWidget {
                             ),
                             RoundedButton(
                               text: "Masuk",
-                              ontap: () {},
+                              ontap: () {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    RouteName.navigation, (route) => false);
+                              },
                             ),
                             const SizedBox(
                               height: 10,
@@ -88,7 +92,7 @@ class Body extends StatelessWidget {
                             Center(
                               child: Text(
                                 "atau gunakan akun",
-                                style: text3(const Color(0xFF999999), regular),
+                                style: text3(neutral500, regular),
                               ),
                             ),
                             const SizedBox(
@@ -121,9 +125,15 @@ class Body extends StatelessWidget {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                Text(
-                                  "Daftar",
-                                  style: text3(primary, regular),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushReplacementNamed(
+                                        context, RouteName.registerScreen);
+                                  },
+                                  child: Text(
+                                    "Daftar",
+                                    style: text3(primary, regular),
+                                  ),
                                 )
                               ],
                             )

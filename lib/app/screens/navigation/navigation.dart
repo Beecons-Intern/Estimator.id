@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../utilities/colors.dart';
+import '../../utilities/text_styles.dart';
+import '../home_screen/home_screen.dart';
 import 'components/navigation_button.dart';
 
 class Navigation extends StatefulWidget {
@@ -11,11 +13,15 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
+  List pages = const [
+    HomeScreen(),
+  ];
   int index = 0;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      body: pages[index],
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: primary,
@@ -55,11 +61,13 @@ class _NavigationState extends State<Navigation> {
                         },
                         icon: Icon(
                           Icons.home,
-                          color:
-                              index == 0 ? neutral500 : const Color(0xFF969696),
+                          color: index == 0 ? primary : const Color(0xFF969696),
                           size: 34,
                         ),
-                        text: "Beranda",
+                        text: Text(
+                          "Beranda",
+                          style: text4(primary, medium),
+                        ),
                       ),
                       NavigationButton(
                           onPressed: () {
@@ -74,7 +82,10 @@ class _NavigationState extends State<Navigation> {
                                 : const Color(0xFF969696),
                             size: 34,
                           ),
-                          text: "Proyek"),
+                          text: Text(
+                            "Proyek",
+                            style: text4(neutral500, medium),
+                          )),
                     ],
                   ),
                 ),
@@ -90,13 +101,16 @@ class _NavigationState extends State<Navigation> {
                             });
                           },
                           icon: Icon(
-                            Icons.email_rounded,
+                            Icons.email_outlined,
                             color: index == 2
                                 ? neutral500
                                 : const Color(0xFF969696),
                             size: 34,
                           ),
-                          text: "Koleksi"),
+                          text: Text(
+                            "Koleksi",
+                            style: text4(neutral500, medium),
+                          )),
                       NavigationButton(
                           onPressed: () {
                             setState(() {
@@ -110,7 +124,10 @@ class _NavigationState extends State<Navigation> {
                                 : const Color(0xFF969696),
                             size: 34,
                           ),
-                          text: "Akun")
+                          text: Text(
+                            "Akun",
+                            style: text4(neutral500, medium),
+                          ))
                     ],
                   ),
                 ),

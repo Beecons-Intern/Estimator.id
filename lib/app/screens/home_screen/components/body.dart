@@ -284,7 +284,7 @@ class Body extends StatelessWidget {
                 child: LineChart(mainData()),
               ),
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
             ],
           )
