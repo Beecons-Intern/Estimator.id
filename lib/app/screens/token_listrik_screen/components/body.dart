@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'build_choose_price.dart';
+import 'build_group_current_token.dart';
 import 'build_input_token.dart';
 
 class Body extends StatefulWidget {
@@ -10,7 +12,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int? selectedIndex;
+  bool isNumberNotEmpty = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,7 +23,13 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 20,
           ),
-          BuildInputToken(size: size),
+          BuildInputPoin(
+              size: size,
+              onFieldSubmitted: (value) {
+                setState(() {
+                  isNumberNotEmpty = true;
+                });
+              }),
           const SizedBox(
             height: 20,
           ),
@@ -31,8 +39,16 @@ class _BodyState extends State<Body> {
               thickness: 2,
             ),
           ),
-          // BuildGroupCurrentToken(size: size),
-          /* BuildChoosePrice(size: size, selectedIndex: selectedIndex) */
+          if (isNumberNotEmpty == false) ...[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+              child: BuildGroupCurrentToken(size: size),
+            ),
+          ] else ...[
+            BuildChoosePrice(
+              size: size,
+            )
+          ]
         ],
       ),
     );

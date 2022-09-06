@@ -4,12 +4,13 @@ import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import 'components/body.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({Key? key}) : super(key: key);
+class PoinScreen extends StatelessWidget {
+  const PoinScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(      appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text(
           "Tukar Poin",
           style: text1(neutral500, bold),
@@ -20,6 +21,8 @@ class MyWidget extends StatelessWidget {
           color: neutral500,
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      ), body: Body(),);
+      ),
+      body: const Body(),
+    );
   }
 }

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 
-class BuildInputToken extends StatelessWidget {
-  const BuildInputToken({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
+class BuildInputPoin extends StatelessWidget {
+  const BuildInputPoin(
+      {Key? key, required this.size, required this.onFieldSubmitted})
+      : super(key: key);
 
   final Size size;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,8 @@ class BuildInputToken extends StatelessWidget {
                 SizedBox(
                   width: size.width * 0.75,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    onFieldSubmitted: onFieldSubmitted,
                     cursorColor: primary,
                     decoration: const InputDecoration(
                       isDense: true,

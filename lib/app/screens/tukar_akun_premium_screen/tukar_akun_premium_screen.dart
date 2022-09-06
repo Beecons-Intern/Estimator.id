@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
+import '../../widgets/build_modal_sheet_confirmation.dart';
 import '../../widgets/rounded_button.dart';
 import 'components/body.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({Key? key}) : super(key: key);
+class TukarAkunPremiumScreen extends StatelessWidget {
+  const TukarAkunPremiumScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MyWidget extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.8,
         title: Text(
-          "Diskon Akun Premium",
+          "Voucher Akun Premium",
           style: text1(neutral500, bold),
         ),
         centerTitle: true,
@@ -40,70 +41,16 @@ class MyWidget extends StatelessWidget {
                 offset: const Offset(0, 1)),
           ],
         ),
-        child: RoundedButton(
-          text: "Pilih Voucher",
-          ontap: () {
-            showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      content: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Detail Penukaran",
-                            style: text2(neutral500, semibold),
-                          ),
-                          const Divider(
-                            thickness: 2,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/icon/koin.png",
-                                    width: 14,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "800 Poin",
-                                    style: text3(neutral500, medium),
-                                  )
-                                ],
-                              ),
-                              Text(
-                                "Rp 50.000",
-                                style: text3(neutral500, semibold),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          Text(
-                            "Mohon pastikan transaksi yang anda lakukan sudah benar",
-                            style: text4(neutral500, regular),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          RoundedButton(
-                            ontap: () {},
-                            text: "Konfirmasi",
-                          )
-                        ],
-                      ),
-                    ));
-          },
-        ),
+        child: const BuildModalSheetConfirmation(
+            textButton: "Pilih Voucher",
+            jumlahPoin: "800 Poin",
+            namaPelanggan: "Anton Wijaya",
+            keteranganNomor: "No Telepon",
+            nomor: "078687764764",
+            keteranganPembayaran: "Voucher Akun Premium",
+            pembayaran: "Rp 50.000"),
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

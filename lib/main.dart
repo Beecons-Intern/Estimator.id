@@ -1,10 +1,15 @@
 import 'package:dotted_line/dotted_line.dart';
+import 'package:estimator_id/app/screens/tukar_akun_transaksi_sukses_screen/tukar_akun_transaksi_sukses_screen.dart';
+import 'package:estimator_id/app/screens/tukar_listrik_sukses_screen/tukar_listrik_sukses_screen.dart';
 import 'package:estimator_id/app/utilities/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'app/screens/home_screen/home_screen.dart';
 import 'app/screens/onboarding_screen/onboarding_screen.dart';
+import 'app/screens/poin_screen/poin_screen.dart';
+import 'app/screens/token_listrik_screen/token_listrik_screen.dart';
+import 'app/screens/tukar_akun_premium_screen/tukar_akun_premium_screen.dart';
 import 'app/utilities/colors.dart';
 import 'app/widgets/rounded_button.dart';
 
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const MyHomePage(),
+      home: const TukarAkunTransaksiSuksesScreen(),
     );
   }
 }

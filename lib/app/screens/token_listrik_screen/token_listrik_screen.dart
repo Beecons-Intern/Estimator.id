@@ -39,7 +39,7 @@ class TokenListrikScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

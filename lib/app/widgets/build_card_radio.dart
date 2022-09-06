@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utilities/colors.dart';
-import '../../../utilities/text_styles.dart';
+import '../utilities/colors.dart';
+import '../utilities/text_styles.dart';
 
 class BuildCardRadio extends StatelessWidget {
   const BuildCardRadio(
