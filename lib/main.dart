@@ -1,5 +1,6 @@
 import 'package:estimator_id/app/screens/Tambah%20Pekerjaan/tambah_pekerjaan.dart';
 import 'package:estimator_id/app/screens/buat%20proyek/form_proyek_baru.dart';
+import 'package:estimator_id/app/screens/copy_dan_duplikat_pekerjaan/sub_copy_pekerjaan.dart';
 import 'package:estimator_id/app/screens/proyek/profile_proyek.dart';
 
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: ProfileProyek(),
+      home: SubCopyPekerjaan(),
     );
   }
 }
