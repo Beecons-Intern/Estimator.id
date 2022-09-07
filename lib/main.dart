@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const TukarAkunTransaksiSuksesScreen(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -42,39 +42,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: neutral500,
-            )),
-        elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-        child: Column(
-          children: [
-            Center(child: Lottie.asset("assets/lotie/success.json", width: 60)),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              "Penukaran Berhasil",
-              style: text1(primary, bold),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              "800 Poin",
-              style: heading4(neutral500, bold),
-            )
-          ],
-        ),
-      ),
+      body: GridView.builder(
+          itemCount: 50,
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          itemBuilder: (context, index) => buildImageCard(index)),
     );
   }
+
+  Widget buildImageCard(int index) => Card(
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              'https://source.unsplash.com/random?sig=$index',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      );
 }
