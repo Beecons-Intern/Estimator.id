@@ -19,7 +19,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int? analisa;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,10 +26,12 @@ class _BodyState extends State<Body> {
       controller: widget.controller,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        BuildPageAHS(size: size, analisa: analisa),
-        BuildPageBahan(size: size, analisa: analisa),
-        BuildPageUpah(size: size, analisa: analisa),
-        BuildPageAlat(size: size, analisa: analisa),
+        BuildPageAHS(
+          size: size,
+        ),
+        BuildPageBahan(size: size),
+        BuildPageUpah(size: size),
+        BuildPageAlat(size: size),
       ],
     );
   }

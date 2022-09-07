@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
+import 'components/body.dart';
 
 class KoleksiScreen extends StatefulWidget {
   const KoleksiScreen({Key? key}) : super(key: key);
@@ -90,6 +91,7 @@ class _KoleksiScreenState extends State<KoleksiScreen> {
           ],
         ),
       ),
+      body: Body(controller: controller),
     );
   }
 }

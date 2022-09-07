@@ -8,11 +8,9 @@ class BuildPageAlat extends StatelessWidget {
   const BuildPageAlat({
     Key? key,
     required this.size,
-    required this.analisa,
   }) : super(key: key);
 
   final Size size;
-  final int? analisa;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class BuildPageAlat extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          BuildListView(size: size, analisa: analisa),
+          BuildListView(size: size),
         ],
       ),
     );

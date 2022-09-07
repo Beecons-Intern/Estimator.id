@@ -1,3 +1,4 @@
+import 'package:estimator_id/app/screens/koleksi_screen/koleksi_screen.dart';
 import 'package:estimator_id/app/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const MyHomePage(),
+      home: const KoleksiScreen(),
       // routes: AppPage.pages,
       // initialRoute: '/',
     );

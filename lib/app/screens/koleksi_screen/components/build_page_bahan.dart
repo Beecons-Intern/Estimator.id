@@ -8,11 +8,9 @@ class BuildPageBahan extends StatelessWidget {
   const BuildPageBahan({
     Key? key,
     required this.size,
-    required this.analisa,
   }) : super(key: key);
 
   final Size size;
-  final int? analisa;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class BuildPageBahan extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          BuildListView(size: size, analisa: analisa),
+          BuildListView(size: size),
         ],
       ),
     );

@@ -4,23 +4,24 @@ import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 import 'build_item_text_span.dart';
 
-class BuildListView extends StatelessWidget {
-  const BuildListView(
-      {Key? key,
-      required this.size,
-      required this.analisa,
-      this.isAnalisa = false})
+class BuildListView extends StatefulWidget {
+  const BuildListView({Key? key, required this.size, this.isAnalisa = false})
       : super(key: key);
 
   final Size size;
-  final int? analisa;
   final bool isAnalisa;
 
+  @override
+  State<BuildListView> createState() => _BuildListViewState();
+}
+
+class _BuildListViewState extends State<BuildListView> {
+  int? analisa;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.05,
+        horizontal: widget.size.width * 0.05,
       ),
       itemCount: 5,
       shrinkWrap: true,
@@ -44,9 +45,19 @@ class BuildListView extends StatelessWidget {
                       "Acian Beton",
                       style: body(neutral500, bold),
                     ),
-                    if (isAnalisa == true) ...[
+                    if (widget.isAnalisa == true) ...[
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          if (analisa == null) {
+                            setState(() {
+                              analisa = index;
+                            });
+                          } else if (analisa != null && analisa == index) {
+                            setState(() {
+                              analisa = null;
+                            });
+                          }
+                        },
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
@@ -101,13 +112,13 @@ class BuildListView extends StatelessWidget {
               ],
             ),
           ),
-          if (isAnalisa == true) ...[
+          if (widget.isAnalisa == true) ...[
             if (analisa != null && analisa == index) ...[
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: ListView.builder(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: widget.size.width * 0.03),
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 3,
@@ -143,7 +154,7 @@ class BuildListView extends StatelessWidget {
                                 margin: const EdgeInsets.only(bottom: 10),
                                 child: ListView.builder(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.03),
+                                        horizontal: widget.size.width * 0.03),
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
