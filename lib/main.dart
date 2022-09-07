@@ -31,14 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> icons = [
-    "assets/icon/ovo.png",
-    "assets/icon/dana.png",
-    "assets/icon/gopay.png",
-    "assets/icon/shopee.png"
-  ];
-
-  int? indexSelected;
 
   @override
   Widget build(BuildContext context) {
