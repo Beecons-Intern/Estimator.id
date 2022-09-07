@@ -1,6 +1,11 @@
 import 'package:estimator_id/app/screens/tukar_poin_sukses_screen/tukar_poin_sukses_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'app/utilities/colors.dart';
+import 'app/utilities/text_styles.dart';
+import 'app/widgets/build_modal_sheet_confirmation.dart';
+import 'app/widgets/build_price_poin_grid.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const TukarPoinSuksesScreen(),
+      home: const MyHomePage(),
     );
   }
 }
