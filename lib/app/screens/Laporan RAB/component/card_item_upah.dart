@@ -30,7 +30,7 @@ class CardItemUpah extends StatelessWidget {
           horizontal: size.width * 0.02, vertical: size.height * 0.02),
       decoration: BoxDecoration(
           border: Border.all(
-        color: Color.fromRGBO(8, 158, 20, 1),
+        color: const Color.fromRGBO(8, 158, 20, 1),
       )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,126 +50,145 @@ class CardItemUpah extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: (() => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        content: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                children: [
+                  const Icon(
+                    Icons.edit_note,
+                    size: 18,
+                    color: Color.fromRGBO(8, 158, 20, 1),
+                  ),
+                  GestureDetector(
+                    onTap: (() => showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      "Nama Bahan",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () => Navigator.pop(context),
+                                      child: const Icon(
+                                        Icons.cancel,
+                                        color: Color.fromRGBO(8, 158, 20, 1),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: size.height * 0.01),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.01,
+                                      vertical: size.height * 0.01),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromRGBO(206, 236, 208, 1),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: const Text(
+                                    "Accacia supasleek close coupled Toilet CL23075-6DACTCBT",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromRGBO(0, 0, 0, 1),
+                                    ),
+                                  ),
+                                ),
                                 const Text(
-                                  "Nama Bahan",
+                                  "Harga Dasar",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                GestureDetector(
-                                  onTap: () => Navigator.pop(context),
-                                  child: const Icon(
-                                    Icons.cancel,
-                                    color: Color.fromRGBO(8, 158, 20, 1),
+                                Container(
+                                  width: size.width,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: size.height * 0.01),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.01,
+                                      vertical: size.height * 0.01),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromRGBO(206, 236, 208, 1),
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
-                                )
-                              ],
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: size.height * 0.01),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.01,
-                                  vertical: size.height * 0.01),
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(206, 236, 208, 1),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: const Text(
-                                "Accacia supasleek close coupled Toilet CL23075-6DACTCBT",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(0, 0, 0, 1),
+                                  child: const Text(
+                                    "Rp. 10.500.000",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color.fromRGBO(0, 0, 0, 1),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const Text(
-                              "Harga Dasar",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              width: size.width,
-                              margin: EdgeInsets.symmetric(
-                                  vertical: size.height * 0.01),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.01,
-                                  vertical: size.height * 0.01),
-                              decoration: BoxDecoration(
-                                color: const Color.fromRGBO(206, 236, 208, 1),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: const Text(
-                                "Rp. 10.500.000",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(0, 0, 0, 1),
-                                ),
-                              ),
-                            ),
-                            const Text(
-                              "Satuan",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
-                            ),
-                            const Text(
-                              "Satuan",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w400),
-                            ),
-                            const Text(
-                              "Merk",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
-                            ),
-                            const Text(
-                              "American Standard",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w400),
-                            ),
-                            const Text(
-                              "Sumber",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text(
-                                  "PT. American Standard Indonesia",
+                                const Text(
+                                  "Satuan",
                                   style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
                                 ),
-                                Icon(
-                                  Icons.drive_file_rename_outline,
-                                  color: Color.fromRGBO(16, 174, 11, 1),
-                                )
+                                const Text(
+                                  "Satuan",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                const Text(
+                                  "Merk",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                const Text(
+                                  "American Standard",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                const Text(
+                                  "Sumber",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    Text(
+                                      "PT. American Standard Indonesia",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.drive_file_rename_outline,
+                                      color: Color.fromRGBO(16, 174, 11, 1),
+                                    )
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    )),
-                child: const Icon(
-                  Icons.info,
-                  color: Color.fromRGBO(8, 158, 20, 1),
-                ),
-              )
+                          ),
+                        )),
+                    child: const Icon(
+                      Icons.info,
+                      color: Color.fromRGBO(8, 158, 20, 1),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           Padding(

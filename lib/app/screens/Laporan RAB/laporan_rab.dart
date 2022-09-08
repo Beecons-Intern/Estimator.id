@@ -1,3 +1,4 @@
+import 'package:estimator_id/app/screens/Laporan%20RAB/component/item_rab.dart';
 import 'package:flutter/material.dart';
 
 import '../../Widget/button.dart';
@@ -15,7 +16,7 @@ class LaporanRab extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
+        leading: const Icon(
           Icons.arrow_back_ios,
           color: Color.fromRGBO(0, 0, 0, 1),
         ),
@@ -196,7 +197,7 @@ class LaporanRab extends StatelessWidget {
                             icon: Icons.refresh,
                             title: "Reload",
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Button(
                             size: size,
                             icon: Icons.upload,
@@ -219,13 +220,201 @@ class LaporanRab extends StatelessWidget {
                 ItemLaporan(
                   size: size,
                   title: "RAB",
-                  listContent: [ContentEmptyLaporan(size: size)],
+                  listContent: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.05,
+                          vertical: size.height * 0.04),
+                      child: Row(
+                        children: [
+                          Button(
+                            size: size,
+                            icon: Icons.refresh,
+                            title: "Reload",
+                          ),
+                          SizedBox(width: 10),
+                          Button(
+                            size: size,
+                            icon: Icons.upload,
+                            title: "Ekspor Data",
+                          )
+                        ],
+                      ),
+                    ),
+                    ItemRab(size: size, isSelected: true)
+                  ],
                 ),
                 ItemLaporan(
                   size: size,
                   title: "Rekapitulasi RAB",
                   listContent: [
-                    ContentEmptyLaporan(size: size),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.05,
+                          vertical: size.height * 0.04),
+                      child: Row(
+                        children: [
+                          Button(
+                            size: size,
+                            icon: Icons.refresh,
+                            title: "Reload",
+                          ),
+                          const SizedBox(width: 10),
+                          Button(
+                            size: size,
+                            icon: Icons.upload,
+                            title: "Ekspor Data",
+                          )
+                        ],
+                      ),
+                    ),
+                    ItemRab(size: size, isSelected: true),
+                    Container(
+                      color: const Color.fromARGB(177, 122, 241, 128),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: size.width * 0.05,
+                        vertical: size.height * 0.01,
+                      ),
+                      padding: const EdgeInsets.all(5),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: size.width * 0.2,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "JUMLAH HARGA",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "PPN 11.00 %",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Total Harga",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Dibulatkan",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Terbilang",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Rp. 7.600.000",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    const Text(
+                                      "Rp. 863.000",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    const Text(
+                                      "Rp. 8.436.000",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    const Text(
+                                      "Rp. 8.436.000",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    const Text(
+                                      "Delapan Juta empat ratus tiga puluh enam rupiah",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.1,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "100.00%",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Text(
+                                      "",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
                 ItemLaporan(
@@ -237,13 +426,155 @@ class LaporanRab extends StatelessWidget {
                   size: size,
                   title: "Rekapitulasi Upah",
                   listContent: [
-                    ContentEmptyLaporan(size: size),
+                    Searching(size: size),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                      child: Row(
+                        children: [
+                          Button(
+                            size: size,
+                            icon: Icons.refresh,
+                            title: "Reload",
+                          ),
+                          const SizedBox(width: 10),
+                          Button(
+                            size: size,
+                            icon: Icons.upload,
+                            title: "Ekspor Data",
+                          ),
+                        ],
+                      ),
+                    ),
+                    CardItemUpah(
+                      size: size,
+                      title: "Informan data lapangan",
+                      satuan: "OB",
+                      harga: "Rp. 50.000",
+                      spesifikasi: "standard",
+                      sumber: "Pergub DIY No. 52 Tahun 2020",
+                      merk: "standard",
+                    ),
+                    CardItemUpah(
+                      size: size,
+                      title: "Informan data lapangan",
+                      satuan: "OB",
+                      harga: "Rp. 50.000",
+                      spesifikasi: "standard",
+                      sumber: "Pergub DIY No. 52 Tahun 2020",
+                      merk: "standard",
+                    ),
+                    Container(
+                      color: Color.fromARGB(134, 8, 215, 15),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.05,
+                          vertical: size.height * 0.01),
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "JUMLAH HARGA",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "Rp. 7.600.000",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            "100.00%",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
                 ItemLaporan(
                   size: size,
                   title: "Rekapitulasi Alat",
-                  listContent: [ContentEmptyLaporan(size: size)],
+                  listContent: [
+                    Searching(size: size),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                      child: Row(
+                        children: [
+                          Button(
+                            size: size,
+                            icon: Icons.refresh,
+                            title: "Reload",
+                          ),
+                          const SizedBox(width: 10),
+                          Button(
+                            size: size,
+                            icon: Icons.upload,
+                            title: "Ekspor Data",
+                          ),
+                        ],
+                      ),
+                    ),
+                    CardItemUpah(
+                      size: size,
+                      title: "Informan data lapangan",
+                      satuan: "OB",
+                      harga: "Rp. 50.000",
+                      spesifikasi: "standard",
+                      sumber: "Pergub DIY No. 52 Tahun 2020",
+                      merk: "standard",
+                    ),
+                    CardItemUpah(
+                      size: size,
+                      title: "Informan data lapangan",
+                      satuan: "OB",
+                      harga: "Rp. 50.000",
+                      spesifikasi: "standard",
+                      sumber: "Pergub DIY No. 52 Tahun 2020",
+                      merk: "standard",
+                    ),
+                    Container(
+                      color: Color.fromARGB(134, 8, 215, 15),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: size.width * 0.05,
+                          vertical: size.height * 0.01),
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "JUMLAH HARGA",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "Rp. 7.600.000",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            "100.00%",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 )
               ],
             ),

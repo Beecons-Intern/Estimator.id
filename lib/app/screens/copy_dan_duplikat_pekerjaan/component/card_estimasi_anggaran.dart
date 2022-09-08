@@ -13,7 +13,7 @@ class CardEstimasiAnggaran extends StatelessWidget {
     return Container(
       color: const Color.fromRGBO(230, 245, 232, 1),
       margin: EdgeInsets.symmetric(
-          horizontal: size.width * 0.05, vertical: size.height * 0.01),
+          horizontal: size.width * 0.01, vertical: size.height * 0.01),
       child: Column(
         children: [
           //start card
