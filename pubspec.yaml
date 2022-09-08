@@ -70,6 +70,8 @@ flutter:
     - assets/Images/XLS.png
     - assets/Images/Import Pdf.png
     - assets/Images/image 68.png
+    - assets/Images/not-found 3.png
+    - assets/Images/export 1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'component/button.dart';
+import '../../Widget/button.dart';
 import 'component/card_estimasi_anggaran.dart';
-import 'component/search.dart';
+import '../../Widget/search.dart';
 
 class SubCopyPekerjaan extends StatelessWidget {
   const SubCopyPekerjaan({Key? key}) : super(key: key);
