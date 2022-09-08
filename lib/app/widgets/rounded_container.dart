@@ -9,7 +9,7 @@ class RoundedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
           border: Border.all(color: primary, width: 2),
           borderRadius: const BorderRadius.all(Radius.circular(10))),

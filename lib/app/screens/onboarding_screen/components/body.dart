@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../route/route_name.dart';
 import 'build_content.dart';
 
 class Body extends StatefulWidget {
@@ -118,7 +119,10 @@ class _BodyState extends State<Body> {
                       subtitle:
                           "Membuat RAB kapanpun di manapun secara online dan gratis. Ayo gabung sekarang!",
                       isLast: true,
-                      ontap: () {},
+                      ontap: () {
+                        Navigator.pushReplacementNamed(
+                            context, RouteName.loginScreen);
+                      },
                     )
                   ],
                 ),

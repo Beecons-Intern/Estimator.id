@@ -12,7 +12,7 @@ class NavigationButton extends StatelessWidget {
       : super(key: key);
 
   final Icon icon;
-  final String text;
+  final Text text;
   final void Function()? onPressed;
 
   @override
@@ -24,10 +24,7 @@ class NavigationButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           icon,
-          Text(
-            text,
-            style: text4(neutral500, medium),
-          )
+          text,
         ],
       ),
     );
