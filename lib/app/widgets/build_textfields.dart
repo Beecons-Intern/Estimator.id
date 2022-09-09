@@ -31,7 +31,7 @@ class BuildTextField extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: primary),
+            borderSide: BorderSide(width: 2, color: neutral200),
             borderRadius: BorderRadius.all(Radius.circular(10))),
         hintText: hint,
       ),
