@@ -1,3 +1,4 @@
+import 'package:estimator_id/app/screens/rab_screen/rab.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,19 +9,11 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Estimator',
-      theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const MyHomePage(),
+     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: penawaranScreen(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
