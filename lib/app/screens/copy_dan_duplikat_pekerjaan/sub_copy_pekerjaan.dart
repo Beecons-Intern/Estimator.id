@@ -43,7 +43,7 @@ class _SubCopyPekerjaanState extends State<SubCopyPekerjaan> {
               children: [
                 Button(
                   size: size,
-                  icon: Icons.add_circle,
+                  icon: Icons.edit_note,
                   title: "Tambah Kategori",
                 ),
                 SizedBox(width: size.width * 0.02),
