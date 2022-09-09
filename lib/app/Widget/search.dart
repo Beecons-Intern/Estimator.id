@@ -14,11 +14,7 @@ class Searching extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.05, vertical: size.height * 0.02),
       child: Container(
-        width: size.width * 0.9,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 15,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           border: Border.all(
             color: const Color.fromRGBO(8, 158, 20, 1),
@@ -26,21 +22,13 @@ class Searching extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              "Masukan kata kunci",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Icon(
-              Icons.search,
-              color: Color.fromRGBO(150, 150, 150, 1),
-            )
-          ],
+        child: TextFormField(
+          focusNode: FocusNode(skipTraversal: true),
+          decoration: const InputDecoration(
+            hintText: 'Masukan Kata Kunci',
+            suffixIcon: Icon(Icons.search),
+            border: InputBorder.none,
+          ),
         ),
       ),
     );

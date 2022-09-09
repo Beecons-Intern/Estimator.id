@@ -25,7 +25,7 @@ class _CardExpandedTileState extends State<CardExpandedTile> {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 10,
+      itemCount: 5,
       itemBuilder: ((context, index) => Container(
             margin: EdgeInsets.symmetric(horizontal: widget.size.width * 0.05),
             child: Column(

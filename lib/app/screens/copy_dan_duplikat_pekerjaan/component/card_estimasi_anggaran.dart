@@ -48,7 +48,7 @@ class CardEstimasiAnggaran extends StatelessWidget {
                                     horizontal: size.width * 0.1,
                                     vertical: size.height * 0.05),
                                 decoration: BoxDecoration(
-                                    color: Color.fromRGBO(8, 158, 20, 1),
+                                    color: const Color.fromRGBO(8, 158, 20, 1),
                                     borderRadius: BorderRadius.circular(70)),
                                 child: const Icon(
                                   Icons.done,
@@ -60,7 +60,7 @@ class CardEstimasiAnggaran extends StatelessWidget {
                                 width: size.width * 0.5,
                                 padding: EdgeInsets.symmetric(
                                     vertical: size.height * 0.02),
-                                child: Text(
+                                child: const Text(
                                   "Data item pekerjaan  berhasil Dicopy",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
