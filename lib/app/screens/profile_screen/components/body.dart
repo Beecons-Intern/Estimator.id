@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 
@@ -243,10 +244,16 @@ class Body extends StatelessWidget {
                                       color: primary,
                                       borderRadius: BorderRadius.circular(7),
                                     ),
-                                    child: Text(
-                                      "Upgrade",
-                                      style: text4(neutral100, bold),
-                                      textAlign: TextAlign.center,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, RouteName.paket);
+                                      },
+                                      child: Text(
+                                        "Upgrade",
+                                        style: text4(neutral100, bold),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -263,6 +270,15 @@ class Body extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) => ListTile(
+                              onTap: () {
+                                switch (index) {
+                                  case 0:
+                                    Navigator.pushNamed(
+                                        context, RouteName.detailProfile);
+                                    break;
+                                  default:
+                                }
+                              },
                               dense: true,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: size.width * 0.05, vertical: 0),

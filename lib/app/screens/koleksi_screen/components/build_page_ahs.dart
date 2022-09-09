@@ -33,6 +33,9 @@ class BuildPageAHS extends StatelessWidget {
             height: 20,
           ),
           BuildListView(size: size, isAnalisa: true),
+          const SizedBox(
+            height: 10,
+          ),
         ],
       ),
     );

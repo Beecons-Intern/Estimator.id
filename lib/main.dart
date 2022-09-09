@@ -1,10 +1,6 @@
-import 'package:estimator_id/app/screens/koleksi_screen/koleksi_screen.dart';
-import 'package:estimator_id/app/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'app/utilities/colors.dart';
-import 'app/utilities/text_styles.dart';
-import 'app/widgets/build_textfields.dart';
+
+import 'app/route/page_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const EditProfile(),
-      // routes: AppPage.pages,
-      // initialRoute: '/',
+      // home: const EditProfile(),
+      routes: AppPage.pages,
+      initialRoute: '/',
     );
   }
 }

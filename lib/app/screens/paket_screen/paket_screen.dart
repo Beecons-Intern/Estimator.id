@@ -14,12 +14,16 @@ class PaketScreen extends StatelessWidget {
         backgroundColor: neutral100,
         title: Text(
           "Paket",
-          style: text2(neutral500, regular),
+          style: text1(neutral500, bold),
         ),
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: neutral500,
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral500,
+            )),
         centerTitle: true,
       ),
       body: const Body(),

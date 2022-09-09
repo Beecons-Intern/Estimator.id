@@ -12,7 +12,8 @@ class BuildCard extends StatelessWidget {
       required this.colorTop,
       required this.colorBottom,
       required this.text,
-      required this.backgroundColor})
+      required this.backgroundColor,
+      required this.onTap})
       : super(key: key);
 
   final String title;
@@ -21,6 +22,7 @@ class BuildCard extends StatelessWidget {
   final Color colorBottom;
   final String text;
   final Color backgroundColor;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,7 @@ class BuildCard extends StatelessWidget {
             height: 5,
           ),
           ButtonCard(
+            onTap: onTap,
             text: text,
             backgroundColor: backgroundColor,
           )

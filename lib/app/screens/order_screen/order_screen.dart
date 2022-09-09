@@ -16,7 +16,7 @@ class OrderScreen extends StatelessWidget {
         backgroundColor: neutral100,
         title: Text(
           "Daftar Order",
-          style: text2(neutral500, regular),
+          style: text1(neutral500, bold),
         ),
         leading: const Icon(
           Icons.arrow_back_ios_new_rounded,

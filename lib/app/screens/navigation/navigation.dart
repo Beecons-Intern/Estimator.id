@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import '../home_screen/home_screen.dart';
+import '../koleksi_screen/koleksi_screen.dart';
+import '../profile_screen/profile_screen.dart';
 import 'components/navigation_button.dart';
 
 class Navigation extends StatefulWidget {
@@ -13,9 +15,7 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  List pages = const [
-    HomeScreen(),
-  ];
+  List pages = const [HomeScreen(), "", KoleksiScreen(), ProfileScreen()];
   int index = 0;
   @override
   Widget build(BuildContext context) {
@@ -26,9 +26,9 @@ class _NavigationState extends State<Navigation> {
         onPressed: () {},
         backgroundColor: primary,
         child: const Icon(
-          Icons.rocket_outlined,
+          Icons.add,
           color: neutral100,
-          size: 36,
+          size: 42,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -66,25 +66,26 @@ class _NavigationState extends State<Navigation> {
                         ),
                         text: Text(
                           "Beranda",
-                          style: text4(primary, medium),
+                          style: text4(index == 0 ? primary : neutral500,
+                              index == 0 ? bold : medium),
                         ),
                       ),
                       NavigationButton(
                           onPressed: () {
-                            setState(() {
+                            /* setState(() {
                               index = 1;
-                            });
+                            }); */
                           },
                           icon: Icon(
                             Icons.grid_view_outlined,
-                            color: index == 1
-                                ? neutral500
-                                : const Color(0xFF969696),
+                            color:
+                                index == 1 ? primary : const Color(0xFF969696),
                             size: 34,
                           ),
                           text: Text(
                             "Proyek",
-                            style: text4(neutral500, medium),
+                            style: text4(index == 1 ? primary : neutral500,
+                                index == 1 ? bold : medium),
                           )),
                     ],
                   ),
@@ -102,14 +103,14 @@ class _NavigationState extends State<Navigation> {
                           },
                           icon: Icon(
                             Icons.email_outlined,
-                            color: index == 2
-                                ? neutral500
-                                : const Color(0xFF969696),
+                            color:
+                                index == 2 ? primary : const Color(0xFF969696),
                             size: 34,
                           ),
                           text: Text(
                             "Koleksi",
-                            style: text4(neutral500, medium),
+                            style: text4(index == 2 ? primary : neutral500,
+                                index == 2 ? bold : medium),
                           )),
                       NavigationButton(
                           onPressed: () {
@@ -119,14 +120,14 @@ class _NavigationState extends State<Navigation> {
                           },
                           icon: Icon(
                             Icons.person_outline_rounded,
-                            color: index == 3
-                                ? neutral500
-                                : const Color(0xFF969696),
+                            color:
+                                index == 3 ? primary : const Color(0xFF969696),
                             size: 34,
                           ),
                           text: Text(
                             "Akun",
-                            style: text4(neutral500, medium),
+                            style: text4(index == 3 ? primary : neutral500,
+                                index == 3 ? bold : medium),
                           ))
                     ],
                   ),
