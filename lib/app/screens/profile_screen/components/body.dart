@@ -72,7 +72,7 @@ class Body extends StatelessWidget {
         DraggableScrollableSheet(
           initialChildSize: 0.6,
           minChildSize: 0.6,
-          maxChildSize: 0.8,
+          maxChildSize: 0.9,
           builder: (context, controller) => ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20)),
