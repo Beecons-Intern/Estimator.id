@@ -1,4 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:estimator_id/app/screens/RAB%20Perancangan/tambah_kategori.pekerjaan.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../Widget/button.dart';
@@ -41,10 +43,19 @@ class _SubCopyPekerjaanState extends State<SubCopyPekerjaan> {
                 horizontal: size.width * 0.05, vertical: size.height * 0.02),
             child: Row(
               children: [
-                Button(
-                  size: size,
-                  icon: Icons.edit_note,
-                  title: "Tambah Kategori",
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        /// kalo mau ganti sama pop up tinggal ganti aja pake AlertTambahKategoriPekerjaan
+                        /// ini pake page kategori pekerjaan
+                        builder: (context) => const TambahKategoriPekerjaan(),
+                      )),
+                  child: Button(
+                    size: size,
+                    icon: Icons.edit_note,
+                    title: "Tambah Kategori",
+                  ),
                 ),
                 SizedBox(width: size.width * 0.02),
                 GestureDetector(
