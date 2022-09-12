@@ -28,7 +28,7 @@ class TambahKategoriPekerjaan extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             decoration: const BoxDecoration(
                 color: Color(0XFF089E14),
                 borderRadius: BorderRadius.only(
@@ -203,7 +203,7 @@ class TambahKategoriPekerjaan extends StatelessWidget {
                                   size: 12,
                                 ),
                                 Text(
-                                  "Aksi",
+                                  "Hapus",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
@@ -254,8 +254,11 @@ class TambahKategoriPekerjaan extends StatelessWidget {
                                 color: Colors.white,
                                 size: 12,
                               ),
+                              SizedBox(
+                                width: 2,
+                              ),
                               Text(
-                                "Aksi",
+                                "Hapus",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
