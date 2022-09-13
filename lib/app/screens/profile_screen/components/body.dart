@@ -1,0 +1,293 @@
+import 'package:flutter/material.dart';
+
+import '../../../utilities/colors.dart';
+import '../../../utilities/text_styles.dart';
+
+class Body extends StatelessWidget {
+  const Body({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<Map> listMenu = [
+      {
+        "icon": const Icon(Icons.account_circle_outlined,
+            color: neutral500, size: 30),
+        "title": "Profile Pengguna"
+      },
+      {
+        "icon": const Icon(Icons.file_download_outlined,
+            color: neutral500, size: 30),
+        "title": "Pilihan Paket"
+      },
+      {
+        "icon": const Icon(Icons.chat_bubble_outline_rounded,
+            color: neutral500, size: 30),
+        "title": "Umpan Balik"
+      },
+      {
+        "icon": const Icon(Icons.warning_amber_rounded,
+            color: neutral500, size: 30),
+        "title": "Lapor Kesalahan"
+      },
+      {
+        "icon": const Icon(Icons.logout_rounded, color: neutral500, size: 30),
+        "title": "Keluar"
+      }
+    ];
+    Size size = MediaQuery.of(context).size;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Positioned(
+          top: 0,
+          child: SizedBox(
+            height: size.height * 0.3,
+            width: size.width,
+            child: Center(
+              child: Container(
+                width: 150,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: Theme.of(context).scaffoldBackgroundColor),
+                  boxShadow: [
+                    BoxShadow(
+                        spreadRadius: 2,
+                        blurRadius: 10,
+                        color: Colors.black.withOpacity(0.1),
+                        offset: const Offset(0, 1)),
+                  ],
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  image: const DecorationImage(
+                      scale: 0.5,
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/img/profil.jpg")),
+                ),
+              ),
+            ),
+          ),
+        ),
+        DraggableScrollableSheet(
+          initialChildSize: 0.6,
+          minChildSize: 0.6,
+          maxChildSize: 0.8,
+          builder: (context, controller) => ClipRRect(
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: neutral100,
+              ),
+              child: SingleChildScrollView(
+                controller: controller,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 16,
+                        left: size.width * 0.05,
+                        right: size.width * 0.05,
+                      ),
+                      decoration: BoxDecoration(
+                          color: neutral200.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Syalana",
+                                            style: text1(primary, bold),
+                                          ),
+                                          Text(
+                                            "Sleman, Yogyakarta",
+                                            style: text3(neutral500, regular),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: Row(
+                                          children: [
+                                            const Icon(
+                                                Icons.mode_edit_outline_rounded,
+                                                color: primary,
+                                                size: 12),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              "Edit Profil",
+                                              style: text4(primary, bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: primary,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: 45,
+                                            width: 45,
+                                            child: Image.asset(
+                                                "assets/icon/koin.png"),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Poin saat ini",
+                                                  style: text4(
+                                                      neutral100, semibold),
+                                                ),
+                                                Text(
+                                                  "2908",
+                                                  style: text2(
+                                                      neutral100, semibold),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: GestureDetector(
+                                                      onTap: () {},
+                                                      child: const Text(
+                                                        "Riwayat Poin",
+                                                        style: TextStyle(
+                                                            color: neutral100,
+                                                            fontSize: 12,
+                                                            fontWeight: medium,
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .underline),
+                                                      )),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: accentYellow500,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Tipe Akun",
+                                        style: text4(neutral100, medium),
+                                      ),
+                                      Text(
+                                        "Standard",
+                                        style: text2(neutral100, bold),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: primary,
+                                      borderRadius: BorderRadius.circular(7),
+                                    ),
+                                    child: Text(
+                                      "Upgrade",
+                                      style: text4(neutral100, bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => ListTile(
+                              dense: true,
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.05, vertical: 0),
+                              leading: listMenu[index]["icon"],
+                              title: Text(listMenu[index]["title"],
+                                  style: text3(neutral500, medium)),
+                              trailing: const Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 24,
+                              ),
+                            ),
+                        separatorBuilder: (context, index) => const Divider(
+                              thickness: 2,
+                            ),
+                        itemCount: listMenu.length),
+                    const SizedBox(
+                      height: 10,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
