@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: SubCopyPekerjaan(),
+      home: const LaporanRab(),
     );
   }
 }
