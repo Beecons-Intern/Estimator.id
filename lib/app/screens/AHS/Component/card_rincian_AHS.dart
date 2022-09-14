@@ -1,6 +1,10 @@
+// ignore: file_names
+import 'package:estimator_id/app/screens/AHS/ubah_spesifikasi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
+import 'button_rincian_ahs.dart';
 
 class CardAHS extends StatelessWidget {
   const CardAHS({Key? key, required this.size}) : super(key: key);
@@ -199,7 +203,13 @@ class CardAHS extends StatelessWidget {
                                                   ),
                                                 ),
                                                 GestureDetector(
-                                                  onTap: () {},
+                                                  onTap: () => Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const UbahSpesifikasi(),
+                                                    ),
+                                                  ),
                                                   child: Icon(
                                                     Icons.edit_note,
                                                     color: Color(0xFF10AE0B),
@@ -299,7 +309,7 @@ class CardAHS extends StatelessWidget {
                                                 ),
                                               ),
                                             ],
-                                          ),
+                                          )
                                         ],
                                       ),
                                     ))),

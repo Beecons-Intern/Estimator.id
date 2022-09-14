@@ -23,13 +23,13 @@ class _rincianAHSState extends State<rincianAHS> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xFFECECEC),
+      backgroundColor: const Color(0xFFECECEC),
       appBar: AppBar(
-        leading: Icon(
+        leading: const Icon(
           Icons.arrow_back_ios_new_outlined,
           color: Colors.black,
         ),
-        title: Text(
+        title: const Text(
           "Rincian AHS",
           style: TextStyle(
             color: Colors.black,
@@ -45,8 +45,8 @@ class _rincianAHSState extends State<rincianAHS> {
           Container(
             height: 28,
             width: size.width,
-            color: Color(0xFF089E14),
-            child: Center(
+            color: const Color(0xFF089E14),
+            child: const Center(
               child: Text(
                 "Beton balok bordes 20/40",
                 style: TextStyle(fontSize: 12, color: Colors.white),
@@ -54,11 +54,11 @@ class _rincianAHSState extends State<rincianAHS> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -72,20 +72,20 @@ class _rincianAHSState extends State<rincianAHS> {
                         hintText: 'Masukkan kata kunci',
                         hintStyle: TextStyle(color: Colors.grey),
                         suffixIcon: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.search_outlined,
                             color: Colors.grey,
                           ),
                           onPressed: () {},
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: primary,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: primary,
                           ),
                         ),
@@ -93,11 +93,11 @@ class _rincianAHSState extends State<rincianAHS> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text('Harga Satuan'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -106,8 +106,8 @@ class _rincianAHSState extends State<rincianAHS> {
                     Container(
                       width: size.width * 0.75,
                       height: 50,
-                      color: Color(0xFFCEECD0),
-                      child: Center(
+                      color: const Color(0xFFCEECD0),
+                      child: const Center(
                         child: Text(
                           'Rp 4.420.206,65',
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -171,7 +171,7 @@ class _rincianAHSState extends State<rincianAHS> {
                             ),
                           ],
                         ),
-                        Divider(
+                        const Divider(
                           thickness: 1,
                           indent: 2,
                           color: Color(0xFFB1B1B1),

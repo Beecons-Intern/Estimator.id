@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-import 'package:estimator_id/app/screens/Laporan%20RAB/laporan_rab.dart';
-import 'package:estimator_id/app/screens/copy_dan_duplikat_pekerjaan/sub_copy_pekerjaan.dart';
+import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
 
-=======
-import 'package:estimator_id/app/screens/koleksi_screen/koleksi_screen.dart';
-import 'package:estimator_id/app/widgets/rounded_button.dart';
->>>>>>> 96f542c0cd23f460888107f489b528db83b8950d
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'app/utilities/colors.dart';
-import 'app/utilities/text_styles.dart';
-import 'app/widgets/build_textfields.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,25 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-<<<<<<< HEAD
-      home: const LaporanRab(),
-    );
-  }
-}
-=======
-      home: const EditProfile(),
+      home: const rincianAHS(),
       // routes: AppPage.pages,
       // initialRoute: '/',
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold();
   }
 }
 
@@ -389,4 +364,3 @@ class EditProfile extends StatelessWidget {
     );
   }
 }
->>>>>>> 96f542c0cd23f460888107f489b528db83b8950d
