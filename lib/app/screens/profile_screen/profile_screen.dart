@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
+import 'components/body.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -18,11 +19,12 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: const Icon(
-          Icons.arrow_back_ios_new_outlined,
-          color: neutral100,
-        ),
+        // leading: const Icon(
+        //   Icons.arrow_back_ios_new_outlined,
+        //   color: neutral100,
+        // ),
       ),
+      body: const Body()
     );
   }
 }

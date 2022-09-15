@@ -38,10 +38,6 @@ class _KoleksiScreenState extends State<KoleksiScreen> {
         toolbarHeight: 80,
         title: Stack(
           children: [
-            const Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: neutral500,
-            ),
             const Align(
               alignment: Alignment.centerRight,
               child: Icon(

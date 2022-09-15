@@ -1,6 +1,7 @@
 import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
 
 import 'package:flutter/material.dart';
+import 'app/route/page_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const rincianAHS(),
-      // routes: AppPage.pages,
-      // initialRoute: '/',
+      // home: const EditProfile(),
+      routes: AppPage.pages,
+      initialRoute: '/',
     );
   }
 }

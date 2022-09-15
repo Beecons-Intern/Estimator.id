@@ -38,6 +38,9 @@ class BuildPageUpah extends StatelessWidget {
             height: 20,
           ),
           BuildListView(size: size),
+          const SizedBox(
+            height: 10,
+          ),
         ],
       ),
     );

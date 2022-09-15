@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 
@@ -71,7 +72,7 @@ class Body extends StatelessWidget {
         DraggableScrollableSheet(
           initialChildSize: 0.6,
           minChildSize: 0.6,
-          maxChildSize: 0.8,
+          maxChildSize: 0.9,
           builder: (context, controller) => ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20)),
@@ -243,10 +244,16 @@ class Body extends StatelessWidget {
                                       color: primary,
                                       borderRadius: BorderRadius.circular(7),
                                     ),
-                                    child: Text(
-                                      "Upgrade",
-                                      style: text4(neutral100, bold),
-                                      textAlign: TextAlign.center,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, RouteName.paket);
+                                      },
+                                      child: Text(
+                                        "Upgrade",
+                                        style: text4(neutral100, bold),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -263,6 +270,15 @@ class Body extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) => ListTile(
+                              onTap: () {
+                                switch (index) {
+                                  case 0:
+                                    Navigator.pushNamed(
+                                        context, RouteName.detailProfile);
+                                    break;
+                                  default:
+                                }
+                              },
                               dense: true,
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: size.width * 0.05, vertical: 0),
