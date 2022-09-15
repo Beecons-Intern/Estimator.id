@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
 
+import 'package:flutter/material.dart';
 import 'app/route/page_route.dart';
 
 void main() {
@@ -18,15 +19,6 @@ class MyApp extends StatelessWidget {
       routes: AppPage.pages,
       initialRoute: '/',
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Scaffold();
   }
 }
 
