@@ -23,7 +23,43 @@ class _NavigationState extends State<Navigation> {
     return Scaffold(
       body: pages[index],
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10))),
+              context: context,
+              builder: (context) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Buat Proyek Baru",
+                        style: text1(neutral500, bold),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      buildOptionProyek(
+                          size,
+                          "assets/img/perencanaan.png",
+                          "Perencanaan",
+                          "Proyek perencanaan berlaku bagi estimator untuk estimasi anggaran proyek"),
+                      buildOptionProyek(
+                          size,
+                          "assets/img/penawaran.png",
+                          "Penawaran",
+                          "Proyek penawaran berlaku bagi kontraktor untuk penawaran nilai pagu proyek")
+                    ],
+                  ),
+                );
+              });
+        },
         backgroundColor: primary,
         child: const Icon(
           Icons.add,
@@ -60,7 +96,7 @@ class _NavigationState extends State<Navigation> {
                           });
                         },
                         icon: Icon(
-                          Icons.home,
+                          Icons.other_houses_outlined,
                           color: index == 0 ? primary : const Color(0xFF969696),
                           size: 34,
                         ),
@@ -136,6 +172,43 @@ class _NavigationState extends State<Navigation> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Container buildOptionProyek(
+      Size size, String image, String title, String subtitle) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(bottom: 16),
+      width: size.width,
+      decoration: BoxDecoration(
+          border: Border.all(color: primary, width: 2),
+          borderRadius: const BorderRadius.all(Radius.circular(10))),
+      child: Row(
+        children: [
+          Image.asset(
+            image,
+            width: 80,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: text2(neutral500, semibold),
+              ),
+              Text(
+                subtitle,
+                style: text4(neutral500, regular),
+              )
+            ],
+          ))
+        ],
       ),
     );
   }

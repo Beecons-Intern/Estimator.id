@@ -124,20 +124,30 @@ class _BuildListViewState extends State<BuildListView> {
                     itemCount: 3,
                     itemBuilder: (context, indexExpanded) => Container(
                           padding: const EdgeInsets.all(5),
-                          margin: const EdgeInsets.only(bottom: 10),
+                          // margin: const EdgeInsets.only(bottom: 10),
                           decoration: BoxDecoration(
-                              color: indexExpanded % 2 == 0
-                                  ? accentYellow100
-                                  : null,
+                              // color: indexExpanded % 2 == 0
+                              //     ? accentYellow100
+                              //     : null,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(5))),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (indexExpanded == 0) ...[
-                                Text(
-                                  "A. BAHAN",
-                                  style: body(neutral500, bold),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "A. BAHAN",
+                                      style: body(neutral500, bold),
+                                    ),
+                                    Icon(
+                                      Icons.visibility_rounded,
+                                      color: primary,
+                                    )
+                                  ],
                                 ),
                               ] else if (indexExpanded == 1) ...[
                                 Text(
@@ -151,59 +161,47 @@ class _BuildListViewState extends State<BuildListView> {
                                 ),
                               ],
                               Container(
-                                margin: const EdgeInsets.only(bottom: 10),
-                                child: ListView.builder(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: widget.size.width * 0.03),
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: 3,
-                                    itemBuilder: (context, indexItem) =>
-                                        Container(
-                                          padding: const EdgeInsets.all(5),
-                                          margin:
-                                              const EdgeInsets.only(bottom: 5),
-                                          decoration: BoxDecoration(
-                                              color: indexItem % 2 == 0 &&
-                                                      indexExpanded % 2 == 0
-                                                  ? neutral100
-                                                  : indexItem % 2 != 0 &&
-                                                          indexExpanded % 2 == 0
-                                                      ? null
-                                                      : indexItem % 2 == 0
-                                                          ? accentYellow200
-                                                          : null,
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(5))),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: const [
-                                              BuildTextItemSpan(
-                                                title: "Nama : ",
-                                                text: "Semen portland",
-                                              ),
-                                              BuildTextItemSpan(
-                                                title: "Koefisien : ",
-                                                text: "0.0650",
-                                              ),
-                                              BuildTextItemSpan(
-                                                title: "Satuan : ",
-                                                text: "kg",
-                                              ),
-                                              BuildTextItemSpan(
-                                                title: "Merk : ",
-                                                text: "-",
-                                              ),
-                                              BuildTextItemSpan(
-                                                title: "Spesifikasi : ",
-                                                text: "-",
-                                              ),
-                                            ],
-                                          ),
-                                        )),
+                                width: widget.size.width,
+                                padding: const EdgeInsets.all(5),
+                                margin: const EdgeInsets.only(bottom: 5),
+                                decoration: BoxDecoration(
+                                    color: accentGreen100,
+                                    // color: indexItem % 2 == 0 &&
+                                    //         indexExpanded % 2 == 0
+                                    //     ? neutral100
+                                    //     : indexItem % 2 != 0 &&
+                                    //             indexExpanded % 2 == 0
+                                    //         ? null
+                                    //         : indexItem % 2 == 0
+                                    //             ? accentYellow200
+                                    //             : null,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5))),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    BuildTextItemSpan(
+                                      title: "1. ",
+                                      text: "Semen portland",
+                                    ),
+                                    BuildTextItemSpan(
+                                      title: "2. ",
+                                      text: "Masker Medis",
+                                    ),
+                                    BuildTextItemSpan(
+                                      title: "Satuan : ",
+                                      text: "kg",
+                                    ),
+                                    BuildTextItemSpan(
+                                      title: "Merk : ",
+                                      text: "-",
+                                    ),
+                                    BuildTextItemSpan(
+                                      title: "Spesifikasi : ",
+                                      text: "-",
+                                    ),
+                                  ],
+                                ),
                               )
                             ],
                           ),
