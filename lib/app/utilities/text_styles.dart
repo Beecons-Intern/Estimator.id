@@ -27,21 +27,21 @@ TextStyle heading5(colorText, fontWeight) {
 }
 
 TextStyle body(colorText, fontWeight) {
-  return TextStyle(color: colorText, fontSize: 14, fontWeight: fontWeight);
-}
-
-TextStyle text1(colorText, fontWeight) {
-  return TextStyle(color: colorText, fontSize: 20, fontWeight: fontWeight);
-}
-
-TextStyle text2(colorText, fontWeight) {
   return TextStyle(color: colorText, fontSize: 16, fontWeight: fontWeight);
 }
 
+TextStyle text1(colorText, fontWeight) {
+  return TextStyle(color: colorText, fontSize: 22, fontWeight: fontWeight);
+}
+
+TextStyle text2(colorText, fontWeight) {
+  return TextStyle(color: colorText, fontSize: 18, fontWeight: fontWeight);
+}
+
 TextStyle text3(colorText, fontWeight) {
-  return TextStyle(color: colorText, fontSize: 12, fontWeight: fontWeight);
+  return TextStyle(color: colorText, fontSize: 14, fontWeight: fontWeight);
 }
 
 TextStyle text4(colorText, fontWeight) {
-  return TextStyle(color: colorText, fontSize: 10, fontWeight: fontWeight);
+  return TextStyle(color: colorText, fontSize: 12, fontWeight: fontWeight);
 }
