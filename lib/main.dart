@@ -1,3 +1,4 @@
+import 'package:estimator_id/app/screens/rab_screen/rab.dart';
 import 'package:flutter/material.dart';
 import 'app/route/page_route.dart';
 import 'app/screens/proyek/component/item_anggaran_belanja.dart';
@@ -30,11 +31,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
