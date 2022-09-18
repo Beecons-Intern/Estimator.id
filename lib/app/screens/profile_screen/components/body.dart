@@ -276,6 +276,14 @@ class Body extends StatelessWidget {
                                     Navigator.pushNamed(
                                         context, RouteName.detailProfile);
                                     break;
+                                  case 1:
+                                    Navigator.pushNamed(
+                                        context, RouteName.paket);
+                                    break;
+                                  case 4:
+                                    Navigator.pushNamed(
+                                        context, RouteName.loginScreen);
+                                    break;
                                   default:
                                 }
                               },

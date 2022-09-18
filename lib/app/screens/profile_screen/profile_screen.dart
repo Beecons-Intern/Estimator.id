@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
           "Akun",
           style: text1(neutral100, bold),
         ),
-        centerTitle: true,
+        centerTitle: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         // leading: const Icon(

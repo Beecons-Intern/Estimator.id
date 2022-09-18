@@ -9,4 +9,8 @@ abstract class RouteName {
   static const detailProfile = '/detailProfile';
   static const paket = '/paket';
   static const order = '/order';
+  static const penawaran = '/penawaran';
+  static const perencanaan = '/perencanaan';
+  static const proyek = '/proyek';
+  static const detailProyek = '/detailProyek';
 }

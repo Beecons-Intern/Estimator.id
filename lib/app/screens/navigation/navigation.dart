@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../route/route_name.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import '../home_screen/home_screen.dart';
 import '../koleksi_screen/koleksi_screen.dart';
 import '../profile_screen/profile_screen.dart';
+import '../proyek_screen/proyek_screen.dart';
 import 'components/navigation_button.dart';
 
 class Navigation extends StatefulWidget {
@@ -15,16 +17,23 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  List pages = const [HomeScreen(), "", KoleksiScreen(), ProfileScreen()];
+  List pages = const [
+    HomeScreen(),
+    ProyekScreen(),
+    KoleksiScreen(),
+    ProfileScreen()
+  ];
   int index = 0;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: pages[index],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
+              isScrollControlled: true,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
@@ -39,7 +48,7 @@ class _NavigationState extends State<Navigation> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Buat Proyek Baru",
+                        "Tambah",
                         style: text1(neutral500, bold),
                       ),
                       const SizedBox(
@@ -49,12 +58,29 @@ class _NavigationState extends State<Navigation> {
                           size,
                           "assets/img/perencanaan.png",
                           "Perencanaan",
-                          "Proyek perencanaan berlaku bagi estimator untuk estimasi anggaran proyek"),
+                          "Proyek perencanaan berlaku bagi estimator untuk estimasi anggaran proyek",
+                          () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, RouteName.perencanaan);
+                      }),
                       buildOptionProyek(
                           size,
                           "assets/img/penawaran.png",
                           "Penawaran",
-                          "Proyek penawaran berlaku bagi kontraktor untuk penawaran nilai pagu proyek")
+                          "Proyek penawaran berlaku bagi kontraktor untuk penawaran nilai pagu proyek",
+                          () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, RouteName.penawaran);
+                      }),
+                      buildOptionProyek(
+                          size,
+                          "assets/img/koleksi.png",
+                          "Koleksi",
+                          "Catatan proyek yang berguna bagi kontraktor untuk penawaran nilai pagu proyek",
+                          () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, RouteName.penawaran);
+                      })
                     ],
                   ),
                 );
@@ -108,9 +134,9 @@ class _NavigationState extends State<Navigation> {
                       ),
                       NavigationButton(
                           onPressed: () {
-                            /* setState(() {
+                            setState(() {
                               index = 1;
-                            }); */
+                            });
                           },
                           icon: Icon(
                             Icons.grid_view_outlined,
@@ -176,39 +202,42 @@ class _NavigationState extends State<Navigation> {
     );
   }
 
-  Container buildOptionProyek(
-      Size size, String image, String title, String subtitle) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.only(bottom: 16),
-      width: size.width,
-      decoration: BoxDecoration(
-          border: Border.all(color: primary, width: 2),
-          borderRadius: const BorderRadius.all(Radius.circular(10))),
-      child: Row(
-        children: [
-          Image.asset(
-            image,
-            width: 80,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: text2(neutral500, semibold),
-              ),
-              Text(
-                subtitle,
-                style: text4(neutral500, regular),
-              )
-            ],
-          ))
-        ],
+  GestureDetector buildOptionProyek(Size size, String image, String title,
+      String subtitle, void Function()? onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 16),
+        width: size.width,
+        decoration: BoxDecoration(
+            border: Border.all(color: primary, width: 2),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
+        child: Row(
+          children: [
+            Image.asset(
+              image,
+              width: 80,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: text2(neutral500, semibold),
+                ),
+                Text(
+                  subtitle,
+                  style: text4(neutral500, regular),
+                )
+              ],
+            ))
+          ],
+        ),
       ),
     );
   }

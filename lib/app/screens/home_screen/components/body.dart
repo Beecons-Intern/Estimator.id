@@ -107,44 +107,7 @@ class _BodyState extends State<Body> {
                               )),
                           Expanded(child: priceItem[right])
                         ],
-                      )
-                      // ListView(
-                      //   scrollDirection: Axis.horizontal,
-                      //   shrinkWrap: true,
-                      //   children: const [
-                      //     BuildItemPrice(
-                      //       title: "Biaya Teralokasi",
-                      //       icon: Icons.data_exploration,
-                      //       color: Color(0xFF1A4E90),
-                      //       index: 0,
-                      //     ),
-                      //     BuildItemPrice(
-                      //       title: "Kenaikan",
-                      //       icon: Icons.arrow_upward_rounded,
-                      //       color: primary,
-                      //       index: 1,
-                      //     ),
-                      //     BuildItemPrice(
-                      //       title: "Kerugian",
-                      //       icon: Icons.arrow_downward_rounded,
-                      //       color: accentOrange500,
-                      //       index: 1,
-                      //     ),
-                      //     BuildItemPrice(
-                      //       title: "Daily P&L",
-                      //       icon: Icons.call_missed_outgoing_sharp,
-                      //       color: accentOrange500,
-                      //       index: 1,
-                      //     ),
-                      //     BuildItemPrice(
-                      //       title: "Cash",
-                      //       icon: Icons.attach_money_rounded,
-                      //       color: primary,
-                      //       index: 1,
-                      //     )
-                      //   ],
-                      // ),
-                      ),
+                      )),
                   Positioned(
                     top: 14,
                     left: size.width * 0.02,

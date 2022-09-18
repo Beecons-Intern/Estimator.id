@@ -1,10 +1,8 @@
-import 'package:estimator_id/app/screens/proyek/menu_proyek.dart';
-import 'package:estimator_id/app/screens/proyek/view_proyek.dart';
 import 'package:estimator_id/app/utilities/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../utilities/colors.dart';
-import '../../widgets/rounded_button.dart';
+import '../../../utilities/colors.dart';
+import '../../../widgets/rounded_button.dart';
 
 class Duplikat extends StatelessWidget {
   const Duplikat({
@@ -14,8 +12,7 @@ class Duplikat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
+      title: Column(
         children: [
           Text(
             "Duplikat Proyek",

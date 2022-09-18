@@ -19,7 +19,7 @@ class BuildTextItemSpan extends StatelessWidget {
               text: title,
               style: text3(neutral500, regular),
               children: [
-            TextSpan(text: text, style: text3(neutral500, medium))
+            TextSpan(text: text, style: text3(neutral500, regular))
           ])),
     );
   }

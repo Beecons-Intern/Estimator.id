@@ -13,29 +13,90 @@ class KoleksiScreen extends StatefulWidget {
 
 class _KoleksiScreenState extends State<KoleksiScreen> {
   final items = ["AHS", "Bahan", "Upah", "Alat"];
-  String? selected;
-  final controller = PageController(initialPage: 0);
+  int selected = 0;
 
-  @override
-  void initState() {
-    selected = items.first;
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   selected = items.first;
+  //   super.initState();
+  // }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
-        // elevation: 0.8,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        toolbarHeight: 80,
+        elevation: 0,
+        backgroundColor: primary,
+        title: Text(
+          "Koleksi",
+          style: text1(neutral100, bold),
+        ),
+        centerTitle: false,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              showModalBottomSheet(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  context: context,
+                  builder: (context) => Container(
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  selected = index;
+                                });
+                              },
+                              child: Text(
+                                items[index],
+                                style: text2(
+                                    selected == index ? primary : neutral500,
+                                    selected == index ? semibold : regular),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) => const Divider(
+                                thickness: 1,
+                              ),
+                          itemCount: items.length)));
+            },
+            child: Container(
+              margin: EdgeInsets.only(right: size.width * 0.02),
+              child: Row(
+                children: [
+                  Text(
+                    items[selected],
+                    style: text3(neutral100, semibold),
+                  ),
+                  const Icon(Icons.arrow_drop_down)
+                ],
+              ),
+            ),
+          )
+          /* Container(
+            margin: EdgeInsets.only(right: size.width * 0.05),
+            child: const Icon(
+              Icons.filter_alt,
+              color: neutral100,
+            ),
+          ), */
+        ],
+        /* toolbarHeight: 80,
         title: Stack(
           children: [
             const Align(
@@ -85,9 +146,9 @@ class _KoleksiScreenState extends State<KoleksiScreen> {
               ),
             )
           ],
-        ),
+        ), */
       ),
-      body: Body(controller: controller),
+      body: Body(pageActive: selected),
     );
   }
 }

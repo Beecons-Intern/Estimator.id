@@ -4,8 +4,8 @@ import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import 'components/body.dart';
 
-class PaketScreen extends StatelessWidget {
-  const PaketScreen({Key? key}) : super(key: key);
+class DetailProyekScreen extends StatelessWidget {
+  const DetailProyekScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class PaketScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primary,
         title: Text(
-          "Paket",
+          "Rumah Gaya Eropa",
           style: text1(neutral100, bold),
         ),
         leading: IconButton(

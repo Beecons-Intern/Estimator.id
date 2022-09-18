@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../route/route_name.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
+import '../../widgets/build_textfields.dart';
 import '../../widgets/rounded_button.dart';
 import 'components/body.dart';
 
@@ -13,14 +15,19 @@ class OrderScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: neutral100,
+        backgroundColor: primary,
         title: Text(
           "Daftar Order",
-          style: text1(neutral500, bold),
+          style: text1(neutral100, bold),
         ),
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: neutral500,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: neutral100,
+          ),
         ),
         centerTitle: true,
       ),
@@ -73,15 +80,36 @@ class OrderScreen extends StatelessWidget {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Image.asset("assets/img/icon-subscribe.png"),
+                              Image.asset(
+                                "assets/img/icon-subscribe.png",
+                                width: 150,
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Text(
                                 "Tetap terhubung dengan kami untuk mendapatkan informasi fitur terbaru dan pembaharuan sistem serta penawaran program peningkatan keahlian",
-                                style: text3(neutral500, regular),
+                                style: text4(neutral500, regular),
                                 textAlign: TextAlign.center,
                               ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              buildTextField("Masukkan nama lengkap"),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              buildTextField("Masukkan nomor whatsapp"),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              RoundedButton(
+                                ontap: () {
+                                  Navigator.pushNamedAndRemoveUntil(context,
+                                      RouteName.navigation, (route) => false);
+                                },
+                                text: "Kirim",
+                              )
                             ],
                           ),
                         ));
@@ -91,6 +119,26 @@ class OrderScreen extends StatelessWidget {
         ),
       ),
       body: const Body(),
+    );
+  }
+
+  TextField buildTextField(String hint) {
+    return TextField(
+      style: text3(primary, regular),
+      cursorColor: primary,
+      decoration: InputDecoration(
+        hintStyle: text3(neutral200, regular),
+        isDense: true,
+        contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: primary, width: 2),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: neutral200),
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        hintText: hint,
+      ),
     );
   }
 }

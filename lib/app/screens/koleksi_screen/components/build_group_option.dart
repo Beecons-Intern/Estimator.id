@@ -5,21 +5,56 @@ import '../../../utilities/text_styles.dart';
 import 'build_item_option.dart';
 
 class BuildGroupOption extends StatefulWidget {
-  const BuildGroupOption({Key? key, required this.size, required this.options})
+  const BuildGroupOption(
+      {Key? key,
+      required this.size,
+      required this.options,
+      required this.isActive})
       : super(key: key);
 
   final Size size;
   final List options;
+  final int isActive;
 
   @override
   State<BuildGroupOption> createState() => _BuildGroupOptionState();
 }
 
 class _BuildGroupOptionState extends State<BuildGroupOption> {
-  int isActive = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ...widget.options
+            .map((item) => Expanded(
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: widget.isActive == widget.options.indexOf(item)
+                              ? primary
+                              : null,
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: primary, width: 2)),
+                      child: Center(
+                        child: Text(
+                          item,
+                          style: text3(
+                              widget.isActive == widget.options.indexOf(item)
+                                  ? neutral100
+                                  : neutral500,
+                              semibold),
+                        ),
+                      ),
+                    ),
+                  ),
+                ))
+            .toList(),
+      ],
+    )
+        /* SizedBox(
       width: widget.size.width,
       height: 30,
       child: ListView(
@@ -49,28 +84,15 @@ class _BuildGroupOptionState extends State<BuildGroupOption> {
                             border: isActive == widget.options.indexOf(item)
                                 ? null
                                 : Border.all(color: primary, width: 2)),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 10,
-                              backgroundColor: accentBrown500,
-                              child: Text(
-                                "2",
-                                style: text4(neutral100, medium),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              item,
-                              style: text3(
-                                  isActive == widget.options.indexOf(item)
-                                      ? neutral100
-                                      : neutral500,
-                                  semibold),
-                            ),
-                          ],
+                        child: Center(
+                          child: Text(
+                            item,
+                            style: text3(
+                                isActive == widget.options.indexOf(item)
+                                    ? neutral100
+                                    : neutral500,
+                                semibold),
+                          ),
                         ),
                       ),
                     ),
@@ -78,6 +100,7 @@ class _BuildGroupOptionState extends State<BuildGroupOption> {
               .toList(),
         ],
       ),
-    );
+    ) */
+        ;
   }
 }
