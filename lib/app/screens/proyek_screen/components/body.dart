@@ -11,6 +11,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final items = ["Lihat", "Bagikan", "Duplikat", "Hapus", "Selesai"];
     final Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -68,7 +69,7 @@ class Body extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.5,
+                      childAspectRatio: 0.57,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 16,
                       crossAxisCount: 2),
@@ -87,110 +88,171 @@ class Body extends StatelessWidget {
                                 offset: const Offset(0, 1)),
                           ],
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Stack(
                           children: [
-                            Image.asset(
-                              "assets/img/no-foto.jpg",
-                              width: size.width,
-                              fit: BoxFit.fill,
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "Rumah Tinggal Sederhana",
-                              style: text3(neutral500, bold),
-                              textAlign: TextAlign.center,
-                            ),
-                            const Divider(
-                              thickness: 1,
-                              color: neutral200,
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(
-                                  Icons.person_outline_rounded,
-                                  color: neutral300,
-                                  size: 16,
+                                Image.asset(
+                                  "assets/img/no-foto.jpg",
+                                  width: size.width,
+                                  fit: BoxFit.fill,
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  height: 2,
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    "Estimator.id",
-                                    style: text4(neutral500, semibold),
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.location_on_outlined,
-                                  color: neutral300,
-                                  size: 16,
+                                Text(
+                                  "Rumah Tinggal Sederhana",
+                                  style: text3(neutral500, bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                  color: neutral200,
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  height: 5,
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    "Kab. Sleman",
-                                    style: text4(neutral500, semibold),
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.calendar_month_outlined,
-                                  color: neutral300,
-                                  size: 16,
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.person_outline_rounded,
+                                      color: neutral300,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        "Estimator.id",
+                                        style: text4(neutral500, semibold),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  height: 5,
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    "2022",
-                                    style: text4(neutral500, semibold),
-                                  ),
-                                )
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_on_outlined,
+                                      color: neutral300,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        "Kab. Sleman",
+                                        style: text4(neutral500, semibold),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.calendar_month_outlined,
+                                      color: neutral300,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        "2022",
+                                        style: text4(neutral500, semibold),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                // const SizedBox(
+                                //   height: 10,
+                                // ),
+                                // GestureDetector(
+                                //   onTap: () {
+                                //     Navigator.pushNamed(
+                                //         context, RouteName.detailProyek);
+                                //   },
+                                //   child: Container(
+                                //     width: size.width,
+                                //     padding:
+                                //         const EdgeInsets.symmetric(vertical: 4),
+                                //     decoration: const BoxDecoration(
+                                //         color: primary,
+                                //         borderRadius:
+                                //             BorderRadius.all(Radius.circular(10))),
+                                //     child: Center(
+                                //         child: Text(
+                                //       "Lihat",
+                                //       style: text3(neutral100, bold),
+                                //     )),
+                                //   ),
+                                // )
                               ],
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, RouteName.detailProyek);
-                              },
-                              child: Container(
-                                width: size.width,
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 4),
-                                decoration: const BoxDecoration(
+                            Positioned(
+                              top: 3,
+                              right: 3,
+                              child: GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10))),
+                                      context: context,
+                                      builder: (context) => Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 20),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.05),
+                                          child: ListView.separated(
+                                              shrinkWrap: true,
+                                              itemBuilder: (context, index) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    switch (index) {
+                                                      case 0:
+                                                        Navigator.pop(context);
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            RouteName
+                                                                .detailProyek);
+                                                        break;
+                                                      default:
+                                                    }
+                                                  },
+                                                  child: Text(
+                                                    items[index],
+                                                    style: text2(
+                                                        neutral500, regular),
+                                                  ),
+                                                );
+                                              },
+                                              separatorBuilder:
+                                                  (context, index) =>
+                                                      const Divider(
+                                                        thickness: 1,
+                                                      ),
+                                              itemCount: items.length)));
+                                },
+                                child: const CircleAvatar(
+                                  backgroundColor: neutral100,
+                                  radius: 14,
+                                  child: Icon(
+                                    Icons.more_vert_rounded,
                                     color: primary,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: Center(
-                                    child: Text(
-                                  "Lihat",
-                                  style: text3(neutral100, bold),
-                                )),
+                                    size: 18,
+                                  ),
+                                ),
                               ),
                             )
                           ],

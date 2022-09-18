@@ -45,21 +45,21 @@ class ItemAnggaranBelanja extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 4),
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: primary, width: 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                      child: Text(
-                        persen,
-                        style: text3(neutral500, regular),
-                      ),
-                    ),
-                  ),
-                )
+                // Expanded(
+                //   child: Container(
+                //     margin: const EdgeInsets.only(left: 4),
+                //     padding: const EdgeInsets.symmetric(vertical: 6),
+                //     decoration: BoxDecoration(
+                //         border: Border.all(color: primary, width: 1),
+                //         borderRadius: BorderRadius.circular(5)),
+                //     child: Center(
+                //       child: Text(
+                //         persen,
+                //         style: text3(neutral500, regular),
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             )),
       ],

@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
+import '../../../widgets/rounded_button.dart';
 import 'build_textfiled.dart';
 
 class Body extends StatelessWidget {
@@ -175,9 +176,10 @@ class Body extends StatelessWidget {
                   ],
                 )),
           ),
-          const SizedBox(
-            height: 80,
-          )
+          // const SizedBox(
+          //   height: 50,
+          // ),
+          // RoundedButton(ontap: (){}, text: "Simpan",)
         ],
       ),
     );

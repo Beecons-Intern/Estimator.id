@@ -26,7 +26,9 @@ class Body extends StatelessWidget {
             crossAxisCount: 2),
         itemBuilder: (context, index) => index == 0
             ? GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.penawaran);
+                },
                 child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -228,6 +230,10 @@ class Body extends StatelessWidget {
                                             onTap: () {
                                               switch (index) {
                                                 case 0:
+                                                  Navigator.pushNamed(context,
+                                                      RouteName.detailProyek);
+                                                  break;
+                                                case 1:
                                                   Navigator.pushNamed(context,
                                                       RouteName.detailProyek);
                                                   break;
