@@ -1,4 +1,5 @@
 import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
+import 'package:estimator_id/app/screens/Edit%20Volume/pages.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const rincianAHS(),
+      home: const Pages(),
       // routes: AppPage.pages,
       // initialRoute: '/',
     );
