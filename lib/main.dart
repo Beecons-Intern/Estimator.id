@@ -1,5 +1,7 @@
 import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
 import 'package:estimator_id/app/screens/Edit%20Volume/pages.dart';
+import 'package:estimator_id/app/screens/RAB%20Perancangan/tambah_kategori.pekerjaan.dart';
+import 'package:estimator_id/app/screens/copy_dan_duplikat_pekerjaan/sub_copy_pekerjaan.dart';
 
 import 'package:flutter/material.dart';
 
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const Pages(),
+      home: const SubCopyPekerjaan(),
       // routes: AppPage.pages,
       // initialRoute: '/',
     );
