@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:estimator_id/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../Widget/search.dart';
-
 class AlertAmbilVolume extends StatefulWidget {
   const AlertAmbilVolume({
     Key? key,
@@ -20,7 +18,6 @@ class AlertAmbilVolume extends StatefulWidget {
 class _AlertAmbilVolumeState extends State<AlertAmbilVolume> {
   @override
   Widget build(BuildContext context) {
-    int? hide;
     return AlertDialog(
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,10 +42,26 @@ class _AlertAmbilVolumeState extends State<AlertAmbilVolume> {
                   fontWeight: FontWeight.w400),
             ),
           ),
-          Searching(size: widget.size),
+
+          ///searching
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                border: Border.all(color: primary900, width: 2),
+                borderRadius: BorderRadius.circular(10)),
+            child: const TextField(
+              decoration: InputDecoration(
+                hintText: 'Masukan kata kunci',
+                hintStyle: TextStyle(fontSize: 14, color: neutral400),
+                suffixIcon: Icon(Icons.search, color: neutral400),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
           SizedBox(
             width: widget.size.width,
-            height: widget.size.height * 0.4,
+            height: widget.size.height * 0.3,
             child: ListView.builder(
               itemCount: 1,
               itemBuilder: (context, index) => ExpansionTile(
@@ -246,7 +259,7 @@ class _AlertAmbilVolumeState extends State<AlertAmbilVolume> {
                                   style: TextStyle(fontSize: 12),
                                 ),
                                 Text(
-                                  "45",
+                                  "0.00",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: accentBrown400,
@@ -254,7 +267,7 @@ class _AlertAmbilVolumeState extends State<AlertAmbilVolume> {
                                 )
                               ],
                             ),
-                            SizedBox(width: widget.size.width * 0.185),
+                            SizedBox(width: widget.size.width * 0.16),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [

@@ -1,3 +1,4 @@
+import 'package:estimator_id/app/screens/Edit%20Volume/component/alert_ambil_volume.dart';
 import 'package:estimator_id/app/screens/copy_dan_duplikat_pekerjaan/component/tambah_kategori_pekerjaan.dart';
 import 'package:estimator_id/app/utilities/colors.dart';
 import 'package:flutter/material.dart';
@@ -162,7 +163,7 @@ class _PagesState extends State<Pages> {
                       onTap: () => showDialog(
                         context: context,
                         builder: (BuildContext context) =>
-                            AlertTAmbahKategoriPekerjaan(size: size),
+                            AlertAmbilVolume(size: size),
                       ),
                     )
                   ] else
