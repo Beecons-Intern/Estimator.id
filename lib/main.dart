@@ -1,3 +1,4 @@
+import 'package:estimator_id/app/screens/AHS/filter_bahan.dart';
 import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
 
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const rincianAHS(),
+      home: const FilterBahan(),
       // routes: AppPage.pages,
       // initialRoute: '/',
     );
