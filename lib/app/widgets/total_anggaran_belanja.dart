@@ -1,7 +1,7 @@
 import 'package:estimator_id/app/utilities/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utilities/colors.dart';
+import '../utilities/colors.dart';
 
 class TotalAnggaranBelanja extends StatelessWidget {
   final String totalName;

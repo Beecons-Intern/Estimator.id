@@ -1,11 +1,9 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
-import '../../proyek/duplikat.dart';
-import 'item_anggaran_belanja.dart';
-import 'item_profil_project.dart';
-import 'popup_bagikan.dart';
+import '../../../widgets/rounded_button.dart';
 import '../../../widgets/total_anggaran_belanja.dart';
 
 class Body extends StatefulWidget {
@@ -24,98 +22,9 @@ class _BodyState extends State<Body> {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: 16,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Profil Proyek",
-                style: text2(neutral500, bold),
-              ),
-              const Icon(
-                Icons.edit,
-                size: 18,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const ItemProfilProyek(
-            nama: "Nama Proyek",
-            edit: "Rumah Gaya Eropa",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Lokasi Proyek",
-            edit: "Sleman D.I Yogyakarta",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Pemilik Proyek",
-            edit: "Joko Santoso",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Tahun",
-            edit: "2022",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Jasa Kontraktor",
-            edit: "10.00 %",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Pajak",
-            edit: "11.00 %",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Dokumen Proyek",
-            edit: "eropan style.xlxs",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Keterangan",
-            edit: "Rumahku Surgaku fix no debat",
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Rancangan Anggaran Belanja",
-                style: text2(neutral500, bold),
-              ),
-              /* IconButton(
-                  icon: const Icon(Icons.more_vert),
-                  onPressed: (() => menuProyek(context)),
-                ) */
-            ],
-          ),
-          const SizedBox(
-            height: 10,
           ),
           Row(
             children: [
@@ -146,28 +55,108 @@ class _BodyState extends State<Body> {
                 ),
               ),
               Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                  decoration: BoxDecoration(
-                      color: primary, borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.upload,
-                        color: neutral100,
-                        size: 16,
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: Text(
+                          "Impor Volume",
+                          style: text2(neutral500, semibold),
+                          textAlign: TextAlign.center,
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            RichText(
+                              textAlign: TextAlign.start,
+                              text: TextSpan(
+                                text: "belum memiliki template?",
+                                style: text4(neutral500, regular),
+                                children: [
+                                  TextSpan(
+                                    text: " unduh template",
+                                    style: text4(primary, regular),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            DottedBorder(
+                              borderType: BorderType.RRect,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.15,
+                                  vertical: size.height * 0.1),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 2, vertical: 5),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                  color: primary,
+                                )),
+                                child: Text(
+                                  "Unggah template volume",
+                                  textAlign: TextAlign.center,
+                                  style: text4(neutral500, regular),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              "Jika anda melakukan impor, seluruh rincian volume pekerjaan yang telah dimasukan sebelumnya akan terhapus dan digantikan dengan volume dari file template.",
+                              style: text4(neutral500, regular),
+                              textAlign: TextAlign.justify,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Peringatan! Pastikan Andan telah melakukan backup rincian volume sebelumnya!",
+                                    style: text4(accentOrange500, regular),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            RoundedButton(
+                              ontap: () {},
+                              text: "Impor Volume",
+                            )
+                          ],
+                        ),
                       ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Impor Volume",
-                        style: text3(neutral100, regular),
-                      ),
-                    ],
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                    decoration: BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.upload,
+                          color: neutral100,
+                          size: 16,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Impor Volume",
+                          style: text3(neutral100, regular),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -516,44 +505,8 @@ class _BodyState extends State<Body> {
               ],
             ),
           ),
-          /* const ItemAnggaranBelanja(
-            namaAnggaran: "Pekerjaan Persiapan",
-            harga: "Rp. 115.303.500,00",
-            persen: "11.5%",
-          ),
           const SizedBox(
-            height: 10,
-          ),
-          const ItemAnggaranBelanja(
-              namaAnggaran: "Pekerjaan Struktural",
-              harga: "Rp. 303.950.000,00",
-              persen: "30.3%"),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemAnggaranBelanja(
-              namaAnggaran: "Pekerjaan Arsitektural",
-              harga: "Rp. 253.700.750,00",
-              persen: "25,3%"),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemAnggaranBelanja(
-              namaAnggaran: "Pekerjaan MEP",
-              harga: "Rp. 203.253.000,00",
-              persen: "20.3%"),
-          const SizedBox(
-            height: 30,
-          ),*/
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            "Total Anggaran Biaya",
-            style: text2(neutral500, bold),
-          ),
-          const SizedBox(
-            height: 16,
+            height: 18,
           ),
           const TotalAnggaranBelanja(
             totalName: "Jumlah Harga",
@@ -570,104 +523,9 @@ class _BodyState extends State<Body> {
           const TotalAnggaranBelanja(
               totalName: "Total Harga", harga: "972.379.380,50"),
           const SizedBox(
-            height: 80,
+            height: 50,
           ),
         ],
-      ),
-    );
-  }
-
-  Future<dynamic> menuProyek(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext contex) => AlertDialog(
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.edit_note,
-                  size: 24,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Edit",
-                  style: text4(neutral500, medium),
-                )
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.delete,
-                  size: 24,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Hapus",
-                  style: text4(neutral500, medium),
-                )
-              ],
-            ),
-            GestureDetector(
-              onTap: (() => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => const Duplikat(),
-                  )),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.content_copy,
-                    size: 24,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Duplikat",
-                    style: text4(neutral500, medium),
-                  )
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: (() => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => PopupBagikan(),
-                  )),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.share,
-                    size: 24,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Bagikan",
-                    style: text4(neutral500, medium),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        alignment: Alignment.bottomCenter,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(50)),
-        ),
-        contentPadding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
       ),
     );
   }

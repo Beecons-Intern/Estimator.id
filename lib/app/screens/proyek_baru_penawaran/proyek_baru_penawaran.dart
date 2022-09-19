@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+import '../../route/route_name.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import '../../widgets/rounded_button.dart';
@@ -13,6 +14,7 @@ class ProyekBaruPenawaran extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: primary,
           leading: IconButton(
@@ -31,22 +33,24 @@ class ProyekBaruPenawaran extends StatelessWidget {
         ),
         bottomSheet: Container(
           padding:
-              EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 10),
+              EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 12),
           width: size.width,
           height: size.height * 0.09,
           decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
-            /* boxShadow: [
+            boxShadow: [
               BoxShadow(
                   spreadRadius: 2,
                   blurRadius: 2,
                   color: Colors.black.withOpacity(0.2),
                   offset: const Offset(0, 1)),
-            ], */
+            ],
           ),
           child: RoundedButton(
+            ontap: () {
+              Navigator.pushNamed(context, RouteName.buatRABPerencanaan);
+            },
             text: "Simpan",
-            ontap: () {},
           ),
         ),
         body: const Body());

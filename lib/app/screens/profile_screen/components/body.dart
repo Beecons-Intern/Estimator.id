@@ -124,7 +124,10 @@ class Body extends StatelessWidget {
                                         height: 10,
                                       ),
                                       GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, RouteName.editProfil);
+                                        },
                                         child: Row(
                                           children: [
                                             const Icon(
@@ -187,7 +190,12 @@ class Body extends StatelessWidget {
                                                   alignment:
                                                       Alignment.centerRight,
                                                   child: GestureDetector(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            RouteName
+                                                                .riwayatPoin);
+                                                      },
                                                       child: const Text(
                                                         "Riwayat Poin",
                                                         style: TextStyle(

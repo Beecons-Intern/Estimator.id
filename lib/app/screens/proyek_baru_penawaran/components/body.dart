@@ -12,7 +12,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormBuilderState>();
     final size = MediaQuery.of(context).size;
     final List<String> listKota = [
       "Surabaya",
@@ -70,7 +69,6 @@ class Body extends StatelessWidget {
             height: 20,
           ),
           FormBuilder(
-            key: _formKey,
             child: Column(
               children: [
                 const BuildTextField(
