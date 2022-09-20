@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
                 height: 80,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage("https://picsum.photos/200/300"),
+                    image: AssetImage("assets/img/no-foto.jpg"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -51,13 +51,9 @@ class Body extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "+ Tambah",
+                          "Ganti Foto",
                           style: text4(primary, regular),
                         ),
-                        Text(
-                          "Foto",
-                          style: text4(primary, regular),
-                        )
                       ],
                     ),
                   ),

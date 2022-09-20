@@ -25,4 +25,5 @@ abstract class RouteName {
   static const tukarWallet = '/tukarWallet';
   static const tukarSukses = '/tukarSukses';
   static const tukarListrik = '/tukarListrik';
+  static const tambahPekerjaan = '/tambahPekerjaan';
 }

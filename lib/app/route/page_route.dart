@@ -17,6 +17,7 @@ import '../screens/proyek_baru_perencanaan/proyek_baru_perencanaan.dart';
 import '../screens/proyek_screen/proyek_screen.dart';
 import '../screens/register_screen/register_screen.dart';
 import '../screens/riwayat_poin_screen/riwayat_poin_screen.dart';
+import '../screens/tambah_pekerjaan_screen/tambah_pekerjaan_screen.dart';
 import '../screens/token_listrik_screen/token_listrik_screen.dart';
 import '../screens/tukar_akun_premium_screen/tukar_akun_premium_screen.dart';
 import '../screens/tukar_indihome_screen/tukar_indihome_screen.dart';
@@ -54,5 +55,6 @@ class AppPage {
     RouteName.tukarWallet: (context) => const TukarWalletScreen(),
     RouteName.tukarSukses: (context) => const TukarPoinSuksesScreen(),
     RouteName.tukarListrik: (context) => const TokenListrikScreen(),
+    RouteName.tambahPekerjaan: (context) => const TambahPekerjaanScreen(),
   };
 }

@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
+import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 import '../../../widgets/rounded_button.dart';
@@ -29,28 +30,34 @@ class _BodyState extends State<Body> {
           Row(
             children: [
               Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                  decoration: BoxDecoration(
-                      color: primary, borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.edit,
-                        color: neutral100,
-                        size: 16,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Ubah Kategori",
-                        style: text3(neutral100, regular),
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, RouteName.buatKategori);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                    decoration: BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.edit,
+                          color: neutral100,
+                          size: 16,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Ubah Kategori",
+                          style: text3(neutral100, regular),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -192,9 +199,15 @@ class _BodyState extends State<Body> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(
-                              Icons.add,
-                              size: 16,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, RouteName.tambahPekerjaan);
+                              },
+                              child: const Icon(
+                                Icons.add,
+                                size: 16,
+                              ),
                             ),
                             GestureDetector(
                               onTap: () {
