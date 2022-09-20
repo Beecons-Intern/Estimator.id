@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../route/route_name.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import '../home_screen/home_screen.dart';
+import '../koleksi_screen/koleksi_screen.dart';
+import '../profile_screen/profile_screen.dart';
+import '../proyek_screen/proyek_screen.dart';
 import 'components/navigation_button.dart';
 
 class Navigation extends StatefulWidget {
@@ -15,20 +19,78 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   List pages = const [
     HomeScreen(),
+    ProyekScreen(),
+    KoleksiScreen(),
+    ProfileScreen()
   ];
   int index = 0;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: pages[index],
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10))),
+              context: context,
+              builder: (context) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Tambah",
+                        style: text1(neutral500, bold),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      buildOptionProyek(
+                          size,
+                          "assets/img/perencanaan.png",
+                          "Perencanaan",
+                          "Proyek perencanaan berlaku bagi estimator untuk estimasi anggaran proyek",
+                          () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, RouteName.perencanaan);
+                      }),
+                      buildOptionProyek(
+                          size,
+                          "assets/img/penawaran.png",
+                          "Penawaran",
+                          "Proyek penawaran berlaku bagi kontraktor untuk penawaran nilai pagu proyek",
+                          () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, RouteName.penawaran);
+                      }),
+                      buildOptionProyek(
+                          size,
+                          "assets/img/koleksi.png",
+                          "Koleksi",
+                          "Catatan proyek yang berguna bagi kontraktor untuk penawaran nilai pagu proyek",
+                          () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, RouteName.penawaran);
+                      })
+                    ],
+                  ),
+                );
+              });
+        },
         backgroundColor: primary,
         child: const Icon(
-          Icons.rocket_outlined,
+          Icons.add,
           color: neutral100,
-          size: 36,
+          size: 42,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -60,13 +122,14 @@ class _NavigationState extends State<Navigation> {
                           });
                         },
                         icon: Icon(
-                          Icons.home,
+                          Icons.other_houses_outlined,
                           color: index == 0 ? primary : const Color(0xFF969696),
                           size: 34,
                         ),
                         text: Text(
                           "Beranda",
-                          style: text4(primary, medium),
+                          style: text4(index == 0 ? primary : neutral500,
+                              index == 0 ? bold : medium),
                         ),
                       ),
                       NavigationButton(
@@ -77,14 +140,14 @@ class _NavigationState extends State<Navigation> {
                           },
                           icon: Icon(
                             Icons.grid_view_outlined,
-                            color: index == 1
-                                ? neutral500
-                                : const Color(0xFF969696),
+                            color:
+                                index == 1 ? primary : const Color(0xFF969696),
                             size: 34,
                           ),
                           text: Text(
                             "Proyek",
-                            style: text4(neutral500, medium),
+                            style: text4(index == 1 ? primary : neutral500,
+                                index == 1 ? bold : medium),
                           )),
                     ],
                   ),
@@ -102,14 +165,14 @@ class _NavigationState extends State<Navigation> {
                           },
                           icon: Icon(
                             Icons.email_outlined,
-                            color: index == 2
-                                ? neutral500
-                                : const Color(0xFF969696),
+                            color:
+                                index == 2 ? primary : const Color(0xFF969696),
                             size: 34,
                           ),
                           text: Text(
                             "Koleksi",
-                            style: text4(neutral500, medium),
+                            style: text4(index == 2 ? primary : neutral500,
+                                index == 2 ? bold : medium),
                           )),
                       NavigationButton(
                           onPressed: () {
@@ -119,14 +182,14 @@ class _NavigationState extends State<Navigation> {
                           },
                           icon: Icon(
                             Icons.person_outline_rounded,
-                            color: index == 3
-                                ? neutral500
-                                : const Color(0xFF969696),
+                            color:
+                                index == 3 ? primary : const Color(0xFF969696),
                             size: 34,
                           ),
                           text: Text(
                             "Akun",
-                            style: text4(neutral500, medium),
+                            style: text4(index == 3 ? primary : neutral500,
+                                index == 3 ? bold : medium),
                           ))
                     ],
                   ),
@@ -134,6 +197,46 @@ class _NavigationState extends State<Navigation> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  GestureDetector buildOptionProyek(Size size, String image, String title,
+      String subtitle, void Function()? onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 16),
+        width: size.width,
+        decoration: BoxDecoration(
+            border: Border.all(color: primary, width: 2),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
+        child: Row(
+          children: [
+            Image.asset(
+              image,
+              width: 80,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: text2(neutral500, semibold),
+                ),
+                Text(
+                  subtitle,
+                  style: text4(neutral500, regular),
+                )
+              ],
+            ))
+          ],
         ),
       ),
     );

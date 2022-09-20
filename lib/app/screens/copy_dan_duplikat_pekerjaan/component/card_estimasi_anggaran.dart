@@ -16,7 +16,6 @@ class CardEstimasiAnggaran extends StatelessWidget {
           horizontal: size.width * 0.01, vertical: size.height * 0.01),
       child: Column(
         children: [
-          //start card
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal: size.width * 0.03, vertical: size.height * 0.01),

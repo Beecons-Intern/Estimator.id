@@ -6,11 +6,13 @@ import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 
 class BuildCardPoin extends StatelessWidget {
-  const BuildCardPoin({Key? key, required this.text, required this.assets})
+  const BuildCardPoin(
+      {Key? key, required this.text, required this.assets, required this.onTap})
       : super(key: key);
 
   final String text;
   final String assets;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +67,15 @@ class BuildCardPoin extends StatelessWidget {
                       dashLength: 5,
                       dashColor: neutral300,
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
-                      child: Center(
-                        child: Text(
-                          "Tukarkan",
-                          style: text2(primary, bold),
+                    GestureDetector(
+                      onTap: onTap,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 5),
+                        child: Center(
+                          child: Text(
+                            "Tukarkan",
+                            style: text2(primary, bold),
+                          ),
                         ),
                       ),
                     )

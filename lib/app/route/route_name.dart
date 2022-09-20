@@ -4,4 +4,26 @@ abstract class RouteName {
   static const registerScreen = '/registerScreen';
   static const homeScreen = '/homeScreen';
   static const navigation = '/navigation';
+  static const koleksi = '/koleksi';
+  static const profile = '/profile';
+  static const detailProfile = '/detailProfile';
+  static const paket = '/paket';
+  static const order = '/order';
+  static const penawaran = '/penawaran';
+  static const perencanaan = '/perencanaan';
+  static const proyek = '/proyek';
+  static const detailProyek = '/detailProyek';
+  static const buatRABPerencanaan = '/buatRABPerencanaan';
+  static const buatKategori = '/buatKategori';
+  static const editProfil = '/editProfil';
+  static const riwayatPoin = '/riwayatPoin';
+  static const poin = '/poin';
+  static const tukarAkunPremium = '/tukarAkunPremium';
+  static const tukarIndihome = '/tukarIndihome';
+  static const tukarMerchandise = '/tukarMerchandise';
+  static const tukarPulsa = '/tukarPulsa';
+  static const tukarWallet = '/tukarWallet';
+  static const tukarSukses = '/tukarSukses';
+  static const tukarListrik = '/tukarListrik';
+  static const tambahPekerjaan = '/tambahPekerjaan';
 }

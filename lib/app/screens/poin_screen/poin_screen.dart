@@ -11,16 +11,20 @@ class PoinScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primary,
         title: Text(
           "Tukar Poin",
-          style: text1(neutral500, bold),
+          style: text1(neutral100, bold),
         ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: neutral500,
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: const Body(),
     );

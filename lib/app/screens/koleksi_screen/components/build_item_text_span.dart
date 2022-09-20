@@ -17,9 +17,9 @@ class BuildTextItemSpan extends StatelessWidget {
       child: RichText(
           text: TextSpan(
               text: title,
-              style: text3(neutral500, medium),
+              style: text3(neutral500, regular),
               children: [
-            TextSpan(text: text, style: text3(neutral500, light))
+            TextSpan(text: text, style: text3(neutral500, regular))
           ])),
     );
   }

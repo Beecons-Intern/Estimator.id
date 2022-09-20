@@ -1,9 +1,20 @@
-import 'package:estimator_id/app/screens/AHS/rincian_AHS.dart';
-import 'package:estimator_id/app/screens/Edit%20Volume/pages.dart';
-import 'package:estimator_id/app/screens/RAB%20Perancangan/tambah_kategori.pekerjaan.dart';
-import 'package:estimator_id/app/screens/copy_dan_duplikat_pekerjaan/sub_copy_pekerjaan.dart';
-
+import 'package:dotted_border/dotted_border.dart';
+import 'package:estimator_id/app/screens/rab_screen/rab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'app/route/page_route.dart';
+import 'app/screens/copy_dan_duplikat_pekerjaan/component/card_expanded_tile.dart';
+import 'app/screens/proyek/component/item_anggaran_belanja.dart';
+import 'app/screens/proyek/component/item_profil_project.dart';
+import 'app/screens/proyek/component/tim_proyek.dart';
+import 'app/screens/proyek/component/total_anggaran_belanja.dart';
+import 'app/screens/proyek/duplikat.dart';
+import 'app/screens/proyek/menu_proyek.dart';
+import 'app/screens/proyek/popup_bagikan.dart';
+import 'app/screens/proyek/upgrade.dart';
+import 'app/utilities/colors.dart';
+import 'app/utilities/text_styles.dart';
+import 'app/widgets/rounded_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,354 +25,62 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      home: const Pages(),
-      // routes: AppPage.pages,
-      // initialRoute: '/',
+      routes: AppPage.pages,
+      initialRoute: '/',
+      // home: MyHomePage(),
     );
   }
 }
 
-class EditProfile extends StatelessWidget {
-  const EditProfile({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primary,
         title: Text(
-          "Edit Profil",
-          style: TextStyle(
-              fontFamily: "QuickSand",
-              fontWeight: FontWeight.w900,
-              fontSize: 17,
-              color: Colors.black),
+          "Tambah Pekerjaan",
+          style: text1(neutral100, bold),
         ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
         leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new),
-          iconSize: 20,
-          color: Colors.black,
-        ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
+        centerTitle: true,
       ),
-      body: Container(
-        padding: EdgeInsets.all(2),
-        child: ListView(
-          children: [
-            Center(
-              child: Stack(
-                children: [
-                  ClipOval(
-                    child: Image.asset(
-                      "assets/logo/person.png",
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0.01,
-                    right: 0.04,
-                    child: Container(
-                      padding: EdgeInsets.all(1.0),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.camera_alt_rounded),
-                        iconSize: 30,
-                        color: Colors.black,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller: TextEditingController(text: "Dani Kurniawati"),
-                  decoration: InputDecoration(
-                    labelText: "Nama Lengkap",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller:
-                      TextEditingController(text: "Seorang estimator bangunan"),
-                  decoration: InputDecoration(
-                    labelText: "Ringkasan Profil",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller: TextEditingController(
-                      text: "Jl Prionogo no 20 Sleman, Yogyakarta"),
-                  decoration: InputDecoration(
-                    labelText: "Alamat",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller: TextEditingController(text: "Yogyakarta"),
-                  decoration: InputDecoration(
-                    labelText: "Wilayah",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller:
-                      TextEditingController(text: "CV Maju Jaya Hokyaa"),
-                  decoration: InputDecoration(
-                    labelText: "Perusahaan",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller:
-                      TextEditingController(text: "Majujayahoki@gmail.com"),
-                  decoration: InputDecoration(
-                    labelText: "E-mail",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller: TextEditingController(text: "08917187262"),
-                  decoration: InputDecoration(
-                    labelText: "No Telp",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Color.fromARGB(255, 88, 87, 87),
-                  ),
-                ),
-                child: TextField(
-                  enabled: false,
-                  controller: TextEditingController(text: "Majujayahoki.com"),
-                  decoration: InputDecoration(
-                    labelText: "Website",
-                    labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                      fontFamily: "QuickSand",
-                    ),
-                    contentPadding: EdgeInsets.all(6),
-                    border: InputBorder.none,
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF089E14),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: Text(
-                      "Masuk",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: "QuickSand",
-                          fontWeight: FontWeight.w900),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: Text(
-                      "Batal",
-                      style: TextStyle(
-                          color: Colors.green,
-                          fontFamily: "QuickSand",
-                          fontWeight: FontWeight.w900),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
+      bottomSheet: Container(
+        padding:
+            EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 12),
+        width: size.width,
+        height: size.height * 0.09,
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: [
+            BoxShadow(
+                spreadRadius: 2,
+                blurRadius: 2,
+                color: Colors.black.withOpacity(0.2),
+                offset: const Offset(0, 1)),
           ],
+        ),
+        child: RoundedButton(
+          ontap: () {},
+          text: "Tambahkan Item",
         ),
       ),
     );

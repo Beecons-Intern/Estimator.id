@@ -1,6 +1,10 @@
 import 'package:estimator_id/app/screens/proyek/menu_proyek.dart';
 import 'package:estimator_id/app/screens/proyek/view_proyek.dart';
+import 'package:estimator_id/app/utilities/text_styles.dart';
 import 'package:flutter/material.dart';
+
+import '../../utilities/colors.dart';
+import '../../widgets/rounded_button.dart';
 
 class Duplikat extends StatelessWidget {
   const Duplikat({
@@ -10,149 +14,77 @@ class Duplikat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Column(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          GestureDetector(
-            onTap: (() => Navigator.pop(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ViewProyek(),
-                  ),
-                )),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.amber),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Icon(
-                    Icons.close,
-                    size: 10,
-                    color: Colors.amber,
-                  ),
-                ),
-              ),
-            ),
+          Text(
+            "Duplikat Proyek",
+            style: text2(neutral500, bold),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Duplikat Proyek",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
+          const SizedBox(height: 5),
           Text(
             "Silahkan tentukan rincian profil proyek \n baru anda!",
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
-            ),
+            style: text4(neutral500, regular),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 19),
+          const SizedBox(height: 20),
           Row(
-            children: const [
+            children: [
               Text(
                 "Nama Proyek",
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: text4(neutral500, bold),
               ),
-              SizedBox(width: 4),
+              const SizedBox(width: 5),
               Text(
-                "(Wajib Disi)",
-                style: TextStyle(
-                    fontSize: 6,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red),
+                "*",
+                style: text4(accentOrange500, bold),
               )
             ],
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 5),
           Container(
-            width: 241,
+            padding: const EdgeInsets.all(6),
+            width: double.infinity,
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.lightGreen),
+                border: Border.all(color: primary),
                 borderRadius: BorderRadius.circular(5)),
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: Text(
-                "masukan nama proyek",
-                style: TextStyle(
-                  fontSize: 8,
-                  color: Colors.grey,
-                ),
-              ),
+            child: Text(
+              "masukan nama proyek",
+              style: text4(neutral500, regular),
             ),
           ),
-          SizedBox(
-            height: 4,
+          const SizedBox(
+            height: 10,
           ),
           Row(
-            children: const [
+            children: [
               Text(
                 "Pemilik Proyek",
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: text4(neutral500, bold),
               ),
-              SizedBox(width: 4),
+              const SizedBox(width: 5),
               Text(
-                "(Wajib Disi)",
-                style: TextStyle(
-                    fontSize: 6,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red),
+                "*",
+                style: text4(accentOrange500, bold),
               )
             ],
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 5),
           Container(
-            width: 241,
+            padding: const EdgeInsets.all(6),
+            width: double.infinity,
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.lightGreen),
+                border: Border.all(color: primary),
                 borderRadius: BorderRadius.circular(5)),
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: Text(
-                "ketik nama pemilik proyek",
-                style: TextStyle(
-                  fontSize: 8,
-                  color: Colors.grey,
-                ),
-              ),
+            child: Text(
+              "masukan nama proyek",
+              style: text4(neutral500, regular),
             ),
           ),
-          SizedBox(height: 18),
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.lightGreen,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.content_copy,
-                  size: 10,
-                  color: Colors.white,
-                ),
-                SizedBox(width: 5),
-                Text(
-                  "Duplikat Proyek",
-                  style: TextStyle(fontSize: 12, color: Colors.white),
-                )
-              ],
-            ),
+          const SizedBox(height: 20),
+          RoundedButton(
+            ontap: () {},
+            text: "Duplikat Proyek",
           )
         ],
       ),

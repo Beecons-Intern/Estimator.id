@@ -1,21 +1,22 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 
+import '../route/route_name.dart';
 import '../utilities/colors.dart';
 import '../utilities/text_styles.dart';
 import 'rounded_button.dart';
 
 class BuildModalSheetConfirmation extends StatelessWidget {
-  const BuildModalSheetConfirmation({
-    Key? key,
-    required this.namaPelanggan,
-    required this.keteranganNomor,
-    required this.nomor,
-    required this.keteranganPembayaran,
-    required this.pembayaran,
-    required this.jumlahPoin,
-    required this.textButton
-  }) : super(key: key);
+  const BuildModalSheetConfirmation(
+      {Key? key,
+      required this.namaPelanggan,
+      required this.keteranganNomor,
+      required this.nomor,
+      required this.keteranganPembayaran,
+      required this.pembayaran,
+      required this.jumlahPoin,
+      required this.textButton})
+      : super(key: key);
 
   final String namaPelanggan;
   final String keteranganNomor;
@@ -158,7 +159,10 @@ class BuildModalSheetConfirmation extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: RoundedButton(
                         text: "Konfirmasi",
-                        ontap: () {},
+                        ontap: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, RouteName.tukarSukses, (route) => false);
+                        },
                       ),
                     )
                   ],

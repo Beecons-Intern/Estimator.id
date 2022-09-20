@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../route/route_name.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/text_styles.dart';
 import 'components/body.dart';
@@ -26,7 +27,10 @@ class TukarPoinSuksesScreen extends StatelessWidget {
       // ),
       body: const Body(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, RouteName.navigation, (route) => false);
+        },
         backgroundColor: neutral100,
         child: const Icon(
           Icons.close_rounded,

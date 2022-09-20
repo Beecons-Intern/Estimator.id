@@ -13,22 +13,26 @@ class TukarWalletScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: primary,
         title: Text(
           "E-Wallet",
-          style: text1(neutral500, bold),
+          style: text1(neutral100, bold),
         ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
         centerTitle: true,
-        leading: const Icon(
-          Icons.arrow_back_ios_rounded,
-          color: neutral500,
-        ),
       ),
       bottomSheet: Container(
         padding:
-            EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 10),
+            EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 12),
         width: size.width,
-        height: size.height * 0.1,
+        height: size.height * 0.09,
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           boxShadow: [

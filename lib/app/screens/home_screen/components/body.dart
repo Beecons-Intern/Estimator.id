@@ -8,9 +8,54 @@ import 'build_month.dart';
 import 'build_price.dart';
 import 'build_total_jenis_proyek.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  List<Widget> priceItem = [
+    const BuildItemPrice(
+      title: "Biaya Teralokasi",
+      icon: Icons.data_exploration,
+      color: Color(0xFF1A4E90),
+      index: 0,
+      value: "Rp1.000.000.000",
+    ),
+    const BuildItemPrice(
+      title: "Kenaikan",
+      icon: Icons.arrow_upward_rounded,
+      color: primary,
+      index: 1,
+      value: "Rp2.000.000",
+    ),
+    const BuildItemPrice(
+      title: "Kerugian",
+      icon: Icons.arrow_downward_rounded,
+      color: accentOrange500,
+      index: 1,
+      value: "Rp85.000",
+    ),
+    const BuildItemPrice(
+      title: "Daily P&L",
+      icon: Icons.call_missed_outgoing_sharp,
+      color: accentOrange500,
+      index: 1,
+      value: "Rp60.000",
+    ),
+    const BuildItemPrice(
+      title: "Cash",
+      icon: Icons.attach_money_rounded,
+      color: primary,
+      index: 1,
+      value: "Rp60.000.000.000",
+    )
+  ];
+
+  int left = 0;
+  int right = 1;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -32,57 +77,114 @@ class Body extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.01,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                width: size.width,
-                height: 55,
-                decoration: BoxDecoration(
-                    color: neutral100,
-                    boxShadow: [
-                      BoxShadow(
-                          spreadRadius: 2,
-                          blurRadius: 2,
-                          color: const Color(0xFFE6E6E6).withOpacity(0.8),
-                          offset: const Offset(0, 1)),
-                    ],
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  children: const [
-                    BuildItemPrice(
-                      title: "Biaya Teralokasi",
-                      icon: Icons.data_exploration,
-                      color: Color(0xFF1A4E90),
-                      index: 0,
+              Stack(
+                children: [
+                  Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                      width: size.width,
+                      height: 55,
+                      decoration: BoxDecoration(
+                          color: neutral100,
+                          boxShadow: [
+                            BoxShadow(
+                                spreadRadius: 2,
+                                blurRadius: 2,
+                                color: const Color(0xFFE6E6E6).withOpacity(0.8),
+                                offset: const Offset(0, 1)),
+                          ],
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10))),
+                      child: Row(
+                        children: [
+                          Expanded(child: priceItem[left]),
+                          SizedBox(
+                              height: size.height,
+                              child: const VerticalDivider(
+                                color: primary,
+                                thickness: 2,
+                              )),
+                          Expanded(child: priceItem[right])
+                        ],
+                      )),
+                  Positioned(
+                    top: 14,
+                    left: size.width * 0.02,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (left == 0) {
+                          setState(() {
+                            left = 4;
+                            right -= 1;
+                          });
+                        } else if (right == 0) {
+                          setState(() {
+                            left -= 1;
+                            right = 4;
+                          });
+                        } else {
+                          setState(() {
+                            left -= 1;
+                            right -= 1;
+                          });
+                        }
+                      },
+                      child: Container(
+                        width: 28,
+                        height: 28,
+                        decoration: BoxDecoration(
+                            color: primary,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(14)),
+                            border: Border.all(color: neutral100)),
+                        child: const Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: neutral100,
+                          size: 16,
+                        ),
+                      ),
                     ),
-                    BuildItemPrice(
-                      title: "Kenaikan",
-                      icon: Icons.arrow_upward_rounded,
-                      color: primary,
-                      index: 1,
+                  ),
+                  Positioned(
+                    top: 14,
+                    right: size.width * 0.02,
+                    child: GestureDetector(
+                      onTap: () {
+                        if (right == 4) {
+                          setState(() {
+                            left += 1;
+                            right = 0;
+                          });
+                        } else if (left == 4) {
+                          setState(() {
+                            left = 0;
+                            right += 1;
+                          });
+                        } else {
+                          setState(() {
+                            left += 1;
+                            right += 1;
+                          });
+                        }
+                      },
+                      child: Container(
+                        width: 28,
+                        height: 28,
+                        decoration: BoxDecoration(
+                            color: primary,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(14)),
+                            border: Border.all(color: neutral100)),
+                        child: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: neutral100,
+                          size: 16,
+                        ),
+                      ),
                     ),
-                    BuildItemPrice(
-                      title: "Kerugian",
-                      icon: Icons.arrow_downward_rounded,
-                      color: accentOrange500,
-                      index: 1,
-                    ),
-                    BuildItemPrice(
-                      title: "Daily P&L",
-                      icon: Icons.call_missed_outgoing_sharp,
-                      color: accentOrange500,
-                      index: 1,
-                    ),
-                    BuildItemPrice(
-                      title: "Cash",
-                      icon: Icons.attach_money_rounded,
-                      color: primary,
-                      index: 1,
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,

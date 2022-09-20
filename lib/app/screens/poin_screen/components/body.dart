@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
 import 'build_card_poin.dart';
@@ -24,30 +25,43 @@ class Body extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const BuildCardPoin(
+            BuildCardPoin(
               text: "Diskon Akun Premium",
               assets: "assets/icon/icon_poin.svg",
+              onTap: () {
+                Navigator.pushNamed(context, RouteName.tukarAkunPremium);
+              },
             ),
-            const BuildCardPoin(
-              text: "Pulsa",
-              assets: "assets/icon/pulsa.svg",
-            ),
-            const BuildCardPoin(
-              text: "Merchandise Menarik",
-              assets: "assets/icon/merchandise.svg",
-            ),
-            const BuildCardPoin(
-              text: "E-wallet",
-              assets: "assets/icon/wallet.svg",
-            ),
-            const BuildCardPoin(
-              text: "Token Listrik",
-              assets: "assets/icon/listrik.svg",
-            ),
-            const BuildCardPoin(
-              text: "Telkom Indihome",
-              assets: "assets/icon/indihome.svg",
-            )
+            BuildCardPoin(
+                text: "Pulsa",
+                assets: "assets/icon/pulsa.svg",
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.tukarPulsa);
+                }),
+            BuildCardPoin(
+                text: "Merchandise Menarik",
+                assets: "assets/icon/merchandise.svg",
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.tukarMerchandise);
+                }),
+            BuildCardPoin(
+                text: "E-wallet",
+                assets: "assets/icon/wallet.svg",
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.tukarWallet);
+                }),
+            BuildCardPoin(
+                text: "Token Listrik",
+                assets: "assets/icon/listrik.svg",
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.tukarListrik);
+                }),
+            BuildCardPoin(
+                text: "Telkom Indihome",
+                assets: "assets/icon/indihome.svg",
+                onTap: () {
+                  Navigator.pushNamed(context, RouteName.tukarIndihome);
+                })
           ],
         ));
   }

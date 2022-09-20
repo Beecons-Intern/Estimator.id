@@ -12,15 +12,18 @@ class TokenListrikScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
-        // elevation: 0.8,
+        automaticallyImplyLeading: false,
         backgroundColor: primary,
         toolbarHeight: 120,
         title: Container(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Stack(
             children: [
-              const Icon(Icons.arrow_back_ios_new_outlined),
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_new_outlined)),
               Center(
                 child: Column(
                   children: [

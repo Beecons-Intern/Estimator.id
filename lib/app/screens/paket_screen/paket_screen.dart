@@ -11,15 +11,19 @@ class PaketScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: neutral100,
+        backgroundColor: primary,
         title: Text(
           "Paket",
-          style: text2(neutral500, regular),
+          style: text1(neutral100, bold),
         ),
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: neutral500,
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
         centerTitle: true,
       ),
       body: const Body(),

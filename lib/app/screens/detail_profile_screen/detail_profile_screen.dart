@@ -17,10 +17,14 @@ class DetailProfileScreen extends StatelessWidget {
                 appBar: AppBar(
                   backgroundColor: primary,
                   elevation: 0,
-                  leading: const Icon(
-                    Icons.arrow_back_ios_new_outlined,
-                    color: neutral100,
-                  ),
+                  leading: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_outlined,
+                        color: neutral100,
+                      )),
                   centerTitle: true,
                   title: Text(
                     "Profil Pengguna",

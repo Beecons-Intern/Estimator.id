@@ -79,10 +79,10 @@ class ViewProyek extends StatelessWidget {
                     fontSize: 12,
                   ),
                 ),
-                IconButton(
+                /* IconButton(
                   icon: Icon(Icons.more_vert),
                   onPressed: (() => MenuProyek(context)),
-                )
+                ) */
                 // PopupMenuButton(
                 //   itemBuilder: (context) => [
                 //     PopupMenuItem(

@@ -1,5 +1,7 @@
+import 'package:estimator_id/app/utilities/text_styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utilities/colors.dart';
 import 'card_estimasi_anggaran.dart';
 
 class CardExpandedTile extends StatefulWidget {
@@ -21,31 +23,29 @@ class _CardExpandedTileState extends State<CardExpandedTile> {
 
   @override
   Widget build(BuildContext context) {
+    final items = ["Edit AHS", "Edit Volume", "Copy", "Duplikat", "Hapus"];
     final size = MediaQuery.of(context).size;
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 5,
+      itemCount: 4,
       itemBuilder: ((context, index) => Container(
-            margin: EdgeInsets.symmetric(horizontal: widget.size.width * 0.05),
+            padding: const EdgeInsets.all(6),
+            color: index % 2 == 0 ? accentGreen100 : null,
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Pekerjaan Persiapan",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(35, 15, 23, 1),
-                      ),
+                      style: text3(neutral500, medium),
                     ),
                     Row(
                       children: [
                         const Icon(
-                          Icons.add_circle,
-                          size: 20,
+                          Icons.add,
+                          size: 16,
                         ),
                         GestureDetector(
                           onTap: (() => showDialog(
@@ -135,13 +135,9 @@ class _CardExpandedTileState extends State<CardExpandedTile> {
                                 ),
                               )),
                           child: const Icon(
-                            Icons.delete_sharp,
-                            size: 20,
+                            Icons.delete,
+                            size: 16,
                           ),
-                        ),
-                        const Icon(
-                          Icons.edit,
-                          size: 20,
                         ),
                         if (widget.isSelected == true) ...[
                           GestureDetector(
@@ -159,11 +155,11 @@ class _CardExpandedTileState extends State<CardExpandedTile> {
                             },
                             child: Icon(
                               anggaran != null && anggaran == index
-                                  ? Icons.expand_more
-                                  : Icons.expand_less,
+                                  ? Icons.arrow_drop_up
+                                  : Icons.arrow_drop_down,
                               color: anggaran != null && anggaran == index
-                                  ? Colors.red
-                                  : Colors.black,
+                                  ? neutral500
+                                  : neutral500,
                             ),
                           )
                         ]
@@ -173,50 +169,280 @@ class _CardExpandedTileState extends State<CardExpandedTile> {
                 ),
                 Row(
                   children: [
-                    const Text(
-                      "Harga",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(93, 201, 65, 1),
-                      ),
-                    ),
-                    SizedBox(width: widget.size.width * 0.08),
-                    const Text(
-                      "Rp. 1.900.000",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(93, 201, 65, 1),
+                    Expanded(
+                        child: Text("Harga", style: text3(primary, regular))),
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        "Rp. 1.900.000",
+                        style: text3(primary, regular),
                       ),
                     ),
                   ],
                 ),
                 Row(
                   children: [
-                    const Text(
-                      "%",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(218, 146, 16, 1),
-                      ),
-                    ),
-                    SizedBox(width: widget.size.width * 0.15),
-                    const Text(
-                      "100.000 %",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(218, 146, 16, 1),
+                    Expanded(
+                        child:
+                            Text("%", style: text3(accentBrown500, regular))),
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        "100.00%",
+                        style: text3(accentBrown500, regular),
                       ),
                     ),
                   ],
                 ),
-                const Divider(thickness: 3),
                 if (anggaran != null && anggaran == index) ...[
-                  CardEstimasiAnggaran(size: size)
-                ]
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          flex: 2,
+                          child: Text(
+                            "Pengukuran dan pemasangan Bouwplank",
+                            style: text3(neutral500, regular),
+                          )),
+                      Flexible(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        content: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              "Detail",
+                                              style:
+                                                  text2(neutral500, semibold),
+                                            ),
+                                            const Divider(
+                                              thickness: 2,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Nama",
+                                                  style: text3(
+                                                      neutral500, regular),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Pengukuran dan pemasangan Bouwplank",
+                                                    style: text3(
+                                                        neutral500, medium),
+                                                    textAlign: TextAlign.end,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Volume",
+                                                  style: text3(
+                                                      neutral500, regular),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "121.00",
+                                                    style: text3(
+                                                        neutral500, medium),
+                                                    textAlign: TextAlign.end,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Satuan",
+                                                  style: text3(
+                                                      neutral500, regular),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "m1",
+                                                    style: text3(
+                                                        neutral500, medium),
+                                                    textAlign: TextAlign.end,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Harga Satuan",
+                                                  style: text3(
+                                                      neutral500, regular),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Rp 124.983,57",
+                                                    style: text3(
+                                                        neutral500, medium),
+                                                    textAlign: TextAlign.end,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Harga",
+                                                  style: text3(
+                                                      neutral500, regular),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "Rp 15.123.012,14",
+                                                    style: text3(
+                                                        neutral500, medium),
+                                                    textAlign: TextAlign.end,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "%",
+                                                  style: text3(
+                                                      neutral500, regular),
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    "100.00 %",
+                                                    style: text3(
+                                                        neutral500, medium),
+                                                    textAlign: TextAlign.end,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ));
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: primary),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
+                              child: Text(
+                                "Detail",
+                                style: text4(neutral500, bold),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10))),
+                                  context: context,
+                                  builder: (context) => Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 20),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.05),
+                                      child: ListView.separated(
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, index) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                items[index],
+                                                style:
+                                                    text2(neutral500, regular),
+                                              ),
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) =>
+                                              const Divider(
+                                                thickness: 1,
+                                              ),
+                                          itemCount: items.length)));
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 5),
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: primary),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
+                              child: const Icon(
+                                Icons.settings,
+                                size: 15,
+                              ),
+                            ),
+                          )
+                        ],
+                      ))
+                    ],
+                  ),
+                  // CardEstimasiAnggaran(size: size)
+                ],
+                // const Divider(thickness: 2),
               ],
             ),
           )),
