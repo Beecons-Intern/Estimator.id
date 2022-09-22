@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
-import 'build_item_text_span.dart';
 
 class BuildListView extends StatefulWidget {
   const BuildListView({Key? key, required this.size, this.ahs = false})

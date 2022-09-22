@@ -9,7 +9,7 @@ abstract class RouteName {
   static const detailProfile = '/detailProfile';
   static const paket = '/paket';
   static const order = '/order';
-  static const penawaran = '/penawaran';
+  static const profileProyek = '/profileProyek';
   static const perencanaan = '/perencanaan';
   static const proyek = '/proyek';
   static const detailProyek = '/detailProyek';
@@ -26,4 +26,11 @@ abstract class RouteName {
   static const tukarSukses = '/tukarSukses';
   static const tukarListrik = '/tukarListrik';
   static const tambahPekerjaan = '/tambahPekerjaan';
+  static const laporanRAB = '/laporanRAB';
+  static const editVolume = '/editVolume';
+  static const editAHS = '/editAHS';
+  static const ubahSpesifikasi = '/ubahSpesifikasi';
+  static const tambahBahan = '/tambahBahan';
+  static const tambahUpah = '/tambahUpah';
+  static const tambahAlat = '/tambahAlat';
 }

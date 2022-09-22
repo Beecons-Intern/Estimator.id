@@ -1,12 +1,16 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
-import '../../proyek/duplikat.dart';
-import 'item_anggaran_belanja.dart';
-import 'item_profil_project.dart';
-import 'popup_bagikan.dart';
+import '../../../widgets/rounded_button.dart';
 import '../../../widgets/total_anggaran_belanja.dart';
+import 'detail_item.dart';
+import 'hapus_item.dart';
+import 'hapus_kategori.dart';
+import 'impor_volume.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -17,6 +21,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final items = ["Edit AHS", "Edit Volume", "Copy", "Duplikat", "Hapus"];
+  final itemsKategori = ["Tambah Pekerjaan", "Hapus Semua Pekerjaan"];
   int? analisa;
   @override
   Widget build(BuildContext context) {
@@ -24,150 +29,77 @@ class _BodyState extends State<Body> {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: 16,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Profil Proyek",
-                style: text2(neutral500, bold),
-              ),
-              const Icon(
-                Icons.edit,
-                size: 18,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const ItemProfilProyek(
-            nama: "Nama Proyek",
-            edit: "Rumah Gaya Eropa",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Lokasi Proyek",
-            edit: "Sleman D.I Yogyakarta",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Pemilik Proyek",
-            edit: "Joko Santoso",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Tahun",
-            edit: "2022",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Jasa Kontraktor",
-            edit: "10.00 %",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Pajak",
-            edit: "11.00 %",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Dokumen Proyek",
-            edit: "eropan style.xlxs",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemProfilProyek(
-            nama: "Keterangan",
-            edit: "Rumahku Surgaku fix no debat",
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Rancangan Anggaran Belanja",
-                style: text2(neutral500, bold),
-              ),
-              /* IconButton(
-                  icon: const Icon(Icons.more_vert),
-                  onPressed: (() => menuProyek(context)),
-                ) */
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
             children: [
               Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                  decoration: BoxDecoration(
-                      color: primary, borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.edit,
-                        color: neutral100,
-                        size: 16,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Ubah Kategori",
-                        style: text3(neutral100, regular),
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, RouteName.buatKategori);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                    decoration: BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.edit,
+                          color: neutral100,
+                          size: 16,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Ubah Kategori",
+                          style: text3(neutral100, regular),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Expanded(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                  decoration: BoxDecoration(
-                      color: primary, borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.upload,
-                        color: neutral100,
-                        size: 16,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Impor Volume",
-                        style: text3(neutral100, regular),
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          ImporVolume(size: size),
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                    decoration: BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.upload,
+                          color: neutral100,
+                          size: 16,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Impor Volume",
+                          style: text3(neutral100, regular),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -203,9 +135,59 @@ class _BodyState extends State<Body> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(
-                              Icons.add,
-                              size: 16,
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10))),
+                                    context: context,
+                                    builder: (context) => Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 20),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.05),
+                                        child: ListView.separated(
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, index) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                  switch (index) {
+                                                    case 0:
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          RouteName
+                                                              .tambahPekerjaan);
+                                                      break;
+                                                    case 1:
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) =>
+                                                              const HapusKategori());
+                                                      break;
+                                                    default:
+                                                  }
+                                                },
+                                                child: Text(
+                                                  itemsKategori[index],
+                                                  style: text2(
+                                                      neutral500, regular),
+                                                ),
+                                              );
+                                            },
+                                            separatorBuilder:
+                                                (context, index) =>
+                                                    const Divider(
+                                                      thickness: 1,
+                                                    ),
+                                            itemCount: itemsKategori.length)));
+                              },
+                              child: const Icon(
+                                Icons.settings,
+                                size: 16,
+                              ),
                             ),
                             GestureDetector(
                               onTap: () {
@@ -263,188 +245,8 @@ class _BodyState extends State<Body> {
                                   onTap: () {
                                     showDialog(
                                         context: context,
-                                        builder: (context) => AlertDialog(
-                                              content: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Text(
-                                                    "Detail",
-                                                    style: text2(
-                                                        neutral500, semibold),
-                                                  ),
-                                                  const Divider(
-                                                    thickness: 2,
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Nama",
-                                                        style: text3(neutral500,
-                                                            regular),
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "Pengukuran dan pemasangan Bouwplank",
-                                                          style: text3(
-                                                              neutral500,
-                                                              medium),
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Volume",
-                                                        style: text3(neutral500,
-                                                            regular),
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "121.00",
-                                                          style: text3(
-                                                              neutral500,
-                                                              medium),
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Satuan",
-                                                        style: text3(neutral500,
-                                                            regular),
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "m1",
-                                                          style: text3(
-                                                              neutral500,
-                                                              medium),
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Harga Satuan",
-                                                        style: text3(neutral500,
-                                                            regular),
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "Rp 124.983,57",
-                                                          style: text3(
-                                                              neutral500,
-                                                              medium),
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "Harga",
-                                                        style: text3(neutral500,
-                                                            regular),
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "Rp 15.123.012,14",
-                                                          style: text3(
-                                                              neutral500,
-                                                              medium),
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "%",
-                                                        style: text3(neutral500,
-                                                            regular),
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "100.00 %",
-                                                          style: text3(
-                                                              neutral500,
-                                                              medium),
-                                                          textAlign:
-                                                              TextAlign.end,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ));
+                                        builder: (context) =>
+                                            const DetailItem());
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(5),
@@ -477,6 +279,43 @@ class _BodyState extends State<Body> {
                                                   return GestureDetector(
                                                     onTap: () {
                                                       Navigator.pop(context);
+                                                      switch (index) {
+                                                        case 0:
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              RouteName
+                                                                  .editAHS);
+                                                          break;
+                                                        case 1:
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              RouteName
+                                                                  .editVolume);
+                                                          break;
+                                                        case 2:
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                                  snackbarCopyDuplikat(
+                                                                      size,
+                                                                      "dicopy"));
+                                                          break;
+                                                        case 3:
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                                  snackbarCopyDuplikat(
+                                                                      size,
+                                                                      "diduplikat"));
+                                                          break;
+                                                        case 4:
+                                                          showDialog(
+                                                              context: context,
+                                                              builder: (context) =>
+                                                                  const HapusItem());
+                                                          break;
+                                                        default:
+                                                      }
                                                     },
                                                     child: Text(
                                                       items[index],
@@ -516,44 +355,8 @@ class _BodyState extends State<Body> {
               ],
             ),
           ),
-          /* const ItemAnggaranBelanja(
-            namaAnggaran: "Pekerjaan Persiapan",
-            harga: "Rp. 115.303.500,00",
-            persen: "11.5%",
-          ),
           const SizedBox(
-            height: 10,
-          ),
-          const ItemAnggaranBelanja(
-              namaAnggaran: "Pekerjaan Struktural",
-              harga: "Rp. 303.950.000,00",
-              persen: "30.3%"),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemAnggaranBelanja(
-              namaAnggaran: "Pekerjaan Arsitektural",
-              harga: "Rp. 253.700.750,00",
-              persen: "25,3%"),
-          const SizedBox(
-            height: 10,
-          ),
-          const ItemAnggaranBelanja(
-              namaAnggaran: "Pekerjaan MEP",
-              harga: "Rp. 203.253.000,00",
-              persen: "20.3%"),
-          const SizedBox(
-            height: 30,
-          ),*/
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            "Total Anggaran Biaya",
-            style: text2(neutral500, bold),
-          ),
-          const SizedBox(
-            height: 16,
+            height: 18,
           ),
           const TotalAnggaranBelanja(
             totalName: "Jumlah Harga",
@@ -570,105 +373,32 @@ class _BodyState extends State<Body> {
           const TotalAnggaranBelanja(
               totalName: "Total Harga", harga: "972.379.380,50"),
           const SizedBox(
-            height: 80,
+            height: 50,
           ),
         ],
       ),
     );
   }
 
-  Future<dynamic> menuProyek(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext contex) => AlertDialog(
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+  SnackBar snackbarCopyDuplikat(Size size, String jenis) {
+    return SnackBar(
+        duration: const Duration(seconds: 2),
+        margin: EdgeInsets.only(
+            bottom: size.height * 0.5,
+            left: size.width * 0.2,
+            right: size.width * 0.2),
+        backgroundColor: neutral100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        behavior: SnackBarBehavior.floating,
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.edit_note,
-                  size: 24,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Edit",
-                  style: text4(neutral500, medium),
-                )
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.delete,
-                  size: 24,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Hapus",
-                  style: text4(neutral500, medium),
-                )
-              ],
-            ),
-            GestureDetector(
-              onTap: (() => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => const Duplikat(),
-                  )),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.content_copy,
-                    size: 24,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Duplikat",
-                    style: text4(neutral500, medium),
-                  )
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: (() => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => PopupBagikan(),
-                  )),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.share,
-                    size: 24,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Bagikan",
-                    style: text4(neutral500, medium),
-                  )
-                ],
-              ),
-            ),
+            LottieBuilder.asset("assets/lotie/success_primary.json",
+                width: 80, height: 80),
+            Text("Data item pekerjaan berhasil $jenis",
+                style: text3(neutral500, regular), textAlign: TextAlign.center),
           ],
-        ),
-        alignment: Alignment.bottomCenter,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(50)),
-        ),
-        contentPadding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-      ),
-    );
+        ));
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../Widget/search.dart';
 
+import '../../utilities/text_styles.dart';
 import 'component/alert_pengurangan.dart';
 import 'component/card_bahan.dart';
 import 'component/item_bahan.dart';
@@ -32,20 +33,20 @@ class _PagesState extends State<Pages> {
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: primary,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
+        title: Text(
+          "Edit Volume",
+          style: text1(neutral100, bold),
+        ),
         centerTitle: true,
-        backgroundColor: primary800,
-        leading: GestureDetector(
-          onTap: () {},
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: neutral500,
-            size: 16,
-          ),
-        ),
-        title: const Text(
-          "EDIT VOLUME",
-          style: TextStyle(fontSize: 16, color: neutral100),
-        ),
       ),
       body: Column(
         children: [

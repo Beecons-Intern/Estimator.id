@@ -1,6 +1,4 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../route/route_name.dart';
 import '../../utilities/colors.dart';
@@ -8,8 +6,8 @@ import '../../utilities/text_styles.dart';
 import '../../widgets/rounded_button.dart';
 import 'components/body.dart';
 
-class ProyekBaruPenawaran extends StatelessWidget {
-  const ProyekBaruPenawaran({Key? key}) : super(key: key);
+class ProfileProyekScreen extends StatelessWidget {
+  const ProfileProyekScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -26,7 +24,7 @@ class ProyekBaruPenawaran extends StatelessWidget {
                 color: neutral100,
               )),
           title: Text(
-            "Lengkapi Profil Proyek",
+            "Profil Proyek",
             style: text1(neutral100, bold),
           ),
           centerTitle: true,
@@ -48,7 +46,7 @@ class ProyekBaruPenawaran extends StatelessWidget {
           ),
           child: RoundedButton(
             ontap: () {
-              Navigator.pushNamed(context, RouteName.buatRABPerencanaan);
+              Navigator.pushNamed(context, RouteName.detailProyek);
             },
             text: "Simpan",
           ),

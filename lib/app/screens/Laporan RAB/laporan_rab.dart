@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../Widget/button.dart';
 import '../../Widget/search.dart';
+import '../../utilities/colors.dart';
+import '../../utilities/text_styles.dart';
 import 'component/card_item_upah.dart';
 import 'component/card_rincian_harga.dart';
 import 'component/content_empty_laporan.dart';
@@ -13,43 +15,42 @@ class LaporanRab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(
-          Icons.arrow_back_ios,
-          color: Color.fromRGBO(0, 0, 0, 1),
-        ),
-        centerTitle: true,
-        backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+        backgroundColor: primary,
         title: Text(
           "Laporan",
-          style: TextStyle(
-            color: Color.fromRGBO(0, 0, 0, 1),
-            fontWeight: FontWeight.w500,
-          ),
+          style: text1(neutral100, bold),
         ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(
+            height: 16,
+          ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: size.height * 0.02),
             padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.05, vertical: size.height * 0.02),
+                horizontal: size.width * 0.05, vertical: 10),
             decoration: const BoxDecoration(
                 color: Color.fromRGBO(8, 158, 20, 1),
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(35),
                   bottomRight: Radius.circular(35),
                 )),
-            child: const Text(
+            child: Text(
               "Rumah Sederhana",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Color.fromRGBO(255, 255, 255, 1),
-              ),
+              style: text2(neutral100, medium),
             ),
           ),
 

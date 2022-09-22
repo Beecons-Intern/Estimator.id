@@ -11,7 +11,15 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = ["Lihat", "Bagikan", "Duplikat", "Hapus", "Selesai"];
+    final items = [
+      "Lihat",
+      "Profil Proyek",
+      "Laporan",
+      "Bagikan",
+      "Duplikat",
+      "Hapus",
+      "Proyek Selesai"
+    ];
     final Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -219,13 +227,25 @@ class Body extends StatelessWidget {
                                               itemBuilder: (context, index) {
                                                 return GestureDetector(
                                                   onTap: () {
+                                                    Navigator.pop(context);
                                                     switch (index) {
                                                       case 0:
-                                                        Navigator.pop(context);
                                                         Navigator.pushNamed(
                                                             context,
                                                             RouteName
                                                                 .detailProyek);
+                                                        break;
+                                                      case 1:
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            RouteName
+                                                                .profileProyek);
+                                                        break;
+                                                      case 2:
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            RouteName
+                                                                .laporanRAB);
                                                         break;
                                                       default:
                                                     }

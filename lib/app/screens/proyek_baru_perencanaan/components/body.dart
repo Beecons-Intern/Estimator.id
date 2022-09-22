@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
         itemBuilder: (context, index) => index == 0
             ? GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, RouteName.penawaran);
+                  Navigator.pushNamed(context, RouteName.profileProyek);
                 },
                 child: Container(
                     padding:

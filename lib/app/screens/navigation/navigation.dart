@@ -70,7 +70,7 @@ class _NavigationState extends State<Navigation> {
                           "Proyek penawaran berlaku bagi kontraktor untuk penawaran nilai pagu proyek",
                           () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, RouteName.penawaran);
+                        Navigator.pushNamed(context, RouteName.profileProyek);
                       }),
                       buildOptionProyek(
                           size,
@@ -79,7 +79,7 @@ class _NavigationState extends State<Navigation> {
                           "Catatan proyek yang berguna bagi kontraktor untuk penawaran nilai pagu proyek",
                           () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, RouteName.penawaran);
+                        Navigator.pushNamed(context, RouteName.profileProyek);
                       })
                     ],
                   ),

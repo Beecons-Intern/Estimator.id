@@ -5,15 +5,20 @@ import '../../utilities/text_styles.dart';
 import '../../widgets/rounded_button.dart';
 import 'components/body.dart';
 
-class BuatRABPerencanaan extends StatelessWidget {
-  const BuatRABPerencanaan({Key? key}) : super(key: key);
+class TambahUpahScreen extends StatelessWidget {
+  const TambahUpahScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: primary,
+        title: Text(
+          "Tambah Upah",
+          style: text1(neutral100, bold),
+        ),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -22,10 +27,6 @@ class BuatRABPerencanaan extends StatelessWidget {
               Icons.arrow_back_ios_new_rounded,
               color: neutral100,
             )),
-        title: Text(
-          "Estimasi Anggaran",
-          style: text1(neutral100, bold),
-        ),
         centerTitle: true,
       ),
       bottomSheet: Container(
@@ -45,7 +46,7 @@ class BuatRABPerencanaan extends StatelessWidget {
         ),
         child: RoundedButton(
           ontap: () {},
-          text: "Selesai",
+          text: "Tambahkan Item",
         ),
       ),
       body: const Body(),
