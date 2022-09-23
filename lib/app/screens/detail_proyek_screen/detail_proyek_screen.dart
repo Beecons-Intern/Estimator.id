@@ -15,7 +15,7 @@ class DetailProyekScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primary,
         title: Text(
-          "Rumah Gaya Eropa",
+          "Detail Proyek",
           style: text1(neutral100, bold),
         ),
         leading: IconButton(

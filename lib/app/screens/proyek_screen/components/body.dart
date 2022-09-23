@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../route/route_name.dart';
 import '../../../utilities/colors.dart';
@@ -247,6 +248,14 @@ class Body extends StatelessWidget {
                                                             RouteName
                                                                 .laporanRAB);
                                                         break;
+                                                      case 4:
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                snackbarCopyDuplikat(
+                                                                    size,
+                                                                    "diduplikat"));
+                                                        break;
                                                       default:
                                                     }
                                                   },
@@ -283,5 +292,27 @@ class Body extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  SnackBar snackbarCopyDuplikat(Size size, String jenis) {
+    return SnackBar(
+        duration: const Duration(seconds: 2),
+        margin: EdgeInsets.only(
+            bottom: size.height * 0.5,
+            left: size.width * 0.2,
+            right: size.width * 0.2),
+        backgroundColor: neutral100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        behavior: SnackBarBehavior.floating,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LottieBuilder.asset("assets/lotie/success_primary.json",
+                width: 80, height: 80),
+            Text("Data item pekerjaan berhasil $jenis",
+                style: text3(neutral500, regular), textAlign: TextAlign.center),
+          ],
+        ));
   }
 }
