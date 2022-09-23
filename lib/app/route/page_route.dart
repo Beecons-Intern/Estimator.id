@@ -3,6 +3,7 @@ import 'package:estimator_id/app/screens/tambah_alat_screen/tambah_alat_screen.d
 
 import '../screens/Edit Volume/pages.dart';
 import '../screens/Laporan RAB/laporan_rab.dart';
+import '../screens/detail_bahan_screen/detail_bahan_screen.dart';
 import '../screens/profile_proyek_screen/profile_proyek_screen.dart';
 import '../screens/detail_profile_screen/detail_profile_screen.dart';
 import '../screens/detail_proyek_screen/detail_proyek_screen.dart';
@@ -69,5 +70,6 @@ class AppPage {
     RouteName.tambahBahan: (context) => const TambahBahanScreen(),
     RouteName.tambahUpah: (context) => const TambahUpahScreen(),
     RouteName.tambahAlat: (context) => const TambahAlatScreen(),
+    RouteName.detailBahan: (context) => const DetailBahanScreen(),
   };
 }

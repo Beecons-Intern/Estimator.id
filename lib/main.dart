@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Estimator',
       theme: ThemeData(fontFamily: 'Quicksand'),
-      // routes: AppPage.pages,
-      // initialRoute: '/',
-      home: MyHomePage(),
+      routes: AppPage.pages,
+      initialRoute: '/',
+      // home: MyHomePage(),
     );
   }
 }
@@ -48,7 +48,7 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primary,
         title: Text(
-          "Tambah Bahan",
+          "Detail Bahan",
           style: text1(neutral100, bold),
         ),
         leading: IconButton(
@@ -61,133 +61,123 @@ class MyHomePage extends StatelessWidget {
             )),
         centerTitle: true,
       ),
-      body: GridView.builder(
-          padding: EdgeInsets.only(
-              top: 16,
-              left: size.width * 0.05,
-              right: size.width * 0.05,
-              bottom: 20),
-          itemCount: 10,
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.52,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 16,
-              crossAxisCount: 2),
-          itemBuilder: (context, index) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                decoration: BoxDecoration(
-                  color: neutral100,
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  boxShadow: [
-                    BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 2,
-                        color: Colors.black.withOpacity(0.1),
-                        offset: const Offset(0, 1)),
-                  ],
+      body: Column(
+        children: [
+          Image.asset(
+            "assets/img/led.jpg",
+            height: size.height * 0.35,
+            width: size.width,
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(
+                  top: 40, left: size.width * 0.05, right: size.width * 0.05),
+              decoration: const BoxDecoration(
+                color: accentGreen100,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
                 ),
-                child: Stack(
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Text(
+                      "LED-E1-P45-E27-3W-3000K-CT-V7",
+                      style: text2(neutral500, bold),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: const BoxDecoration(
+                        color: primary,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Text(
+                        "Opple",
+                        style: text3(neutral100, regular),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const DottedLine(
+                      dashColor: neutral300,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text.rich(TextSpan(
+                        text: "Rp24.000,00",
+                        style: text2(accentOrange500, bold),
+                        children: [
+                          TextSpan(
+                              text: " / buah", style: text4(neutral500, light))
+                        ])),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
                       children: [
-                        Image.asset(
-                          "assets/img/led.jpg",
-                          width: size.width,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(
-                          height: 2,
+                        const Icon(
+                          Icons.location_pin,
+                          color: primary,
+                          size: 16,
                         ),
                         Text(
-                          "LED-E1-P45-E27-3W-3000K-CT-V7",
-                          style: text3(neutral500, regular),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "PT Opple Lighting Indonesia",
+                          "Kab Aceh Selatan",
                           style: text4(primary, regular),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        const DottedLine(
-                          dashColor: neutral200,
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: const BoxDecoration(
-                              color: primary800,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10))),
-                          child: Text(
-                            "Opple",
-                            style: text4(neutral100, regular),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        RichText(
-                            text: TextSpan(
-                                text: "Rp 24.000,00",
-                                style: text3(accentOrange500, medium),
-                                children: [
-                              TextSpan(
-                                  text: " / buah",
-                                  style: text4(neutral500, light))
-                            ])),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.location_on_outlined,
-                              color: primary,
-                              size: 14,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "Kab Sleman",
-                              style: text4(primary, regular),
-                            )
-                          ],
-                        )
                       ],
                     ),
-                    Positioned(
-                        top: 5,
-                        right: 5,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: primary),
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(8))),
-                            child: Text(
-                              "Pilih",
-                              style: text4(primary, bold),
-                            ),
-                          ),
-                        ))
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "LED Blub EcoMax",
+                      style: text4(neutral500, regular),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "LED-P-HPB-E40-90W-4000K-70D-CT",
+                      style: text4(neutral500, regular),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const DottedLine(
+                      dashColor: neutral300,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "PT Opple Lighting Indonesia",
+                      style: text4(neutral500, regular),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Opple merupakan perusahaan lighting multinational terbesar di China yang memiliki fasilitas pabrikasi terbesar di China dan sudah beroperasi di 70 negara.",
+                      textAlign: TextAlign.justify,
+                      style: text4(neutral500, regular),
+                    ),
                   ],
                 ),
-              )),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

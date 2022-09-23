@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utilities/colors.dart';
 import '../../../utilities/text_styles.dart';
+import 'build_gridview.dart';
 import 'build_textfield.dart';
 import '../../../widgets/item_sumber.dart';
 
@@ -74,253 +75,257 @@ class _BodyState extends State<Body> {
         ),
         Expanded(
             child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
-              ListView.separated(
-                itemCount: 100,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) =>
-                    const Divider(thickness: 1),
-                itemBuilder: (context, index) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: index % 2 != 0 ? null : accentGreen100,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          if (analisa == null) {
-                            setState(() {
-                              analisa = index;
-                            });
-                          } else if (analisa != null && analisa == index) {
-                            setState(() {
-                              analisa = null;
-                            });
-                          }
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: Text(
-                                "Acacia Supasleek Close Coupled Toilet CL23075-6DACTCBT",
-                                style: body(neutral500, regular),
-                              ),
-                            ),
-                            Flexible(
-                              child: Text(
-                                "unit",
-                                style: body(neutral500, regular),
-                              ),
-                            ),
-                            Flexible(
-                              child: Row(
-                                children: [
-                                  Checkbox(
-                                      activeColor: primary,
-                                      value: indexActive.contains(index),
-                                      onChanged: (value) {
-                                        if (indexActive.contains(index)) {
-                                          setState(() {
-                                            indexActive.remove(index);
-                                          });
-                                        } else {
-                                          setState(() {
-                                            indexActive.add(index);
-                                          });
-                                        }
-                                      }),
-                                  const SizedBox(
-                                    width: 3,
-                                  ),
-                                  Icon(
-                                    analisa != null && analisa == index
-                                        ? Icons.arrow_drop_up_rounded
-                                        : Icons.arrow_drop_down_rounded,
-                                    color: neutral500,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    if (analisa != null && analisa == index) ...[
+              if (kategoriActive == 1) ...[
+                const BuildGridView()
+              ] else ...[
+                const SizedBox(
+                  height: 10,
+                ),
+                ListView.separated(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                  itemCount: 100,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  separatorBuilder: (context, index) =>
+                      const Divider(thickness: 1),
+                  itemBuilder: (context, index) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: index % 2 != 0 ? null : accentGreen100,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            if (analisa == null) {
+                              setState(() {
+                                analisa = index;
+                              });
+                            } else if (analisa != null && analisa == index) {
+                              setState(() {
+                                analisa = null;
+                              });
+                            }
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Detail",
-                                style: body(neutral500, bold),
+                              Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "Acacia Supasleek Close Coupled Toilet CL23075-6DACTCBT",
+                                  style: body(neutral500, regular),
+                                ),
                               ),
-                              Container(
-                                margin: const EdgeInsets.only(top: 5),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: neutral200, width: 1),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Column(
+                              Flexible(
+                                child: Text(
+                                  "unit",
+                                  style: body(neutral500, regular),
+                                ),
+                              ),
+                              Flexible(
+                                child: Row(
                                   children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Nama",
-                                          style: text4(neutral500, semibold),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          "AC Ceiling Cassette 3 PK Type ACK 30+AMC 30 Daikin",
-                                          style: text4(neutral500, regular),
-                                          textAlign: TextAlign.end,
-                                        ))
-                                      ],
-                                    ),
+                                    Checkbox(
+                                        activeColor: primary,
+                                        value: indexActive.contains(index),
+                                        onChanged: (value) {
+                                          if (indexActive.contains(index)) {
+                                            setState(() {
+                                              indexActive.remove(index);
+                                            });
+                                          } else {
+                                            setState(() {
+                                              indexActive.add(index);
+                                            });
+                                          }
+                                        }),
                                     const SizedBox(
-                                      height: 5,
+                                      width: 3,
                                     ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Satuan",
-                                          style: text4(neutral500, semibold),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          "liter",
-                                          style: text4(neutral500, regular),
-                                          textAlign: TextAlign.end,
-                                        ))
-                                      ],
+                                    Icon(
+                                      analisa != null && analisa == index
+                                          ? Icons.arrow_drop_up_rounded
+                                          : Icons.arrow_drop_down_rounded,
+                                      color: neutral500,
                                     ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Harga",
-                                          style: text4(neutral500, semibold),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          "Rp 20.360.000,00",
-                                          style: text4(neutral500, regular),
-                                          textAlign: TextAlign.end,
-                                        ))
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Merk",
-                                          style: text4(neutral500, semibold),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          "Standar",
-                                          style: text4(neutral500, regular),
-                                          textAlign: TextAlign.end,
-                                        ))
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Spesifikasi",
-                                          style: text4(neutral500, semibold),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          "Standar",
-                                          style: text4(neutral500, regular),
-                                          textAlign: TextAlign.end,
-                                        ))
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Sumber",
-                                          style: text4(neutral500, semibold),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        Expanded(
-                                            child: Text(
-                                          "Pergub No 55 Tahun 2019",
-                                          style: text4(neutral500, regular),
-                                          textAlign: TextAlign.end,
-                                        ))
-                                      ],
-                                    )
                                   ],
                                 ),
                               )
                             ],
                           ),
                         ),
-                      )
-                    ]
-                  ],
+                      ),
+                      if (analisa != null && analisa == index) ...[
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Detail",
+                                  style: body(neutral500, bold),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(top: 5),
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: neutral200, width: 1),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10))),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Nama",
+                                            style: text4(neutral500, semibold),
+                                          ),
+                                          const SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                              child: Text(
+                                            "AC Ceiling Cassette 3 PK Type ACK 30+AMC 30 Daikin",
+                                            style: text4(neutral500, regular),
+                                            textAlign: TextAlign.end,
+                                          ))
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Satuan",
+                                            style: text4(neutral500, semibold),
+                                          ),
+                                          const SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                              child: Text(
+                                            "liter",
+                                            style: text4(neutral500, regular),
+                                            textAlign: TextAlign.end,
+                                          ))
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Harga",
+                                            style: text4(neutral500, semibold),
+                                          ),
+                                          const SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                              child: Text(
+                                            "Rp 20.360.000,00",
+                                            style: text4(neutral500, regular),
+                                            textAlign: TextAlign.end,
+                                          ))
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Merk",
+                                            style: text4(neutral500, semibold),
+                                          ),
+                                          const SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                              child: Text(
+                                            "Standar",
+                                            style: text4(neutral500, regular),
+                                            textAlign: TextAlign.end,
+                                          ))
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Spesifikasi",
+                                            style: text4(neutral500, semibold),
+                                          ),
+                                          const SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                              child: Text(
+                                            "Standar",
+                                            style: text4(neutral500, regular),
+                                            textAlign: TextAlign.end,
+                                          ))
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Sumber",
+                                            style: text4(neutral500, semibold),
+                                          ),
+                                          const SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                              child: Text(
+                                            "Pergub No 55 Tahun 2019",
+                                            style: text4(neutral500, regular),
+                                            textAlign: TextAlign.end,
+                                          ))
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ]
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         )),
