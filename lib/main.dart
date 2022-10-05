@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'data/service/database_service.dart';
 import 'presentation/route/page_route.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
 
@@ -15,6 +16,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  // @override
+  // void initState() {
+  //   DatabaseService().deleteDatabase();
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

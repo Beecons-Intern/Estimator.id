@@ -7,26 +7,41 @@ class BuildTextField extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.name,
-      required this.initialValue})
+      required this.isRequired,
+      required this.initialValue,
+      required this.capitalization,
+      required this.keyboardType})
       : super(key: key);
 
   final String title;
+  final bool isRequired;
   final String name;
   final String initialValue;
+  final TextCapitalization capitalization;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: text3(neutral500, regular),
-        ),
+        Text.rich(TextSpan(children: [
+          TextSpan(
+            text: title,
+            style: text3(neutral500, regular),
+          ),
+          TextSpan(
+            text: isRequired == true ? "*" : "",
+            style: text3(accentOrange500, regular),
+          )
+        ])),
         const SizedBox(
           height: 5,
         ),
         FormBuilderTextField(
+          textCapitalization: capitalization,
+          readOnly: name == "email" ? true : false,
+          keyboardType: keyboardType,
           name: name,
           cursorColor: primary,
           initialValue: initialValue,

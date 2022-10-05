@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/pengguna_view_model.dart';
 import 'kompetensi.dart';
 import 'pengalaman.dart';
 import 'profile.dart';
@@ -15,6 +17,7 @@ class _BodyState extends State<Body> {
   int indexPage = 0;
   @override
   Widget build(BuildContext context) {
+    final penggunaViewModel = Provider.of<PenggunaViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -49,12 +52,16 @@ class _BodyState extends State<Body> {
             const SizedBox(
               height: 10,
             ),
-            Text("Habiyan Lazuardi", style: text2(neutral100, bold)),
+            Text(
+                penggunaViewModel.data != null
+                    ? penggunaViewModel.data!.nama
+                    : "-",
+                style: text2(neutral100, bold)),
             const SizedBox(
               height: 5,
             ),
             Text(
-              "Sleman, Yogyakarta",
+              "${penggunaViewModel.wilayahData != null ? penggunaViewModel.wilayahData!.wilayah : "-"}, ${penggunaViewModel.prov != null ? penggunaViewModel.prov! : ""}",
               style: text4(neutral100, regular),
             ),
             const SizedBox(
@@ -105,10 +112,14 @@ class _BodyState extends State<Body> {
                   ),
                 ],
               ),
-              const Expanded(
+              Expanded(
                 child: TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [Profile(), Pengalaman(), Kompetensi()]),
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      Profile(penggunaViewModel: penggunaViewModel),
+                      Pengalaman(),
+                      Kompetensi()
+                    ]),
               ),
             ],
           ),

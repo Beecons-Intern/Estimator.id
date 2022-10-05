@@ -1,8 +1,6 @@
 import 'package:estimator_id/presentation/view_model/pengguna_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../data/model/pengguna_model.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
 
@@ -14,35 +12,35 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  List<Map> listMenu = [
+    {
+      "icon": const Icon(Icons.account_circle_outlined,
+          color: neutral500, size: 30),
+      "title": "Profile Pengguna"
+    },
+    {
+      "icon":
+          const Icon(Icons.file_download_outlined, color: neutral500, size: 30),
+      "title": "Pilihan Paket"
+    },
+    {
+      "icon": const Icon(Icons.chat_bubble_outline_rounded,
+          color: neutral500, size: 30),
+      "title": "Umpan Balik"
+    },
+    {
+      "icon":
+          const Icon(Icons.warning_amber_rounded, color: neutral500, size: 30),
+      "title": "Lapor Kesalahan"
+    },
+    {
+      "icon": const Icon(Icons.logout_rounded, color: neutral500, size: 30),
+      "title": "Keluar"
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     final penggunaViewModel = Provider.of<PenggunaViewModel>(context);
-    List<Map> listMenu = [
-      {
-        "icon": const Icon(Icons.account_circle_outlined,
-            color: neutral500, size: 30),
-        "title": "Profile Pengguna"
-      },
-      {
-        "icon": const Icon(Icons.file_download_outlined,
-            color: neutral500, size: 30),
-        "title": "Pilihan Paket"
-      },
-      {
-        "icon": const Icon(Icons.chat_bubble_outline_rounded,
-            color: neutral500, size: 30),
-        "title": "Umpan Balik"
-      },
-      {
-        "icon": const Icon(Icons.warning_amber_rounded,
-            color: neutral500, size: 30),
-        "title": "Lapor Kesalahan"
-      },
-      {
-        "icon": const Icon(Icons.logout_rounded, color: neutral500, size: 30),
-        "title": "Keluar"
-      }
-    ];
     Size size = MediaQuery.of(context).size;
     return Stack(
       fit: StackFit.expand,
@@ -127,8 +125,10 @@ class _BodyState extends State<Body> {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                           Text(
-                                            "Sleman, Yogyakarta",
+                                            "${penggunaViewModel.wilayahData != null ? penggunaViewModel.wilayahData!.wilayah : "-"}, ${penggunaViewModel.prov != null ? penggunaViewModel.prov! : ""}",
                                             style: text3(neutral500, regular),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
                                         ],
                                       ),
@@ -138,7 +138,9 @@ class _BodyState extends State<Body> {
                                       GestureDetector(
                                         onTap: () {
                                           Navigator.pushNamed(
-                                              context, RouteName.editProfil);
+                                                  context, RouteName.editProfil)
+                                              .then((value) => penggunaViewModel
+                                                  .inisialData());
                                         },
                                         child: Row(
                                           children: [
