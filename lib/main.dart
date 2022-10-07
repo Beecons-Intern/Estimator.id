@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'data/service/database_service.dart';
 import 'presentation/route/page_route.dart';
+import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
 
 void main() {
@@ -27,6 +28,8 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
+        ChangeNotifierProvider(
+            create: (context) => PengalamanProyekViewModel()),
       ],
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -307,13 +307,13 @@ class _BodyState extends State<Body> {
                         website: _formKey.currentState!.value["website"],
                       )
                           .then((value) {
-                        Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(value != null
                               ? "Data berhasil diperbarui"
                               : "Data gagal diperbarui"),
-                          duration: const Duration(seconds: 2),
+                          duration: const Duration(seconds: 1),
                         ));
+                        Navigator.pop(context);
                       });
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

@@ -28,7 +28,7 @@ class DatabaseService {
     Directory documenstDirectory = await getApplicationDocumentsDirectory();
     String path = p.join(documenstDirectory.path, _databaseName);
     ByteData data = await rootBundle
-        .load(p.join("assets", "database", "estimator_pengguna.db"));
+        .load(p.join("assets", "database", "estimator.db"));
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 

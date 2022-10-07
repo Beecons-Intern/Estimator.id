@@ -119,13 +119,13 @@ class _BodyState extends State<Body> {
                                           Text(
                                             penggunaViewModel.data != null
                                                 ? penggunaViewModel.data!.nama
-                                                : "User",
+                                                : "-",
                                             style: text1(primary, bold),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                           Text(
-                                            "${penggunaViewModel.wilayahData != null ? penggunaViewModel.wilayahData!.wilayah : "-"}, ${penggunaViewModel.prov != null ? penggunaViewModel.prov! : ""}",
+                                            "${penggunaViewModel.wilayahData != null ? penggunaViewModel.wilayahData!.wilayah : ""}, ${penggunaViewModel.prov != null ? penggunaViewModel.prov! : ""}",
                                             style: text3(neutral500, regular),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
