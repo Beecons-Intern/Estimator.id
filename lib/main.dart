@@ -23,6 +23,17 @@ class _MyAppState extends State<MyApp> {
   //   super.initState();
   // }
 
+  bool isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (isInit == true) {
+      DatabaseService().database();
+      isInit = false;
+    }
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

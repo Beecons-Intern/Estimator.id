@@ -8,7 +8,6 @@ import '../../../widgets/widgets.dart';
 
 class Pengalaman extends StatelessWidget {
   const Pengalaman({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormBuilderState>();
@@ -45,10 +44,10 @@ Widget body(PengalamanProyekViewModel pengalamanProyekViewModel, size, formKey,
     margin: const EdgeInsets.only(top: 20),
     child: GridView.builder(
         padding: EdgeInsets.only(
-          top: 5,
-          left: size.width * 0.05,
-          right: size.width * 0.05,
-        ),
+            top: 5,
+            left: size.width * 0.05,
+            right: size.width * 0.05,
+            bottom: 16),
         itemCount: pengalamanProyekViewModel.data != null &&
                 pengalamanProyekViewModel.data!.isNotEmpty
             ? pengalamanProyekViewModel.data!.length
@@ -112,11 +111,11 @@ Widget body(PengalamanProyekViewModel pengalamanProyekViewModel, size, formKey,
                                     formKey.currentState!.save();
                                     if (formKey.currentState!
                                                 .value["namaProyek"] !=
-                                            "" &&
+                                            null &&
                                         formKey.currentState!.value["tahun"] !=
-                                            "" &&
+                                            null &&
                                         formKey.currentState!.value["posisi"] !=
-                                            "") {
+                                            null) {
                                       pengalamanProyekViewModel
                                           .insertData(
                                               idPengguna:
@@ -128,6 +127,10 @@ Widget body(PengalamanProyekViewModel pengalamanProyekViewModel, size, formKey,
                                               posisi: formKey.currentState!
                                                   .value["posisi"])
                                           .then((value) {
+                                        if (value != null) {
+                                          pengalamanProyekViewModel
+                                              .inisialData();
+                                        }
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content: Text(value != null
@@ -137,14 +140,15 @@ Widget body(PengalamanProyekViewModel pengalamanProyekViewModel, size, formKey,
                                         ));
                                         Navigator.pop(context);
                                       });
+                                    } else {
+                                      Navigator.pop(context);
                                     }
                                   },
                                   text: "Tambahkan",
                                 )
                               ],
                             ),
-                          )).then(
-                      (value) => pengalamanProyekViewModel.inisialData());
+                          ));
                 },
                 child: Container(
                     padding:
@@ -191,11 +195,11 @@ Widget body(PengalamanProyekViewModel pengalamanProyekViewModel, size, formKey,
                       fit: BoxFit.fill,
                     ),
                     Text(
-                      "2022, Estimator",
+                      "${pengalamanProyekViewModel.data![index].tahun}, ${pengalamanProyekViewModel.data![index].posisi}",
                       style: text3(neutral500, bold),
                     ),
                     Text(
-                      "Pembangunan perumahan",
+                      pengalamanProyekViewModel.data![index].namaProyek,
                       style: text4(neutral500, medium),
                     )
                   ],

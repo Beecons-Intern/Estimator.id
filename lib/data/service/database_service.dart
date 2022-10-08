@@ -8,14 +8,14 @@ class DatabaseService {
   final String _databaseName = 'estimator.db';
   final int _databaseVersion = 1;
 
-  Database? databaseEstimator;
+  static Database? databaseEstimator;
 
   Future<void> deleteDatabase() async {
     Directory documenstDirectory = await getApplicationDocumentsDirectory();
     String path = p.join(documenstDirectory.path, _databaseName);
     databaseFactory.deleteDatabase(path);
-    print("database berhasil dihapus");
-    print(databaseEstimator);
+    // print("database berhasil dihapus");
+    // print(databaseEstimator);
   }
 
   Future<Database> database() async {
@@ -27,8 +27,8 @@ class DatabaseService {
   Future _initDatabase() async {
     Directory documenstDirectory = await getApplicationDocumentsDirectory();
     String path = p.join(documenstDirectory.path, _databaseName);
-    ByteData data = await rootBundle
-        .load(p.join("assets", "database", "estimator.db"));
+    ByteData data =
+        await rootBundle.load(p.join("assets", "database", "estimator.db"));
     List<int> bytes =
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 

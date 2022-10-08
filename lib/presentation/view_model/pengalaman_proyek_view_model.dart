@@ -27,11 +27,12 @@ class PengalamanProyekViewModel extends ChangeNotifier {
     try {
       await PengalamanProyekSource().getPengalamanById().then((value) async {
         _data = value;
-        print(_data);
+        print(_data!);
       });
       notifyListeners();
       changeState(PengalamanProyekState.none);
     } catch (e) {
+      print(e);
       changeState(PengalamanProyekState.error);
     }
   }
@@ -43,15 +44,12 @@ class PengalamanProyekViewModel extends ChangeNotifier {
       required posisi}) async {
     try {
       final dataProyek = {
-        "id_pengguna": idPengguna,
-        "nama_proyek": namaProyek,
-        "tahun": tahun,
-        "posisi": posisi
+        "id_pengguna": idPengguna.toString(),
+        "nama_proyek": namaProyek.toString(),
+        "tahun": tahun.toString(),
+        "posisi": posisi.toString()
       };
-      print(dataProyek);
       final data = await PengalamanProyekSource().insertData(dataProyek);
-      print(data);
-      notifyListeners();
       return data;
     } catch (e) {
       return e;
