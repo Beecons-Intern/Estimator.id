@@ -32,8 +32,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.nama
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.namaPengguna
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -61,8 +61,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.profil
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.profil
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -90,8 +90,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.alamat
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.alamat
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -146,8 +146,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.perusahaan
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.perusahaan
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -175,8 +175,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.email
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.email
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -204,8 +204,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.noTelp
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.noTelp
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -233,8 +233,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.noWa
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.noWa
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -262,8 +262,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.website
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.website
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,
@@ -291,8 +291,8 @@ class Profile extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 24),
                         child: Text(
-                          penggunaViewModel.data != null
-                              ? penggunaViewModel.data!.username
+                          penggunaViewModel.dataPengguna != null
+                              ? penggunaViewModel.dataPengguna!.username
                               : "-",
                           style: text3(neutral500, regular),
                           textAlign: TextAlign.right,

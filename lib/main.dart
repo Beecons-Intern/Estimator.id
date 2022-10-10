@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'data/service/database_service.dart';
 import 'presentation/route/page_route.dart';
+import 'presentation/view_model/kompetensi_view_model.dart';
 import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
 
@@ -23,24 +23,21 @@ class _MyAppState extends State<MyApp> {
   //   super.initState();
   // }
 
-  bool isInit = true;
-
-  @override
-  void didChangeDependencies() {
-    if (isInit == true) {
-      DatabaseService().database();
-      isInit = false;
-    }
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
-        ChangeNotifierProvider(
-            create: (context) => PengalamanProyekViewModel()),
+        ChangeNotifierProxyProvider<PenggunaViewModel,
+            PengalamanProyekViewModel>(
+          create: (context) => PengalamanProyekViewModel(),
+          update: (context, pengguna, pengalaman) =>
+              pengalaman!..updateData(pengguna.idPengguna),
+        ),
+        ChangeNotifierProxyProvider<PenggunaViewModel, KompetensiViewModel>(
+            create: (context) => KompetensiViewModel(),
+            update: (context, pengguna, kompetensi) =>
+                kompetensi!..updateData(pengguna.idPengguna)),
       ],
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,7 +1,6 @@
 import 'package:estimator_id/presentation/view_model/pengguna_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
 
@@ -118,8 +117,10 @@ class _BodyState extends State<Body> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            penggunaViewModel.data != null
-                                                ? penggunaViewModel.data!.nama
+                                            penggunaViewModel.dataPengguna !=
+                                                    null
+                                                ? penggunaViewModel
+                                                    .dataPengguna!.namaPengguna
                                                 : "-",
                                             style: text1(primary, bold),
                                             maxLines: 1,
@@ -140,8 +141,8 @@ class _BodyState extends State<Body> {
                                         onTap: () {
                                           Navigator.pushNamed(
                                                   context, RouteName.editProfil)
-                                              .then((value) => penggunaViewModel
-                                                  .inisialData());
+                                              .then((value) =>
+                                                  penggunaViewModel.getUser());
                                         },
                                         child: Row(
                                           children: [

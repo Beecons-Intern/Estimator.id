@@ -19,6 +19,15 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Future.wait(
+          [Provider.of<PenggunaViewModel>(context, listen: false).getUser()]);
+    });
+    super.initState();
+  }
+
   List pages = const [
     HomeScreen(),
     ProyekScreen(),

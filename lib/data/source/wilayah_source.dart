@@ -3,26 +3,51 @@ import '../service/database_service.dart';
 
 class WilayahSource {
   final String table = "wilayah";
-  DatabaseService databaseService = DatabaseService();
 
-  Future<WilayahModel> getWilayahById(id) async {
-    final data = await DatabaseService.databaseEstimator!
-        .query(table, where: 'id_wilayah=?', whereArgs: [id]);
-    WilayahModel result = WilayahModel.fromJson(data[0]);
-    return result;
+  Future<List<WilayahModel>> getDatas(id) async {
+    final db = await DatabaseService.instance.database;
+    final data = await db.query(table,
+        columns: WilayahFields.values,
+        where: '${WilayahFields.idWilayah} = ?',
+        whereArgs: [id]);
+    // final data = await DatabaseService.databaseEstimator!.query(table);
+    if (data.isNotEmpty) {
+      return data.map((json) => WilayahModel.fromJson(json)).toList();
+    } else {
+      throw Exception("Data with $id is empty");
+    }
   }
 
-  Future<String> getProvById(id) async {
-    final data = await DatabaseService.databaseEstimator!
-        .query(table, where: 'id_wilayah=?', whereArgs: [id]);
-    final result = data[0]["wilayah"].toString();
-    return result;
+  Future<WilayahModel> getData(id) async {
+    final db = await DatabaseService.instance.database;
+    final data = await db.query(table,
+        columns: WilayahFields.values,
+        where: '${WilayahFields.idWilayah} = ?',
+        whereArgs: [id]);
+    if (data.isNotEmpty) {
+      return WilayahModel.fromJson(data.first);
+    } else {
+      throw Exception("Data with $id is empty");
+    }
+  }
+
+  Future<WilayahModel> getDataProv(id) async {
+    final db = await DatabaseService.instance.database;
+    final data = await db.query(table,
+        columns: WilayahFields.values,
+        where: '${WilayahFields.idProv} = ?',
+        whereArgs: [id]);
+
+    if (data.isNotEmpty) {
+      return WilayahModel.fromJson(data.first);
+    } else {
+      throw Exception("Data with $id is empty");
+    }
   }
 
   Future<List<WilayahModel>> getAll() async {
-    final data = await DatabaseService.databaseEstimator!.query(table);
-    final List<WilayahModel> result =
-        data.map((e) => WilayahModel.fromJson(e)).toList();
-    return result;
+    final db = await DatabaseService.instance.database;
+    final data = await db.query(table);
+    return data.map((json) => WilayahModel.fromJson(json)).toList();
   }
 }

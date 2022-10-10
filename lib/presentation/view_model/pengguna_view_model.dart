@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../data/model/pengalaman_proyek_model.dart';
 import '../../data/model/pengguna_model.dart';
 import '../../data/model/wilayah_model.dart';
 import '../../data/source/pengguna_source.dart';
@@ -9,10 +7,6 @@ import '../../data/source/wilayah_source.dart';
 enum PenggunaViewState { none, loading, error }
 
 class PenggunaViewModel extends ChangeNotifier {
-  PenggunaViewModel() {
-    inisialData();
-  }
-
   PenggunaViewState _state = PenggunaViewState.none;
   PenggunaViewState get state => _state;
 
@@ -21,8 +15,12 @@ class PenggunaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  PenggunaModel? _data;
-  PenggunaModel? get data => _data;
+  final int _idPengguna = 110;
+
+  int get idPengguna => _idPengguna;
+
+  PenggunaModel? _dataPengguna;
+  PenggunaModel? get dataPengguna => _dataPengguna;
 
   WilayahModel? _wilayahData;
   WilayahModel? get wilayahData => _wilayahData;
@@ -36,19 +34,19 @@ class PenggunaViewModel extends ChangeNotifier {
   List<WilayahModel>? _allWilayahData;
   List<WilayahModel>? get allWilayahData => _allWilayahData;
 
-  Future inisialData() async {
+  Future getUser() async {
     changeState(PenggunaViewState.loading);
+    _dataPengguna = null;
 
     try {
-      await PenggunaSource().selectById().then((value) async {
-        _data = value;
-        final dataWilayah =
-            await WilayahSource().getWilayahById(value.idWilayah);
+      await PenggunaSource().getData(idPengguna).then((value) async {
+        _dataPengguna = value;
+        final dataWilayah = await WilayahSource().getData(value.idWilayah);
         _wilayahData = dataWilayah;
         _tempWilayahData = dataWilayah;
         final dataProv =
-            await WilayahSource().getProvById(_wilayahData!.idProv);
-        _prov = dataProv;
+            await WilayahSource().getDataProv(_wilayahData!.idProv);
+        _prov = dataProv.wilayah;
       });
       notifyListeners();
       changeState(PenggunaViewState.none);
@@ -58,6 +56,7 @@ class PenggunaViewModel extends ChangeNotifier {
   }
 
   Future getAllWilayah() async {
+    _allWilayahData = null;
     try {
       final dataAllWilayah = await WilayahSource().getAll();
       _allWilayahData = dataAllWilayah;
@@ -69,7 +68,7 @@ class PenggunaViewModel extends ChangeNotifier {
 
   Future changeWilayah(WilayahModel data) async {
     try {
-      _data!.idWilayah = data.idWilayah;
+      _dataPengguna!.idWilayah = data.idWilayah;
       _tempWilayahData = data;
       notifyListeners();
     } catch (e) {
@@ -77,31 +76,9 @@ class PenggunaViewModel extends ChangeNotifier {
     }
   }
 
-  Future updateData(
-      {required namaPengguna,
-      required profil,
-      required alamat,
-      required idWilayah,
-      required perusahaan,
-      required email,
-      required noTelp,
-      required noWA,
-      required website,
-      required username}) async {
+  Future updateData(PenggunaModel pengguna) async {
     try {
-      final dataUser = {
-        "nama_pengguna": namaPengguna,
-        "profil": profil,
-        "alamat": alamat,
-        "id_wilayah": idWilayah,
-        "perusahaan": perusahaan,
-        "email": email,
-        "no_telp": noTelp,
-        "no_wa": noWA,
-        "website": website,
-        "username": username,
-      };
-      final data = await PenggunaSource().update(dataUser);
+      final data = await PenggunaSource().updateData(pengguna);
       notifyListeners();
       return data;
     } catch (e) {

@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:estimator_id/data/model/pengguna_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../view_model/pengguna_view_model.dart';
@@ -104,8 +106,8 @@ class _BodyState extends State<Body> {
                   title: "Nama Lengkap",
                   name: "namaPengguna",
                   isRequired: true,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.nama
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.namaPengguna
                       : "",
                   capitalization: TextCapitalization.words,
                   keyboardType: TextInputType.name,
@@ -117,8 +119,8 @@ class _BodyState extends State<Body> {
                   title: "Username",
                   name: "username",
                   isRequired: true,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.username
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.username
                       : "",
                   capitalization: TextCapitalization.words,
                   keyboardType: TextInputType.name,
@@ -130,8 +132,8 @@ class _BodyState extends State<Body> {
                   title: "Ringkasan Profil",
                   name: "profil",
                   isRequired: false,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.profil
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.profil
                       : "",
                   capitalization: TextCapitalization.sentences,
                   keyboardType: TextInputType.text,
@@ -143,8 +145,8 @@ class _BodyState extends State<Body> {
                   title: "Alamat",
                   name: "alamat",
                   isRequired: true,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.alamat
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.alamat
                       : "",
                   capitalization: TextCapitalization.sentences,
                   keyboardType: TextInputType.text,
@@ -200,8 +202,8 @@ class _BodyState extends State<Body> {
                   title: "Perusahaan",
                   name: "perusahaan",
                   isRequired: false,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.perusahaan
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.perusahaan
                       : "",
                   capitalization: TextCapitalization.words,
                   keyboardType: TextInputType.text,
@@ -213,8 +215,8 @@ class _BodyState extends State<Body> {
                   title: "Email",
                   name: "email",
                   isRequired: true,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.email
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.email
                       : "",
                   capitalization: TextCapitalization.none,
                   keyboardType: TextInputType.emailAddress,
@@ -226,8 +228,8 @@ class _BodyState extends State<Body> {
                   title: "No. Telepon",
                   name: "noTelp",
                   isRequired: true,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.noTelp
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.noTelp
                       : "",
                   capitalization: TextCapitalization.none,
                   keyboardType: TextInputType.phone,
@@ -239,8 +241,8 @@ class _BodyState extends State<Body> {
                   title: "No. WhatsApp",
                   name: "noWa",
                   isRequired: false,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.noWa
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.noWa
                       : "",
                   capitalization: TextCapitalization.none,
                   keyboardType: TextInputType.phone,
@@ -252,8 +254,8 @@ class _BodyState extends State<Body> {
                   title: "Website",
                   name: "website",
                   isRequired: false,
-                  initialValue: penggunaViewModel.data != null
-                      ? penggunaViewModel.data!.website
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.website
                       : "",
                   capitalization: TextCapitalization.none,
                   keyboardType: TextInputType.url,
@@ -293,34 +295,59 @@ class _BodyState extends State<Body> {
                         _formKey.currentState!.value["email"] != "" &&
                         _formKey.currentState!.value["noTelp"] != "") {
                       penggunaViewModel
-                          .updateData(
-                        namaPengguna:
-                            _formKey.currentState!.value["namaPengguna"],
-                        username: _formKey.currentState!.value["username"],
-                        profil: _formKey.currentState!.value["profil"],
-                        alamat: _formKey.currentState!.value["alamat"],
-                        idWilayah: penggunaViewModel.tempWilayahData!.idWilayah,
-                        perusahaan: _formKey.currentState!.value["perusahaan"],
-                        email: _formKey.currentState!.value["email"],
-                        noTelp: _formKey.currentState!.value["noTelp"],
-                        noWA: _formKey.currentState!.value["noWa"],
-                        website: _formKey.currentState!.value["website"],
-                      )
+                          .updateData(PenggunaModel(
+                              idPengguna: penggunaViewModel.idPengguna,
+                              namaPengguna: _formKey
+                                  .currentState!.value["namaPengguna"]
+                                  .toString(),
+                              profil: _formKey.currentState!.value["profil"]
+                                  .toString(),
+                              alamat: _formKey.currentState!.value["alamat"]
+                                  .toString(),
+                              idWilayah: penggunaViewModel
+                                  .tempWilayahData!.idWilayah
+                                  .toString(),
+                              perusahaan: _formKey
+                                  .currentState!.value["perusahaan"]
+                                  .toString(),
+                              email: _formKey.currentState!.value["email"]
+                                  .toString(),
+                              noTelp: _formKey.currentState!.value["noTelp"]
+                                  .toString(),
+                              noWa: _formKey.currentState!.value["noWa"]
+                                  .toString(),
+                              website: _formKey.currentState!.value["website"]
+                                  .toString(),
+                              hargaMin: penggunaViewModel.dataPengguna!.hargaMin
+                                  .toString(),
+                              hargaMax: penggunaViewModel.dataPengguna!.hargaMax
+                                  .toString(),
+                              username: _formKey.currentState!.value["username"]
+                                  .toString(),
+                              foto: penggunaViewModel.dataPengguna!.foto))
+                          // penggunaViewModel
+                          //     .updateData(
+                          //   namaPengguna:
+                          //       _formKey.currentState!.value["namaPengguna"],
+                          //   username: _formKey.currentState!.value["username"],
+                          //   profil: _formKey.currentState!.value["profil"],
+                          //   alamat: _formKey.currentState!.value["alamat"],
+                          //   idWilayah: penggunaViewModel.tempWilayahData!.idWilayah,
+                          //   perusahaan: _formKey.currentState!.value["perusahaan"],
+                          //   email: _formKey.currentState!.value["email"],
+                          //   noTelp: _formKey.currentState!.value["noTelp"],
+                          //   noWA: _formKey.currentState!.value["noWa"],
+                          //   website: _formKey.currentState!.value["website"],
+                          // )
                           .then((value) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(value != null
-                              ? "Data berhasil diperbarui"
-                              : "Data gagal diperbarui"),
-                          duration: const Duration(seconds: 1),
-                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            snackbarAlert(
+                                size, value != null || value != 0 ? 1 : 2));
                         Navigator.pop(context);
                       });
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content:
-                            Text("Input yang anda masukkan tidak lengkap!"),
-                        duration: Duration(seconds: 2),
-                      ));
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackbarAlert(size, 3));
                     }
                   },
                 ),
@@ -333,5 +360,42 @@ class _BodyState extends State<Body> {
         ],
       ),
     );
+  }
+
+  SnackBar snackbarAlert(Size size, int condition) {
+    late String message;
+
+    switch (condition) {
+      case 1:
+        message = "Data berhasil diperbarui!";
+        break;
+      case 2:
+        message = "Data gagal diperbarui!";
+        break;
+      case 3:
+        message = "Input yang anda masukkan tidak lengkap!";
+        break;
+      default:
+    }
+
+    return SnackBar(
+        duration: const Duration(seconds: 2),
+        margin: EdgeInsets.only(
+            bottom: size.height * 0.5,
+            left: size.width * 0.2,
+            right: size.width * 0.2),
+        backgroundColor: neutral100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        behavior: SnackBarBehavior.floating,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LottieBuilder.asset("assets/lotie/success_primary.json",
+                width: 80, height: 80),
+            Text(message,
+                style: text3(neutral500, regular), textAlign: TextAlign.center),
+          ],
+        ));
   }
 }

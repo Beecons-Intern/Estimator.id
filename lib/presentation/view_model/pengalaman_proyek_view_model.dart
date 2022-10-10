@@ -6,8 +6,11 @@ import '../../data/source/pengalaman_proyek_source.dart';
 enum PengalamanProyekState { none, loading, error }
 
 class PengalamanProyekViewModel extends ChangeNotifier {
-  PengalamanProyekViewModel() {
-    inisialData();
+  int? _idPengguna;
+
+  void updateData(uid) {
+    _idPengguna = uid;
+    notifyListeners();
   }
 
   PengalamanProyekState _state = PengalamanProyekState.none;
@@ -18,39 +21,32 @@ class PengalamanProyekViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<PengalamanProyekModel>? _data;
-  List<PengalamanProyekModel>? get data => _data;
+  List<PengalamanProyekModel>? _datasPengalaman;
+  List<PengalamanProyekModel>? get datasPengalaman => _datasPengalaman;
 
-  Future inisialData() async {
+  Future getDatas() async {
     changeState(PengalamanProyekState.loading);
 
     try {
-      await PengalamanProyekSource().getPengalamanById().then((value) async {
-        _data = value;
-        print(_data!);
+      await PengalamanProyekSource().getDatas(_idPengguna).then((value) async {
+        if (value != null) _datasPengalaman = value;
       });
       notifyListeners();
       changeState(PengalamanProyekState.none);
     } catch (e) {
-      print(e);
       changeState(PengalamanProyekState.error);
     }
   }
 
-  Future insertData(
-      {required idPengguna,
-      required namaProyek,
-      required tahun,
-      required posisi}) async {
+  Future insertData(PengalamanProyekModel values) async {
     try {
-      final dataProyek = {
-        "id_pengguna": idPengguna.toString(),
-        "nama_proyek": namaProyek.toString(),
-        "tahun": tahun.toString(),
-        "posisi": posisi.toString()
-      };
-      final data = await PengalamanProyekSource().insertData(dataProyek);
-      return data;
+      final data = await PengalamanProyekSource().addData(values);
+      if (_datasPengalaman != null) {
+        _datasPengalaman!.add(data);
+      } else {
+        _datasPengalaman = [data];
+      }
+      notifyListeners();
     } catch (e) {
       return e;
     }

@@ -3,22 +3,33 @@ import '../service/database_service.dart';
 
 class PenggunaSource {
   final String table = "pengguna";
-  DatabaseService databaseService = DatabaseService();
 
-  Future<PenggunaModel> selectById() async {
-    final data = await DatabaseService.databaseEstimator!
-        .query(table, where: 'id_pengguna=?', whereArgs: [110]);
-    PenggunaModel result = PenggunaModel.fromJson(data[0]);
-    return result;
+  Future<PenggunaModel> getData(id) async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final data = await db.query(table,
+          columns: PenggunaFields.values,
+          where: '${PenggunaFields.idPengguna} = ?',
+          whereArgs: [id]);
+      if (data.isNotEmpty) {
+        return PenggunaModel.fromJson(data.first);
+      } else {
+        throw Exception("Data with $id is empty");
+      }
+    } catch (error) {
+      return throw Exception("Error $error");
+    }
   }
 
-  Future update(Map<String, dynamic> values) async {
+  Future<int> updateData(PenggunaModel pengguna) async {
     try {
-      final query = await DatabaseService.databaseEstimator!
-          .update(table, values, where: 'id_pengguna=?', whereArgs: [110]);
-      return query;
-    } catch (e) {
-      return e;
+      final db = await DatabaseService.instance.database;
+
+      return db.update(table, pengguna.toJson(),
+          where: '${PenggunaFields.idPengguna} = ?',
+          whereArgs: [pengguna.idPengguna]);
+    } catch (error) {
+      return throw Exception("Error $error");
     }
   }
 }

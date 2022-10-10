@@ -1,3 +1,4 @@
+import 'package:estimator_id/presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
@@ -15,6 +16,18 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int indexPage = 0;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Future.wait([
+        Provider.of<PengalamanProyekViewModel>(context, listen: false)
+            .getDatas()
+      ]);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final penggunaViewModel = Provider.of<PenggunaViewModel>(context);
@@ -53,8 +66,8 @@ class _BodyState extends State<Body> {
               height: 10,
             ),
             Text(
-                penggunaViewModel.data != null
-                    ? penggunaViewModel.data!.nama
+                penggunaViewModel.dataPengguna != null
+                    ? penggunaViewModel.dataPengguna!.namaPengguna
                     : "-",
                 style: text2(neutral100, bold)),
             const SizedBox(
