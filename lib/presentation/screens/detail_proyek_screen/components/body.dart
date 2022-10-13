@@ -1,5 +1,7 @@
+import 'package:estimator_id/presentation/view_model/detail_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 import '../../../route/route_name.dart';
 import '../../../widgets/widgets.dart';
@@ -7,10 +9,10 @@ import '../../../../utilities/utilities.dart';
 import 'detail_item.dart';
 import 'hapus_item.dart';
 import 'hapus_kategori.dart';
-import 'impor_volume.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({Key? key, required this.isTemplate}) : super(key: key);
+  final bool isTemplate;
 
   @override
   State<Body> createState() => _BodyState();
@@ -22,6 +24,7 @@ class _BodyState extends State<Body> {
   int? analisa;
   @override
   Widget build(BuildContext context) {
+    final detailProyekViewModel = Provider.of<DetailProyekViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
@@ -30,86 +33,92 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 16,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteName.buatKategori);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.edit,
-                          color: neutral100,
-                          size: 16,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Ubah Kategori",
-                          style: text3(neutral100, regular),
-                        ),
-                      ],
+          if (widget.isTemplate != true) ...[
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteName.buatKategori);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 6),
+                      decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.edit,
+                            color: neutral100,
+                            size: 16,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Ubah Kategori",
+                            style: text3(neutral100, regular),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => const BuildModalUpgradeAccount());
-                    /* showDialog(
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) =>
+                              const BuildModalUpgradeAccount());
+                      /* showDialog(
                       context: context,
                       builder: (BuildContext context) =>
                           ImporVolume(size: size),
                     ); */
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.upload,
-                          color: neutral100,
-                          size: 16,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Impor Volume",
-                          style: text3(neutral100, regular),
-                        ),
-                      ],
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 6),
+                      decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.upload,
+                            color: neutral100,
+                            size: 16,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Impor Volume",
+                            style: text3(neutral100, regular),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
           const SizedBox(
             height: 16,
           ),
           ListView.separated(
-            itemCount: 4,
+            itemCount: detailProyekViewModel.datasKategoriPekerjaan != null &&
+                    detailProyekViewModel.datasKategoriPekerjaan!.isNotEmpty
+                ? detailProyekViewModel.datasKategoriPekerjaan!.length
+                : 0,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             separatorBuilder: (context, index) => const Divider(thickness: 1),
@@ -127,7 +136,13 @@ class _BodyState extends State<Body> {
                       Expanded(
                         flex: 2,
                         child: Text(
-                          "Pekerjaan Persiapan",
+                          detailProyekViewModel.datasKategoriPekerjaan !=
+                                      null &&
+                                  detailProyekViewModel
+                                      .datasKategoriPekerjaan!.isNotEmpty
+                              ? detailProyekViewModel
+                                  .datasKategoriPekerjaan![index].kategori
+                              : "",
                           style: text3(neutral500, regular),
                         ),
                       ),
@@ -135,60 +150,63 @@ class _BodyState extends State<Body> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10))),
-                                    context: context,
-                                    builder: (context) => Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 20),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: size.width * 0.05),
-                                        child: ListView.separated(
-                                            shrinkWrap: true,
-                                            itemBuilder: (context, index) {
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pop(context);
-                                                  switch (index) {
-                                                    case 0:
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          RouteName
-                                                              .tambahPekerjaan);
-                                                      break;
-                                                    case 1:
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (context) =>
-                                                              const HapusKategori());
-                                                      break;
-                                                    default:
-                                                  }
-                                                },
-                                                child: Text(
-                                                  itemsKategori[index],
-                                                  style: text2(
-                                                      neutral500, regular),
-                                                ),
-                                              );
-                                            },
-                                            separatorBuilder:
-                                                (context, index) =>
-                                                    const Divider(
-                                                      thickness: 1,
-                                                    ),
-                                            itemCount: itemsKategori.length)));
-                              },
-                              child: const Icon(
-                                Icons.settings,
-                                size: 16,
+                            if (widget.isTemplate != true) ...[
+                              GestureDetector(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10))),
+                                      context: context,
+                                      builder: (context) => Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 20),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.05),
+                                          child: ListView.separated(
+                                              shrinkWrap: true,
+                                              itemBuilder: (context, index) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                    switch (index) {
+                                                      case 0:
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            RouteName
+                                                                .tambahPekerjaan);
+                                                        break;
+                                                      case 1:
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (context) =>
+                                                                const HapusKategori());
+                                                        break;
+                                                      default:
+                                                    }
+                                                  },
+                                                  child: Text(
+                                                    itemsKategori[index],
+                                                    style: text2(
+                                                        neutral500, regular),
+                                                  ),
+                                                );
+                                              },
+                                              separatorBuilder:
+                                                  (context, index) =>
+                                                      const Divider(
+                                                        thickness: 1,
+                                                      ),
+                                              itemCount:
+                                                  itemsKategori.length)));
+                                },
+                                child: const Icon(
+                                  Icons.settings,
+                                  size: 16,
+                                ),
                               ),
-                            ),
+                            ],
                             const SizedBox(
                               width: 10,
                             ),
@@ -220,7 +238,12 @@ class _BodyState extends State<Body> {
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 5,
+                      itemCount: detailProyekViewModel.datasHargaSatuan !=
+                                  null &&
+                              detailProyekViewModel.datasHargaSatuan!.isNotEmpty
+                          ? detailProyekViewModel
+                              .datasHargaSatuan![index].length
+                          : 0,
                       itemBuilder: (context, indexExpanded) => Container(
                         margin: const EdgeInsets.symmetric(vertical: 6),
                         padding: const EdgeInsets.symmetric(
@@ -236,7 +259,9 @@ class _BodyState extends State<Body> {
                             Expanded(
                                 flex: 2,
                                 child: Text(
-                                  "Pengukuran dan pemasangan Bouwplank",
+                                  detailProyekViewModel
+                                      .datasHargaSatuan![index][indexExpanded]
+                                      .namaPekerjaan,
                                   style: text3(neutral500, regular),
                                 )),
                             Flexible(
@@ -247,8 +272,13 @@ class _BodyState extends State<Body> {
                                   onTap: () {
                                     showDialog(
                                         context: context,
-                                        builder: (context) =>
-                                            const DetailItem());
+                                        builder: (context) => DetailItem(
+                                              templateHargaSatuan:
+                                                  detailProyekViewModel
+                                                          .datasHargaSatuan![
+                                                      index][indexExpanded],
+                                              isTemplate: widget.isTemplate,
+                                            ));
                                   },
                                   child: Container(
                                     padding: const EdgeInsets.all(5),
@@ -262,90 +292,98 @@ class _BodyState extends State<Body> {
                                     ),
                                   ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(10),
-                                                topRight: Radius.circular(10))),
-                                        context: context,
-                                        builder: (context) => Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 20),
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: size.width * 0.05),
-                                            child: ListView.separated(
-                                                shrinkWrap: true,
-                                                itemBuilder: (context, index) {
-                                                  return GestureDetector(
-                                                    onTap: () {
-                                                      Navigator.pop(context);
-                                                      switch (index) {
-                                                        case 0:
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              RouteName
-                                                                  .editAHS);
-                                                          break;
-                                                        case 1:
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              RouteName
-                                                                  .editVolume);
-                                                          break;
-                                                        case 2:
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                                  snackbarCopyDuplikat(
-                                                                      size,
-                                                                      "dicopy"));
-                                                          break;
-                                                        case 3:
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                                  snackbarCopyDuplikat(
-                                                                      size,
-                                                                      "diduplikat"));
-                                                          break;
-                                                        case 4:
-                                                          showDialog(
-                                                              context: context,
-                                                              builder: (context) =>
-                                                                  const HapusItem());
-                                                          break;
-                                                        default:
-                                                      }
-                                                    },
-                                                    child: Text(
-                                                      items[index],
-                                                      style: text2(
-                                                          neutral500, regular),
-                                                    ),
-                                                  );
-                                                },
-                                                separatorBuilder:
-                                                    (context, index) =>
-                                                        const Divider(
-                                                          thickness: 1,
-                                                        ),
-                                                itemCount: items.length)));
-                                  },
-                                  child: Container(
-                                    margin: const EdgeInsets.only(left: 5),
-                                    padding: const EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: primary),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5))),
-                                    child: const Icon(
-                                      Icons.settings,
-                                      size: 15,
+                                if (widget.isTemplate != true) ...[
+                                  GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(10),
+                                                  topRight:
+                                                      Radius.circular(10))),
+                                          context: context,
+                                          builder: (context) => Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 20),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      size.width * 0.05),
+                                              child: ListView.separated(
+                                                  shrinkWrap: true,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.pop(context);
+                                                        switch (index) {
+                                                          case 0:
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                RouteName
+                                                                    .editAHS);
+                                                            break;
+                                                          case 1:
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                RouteName
+                                                                    .editVolume);
+                                                            break;
+                                                          case 2:
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                                    snackbarCopyDuplikat(
+                                                                        size,
+                                                                        "dicopy"));
+                                                            break;
+                                                          case 3:
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                                    snackbarCopyDuplikat(
+                                                                        size,
+                                                                        "diduplikat"));
+                                                            break;
+                                                          case 4:
+                                                            showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) =>
+                                                                        const HapusItem());
+                                                            break;
+                                                          default:
+                                                        }
+                                                      },
+                                                      child: Text(
+                                                        items[index],
+                                                        style: text2(neutral500,
+                                                            regular),
+                                                      ),
+                                                    );
+                                                  },
+                                                  separatorBuilder:
+                                                      (context, index) =>
+                                                          const Divider(
+                                                            thickness: 1,
+                                                          ),
+                                                  itemCount: items.length)));
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.only(left: 5),
+                                      padding: const EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(color: primary),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(5))),
+                                      child: const Icon(
+                                        Icons.settings,
+                                        size: 15,
+                                      ),
                                     ),
-                                  ),
-                                )
+                                  )
+                                ],
                               ],
                             ))
                           ],
@@ -357,23 +395,25 @@ class _BodyState extends State<Body> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 18,
-          ),
-          const TotalAnggaranBelanja(
-            totalName: "Jumlah Harga",
-            harga: "Rp. 876.107.550,00",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const TotalAnggaranBelanja(
-              totalName: "PPN 11%", harga: "Rp.96.371.830,50"),
-          const SizedBox(
-            height: 10,
-          ),
-          const TotalAnggaranBelanja(
-              totalName: "Total Harga", harga: "972.379.380,50"),
+          if (widget.isTemplate != true) ...[
+            const SizedBox(
+              height: 18,
+            ),
+            const TotalAnggaranBelanja(
+              totalName: "Jumlah Harga",
+              harga: "Rp. 876.107.550,00",
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const TotalAnggaranBelanja(
+                totalName: "PPN 11%", harga: "Rp.96.371.830,50"),
+            const SizedBox(
+              height: 10,
+            ),
+            const TotalAnggaranBelanja(
+                totalName: "Total Harga", harga: "972.379.380,50"),
+          ],
           const SizedBox(
             height: 50,
           ),

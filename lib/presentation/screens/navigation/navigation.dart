@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
 import '../../view_model/pengguna_view_model.dart';
+import '../../view_model/template_proyek_view_model.dart';
 import '../../widgets/widgets.dart';
 import '../home_screen/home_screen.dart';
 import '../koleksi_screen/koleksi_screen.dart';
@@ -37,6 +38,8 @@ class _NavigationState extends State<Navigation> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
+    final templateProyekViewModel =
+        Provider.of<TemplateProyekViewModel>(context);
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -72,7 +75,9 @@ class _NavigationState extends State<Navigation> {
                           "Proyek perencanaan berlaku bagi estimator untuk estimasi anggaran proyek",
                           () {
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, RouteName.perencanaan);
+                        templateProyekViewModel.getAllDatas().then((value) =>
+                            Navigator.pushNamed(
+                                context, RouteName.perencanaan));
                       }),
                       buildOptionProyek(
                           size,

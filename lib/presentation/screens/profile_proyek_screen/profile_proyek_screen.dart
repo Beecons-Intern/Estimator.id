@@ -43,17 +43,15 @@ class ProfileProyekScreen extends StatelessWidget {
                   offset: const Offset(0, 1)),
             ],
           ),
-          child: RoundedButton(
-            ontap: () {
-              if (isNew == true) {
-                Navigator.pushNamed(context, RouteName.detailProyek,
-                    arguments: true);
-              } else {
-                Navigator.pop(context);
-              }
-            },
-            text: "Simpan",
-          ),
+          child: isNew == true
+              ? RoundedButton(
+                  ontap: () {
+                    Navigator.pushNamed(context, RouteName.detailProyek,
+                        arguments: true);
+                  },
+                  text: "Simpan",
+                )
+              : null,
         ),
         body: const Body());
   }

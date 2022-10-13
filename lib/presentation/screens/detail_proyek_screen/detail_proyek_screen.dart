@@ -9,29 +9,27 @@ class DetailProyekScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isNew = ModalRoute.of(context)!.settings.arguments as bool;
+    final isTemplate = ModalRoute.of(context)!.settings.arguments as bool;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: primary,
         title: Text(
-          "Detail Proyek",
+          isTemplate == true ? "Detail Template Proyek" : "Detail Proyek",
           style: text1(neutral100, bold),
         ),
-        leading: isNew == false
-            ? IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: neutral100,
-                ))
-            : null,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: neutral100,
+            )),
         centerTitle: true,
       ),
-      bottomSheet: isNew == true
+      bottomSheet: isTemplate == true
           ? Container(
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.05, vertical: 12),
@@ -49,13 +47,16 @@ class DetailProyekScreen extends StatelessWidget {
               ),
               child: RoundedButton(
                 ontap: () {
-                  Navigator.pushNamed(context, RouteName.navigation);
+                  Navigator.pushNamed(context, RouteName.profileProyek,
+                      arguments: true);
                 },
-                text: "Selesai",
+                text: "Gunakan Template",
               ),
             )
           : null,
-      body: const Body(),
+      body: Body(
+        isTemplate: isTemplate,
+      ),
     );
   }
 }

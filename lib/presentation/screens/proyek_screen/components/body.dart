@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/proyek_view_model.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -20,6 +22,7 @@ class Body extends StatelessWidget {
       "Proyek Selesai"
     ];
     final Size size = MediaQuery.of(context).size;
+    final proyekViewModel = Provider.of<ProyekViewModel>(context);
     return Stack(
       children: [
         Container(
@@ -74,7 +77,10 @@ class Body extends StatelessWidget {
                       left: size.width * 0.05,
                       right: size.width * 0.05,
                       bottom: 20),
-                  itemCount: 3,
+                  itemCount: proyekViewModel.datasProyek != null &&
+                          proyekViewModel.datasProyek!.isNotEmpty
+                      ? proyekViewModel.datasProyek!.length
+                      : 0,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

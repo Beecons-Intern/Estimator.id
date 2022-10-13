@@ -16,7 +16,6 @@ class PenggunaViewModel extends ChangeNotifier {
   }
 
   final int _idPengguna = 110;
-
   int get idPengguna => _idPengguna;
 
   PenggunaModel? _dataPengguna;

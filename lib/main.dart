@@ -1,9 +1,12 @@
+import 'package:estimator_id/presentation/view_model/detail_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'presentation/route/page_route.dart';
 import 'presentation/view_model/kompetensi_view_model.dart';
 import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
+import 'presentation/view_model/proyek_view_model.dart';
+import 'presentation/view_model/template_proyek_view_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +31,8 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
+        ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
+        ChangeNotifierProvider(create: (context) => DetailProyekViewModel()),
         ChangeNotifierProxyProvider<PenggunaViewModel,
             PengalamanProyekViewModel>(
           create: (context) => PengalamanProyekViewModel(),
@@ -38,6 +43,10 @@ class _MyAppState extends State<MyApp> {
             create: (context) => KompetensiViewModel(),
             update: (context, pengguna, kompetensi) =>
                 kompetensi!..updateData(pengguna.idPengguna)),
+        ChangeNotifierProxyProvider<PenggunaViewModel, ProyekViewModel>(
+            create: (context) => ProyekViewModel(),
+            update: (context, pengguna, proyek) =>
+                proyek!..updateData(pengguna.idPengguna)),
       ],
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,

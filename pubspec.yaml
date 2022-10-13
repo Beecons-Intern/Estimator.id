@@ -49,6 +49,7 @@ dependencies:
   path: any
   provider: ^6.0.3
   shared_preferences: ^2.0.15
+  intl: any
 
 dev_dependencies:
   flutter_test:
