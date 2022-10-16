@@ -1,18 +1,18 @@
-import '../model/kompetensi_model.dart';
+import '../model/dokumen_model.dart';
 import '../service/database_service.dart';
 
-class KompetensiSource {
-  final String table = "kompetensi";
+class DokumenSource {
+  final String table = "dokumen_proyek";
 
-  Future<List<KompetensiModel>?> getDatas(id) async {
+  Future<List<DokumenModel>?> getDatas(id) async {
     try {
       final db = await DatabaseService.instance.database;
       final data = await db.query(table,
-          columns: KompetensiFields.values,
-          where: '${KompetensiFields.idPengguna} = ?',
+          columns: DokumenFields.values,
+          where: '${DokumenFields.idProyek} = ?',
           whereArgs: [id]);
       if (data.isNotEmpty) {
-        return data.map((json) => KompetensiModel.fromJson(json)).toList();
+        return data.map((json) => DokumenModel.fromJson(json)).toList();
       }
 
       return null;
@@ -21,22 +21,23 @@ class KompetensiSource {
     }
   }
 
-  Future<KompetensiModel> addData(KompetensiModel kompetensi) async {
+  Future<DokumenModel> addData(DokumenModel dokumen) async {
     try {
       final db = await DatabaseService.instance.database;
-      final id = await db.insert(table, kompetensi.toJson());
-      return kompetensi.copy(idKompetensi: id);
+      final id = await db.insert(table, dokumen.toJson());
+      return dokumen.copy(idProyek: id);
     } catch (error) {
       return throw Exception("Error $error");
     }
   }
 
-  Future<int> updateData(KompetensiModel kompetensi) async {
+  Future<int> updateData(DokumenModel dokumen) async {
     try {
       final db = await DatabaseService.instance.database;
-      return await db.update(table, kompetensi.toJson(),
-          where: '${KompetensiFields.idKompetensi} = ?',
-          whereArgs: [kompetensi.idKompetensi]);
+
+      return await db.update(table, dokumen.toJson(),
+          where: '${DokumenFields.idDokumen} = ?',
+          whereArgs: [dokumen.idDokumen]);
     } catch (error) {
       return throw Exception("Error $error");
     }
@@ -47,7 +48,7 @@ class KompetensiSource {
       final db = await DatabaseService.instance.database;
 
       return await db.delete(table,
-          where: '${KompetensiFields.idKompetensi} = ?', whereArgs: [id]);
+          where: '${DokumenFields.idDokumen} = ?', whereArgs: [id]);
     } catch (error) {
       return throw Exception("Error $error");
     }

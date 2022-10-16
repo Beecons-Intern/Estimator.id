@@ -20,4 +20,14 @@ class ProyekSource {
       return throw Exception("Error $error");
     }
   }
+
+  Future<ProyekModel> addData(ProyekModel proyek) async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final id = await db.insert(table, proyek.toJson());
+      return proyek.copy(idProyek: id);
+    } catch (error) {
+      return throw Exception("Error $error");
+    }
+  }
 }

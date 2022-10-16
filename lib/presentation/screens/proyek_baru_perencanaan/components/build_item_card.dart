@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../data/model/proyek_model.dart';
 import '../../../../data/model/template_proyek_model.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
 import '../../../view_model/detail_proyek_view_model.dart';
+import '../../../view_model/profile_proyek_view_model.dart';
 
 class BuildItemCard extends StatelessWidget {
   const BuildItemCard(
@@ -19,6 +22,10 @@ class BuildItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String tglDibuat = DateFormat("y-M-d").format(DateTime.now());
+    String jamDibuat = DateFormat.Hms().format(DateTime.now());
+    final profileProyekViewModel =
+        Provider.of<ProfileProyekViewModel>(context, listen: false);
     final detailProyekViewModel =
         Provider.of<DetailProyekViewModel>(context, listen: false);
     return GestureDetector(
@@ -45,9 +52,28 @@ class BuildItemCard extends StatelessWidget {
                               await detailProyekViewModel
                                   .getDataHargaSatuan(
                                       templateProyekModel.idTemplate)
-                                  .then((value) => Navigator.pushNamed(
-                                      context, RouteName.detailProyek,
-                                      arguments: true));
+                                  .then((value) {
+                                profileProyekViewModel.setDataProyek(
+                                    ProyekModel(
+                                        idPengguna: 0,
+                                        namaProyek:
+                                            templateProyekModel.namaProyek,
+                                        idWilayah: "3404",
+                                        pemilik: "Estimator.id",
+                                        tahun: "",
+                                        jasaKontraktor:
+                                            templateProyekModel.jasaKontraktor,
+                                        pajak: templateProyekModel.pajak,
+                                        keteranganLain: "",
+                                        status: "",
+                                        kategoriProyek: "",
+                                        foto: "",
+                                        tglDibuat: tglDibuat,
+                                        jamDibuat: jamDibuat));
+                                Navigator.pushNamed(
+                                    context, RouteName.detailProyek,
+                                    arguments: true);
+                              });
 
                               break;
                             case 1:

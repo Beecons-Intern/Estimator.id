@@ -80,6 +80,7 @@ class PenggunaModel {
           String? username,
           String? foto}) =>
       PenggunaModel(
+          idPengguna: idPengguna ?? this.idPengguna,
           namaPengguna: namaPengguna ?? this.namaPengguna,
           profil: profil ?? this.profil,
           alamat: alamat ?? this.alamat,

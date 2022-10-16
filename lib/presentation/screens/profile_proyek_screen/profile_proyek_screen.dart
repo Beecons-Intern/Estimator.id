@@ -28,31 +28,33 @@ class ProfileProyekScreen extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        bottomSheet: Container(
-          padding:
-              EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 12),
-          width: size.width,
-          height: size.height * 0.09,
-          decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: [
-              BoxShadow(
-                  spreadRadius: 2,
-                  blurRadius: 2,
-                  color: Colors.black.withOpacity(0.2),
-                  offset: const Offset(0, 1)),
-            ],
-          ),
-          child: isNew == true
-              ? RoundedButton(
-                  ontap: () {
-                    Navigator.pushNamed(context, RouteName.detailProyek,
-                        arguments: true);
-                  },
-                  text: "Simpan",
-                )
-              : null,
-        ),
-        body: const Body());
+        // bottomSheet: Container(
+        //   padding:
+        //       EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 12),
+        //   width: size.width,
+        //   height: size.height * 0.09,
+        //   decoration: BoxDecoration(
+        //     color: Theme.of(context).scaffoldBackgroundColor,
+        //     boxShadow: [
+        //       BoxShadow(
+        //           spreadRadius: 2,
+        //           blurRadius: 2,
+        //           color: Colors.black.withOpacity(0.2),
+        //           offset: const Offset(0, 1)),
+        //     ],
+        //   ),
+        //   child: isNew == true
+        //       ? RoundedButton(
+        //           ontap: () {
+        //             Navigator.pushNamed(context, RouteName.detailProyek,
+        //                 arguments: true);
+        //           },
+        //           text: "Simpan",
+        //         )
+        //       : null,
+        // ),
+        body: Body(
+          isNew: isNew,
+        ));
   }
 }

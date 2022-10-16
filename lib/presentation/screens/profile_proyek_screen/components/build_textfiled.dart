@@ -8,13 +8,15 @@ class BuildTextField extends StatelessWidget {
       required this.title,
       required this.name,
       required this.hint,
-      this.pajak = false})
+      required this.initialValue,
+      required this.isRequired})
       : super(key: key);
 
   final String title;
   final String name;
   final String hint;
-  final bool pajak;
+  final String? initialValue;
+  final bool isRequired;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +24,22 @@ class BuildTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: text3(neutral500, regular),
-          ),
+          Text.rich(TextSpan(children: [
+            TextSpan(
+              text: title,
+              style: text3(neutral500, regular),
+            ),
+            TextSpan(
+              text: isRequired == true ? "*" : "",
+              style: text3(accentOrange500, regular),
+            )
+          ])),
+          // Text(
+          //   title,
+          //   style: text3(neutral500, regular),
+          // ),
           FormBuilderTextField(
-            readOnly: pajak == true ? true : false,
-            initialValue: pajak == true ? "10,00%" : null,
+            initialValue: initialValue,
             style: text3(neutral500, regular),
             name: name,
             cursorColor: primary,

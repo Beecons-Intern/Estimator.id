@@ -5,6 +5,7 @@ import 'presentation/route/page_route.dart';
 import 'presentation/view_model/kompetensi_view_model.dart';
 import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
+import 'presentation/view_model/profile_proyek_view_model.dart';
 import 'presentation/view_model/proyek_view_model.dart';
 import 'presentation/view_model/template_proyek_view_model.dart';
 
@@ -33,6 +34,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
         ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
         ChangeNotifierProvider(create: (context) => DetailProyekViewModel()),
+        ChangeNotifierProvider(create: (context) => ProfileProyekViewModel()),
         ChangeNotifierProxyProvider<PenggunaViewModel,
             PengalamanProyekViewModel>(
           create: (context) => PengalamanProyekViewModel(),

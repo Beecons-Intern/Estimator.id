@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../route/route_name.dart';
+import '../../view_model/profile_proyek_view_model.dart';
 import 'components/body.dart';
 import '../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
@@ -11,6 +13,8 @@ class DetailProyekScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isTemplate = ModalRoute.of(context)!.settings.arguments as bool;
     Size size = MediaQuery.of(context).size;
+    final profileProyekViewModel =
+        Provider.of<ProfileProyekViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -47,8 +51,9 @@ class DetailProyekScreen extends StatelessWidget {
               ),
               child: RoundedButton(
                 ontap: () {
-                  Navigator.pushNamed(context, RouteName.profileProyek,
-                      arguments: true);
+                  profileProyekViewModel.getWilayahProyek().then((value) =>
+                      Navigator.pushNamed(context, RouteName.profileProyek,
+                          arguments: true));
                 },
                 text: "Gunakan Template",
               ),
