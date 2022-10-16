@@ -34,4 +34,6 @@ abstract class RouteName {
   static const tambahUpah = '/tambahUpah';
   static const tambahAlat = '/tambahAlat';
   static const detailBahan = '/detailBahan';
+  static const ulasan = "/ulasan";
+  static const kesalahan = "/kesalahan";
 }

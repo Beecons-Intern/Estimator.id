@@ -24,8 +24,7 @@ class _BodyState extends State<Body> {
       "title": "Pilihan Paket"
     },
     {
-      "icon": const Icon(Icons.chat_bubble_outline_rounded,
-          color: neutral500, size: 30),
+      "icon": const Icon(Icons.feedback_outlined, color: neutral500, size: 30),
       "title": "Umpan Balik"
     },
     {
@@ -303,6 +302,14 @@ class _BodyState extends State<Body> {
                                   case 1:
                                     Navigator.pushNamed(
                                         context, RouteName.paket);
+                                    break;
+                                  case 2:
+                                    Navigator.pushNamed(
+                                        context, RouteName.ulasan);
+                                    break;
+                                  case 3:
+                                    Navigator.pushNamed(
+                                        context, RouteName.kesalahan);
                                     break;
                                   case 4:
                                     Navigator.pushNamed(

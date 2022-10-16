@@ -1,12 +1,15 @@
 import 'package:estimator_id/presentation/view_model/detail_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'data/service/database_service.dart';
 import 'presentation/route/page_route.dart';
+import 'presentation/view_model/kesalahan_view_model.dart';
 import 'presentation/view_model/kompetensi_view_model.dart';
 import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
 import 'presentation/view_model/profile_proyek_view_model.dart';
 import 'presentation/view_model/proyek_view_model.dart';
+import 'presentation/view_model/rating_pengguna_view_model.dart';
 import 'presentation/view_model/template_proyek_view_model.dart';
 
 void main() {
@@ -23,7 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // @override
   // void initState() {
-  //   DatabaseService().deleteDatabase();
+  //   DatabaseService.deleteDatabase();
   //   super.initState();
   // }
 
@@ -49,6 +52,14 @@ class _MyAppState extends State<MyApp> {
             create: (context) => ProyekViewModel(),
             update: (context, pengguna, proyek) =>
                 proyek!..updateData(pengguna.idPengguna)),
+        ChangeNotifierProxyProvider<PenggunaViewModel, KesalahanViewModel>(
+            create: (context) => KesalahanViewModel(),
+            update: (context, pengguna, kesalahan) =>
+                kesalahan!..updateData(pengguna.idPengguna)),
+        ChangeNotifierProxyProvider<PenggunaViewModel, RatingPenggunaViewModel>(
+            create: (context) => RatingPenggunaViewModel(),
+            update: (context, pengguna, ratingPengguna) =>
+                ratingPengguna!..updateData(pengguna.idPengguna)),
       ],
       builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,

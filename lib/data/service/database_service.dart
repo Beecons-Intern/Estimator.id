@@ -17,8 +17,8 @@ class DatabaseService {
   //   Directory documenstDirectory = await getApplicationDocumentsDirectory();
   //   String path = p.join(documenstDirectory.path, _databaseName);
   //   databaseFactory.deleteDatabase(path);
-  //   // print("database berhasil dihapus");
-  //   // print(databaseEstimator);
+  //   print("database berhasil dihapus");
+  //   print(_database);
   // }
 
   Future<Database> get database async {
