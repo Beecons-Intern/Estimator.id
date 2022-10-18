@@ -1,3 +1,4 @@
+import 'package:estimator_id/data/source/pelaksana_proyek_source.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/model/proyek_model.dart';
@@ -14,9 +15,13 @@ class ProyekViewModel extends ChangeNotifier {
   List<ProyekModel>? _datasProyek;
   List<ProyekModel>? get datasProyek => _datasProyek;
 
+  List<PelaksanaProyekSource>? _datasPelaksanaProyek;
+  List<PelaksanaProyekSource>? get datasPelaksanaProyek =>
+      _datasPelaksanaProyek;
+
   Future getDatas() async {
     try {
-      await ProyekSource().getDatas(_idPengguna).then((value) {
+      await ProyekSource().getDatasByPengguna(_idPengguna).then((value) {
         if (value != null) _datasProyek = value;
       });
       notifyListeners();

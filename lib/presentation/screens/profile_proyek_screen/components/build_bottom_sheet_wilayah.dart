@@ -1,18 +1,21 @@
+import 'package:estimator_id/presentation/view_model/template_proyek_view_model.dart';
+import 'package:estimator_id/presentation/view_model/wilayah_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../utilities/utilities.dart';
-import '../../../view_model/profile_proyek_view_model.dart';
 
 class BuildBottomSheetWilayah extends StatelessWidget {
-  const BuildBottomSheetWilayah({
-    Key? key,
-    required this.size,
-    required this.profileProyekViewModel,
-  }) : super(key: key);
+  const BuildBottomSheetWilayah(
+      {Key? key,
+      required this.size,
+      required this.templateProyekViewModel,
+      required this.wilayahViewModel})
+      : super(key: key);
 
   final Size size;
-  final ProfileProyekViewModel profileProyekViewModel;
+  final TemplateProyekViewModel templateProyekViewModel;
+  final WilayahViewModel wilayahViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,7 @@ class BuildBottomSheetWilayah extends StatelessWidget {
         ),
         Expanded(
           child: FutureBuilder(
-              future: profileProyekViewModel.getAllWilayah(),
+              future: wilayahViewModel.getAllWilayah(),
               builder: ((context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Align(
@@ -74,37 +77,35 @@ class BuildBottomSheetWilayah extends StatelessWidget {
                 return ListView.separated(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shrinkWrap: true,
-                    itemBuilder: (context, index) => profileProyekViewModel
+                    itemBuilder: (context, index) => wilayahViewModel
                                 .allWilayahData![index].idWilayah ==
-                            profileProyekViewModel.allWilayahData![index].idProv
+                            wilayahViewModel.allWilayahData![index].idProv
                         ? Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: size.width * 0.05),
                             child: Text(
-                              profileProyekViewModel
-                                  .allWilayahData![index].wilayah,
+                              wilayahViewModel.allWilayahData![index].wilayah,
                               style: text3(neutral500, medium),
                             ),
                           )
                         : GestureDetector(
                             onTap: () {
-                              profileProyekViewModel
-                                  .changeWilayah(profileProyekViewModel
-                                      .allWilayahData![index])
+                              wilayahViewModel
+                                  .changeWilayah(
+                                      wilayahViewModel.allWilayahData![index])
                                   .then((value) => Navigator.pop(context));
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: size.width * 0.07),
                               child: Text(
-                                profileProyekViewModel
-                                    .allWilayahData![index].wilayah,
+                                wilayahViewModel.allWilayahData![index].wilayah,
                                 style: text3(neutral500, light),
                               ),
                             ),
                           ),
                     separatorBuilder: (context, index) => const Divider(),
-                    itemCount: profileProyekViewModel.allWilayahData!.length);
+                    itemCount: wilayahViewModel.allWilayahData!.length);
               })),
         )
       ],

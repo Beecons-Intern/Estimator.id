@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../route/route_name.dart';
-import '../../view_model/profile_proyek_view_model.dart';
+import '../../view_model/template_proyek_view_model.dart';
 import 'components/body.dart';
 import '../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
@@ -13,8 +13,8 @@ class DetailProyekScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isTemplate = ModalRoute.of(context)!.settings.arguments as bool;
     Size size = MediaQuery.of(context).size;
-    final profileProyekViewModel =
-        Provider.of<ProfileProyekViewModel>(context, listen: false);
+    final templateProyekViewModel =
+        Provider.of<TemplateProyekViewModel>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -22,6 +22,7 @@ class DetailProyekScreen extends StatelessWidget {
         title: Text(
           isTemplate == true ? "Detail Template Proyek" : "Detail Proyek",
           style: text1(neutral100, bold),
+          overflow: TextOverflow.ellipsis,
         ),
         leading: IconButton(
             onPressed: () {
@@ -36,7 +37,7 @@ class DetailProyekScreen extends StatelessWidget {
       bottomSheet: isTemplate == true
           ? Container(
               padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.05, vertical: 12),
+                  horizontal: size.width * 0.05, vertical: size.height * 0.015),
               width: size.width,
               height: size.height * 0.09,
               decoration: BoxDecoration(
@@ -51,9 +52,8 @@ class DetailProyekScreen extends StatelessWidget {
               ),
               child: RoundedButton(
                 ontap: () {
-                  profileProyekViewModel.getWilayahProyek().then((value) =>
-                      Navigator.pushNamed(context, RouteName.profileProyek,
-                          arguments: true));
+                  Navigator.pushNamed(context, RouteName.profileProyek,
+                      arguments: true);
                 },
                 text: "Gunakan Template",
               ),

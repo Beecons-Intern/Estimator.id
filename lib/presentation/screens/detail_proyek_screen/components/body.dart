@@ -1,9 +1,9 @@
-import 'package:estimator_id/presentation/view_model/detail_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../../route/route_name.dart';
+import '../../../view_model/template_proyek_view_model.dart';
 import '../../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
 import 'detail_item.dart';
@@ -24,7 +24,8 @@ class _BodyState extends State<Body> {
   int? analisa;
   @override
   Widget build(BuildContext context) {
-    final detailProyekViewModel = Provider.of<DetailProyekViewModel>(context);
+    final templateProyekViewModel =
+        Provider.of<TemplateProyekViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
@@ -115,9 +116,11 @@ class _BodyState extends State<Body> {
             height: 16,
           ),
           ListView.separated(
-            itemCount: detailProyekViewModel.datasKategoriPekerjaan != null &&
-                    detailProyekViewModel.datasKategoriPekerjaan!.isNotEmpty
-                ? detailProyekViewModel.datasKategoriPekerjaan!.length
+            itemCount: templateProyekViewModel.datasTemplateKategoriPekerjaan !=
+                        null &&
+                    templateProyekViewModel
+                        .datasTemplateKategoriPekerjaan!.isNotEmpty
+                ? templateProyekViewModel.datasTemplateKategoriPekerjaan!.length
                 : 0,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -136,12 +139,15 @@ class _BodyState extends State<Body> {
                       Expanded(
                         flex: 2,
                         child: Text(
-                          detailProyekViewModel.datasKategoriPekerjaan !=
+                          templateProyekViewModel
+                                          .datasTemplateKategoriPekerjaan !=
                                       null &&
-                                  detailProyekViewModel
-                                      .datasKategoriPekerjaan!.isNotEmpty
-                              ? detailProyekViewModel
-                                  .datasKategoriPekerjaan![index].kategori
+                                  templateProyekViewModel
+                                      .datasTemplateKategoriPekerjaan!
+                                      .isNotEmpty
+                              ? templateProyekViewModel
+                                  .datasTemplateKategoriPekerjaan![index]
+                                  .kategori
                               : "",
                           style: text3(neutral500, regular),
                         ),
@@ -238,12 +244,14 @@ class _BodyState extends State<Body> {
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: detailProyekViewModel.datasHargaSatuan !=
-                                  null &&
-                              detailProyekViewModel.datasHargaSatuan!.isNotEmpty
-                          ? detailProyekViewModel
-                              .datasHargaSatuan![index].length
-                          : 0,
+                      itemCount:
+                          templateProyekViewModel.datasTemplateHargaSatuan !=
+                                      null &&
+                                  templateProyekViewModel
+                                      .datasTemplateHargaSatuan!.isNotEmpty
+                              ? templateProyekViewModel
+                                  .datasTemplateHargaSatuan![index].length
+                              : 0,
                       itemBuilder: (context, indexExpanded) => Container(
                         margin: const EdgeInsets.symmetric(vertical: 6),
                         padding: const EdgeInsets.symmetric(
@@ -259,8 +267,9 @@ class _BodyState extends State<Body> {
                             Expanded(
                                 flex: 2,
                                 child: Text(
-                                  detailProyekViewModel
-                                      .datasHargaSatuan![index][indexExpanded]
+                                  templateProyekViewModel
+                                      .datasTemplateHargaSatuan![index]
+                                          [indexExpanded]
                                       .namaPekerjaan,
                                   style: text3(neutral500, regular),
                                 )),
@@ -274,8 +283,8 @@ class _BodyState extends State<Body> {
                                         context: context,
                                         builder: (context) => DetailItem(
                                               templateHargaSatuan:
-                                                  detailProyekViewModel
-                                                          .datasHargaSatuan![
+                                                  templateProyekViewModel
+                                                          .datasTemplateHargaSatuan![
                                                       index][indexExpanded],
                                               isTemplate: widget.isTemplate,
                                             ));

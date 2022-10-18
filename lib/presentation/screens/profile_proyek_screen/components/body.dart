@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
@@ -8,10 +7,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:provider/provider.dart';
 import '../../../../data/model/dokumen_model.dart';
 import '../../../../data/model/proyek_model.dart';
+import '../../../../utilities/strings.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
-import '../../../view_model/pengguna_view_model.dart';
-import '../../../view_model/profile_proyek_view_model.dart';
+import '../../../view_model/template_proyek_view_model.dart';
+import '../../../view_model/wilayah_view_model.dart';
 import '../../../widgets/rounded_button.dart';
 import 'build_bottom_sheet_wilayah.dart';
 import 'build_textfiled.dart';
@@ -25,10 +25,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  String tahun = DateFormat.y().format(DateTime.now());
-  String tglDibuat = DateFormat("y-M-d").format(DateTime.now());
-  String jamDibuat = DateFormat.Hms().format(DateTime.now());
-  String noPhoto = "no-foto.jpg";
   File? file;
   // List<String> nameFiles = [];
   Future selectImage() async {
@@ -59,9 +55,9 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final penggunaViewModel =
-        Provider.of<PenggunaViewModel>(context, listen: false);
-    final profileProyekViewModel = Provider.of<ProfileProyekViewModel>(context);
+    final wilayahViewModel = Provider.of<WilayahViewModel>(context);
+    final templateProyekViewModel =
+        Provider.of<TemplateProyekViewModel>(context);
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Column(
@@ -122,9 +118,9 @@ class _BodyState extends State<Body> {
                   title: "Nama Proyek",
                   name: "namaProyek",
                   hint: "Masukkan nama proyek",
-                  initialValue: profileProyekViewModel.dataProyek != null &&
-                          profileProyekViewModel.dataProyek!.namaProyek != ""
-                      ? profileProyekViewModel.dataProyek!.namaProyek
+                  initialValue: templateProyekViewModel.dataProyek != null &&
+                          templateProyekViewModel.dataProyek!.namaProyek != ""
+                      ? templateProyekViewModel.dataProyek!.namaProyek
                       : "",
                   isRequired: true,
                 ),
@@ -156,8 +152,9 @@ class _BodyState extends State<Body> {
                               context: context,
                               builder: (context) => BuildBottomSheetWilayah(
                                     size: size,
-                                    profileProyekViewModel:
-                                        profileProyekViewModel,
+                                    templateProyekViewModel:
+                                        templateProyekViewModel,
+                                    wilayahViewModel: wilayahViewModel,
                                   ));
                         },
                         child: Container(
@@ -168,11 +165,11 @@ class _BodyState extends State<Body> {
                                   bottom:
                                       BorderSide(width: 2, color: neutral200))),
                           child: Text(
-                            profileProyekViewModel.wilayahData != null
-                                ? profileProyekViewModel.wilayahData!.wilayah
+                            wilayahViewModel.wilayahData != null
+                                ? wilayahViewModel.wilayahData!.wilayah
                                 : "Pilih wilayah anda",
                             style: text3(
-                                profileProyekViewModel.wilayahData != null
+                                wilayahViewModel.wilayahData != null
                                     ? neutral500
                                     : neutral200,
                                 regular),
@@ -189,9 +186,9 @@ class _BodyState extends State<Body> {
                     title: "Pemilik Proyek",
                     name: "pemilik",
                     hint: "Masukkan nama pemilik proyek",
-                    initialValue: profileProyekViewModel.dataProyek != null &&
-                            profileProyekViewModel.dataProyek!.pemilik != ""
-                        ? profileProyekViewModel.dataProyek!.pemilik
+                    initialValue: templateProyekViewModel.dataProyek != null &&
+                            templateProyekViewModel.dataProyek!.pemilik != ""
+                        ? templateProyekViewModel.dataProyek!.pemilik
                         : "",
                     isRequired: true),
                 const SizedBox(
@@ -201,11 +198,11 @@ class _BodyState extends State<Body> {
                   title: "Jasa Kontraktor (%)",
                   name: "jasaKontraktor",
                   hint: "Masukkan nama pemilik proyek",
-                  initialValue: profileProyekViewModel.dataProyek != null &&
-                          profileProyekViewModel.dataProyek!.jasaKontraktor
+                  initialValue: templateProyekViewModel.dataProyek != null &&
+                          templateProyekViewModel.dataProyek!.jasaKontraktor
                                   .toString() !=
                               ""
-                      ? profileProyekViewModel.dataProyek!.jasaKontraktor
+                      ? templateProyekViewModel.dataProyek!.jasaKontraktor
                           .toString()
                       : "",
                   isRequired: true,
@@ -217,10 +214,11 @@ class _BodyState extends State<Body> {
                   title: "Pajak (%)",
                   name: "pajak",
                   hint: "Masukkan nama pemilik proyek",
-                  initialValue: profileProyekViewModel.dataProyek != null &&
-                          profileProyekViewModel.dataProyek!.pajak.toString() !=
+                  initialValue: templateProyekViewModel.dataProyek != null &&
+                          templateProyekViewModel.dataProyek!.pajak
+                                  .toString() !=
                               ""
-                      ? profileProyekViewModel.dataProyek!.pajak.toString()
+                      ? templateProyekViewModel.dataProyek!.pajak.toString()
                       : "",
                   isRequired: true,
                 ),
@@ -247,9 +245,9 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 10,
           ),
-          if (profileProyekViewModel.datasDokumen != null &&
-              profileProyekViewModel.datasDokumen!.isNotEmpty) ...[
-            ...profileProyekViewModel.datasDokumen!
+          if (templateProyekViewModel.datasDokumen != null &&
+              templateProyekViewModel.datasDokumen!.isNotEmpty) ...[
+            ...templateProyekViewModel.datasDokumen!
                 .map((item) => Row(
                       children: [
                         Text(
@@ -261,7 +259,7 @@ class _BodyState extends State<Body> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            profileProyekViewModel.removeItem(item);
+                            templateProyekViewModel.removeItem(item);
                           },
                           child: const Icon(
                             Icons.delete_rounded,
@@ -278,7 +276,7 @@ class _BodyState extends State<Body> {
           ),
           GestureDetector(
             onTap: () async {
-              await selectFiles().then((value) => profileProyekViewModel
+              await selectFiles().then((value) => templateProyekViewModel
                   .addItem(DokumenModel(idProyek: 0, dokumen: value)));
             },
             child: Center(
@@ -313,38 +311,24 @@ class _BodyState extends State<Body> {
                         _formKey.currentState!.value["pemilik"] != "" &&
                         _formKey.currentState!.value["jasaKontraktor"] != "" &&
                         _formKey.currentState!.value["pajak"] != "" &&
-                        profileProyekViewModel.wilayahData != null) {
-                      profileProyekViewModel
-                          .saveProfileProyek(ProyekModel(
-                              idPengguna: penggunaViewModel.idPengguna,
-                              namaProyek:
-                                  _formKey.currentState!.value["namaProyek"],
-                              idWilayah:
-                                  profileProyekViewModel.wilayahData!.idWilayah,
-                              pemilik: _formKey.currentState!.value["pemilik"],
-                              tahun: tahun,
-                              jasaKontraktor: _formKey
-                                      .currentState!.value["jasaKontraktor"]
-                                      .toString()
-                                      .contains(".")
-                                  ? double.parse(_formKey
-                                      .currentState!.value["jasaKontraktor"]
-                                      .toString())
-                                  : double.parse(
-                                      "${_formKey.currentState!.value["jasaKontraktor"].toString()}.0"),
-                              pajak: _formKey.currentState!.value["pajak"]
-                                      .toString()
-                                      .contains(".")
-                                  ? double.parse(_formKey.currentState!.value["pajak"]
-                                      .toString())
-                                  : double.parse("${_formKey.currentState!.value["pajak"].toString()}.0"),
-                              keteranganLain: _formKey.currentState!.value["keteranganLain"],
-                              status: "1",
-                              kategoriProyek: "1",
-                              foto: file != null ? file.toString() : noPhoto,
-                              tglDibuat: tglDibuat,
-                              jamDibuat: jamDibuat))
-                          .then((value) => Navigator.pushNamedAndRemoveUntil(context, RouteName.detailProyek, (Route<dynamic> route) => false, arguments: false));
+                        wilayahViewModel.wilayahData != null) {
+                      templateProyekViewModel
+                          .saveProfileProyek(
+                            _formKey.currentState!.value["namaProyek"],
+                            wilayahViewModel.wilayahData!.idWilayah,
+                            _formKey.currentState!.value["pemilik"],
+                            _formKey.currentState!.value["jasaKontraktor"]
+                                .toString(),
+                            _formKey.currentState!.value["pajak"].toString(),
+                            _formKey.currentState!.value["keteranganLain"]
+                                .toString(),
+                            file.toString(),
+                          )
+                          .then((value) => Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              RouteName.detailProyek,
+                              (Route<dynamic> route) => false,
+                              arguments: false));
                     }
                   },
                   text: "Simpan",

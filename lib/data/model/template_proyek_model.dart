@@ -36,7 +36,6 @@ class TemplateProyekFields {
 
 class TemplateProyekModel {
   int? idTemplate;
-  double jasaKontraktor, pajak;
   String namaProyek,
       deskripsi,
       jenisProyek,
@@ -47,6 +46,8 @@ class TemplateProyekModel {
       atap,
       status,
       foto,
+      jasaKontraktor,
+      pajak,
       tglDibuat,
       jamDibuat;
 
@@ -69,8 +70,8 @@ class TemplateProyekModel {
 
   TemplateProyekModel copy({
     int? idTemplate,
-    double? jasaKontraktor,
-    double? pajak,
+    String? jasaKontraktor,
+    String? pajak,
     String? namaProyek,
     String? deskripsi,
     String? jenisProyek,
@@ -111,8 +112,8 @@ class TemplateProyekModel {
           lantai: json[TemplateProyekFields.lantai] as String,
           dinding: json[TemplateProyekFields.dinding] as String,
           atap: json[TemplateProyekFields.atap] as String,
-          jasaKontraktor: json[TemplateProyekFields.jasaKontraktor] as double,
-          pajak: json[TemplateProyekFields.pajak] as double,
+          jasaKontraktor: json[TemplateProyekFields.jasaKontraktor].toString(),
+          pajak: json[TemplateProyekFields.pajak].toString(),
           status: json[TemplateProyekFields.status] as String,
           foto: json[TemplateProyekFields.foto] as String,
           tglDibuat: json[TemplateProyekFields.foto] as String,

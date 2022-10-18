@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../data/model/proyek_model.dart';
 import '../../../../data/model/template_proyek_model.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
-import '../../../view_model/detail_proyek_view_model.dart';
-import '../../../view_model/profile_proyek_view_model.dart';
+import '../../../view_model/template_proyek_view_model.dart';
+import '../../../view_model/wilayah_view_model.dart';
 
 class BuildItemCard extends StatelessWidget {
   const BuildItemCard(
@@ -22,12 +20,10 @@ class BuildItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String tglDibuat = DateFormat("y-M-d").format(DateTime.now());
-    String jamDibuat = DateFormat.Hms().format(DateTime.now());
-    final profileProyekViewModel =
-        Provider.of<ProfileProyekViewModel>(context, listen: false);
-    final detailProyekViewModel =
-        Provider.of<DetailProyekViewModel>(context, listen: false);
+    final wilayahViewModel =
+        Provider.of<WilayahViewModel>(context, listen: false);
+    final templateProyekViewModel =
+        Provider.of<TemplateProyekViewModel>(context, listen: false);
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
@@ -47,32 +43,14 @@ class BuildItemCard extends StatelessWidget {
                           Navigator.pop(context);
                           switch (index) {
                             case 0:
-                              await detailProyekViewModel.getDataKategori(
-                                  templateProyekModel.idTemplate);
-                              await detailProyekViewModel
-                                  .getDataHargaSatuan(
+                              templateProyekViewModel
+                                  .pilihTemplateProyek(templateProyekModel,
                                       templateProyekModel.idTemplate)
                                   .then((value) {
-                                profileProyekViewModel.setDataProyek(
-                                    ProyekModel(
-                                        idPengguna: 0,
-                                        namaProyek:
-                                            templateProyekModel.namaProyek,
-                                        idWilayah: "3404",
-                                        pemilik: "Estimator.id",
-                                        tahun: "",
-                                        jasaKontraktor:
-                                            templateProyekModel.jasaKontraktor,
-                                        pajak: templateProyekModel.pajak,
-                                        keteranganLain: "",
-                                        status: "",
-                                        kategoriProyek: "",
-                                        foto: "",
-                                        tglDibuat: tglDibuat,
-                                        jamDibuat: jamDibuat));
-                                Navigator.pushNamed(
-                                    context, RouteName.detailProyek,
-                                    arguments: true);
+                                wilayahViewModel.getWilayah("3404").then(
+                                    (value) => Navigator.pushNamed(
+                                        context, RouteName.detailProyek,
+                                        arguments: true));
                               });
 
                               break;

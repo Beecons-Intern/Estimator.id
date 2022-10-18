@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../view_model/pengguna_view_model.dart';
+import '../../../view_model/wilayah_view_model.dart';
 import '../../../widgets/rounded_button.dart';
 import 'build_bottom_sheet_wilayah.dart';
 import 'build_text_field.dart';
@@ -35,7 +36,8 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     final penggunaViewModel = Provider.of<PenggunaViewModel>(context);
-    Size size = MediaQuery.of(context).size;
+    final wilayahViewModel = Provider.of<WilayahViewModel>(context);
+    final Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Column(
@@ -174,8 +176,10 @@ class _BodyState extends State<Body> {
                                     topRight: Radius.circular(10))),
                             context: context,
                             builder: (context) => BuildBottomSheetWilayah(
-                                size: size,
-                                penggunaViewModel: penggunaViewModel));
+                                  size: size,
+                                  wilayahViewModel: wilayahViewModel,
+                                )).then((value) => penggunaViewModel
+                            .setTempWilayah(wilayahViewModel.wilayahData!));
                       },
                       child: Container(
                         width: size.width,
@@ -304,8 +308,7 @@ class _BodyState extends State<Body> {
                                   .toString(),
                               alamat: _formKey.currentState!.value["alamat"]
                                   .toString(),
-                              idWilayah: penggunaViewModel
-                                  .tempWilayahData!.idWilayah
+                              idWilayah: wilayahViewModel.wilayahData!.idWilayah
                                   .toString(),
                               perusahaan: _formKey
                                   .currentState!.value["perusahaan"]

@@ -4,7 +4,7 @@ import '../service/database_service.dart';
 class ProyekSource {
   final String table = "proyek";
 
-  Future<List<ProyekModel>?> getDatas(id) async {
+  Future<List<ProyekModel>?> getDatasByPengguna(id) async {
     try {
       final db = await DatabaseService.instance.database;
       final data = await db.query(table,
@@ -26,6 +26,20 @@ class ProyekSource {
       final db = await DatabaseService.instance.database;
       final id = await db.insert(table, proyek.toJson());
       return proyek.copy(idProyek: id);
+    } catch (error) {
+      return throw Exception("Error $error");
+    }
+  }
+
+  Future<List<ProyekModel>?> getDatas() async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final data = await db.query(table);
+      if (data.isNotEmpty) {
+        return data.map((json) => ProyekModel.fromJson(json)).toList();
+      }
+
+      return null;
     } catch (error) {
       return throw Exception("Error $error");
     }

@@ -35,7 +35,6 @@ class ProyekFields {
 class ProyekModel {
   int? idProyek;
   int idPengguna;
-  double jasaKontraktor, pajak;
   String namaProyek,
       idWilayah,
       pemilik,
@@ -44,6 +43,8 @@ class ProyekModel {
       status,
       kategoriProyek,
       foto,
+      jasaKontraktor,
+      pajak,
       tglDibuat,
       jamDibuat;
 
@@ -70,8 +71,8 @@ class ProyekModel {
           String? idWilayah,
           String? pemilik,
           String? tahun,
-          double? jasaKontraktor,
-          double? pajak,
+          String? jasaKontraktor,
+          String? pajak,
           String? keteranganLain,
           String? status,
           String? kategoriProyek,
@@ -101,12 +102,8 @@ class ProyekModel {
       idWilayah: json[ProyekFields.idWilayah] as String,
       pemilik: json[ProyekFields.pemilik] as String,
       tahun: json[ProyekFields.tahun] as String,
-      jasaKontraktor: json[ProyekFields.jasaKontraktor].runtimeType == double
-          ? json[ProyekFields.jasaKontraktor] as double
-          : double.parse("${json[ProyekFields.jasaKontraktor]}.0"),
-      pajak: json[ProyekFields.pajak].runtimeType == double
-          ? json[ProyekFields.pajak] as double
-          : double.parse("${json[ProyekFields.pajak]}.0"),
+      jasaKontraktor: json[ProyekFields.jasaKontraktor].toString(),
+      pajak: json[ProyekFields.jasaKontraktor].toString(),
       keteranganLain: json[ProyekFields.keteranganLain] as String,
       status: json[ProyekFields.status] as String,
       kategoriProyek: json[ProyekFields.kategoriProyek] as String,

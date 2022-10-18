@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'components/body.dart';
-import '../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
 
 class EditProfileScreen extends StatelessWidget {

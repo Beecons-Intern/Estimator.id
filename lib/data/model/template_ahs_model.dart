@@ -31,9 +31,9 @@ class TemplateAHSFields {
   static const String idKategoriPekerjaan = "id_kategori_pekerjaan";
   static const String idPekerjaan = "id_pekerjaan";
   static const String idPekerjaanDuplikat = "id_pekerjaan_duplikat";
-  static const String namaKategoriPekerjaan = "namaKategoriPekerjaan";
-  static const String namaPekerjaan = "namaPekerjaan";
-  static const String satuanPekerjaan = "satuanPekerjaan";
+  static const String namaKategoriPekerjaan = "nama_kategori_pekerjaan";
+  static const String namaPekerjaan = "nama_pekerjaan";
+  static const String satuanPekerjaan = "satuan_pekerjaan";
   static const String kategori = "kategori";
   static const String idKategori = "id_kategori";
   static const String koefisien = "koefisien";
@@ -119,7 +119,7 @@ class TemplateAHSModel {
           satuanPekerjaan: json[TemplateAHSFields.satuanPekerjaan] as String,
           kategori: json[TemplateAHSFields.kategori] as String,
           idKategori: json[TemplateAHSFields.idKategori] as String,
-          koefisien: json[TemplateAHSFields.koefisien] as String,
+          koefisien: json[TemplateAHSFields.koefisien].toString(),
           namaKategori: json[TemplateAHSFields.namaKategori] as String,
           satuanKategori: json[TemplateAHSFields.satuanKategori] as String,
           spesifikasi: json[TemplateAHSFields.spesifikasi] as String,
@@ -128,7 +128,7 @@ class TemplateAHSModel {
           sumberKategori: json[TemplateAHSFields.sumberKategori] as String,
           keteranganKategori:
               json[TemplateAHSFields.keteranganKategori] as String,
-          hargaDasar: json[TemplateAHSFields.hargaDasar] as String,
+          hargaDasar: json[TemplateAHSFields.hargaDasar].toString(),
           tahun: json[TemplateAHSFields.tahun] as String,
           sumber: json[TemplateAHSFields.sumber] as String,
           keterangan: json[TemplateAHSFields.keterangan] as String,

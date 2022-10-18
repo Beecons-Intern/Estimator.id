@@ -27,11 +27,12 @@ class PenggunaViewModel extends ChangeNotifier {
   WilayahModel? _tempWilayahData;
   WilayahModel? get tempWilayahData => _tempWilayahData;
 
+  void setTempWilayah(WilayahModel wilayah) {
+    _tempWilayahData = wilayah;
+  }
+
   String? _prov;
   String? get prov => _prov;
-
-  List<WilayahModel>? _allWilayahData;
-  List<WilayahModel>? get allWilayahData => _allWilayahData;
 
   Future getUser() async {
     changeState(PenggunaViewState.loading);
@@ -54,26 +55,26 @@ class PenggunaViewModel extends ChangeNotifier {
     }
   }
 
-  Future getAllWilayah() async {
-    _allWilayahData = null;
-    try {
-      final dataAllWilayah = await WilayahSource().getAll();
-      _allWilayahData = dataAllWilayah;
-      notifyListeners();
-    } catch (e) {
-      return e;
-    }
-  }
+  // Future getAllWilayah() async {
+  //   _allWilayahData = null;
+  //   try {
+  //     final dataAllWilayah = await WilayahSource().getAll();
+  //     _allWilayahData = dataAllWilayah;
+  //     notifyListeners();
+  //   } catch (e) {
+  //     return e;
+  //   }
+  // }
 
-  Future changeWilayah(WilayahModel data) async {
-    try {
-      _dataPengguna!.idWilayah = data.idWilayah;
-      _tempWilayahData = data;
-      notifyListeners();
-    } catch (e) {
-      return e;
-    }
-  }
+  // Future changeWilayah(WilayahModel data) async {
+  //   try {
+  //     _dataPengguna!.idWilayah = data.idWilayah;
+  //     _tempWilayahData = data;
+  //     notifyListeners();
+  //   } catch (e) {
+  //     return e;
+  //   }
+  // }
 
   Future updateData(PenggunaModel pengguna) async {
     try {

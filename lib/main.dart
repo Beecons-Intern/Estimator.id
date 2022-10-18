@@ -1,16 +1,15 @@
-import 'package:estimator_id/presentation/view_model/detail_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'data/service/database_service.dart';
 import 'presentation/route/page_route.dart';
 import 'presentation/view_model/kesalahan_view_model.dart';
 import 'presentation/view_model/kompetensi_view_model.dart';
+import 'presentation/view_model/pelaksana_proyek_view_model.dart';
 import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
-import 'presentation/view_model/profile_proyek_view_model.dart';
 import 'presentation/view_model/proyek_view_model.dart';
 import 'presentation/view_model/rating_pengguna_view_model.dart';
 import 'presentation/view_model/template_proyek_view_model.dart';
+import 'presentation/view_model/wilayah_view_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,20 +23,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // @override
-  // void initState() {
-  //   DatabaseService.deleteDatabase();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
-        ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
-        ChangeNotifierProvider(create: (context) => DetailProyekViewModel()),
-        ChangeNotifierProvider(create: (context) => ProfileProyekViewModel()),
+        ChangeNotifierProvider(create: (context) => WilayahViewModel()),
+        ChangeNotifierProxyProvider<PenggunaViewModel,
+            PelaksanaProyekViewModel>(
+          create: (context) => PelaksanaProyekViewModel(),
+          update: (context, pengguna, pelaksana) =>
+              pelaksana!..updateData(pengguna.idPengguna),
+        ),
+        ChangeNotifierProxyProvider<PenggunaViewModel, TemplateProyekViewModel>(
+          create: (context) => TemplateProyekViewModel(),
+          update: (context, pengguna, template) =>
+              template!..updateData(pengguna.idPengguna),
+        ),
         ChangeNotifierProxyProvider<PenggunaViewModel,
             PengalamanProyekViewModel>(
           create: (context) => PengalamanProyekViewModel(),

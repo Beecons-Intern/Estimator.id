@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
 import '../../view_model/kesalahan_view_model.dart';
+import '../../view_model/pelaksana_proyek_view_model.dart';
 import '../../view_model/pengguna_view_model.dart';
 import '../../view_model/rating_pengguna_view_model.dart';
 import '../../view_model/template_proyek_view_model.dart';
@@ -28,7 +29,9 @@ class _NavigationState extends State<Navigation> {
       Future.wait([
         Provider.of<PenggunaViewModel>(context, listen: false).getUser(),
         Provider.of<KesalahanViewModel>(context, listen: false).getKesalahan(),
-        Provider.of<RatingPenggunaViewModel>(context, listen: false).getRating()
+        Provider.of<RatingPenggunaViewModel>(context, listen: false)
+            .getRating(),
+        Provider.of<PelaksanaProyekViewModel>(context, listen: false).getDatas()
       ]);
     });
     super.initState();
