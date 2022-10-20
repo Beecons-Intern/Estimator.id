@@ -1,6 +1,7 @@
 import '../screens/Edit Volume/pages.dart';
 import '../screens/Laporan RAB/laporan_rab.dart';
 import '../screens/detail_bahan_screen/detail_bahan_screen.dart';
+import '../screens/detail_template_screen/detail_template_screen.dart';
 import '../screens/edit_ahs_screen/edit_ahs_screen.dart';
 import '../screens/kesalahan_screen/kesalahan_screen.dart';
 import '../screens/profile_proyek_screen/profile_proyek_screen.dart';
@@ -73,6 +74,7 @@ class AppPage {
     RouteName.tambahAlat: (context) => const TambahAlatScreen(),
     RouteName.detailBahan: (context) => const DetailBahanScreen(),
     RouteName.ulasan: (context) => const UlasanScreen(),
-    RouteName.kesalahan: (context) => const KesalahanScreen()
+    RouteName.kesalahan: (context) => const KesalahanScreen(),
+    RouteName.detailTemplate: (context) => const DetailTemplateScreen()
   };
 }

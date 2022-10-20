@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../data/model/template_proyek_model.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
+import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/template_proyek_view_model.dart';
-import '../../../view_model/wilayah_view_model.dart';
 
 class BuildItemCard extends StatelessWidget {
   const BuildItemCard(
       {super.key,
       required this.size,
       required this.items,
-      required this.templateProyekModel});
+      required this.templateProyekModel,
+      required this.templateProyekViewModel,
+      required this.profileProyekViewModel});
 
   final Size size;
   final List<String> items;
   final TemplateProyekModel templateProyekModel;
+  final TemplateProyekViewModel templateProyekViewModel;
+  final ProfileProyekViewModel profileProyekViewModel;
 
   @override
   Widget build(BuildContext context) {
-    final wilayahViewModel =
-        Provider.of<WilayahViewModel>(context, listen: false);
-    final templateProyekViewModel =
-        Provider.of<TemplateProyekViewModel>(context, listen: false);
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
@@ -44,15 +43,15 @@ class BuildItemCard extends StatelessWidget {
                           switch (index) {
                             case 0:
                               templateProyekViewModel
-                                  .pilihTemplateProyek(templateProyekModel,
-                                      templateProyekModel.idTemplate)
+                                  .getDetailTemplate(templateProyekModel)
                                   .then((value) {
-                                wilayahViewModel.getWilayah("3404").then(
-                                    (value) => Navigator.pushNamed(
-                                        context, RouteName.detailProyek,
-                                        arguments: true));
+                                profileProyekViewModel.setDataProyek(
+                                    templateProyekModel.namaProyek,
+                                    templateProyekModel.jasaKontraktor,
+                                    templateProyekModel.pajak);
+                                Navigator.pushNamed(
+                                    context, RouteName.detailTemplate);
                               });
-
                               break;
                             case 1:
                               Navigator.pushNamed(

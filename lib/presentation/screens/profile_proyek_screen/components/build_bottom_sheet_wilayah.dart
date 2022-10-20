@@ -1,3 +1,4 @@
+import 'package:estimator_id/presentation/view_model/profile_proyek_view_model.dart';
 import 'package:estimator_id/presentation/view_model/template_proyek_view_model.dart';
 import 'package:estimator_id/presentation/view_model/wilayah_view_model.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,12 @@ class BuildBottomSheetWilayah extends StatelessWidget {
   const BuildBottomSheetWilayah(
       {Key? key,
       required this.size,
-      required this.templateProyekViewModel,
+      required this.profileProyekViewModel,
       required this.wilayahViewModel})
       : super(key: key);
 
   final Size size;
-  final TemplateProyekViewModel templateProyekViewModel;
+  final ProfileProyekViewModel profileProyekViewModel;
   final WilayahViewModel wilayahViewModel;
 
   @override
@@ -93,7 +94,12 @@ class BuildBottomSheetWilayah extends StatelessWidget {
                               wilayahViewModel
                                   .changeWilayah(
                                       wilayahViewModel.allWilayahData![index])
-                                  .then((value) => Navigator.pop(context));
+                                  .then((value) {
+                                profileProyekViewModel.idWilayah =
+                                    wilayahViewModel
+                                        .allWilayahData![index].idWilayah;
+                                Navigator.pop(context);
+                              });
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(

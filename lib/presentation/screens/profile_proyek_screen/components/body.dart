@@ -6,19 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:provider/provider.dart';
 import '../../../../data/model/dokumen_model.dart';
-import '../../../../data/model/proyek_model.dart';
-import '../../../../utilities/strings.dart';
 import '../../../../utilities/utilities.dart';
-import '../../../route/route_name.dart';
-import '../../../view_model/template_proyek_view_model.dart';
+import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/wilayah_view_model.dart';
-import '../../../widgets/rounded_button.dart';
 import 'build_bottom_sheet_wilayah.dart';
 import 'build_textfiled.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key, this.isNew = false}) : super(key: key);
+  const Body(
+      {Key? key, this.isNew = false, required this.profileProyekViewModel})
+      : super(key: key);
   final bool isNew;
+  final ProfileProyekViewModel profileProyekViewModel;
 
   @override
   State<Body> createState() => _BodyState();
@@ -56,8 +55,6 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final wilayahViewModel = Provider.of<WilayahViewModel>(context);
-    final templateProyekViewModel =
-        Provider.of<TemplateProyekViewModel>(context);
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Column(
@@ -118,10 +115,11 @@ class _BodyState extends State<Body> {
                   title: "Nama Proyek",
                   name: "namaProyek",
                   hint: "Masukkan nama proyek",
-                  initialValue: templateProyekViewModel.dataProyek != null &&
-                          templateProyekViewModel.dataProyek!.namaProyek != ""
-                      ? templateProyekViewModel.dataProyek!.namaProyek
-                      : "",
+                  initialValue: widget.isNew == true
+                      ? (widget.profileProyekViewModel.namaProyek ?? "")
+                      : (widget.profileProyekViewModel.dataProyek != null
+                          ? widget.profileProyekViewModel.dataProyek!.namaProyek
+                          : ""),
                   isRequired: true,
                 ),
                 const SizedBox(
@@ -152,8 +150,8 @@ class _BodyState extends State<Body> {
                               context: context,
                               builder: (context) => BuildBottomSheetWilayah(
                                     size: size,
-                                    templateProyekViewModel:
-                                        templateProyekViewModel,
+                                    profileProyekViewModel:
+                                        widget.profileProyekViewModel,
                                     wilayahViewModel: wilayahViewModel,
                                   ));
                         },
@@ -186,10 +184,12 @@ class _BodyState extends State<Body> {
                     title: "Pemilik Proyek",
                     name: "pemilik",
                     hint: "Masukkan nama pemilik proyek",
-                    initialValue: templateProyekViewModel.dataProyek != null &&
-                            templateProyekViewModel.dataProyek!.pemilik != ""
-                        ? templateProyekViewModel.dataProyek!.pemilik
-                        : "",
+                    initialValue: widget.isNew == true
+                        ? (widget.profileProyekViewModel.pemilik ?? "")
+                        : (widget.profileProyekViewModel.dataProyek != null
+                            ? widget
+                                .profileProyekViewModel.dataProyek!.namaProyek
+                            : ""),
                     isRequired: true),
                 const SizedBox(
                   height: 20,
@@ -198,13 +198,12 @@ class _BodyState extends State<Body> {
                   title: "Jasa Kontraktor (%)",
                   name: "jasaKontraktor",
                   hint: "Masukkan nama pemilik proyek",
-                  initialValue: templateProyekViewModel.dataProyek != null &&
-                          templateProyekViewModel.dataProyek!.jasaKontraktor
-                                  .toString() !=
-                              ""
-                      ? templateProyekViewModel.dataProyek!.jasaKontraktor
-                          .toString()
-                      : "",
+                  initialValue: widget.isNew == true
+                      ? (widget.profileProyekViewModel.jasaKontraktor ?? "")
+                      : (widget.profileProyekViewModel.dataProyek != null
+                          ? widget
+                              .profileProyekViewModel.dataProyek!.jasaKontraktor
+                          : ""),
                   isRequired: true,
                 ),
                 const SizedBox(
@@ -214,22 +213,26 @@ class _BodyState extends State<Body> {
                   title: "Pajak (%)",
                   name: "pajak",
                   hint: "Masukkan nama pemilik proyek",
-                  initialValue: templateProyekViewModel.dataProyek != null &&
-                          templateProyekViewModel.dataProyek!.pajak
-                                  .toString() !=
-                              ""
-                      ? templateProyekViewModel.dataProyek!.pajak.toString()
-                      : "",
+                  initialValue: widget.isNew == true
+                      ? (widget.profileProyekViewModel.pajak ?? "")
+                      : (widget.profileProyekViewModel.dataProyek != null
+                          ? widget.profileProyekViewModel.dataProyek!.pajak
+                          : ""),
                   isRequired: true,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const BuildTextField(
+                BuildTextField(
                   title: "Keterangan Lain",
                   name: "keteranganLain",
                   hint: "Masukkan keterangan tambahan",
-                  initialValue: "",
+                  initialValue: widget.isNew == true
+                      ? (widget.profileProyekViewModel.keteranganLain ?? "")
+                      : (widget.profileProyekViewModel.dataProyek != null
+                          ? widget
+                              .profileProyekViewModel.dataProyek!.keteranganLain
+                          : ""),
                   isRequired: false,
                 ),
                 const SizedBox(
@@ -245,9 +248,9 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 10,
           ),
-          if (templateProyekViewModel.datasDokumen != null &&
-              templateProyekViewModel.datasDokumen!.isNotEmpty) ...[
-            ...templateProyekViewModel.datasDokumen!
+          if (widget.profileProyekViewModel.datasDokumen != null &&
+              widget.profileProyekViewModel.datasDokumen!.isNotEmpty) ...[
+            ...widget.profileProyekViewModel.datasDokumen!
                 .map((item) => Row(
                       children: [
                         Text(
@@ -259,7 +262,7 @@ class _BodyState extends State<Body> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            templateProyekViewModel.removeItem(item);
+                            widget.profileProyekViewModel.removeItem(item);
                           },
                           child: const Icon(
                             Icons.delete_rounded,
@@ -276,7 +279,7 @@ class _BodyState extends State<Body> {
           ),
           GestureDetector(
             onTap: () async {
-              await selectFiles().then((value) => templateProyekViewModel
+              await selectFiles().then((value) => widget.profileProyekViewModel
                   .addItem(DokumenModel(idProyek: 0, dokumen: value)));
             },
             child: Center(
@@ -301,46 +304,8 @@ class _BodyState extends State<Body> {
             ),
           ),
           const SizedBox(
-            height: 30,
+            height: 80,
           ),
-          widget.isNew == true
-              ? RoundedButton(
-                  ontap: () {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.value["namaProyek"] != "" &&
-                        _formKey.currentState!.value["pemilik"] != "" &&
-                        _formKey.currentState!.value["jasaKontraktor"] != "" &&
-                        _formKey.currentState!.value["pajak"] != "" &&
-                        wilayahViewModel.wilayahData != null) {
-                      templateProyekViewModel
-                          .saveProfileProyek(
-                            _formKey.currentState!.value["namaProyek"],
-                            wilayahViewModel.wilayahData!.idWilayah,
-                            _formKey.currentState!.value["pemilik"],
-                            _formKey.currentState!.value["jasaKontraktor"]
-                                .toString(),
-                            _formKey.currentState!.value["pajak"].toString(),
-                            _formKey.currentState!.value["keteranganLain"]
-                                .toString(),
-                            file.toString(),
-                          )
-                          .then((value) => Navigator.pushNamedAndRemoveUntil(
-                              context,
-                              RouteName.detailProyek,
-                              (Route<dynamic> route) => false,
-                              arguments: false));
-                    }
-                  },
-                  text: "Simpan",
-                )
-              : RoundedButton(
-                  ontap: () {},
-                  text: "Perbarui",
-                ),
-          const SizedBox(
-            height: 20,
-          ),
-          // RoundedButton(ontap: (){}, text: "Simpan",)
         ],
       ),
     );

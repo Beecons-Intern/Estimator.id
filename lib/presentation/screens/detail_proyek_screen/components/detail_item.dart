@@ -1,14 +1,11 @@
-import 'package:estimator_id/data/model/template_harga_satuan_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../../../data/model/harga_satuan_model.dart';
 import '../../../../utilities/utilities.dart';
 
 class DetailItem extends StatelessWidget {
-  const DetailItem(
-      {Key? key, required this.templateHargaSatuan, required this.isTemplate})
-      : super(key: key);
-  final TemplateHargaSatuanModel templateHargaSatuan;
-  final bool isTemplate;
+  const DetailItem({Key? key, required this.hargaSatuan}) : super(key: key);
+  final HargaSatuanModel hargaSatuan;
 
   @override
   Widget build(BuildContext context) {
@@ -39,35 +36,33 @@ class DetailItem extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  templateHargaSatuan.namaPekerjaan,
+                  hargaSatuan.namaPekerjaan,
                   style: text3(neutral500, medium),
                   textAlign: TextAlign.end,
                 ),
               )
             ],
           ),
-          if (isTemplate != true) ...[
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Volume",
-                  style: text3(neutral500, regular),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Volume",
+                style: text3(neutral500, regular),
+              ),
+              Expanded(
+                child: Text(
+                  "121.00",
+                  style: text3(neutral500, medium),
+                  textAlign: TextAlign.end,
                 ),
-                Expanded(
-                  child: Text(
-                    "121.00",
-                    style: text3(neutral500, medium),
-                    textAlign: TextAlign.end,
-                  ),
-                )
-              ],
-            ),
-          ],
+              )
+            ],
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -81,7 +76,7 @@ class DetailItem extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  templateHargaSatuan.satuan,
+                  hargaSatuan.satuan,
                   style: text3(neutral500, medium),
                   textAlign: TextAlign.end,
                 ),
@@ -101,55 +96,55 @@ class DetailItem extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  currencyFormatter.format(templateHargaSatuan.totalHarga),
+                  currencyFormatter
+                      .format(double.parse(hargaSatuan.totalHarga)),
                   style: text3(neutral500, medium),
                   textAlign: TextAlign.end,
                 ),
               )
             ],
           ),
-          if (isTemplate != true) ...[
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Harga",
-                  style: text3(neutral500, regular),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Harga",
+                style: text3(neutral500, regular),
+              ),
+              Expanded(
+                child: Text(
+                  currencyFormatter
+                      .format(double.parse(hargaSatuan.totalHarga)),
+                  style: text3(neutral500, medium),
+                  textAlign: TextAlign.end,
                 ),
-                Expanded(
-                  child: Text(
-                    "Rp 15.123.012,14",
-                    style: text3(neutral500, medium),
-                    textAlign: TextAlign.end,
-                  ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "%",
+                style: text3(neutral500, regular),
+              ),
+              Expanded(
+                child: Text(
+                  "0.00 %",
+                  style: text3(neutral500, medium),
+                  textAlign: TextAlign.end,
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "%",
-                  style: text3(neutral500, regular),
-                ),
-                Expanded(
-                  child: Text(
-                    "100.00 %",
-                    style: text3(neutral500, medium),
-                    textAlign: TextAlign.end,
-                  ),
-                )
-              ],
-            ),
-          ],
+              )
+            ],
+          ),
         ],
       ),
     );

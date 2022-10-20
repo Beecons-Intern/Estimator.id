@@ -1,3 +1,4 @@
+import 'package:estimator_id/presentation/view_model/profile_proyek_view_model.dart';
 import 'package:estimator_id/presentation/view_model/template_proyek_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +12,9 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final templateProyekViewModel =
-        Provider.of<TemplateProyekViewModel>(context);
+        Provider.of<TemplateProyekViewModel>(context, listen: false);
+    final profileProyekViewModel =
+        Provider.of<ProfileProyekViewModel>(context, listen: false);
     List<String> items = ["Lihat", "Gunakan Template"];
     Size size = MediaQuery.of(context).size;
     return GridView(
@@ -61,6 +64,8 @@ class Body extends StatelessWidget {
                       size: size,
                       items: items,
                       templateProyekModel: templateProyek,
+                      templateProyekViewModel: templateProyekViewModel,
+                      profileProyekViewModel: profileProyekViewModel,
                     ))
                 .toList(),
         ]);

@@ -47,7 +47,7 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     final templateProyekViewModel =
-        Provider.of<TemplateProyekViewModel>(context);
+        Provider.of<TemplateProyekViewModel>(context, listen: false);
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,

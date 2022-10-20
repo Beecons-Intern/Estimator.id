@@ -31,12 +31,13 @@ class PelaksanaProyekViewModel extends ChangeNotifier {
     }
   }
 
-  Future insertPelaksanaProyek(int idProyek) async {
+  Future<PelaksanaProyekModel> insertPelaksanaProyek(
+      int idProyek, posisi) async {
     try {
       final dataPelaksana = PelaksanaProyekModel(
           idProyek: idProyek,
           idPengguna: _idPengguna!,
-          posisi: "4",
+          posisi: posisi,
           status: status);
 
       final data = await PelaksanaProyekSource().addData(dataPelaksana);
@@ -47,8 +48,9 @@ class PelaksanaProyekViewModel extends ChangeNotifier {
       }
 
       notifyListeners();
+      return data;
     } catch (error) {
-      return error;
+      return throw Exception("Error $error");
     }
   }
 }

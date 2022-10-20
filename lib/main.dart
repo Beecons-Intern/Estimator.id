@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'presentation/route/page_route.dart';
+import 'presentation/view_model/detail_proyek_view_model.dart';
 import 'presentation/view_model/kesalahan_view_model.dart';
 import 'presentation/view_model/kompetensi_view_model.dart';
 import 'presentation/view_model/pelaksana_proyek_view_model.dart';
 import 'presentation/view_model/pengalaman_proyek_view_model.dart';
 import 'presentation/view_model/pengguna_view_model.dart';
+import 'presentation/view_model/profile_proyek_view_model.dart';
+import 'presentation/view_model/proyek_perencanaan_view_model.dart';
 import 'presentation/view_model/proyek_view_model.dart';
 import 'presentation/view_model/rating_pengguna_view_model.dart';
 import 'presentation/view_model/template_proyek_view_model.dart';
@@ -29,16 +32,28 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
         ChangeNotifierProvider(create: (context) => WilayahViewModel()),
+        ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
+        ChangeNotifierProxyProvider<PenggunaViewModel, DetailProyekViewModel>(
+          create: (context) => DetailProyekViewModel(),
+          update: (context, pengguna, detail) =>
+              detail!..updateData(pengguna.idPengguna),
+        ),
+        ChangeNotifierProxyProvider<PenggunaViewModel,
+            ProyekPerencanaanViewModel>(
+          create: (context) => ProyekPerencanaanViewModel(),
+          update: (context, pengguna, perencanaan) =>
+              perencanaan!..updateData(pengguna.idPengguna),
+        ),
         ChangeNotifierProxyProvider<PenggunaViewModel,
             PelaksanaProyekViewModel>(
           create: (context) => PelaksanaProyekViewModel(),
           update: (context, pengguna, pelaksana) =>
               pelaksana!..updateData(pengguna.idPengguna),
         ),
-        ChangeNotifierProxyProvider<PenggunaViewModel, TemplateProyekViewModel>(
-          create: (context) => TemplateProyekViewModel(),
-          update: (context, pengguna, template) =>
-              template!..updateData(pengguna.idPengguna),
+        ChangeNotifierProxyProvider<PenggunaViewModel, ProfileProyekViewModel>(
+          create: (context) => ProfileProyekViewModel(),
+          update: (context, pengguna, profile) =>
+              profile!..updateData(pengguna.idPengguna),
         ),
         ChangeNotifierProxyProvider<PenggunaViewModel,
             PengalamanProyekViewModel>(
