@@ -1,4 +1,5 @@
 import 'package:estimator_id/presentation/view_model/detail_proyek_view_model.dart';
+import 'package:estimator_id/presentation/view_model/koleksi_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'presentation/route/page_route.dart';
@@ -30,6 +31,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => KoleksiViewModel()),
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
         ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
         ChangeNotifierProvider(create: (context) => DetailProyekViewModel()),

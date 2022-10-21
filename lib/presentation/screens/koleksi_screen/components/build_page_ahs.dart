@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/koleksi_view_model.dart';
 import 'build_list_view.dart';
 
 class BuildPageAHS extends StatefulWidget {
@@ -21,6 +23,9 @@ class _BuildPageAHSState extends State<BuildPageAHS> {
   int categorySelected = 0;
   @override
   Widget build(BuildContext context) {
+    final koleksiViewModel =
+        Provider.of<KoleksiViewModel>(context, listen: false);
+    final data = koleksiViewModel.getAhs();
     return Column(
       children: [
         Padding(
@@ -167,6 +172,10 @@ class _BuildPageAHSState extends State<BuildPageAHS> {
         BuildListView(
           size: widget.size,
           ahs: true,
+          valueKoleksi: koleksiViewModel.ahsUtama != null &&
+                  koleksiViewModel.ahsUtama!.isNotEmpty
+              ? koleksiViewModel.ahsUtama!.length
+              : 0,
         ),
         const SizedBox(
           height: 10,

@@ -1,12 +1,21 @@
+import 'package:estimator_id/presentation/view_model/koleksi_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
 
 class BuildListView extends StatefulWidget {
-  const BuildListView({Key? key, required this.size, this.ahs = false})
+  const BuildListView(
+      {Key? key,
+      required this.size,
+      this.ahs = false,
+      required this.valueKoleksi,
+      this.index = 0})
       : super(key: key);
 
   final Size size;
   final bool ahs;
+  final int valueKoleksi;
+  final int index;
 
   @override
   State<BuildListView> createState() => _BuildListViewState();
@@ -14,13 +23,50 @@ class BuildListView extends StatefulWidget {
 
 class _BuildListViewState extends State<BuildListView> {
   int? analisa;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Future.wait([
+        Provider.of<KoleksiViewModel>(context, listen: false).getAhs(),
+        Provider.of<KoleksiViewModel>(context, listen: false).getBahan(),
+      ]);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // final Future<String> _loadData =
+    //     Future<String>.delayed(const Duration(milliseconds: 1));
+    final koleksiViewModel =
+        Provider.of<KoleksiViewModel>(context, listen: false);
+    final data = koleksiViewModel.getAhs();
+    // print("value koleksi${widget.valueKoleksi}");
+    print(koleksiViewModel.bahanUtama);
+
+    final koleksiSelected;
+    switch (widget.index) {
+      case 0:
+        koleksiSelected = koleksiViewModel.ahsUtama != null &&
+                koleksiViewModel.ahsUtama!.isNotEmpty
+            ? koleksiViewModel.ahsUtama!.length
+            : 0;
+        break;
+      case 1:
+        koleksiSelected = koleksiViewModel.bahanUtama != null &&
+                koleksiViewModel.bahanUtama!.isNotEmpty
+            ? koleksiViewModel.bahanUtama!.length
+            : 0;
+        break;
+      default:
+    }
+
     return ListView.separated(
       padding: EdgeInsets.symmetric(
         horizontal: widget.size.width * 0.05,
       ),
-      itemCount: 100,
+      itemCount: widget.valueKoleksi,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       separatorBuilder: (context, index) => const Divider(thickness: 1),
@@ -41,13 +87,19 @@ class _BuildListViewState extends State<BuildListView> {
                     Expanded(
                       flex: 2,
                       child: Text(
-                        "Ahli K3 konstruksi madya selaku pimpinan UKK (personil manajerial) - K3 Gedung",
+                        // "Ahli K3 konstruksi madya selaku pimpinan UKK (personil manajerial) - K3 Gedung",
+                        koleksiViewModel.ahsUtama != null
+                            ? koleksiViewModel.ahsUtama![index].namaPekerjaan
+                            : "",
                         style: text3(neutral500, regular),
                       ),
                     ),
                     Flexible(
                       child: Text(
-                        "m2",
+                        // "m2",
+                        koleksiViewModel.ahsUtama != null
+                            ? koleksiViewModel.ahsUtama![index].satuanPekerjaan
+                            : "",
                         style: text3(neutral500, regular),
                       ),
                     ),
@@ -133,17 +185,33 @@ class _BuildListViewState extends State<BuildListView> {
                                           Expanded(
                                               flex: 2,
                                               child: Text(
-                                                "Semen Portland",
+                                                // "Semen Portland",
+                                                koleksiViewModel.bahanUtama !=
+                                                        null
+                                                    ? koleksiViewModel
+                                                        .bahanUtama![index]
+                                                        .namaBahan
+                                                    : "",
                                                 style:
                                                     text4(neutral500, regular),
                                               )),
                                           Expanded(
-                                            child: Text("0.0650",
+                                            child: Text(
+                                                // "0.0650",
+                                                koleksiViewModel.bahanUtama !=
+                                                        null
+                                                    ? koleksiViewModel
+                                                        .bahanUtama![index]
+                                                        .satuan
+                                                        .toString()
+                                                    : "",
                                                 style:
                                                     text4(neutral500, regular)),
                                           ),
                                           Expanded(
-                                            child: Text("kg",
+                                            child: Text(
+                                                // "kg",
+                                                "",
                                                 style:
                                                     text4(neutral500, regular)),
                                           ),
@@ -314,12 +382,26 @@ class _BuildListViewState extends State<BuildListView> {
                                           Expanded(
                                               flex: 2,
                                               child: Text(
-                                                "Kepala Tukang Batu",
+                                                // "Kepala Tukang Batu",
+                                                koleksiViewModel.ahsUtama !=
+                                                        null
+                                                    ? koleksiViewModel
+                                                        .ahsUtama![index]
+                                                        .namaKategori
+                                                    : "",
                                                 style:
                                                     text4(neutral500, regular),
                                               )),
                                           Expanded(
-                                            child: Text("0.0100",
+                                            child: Text(
+                                                // "0.0100",
+                                                koleksiViewModel.ahsUtama !=
+                                                        null
+                                                    ? koleksiViewModel
+                                                        .ahsUtama![index]
+                                                        .koefisien
+                                                        .toString()
+                                                    : "",
                                                 style:
                                                     text4(neutral500, regular)),
                                           ),

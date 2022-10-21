@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/koleksi_view_model.dart';
 import 'build_list_view.dart';
 
 class BuildPageAlat extends StatefulWidget {
@@ -28,6 +30,8 @@ class _BuildPageAlatState extends State<BuildPageAlat> {
   int categorySelected = 0;
   @override
   Widget build(BuildContext context) {
+    final koleksiViewModel =
+        Provider.of<KoleksiViewModel>(context, listen: false);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -174,7 +178,13 @@ class _BuildPageAlatState extends State<BuildPageAlat> {
           const SizedBox(
             height: 16,
           ),
-          BuildListView(size: widget.size),
+          BuildListView(
+            size: widget.size,
+            valueKoleksi: koleksiViewModel.alatUtama != null &&
+                    koleksiViewModel.alatUtama!.isNotEmpty
+                ? koleksiViewModel.alatUtama!.length
+                : 0,
+          ),
           const SizedBox(
             height: 10,
           ),

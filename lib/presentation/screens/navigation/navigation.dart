@@ -1,3 +1,4 @@
+import 'package:estimator_id/presentation/view_model/koleksi_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +24,11 @@ class _NavigationState extends State<Navigation> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.wait(
-          [Provider.of<PenggunaViewModel>(context, listen: false).getUser()]);
+      Future.wait([
+        Provider.of<PenggunaViewModel>(context, listen: false).getUser(),
+        Provider.of<KoleksiViewModel>(context, listen: false).getAhs(),
+        Provider.of<KoleksiViewModel>(context, listen: false).getBahan()
+      ]);
     });
     super.initState();
   }

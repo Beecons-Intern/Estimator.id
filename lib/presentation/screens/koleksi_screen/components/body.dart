@@ -9,9 +9,15 @@ import 'build_page_alat.dart';
 import 'build_page_bahan.dart';
 import 'build_page_upah.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key, required this.pageActive}) : super(key: key);
   final int pageActive;
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -77,7 +83,7 @@ class Body extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    pages[pageActive]
+                    pages[widget.pageActive]
                   ],
                 ),
               ),
