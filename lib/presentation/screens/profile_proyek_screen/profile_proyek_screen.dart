@@ -4,6 +4,7 @@ import '../../route/route_name.dart';
 import '../../view_model/detail_proyek_view_model.dart';
 import '../../view_model/profile_proyek_view_model.dart';
 import '../../view_model/proyek_perencanaan_view_model.dart';
+import '../../view_model/proyek_view_model.dart';
 import '../../view_model/template_proyek_view_model.dart';
 import '../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
@@ -20,6 +21,7 @@ class ProfileProyekScreen extends StatelessWidget {
     final profileProyekViewModel = Provider.of<ProfileProyekViewModel>(context);
     final detailProyekViewModel =
         Provider.of<DetailProyekViewModel>(context, listen: false);
+    final proyekViewModel = Provider.of<ProyekViewModel>(context);
     final isNew = ModalRoute.of(context)!.settings.arguments as bool;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -76,16 +78,20 @@ class ProfileProyekScreen extends StatelessWidget {
                           proyekPerencanaanViewModel
                               .insertPerencanaa()
                               .then((value) {
-                            detailProyekViewModel.setDataDetaikProyek(
-                                proyekPerencanaanViewModel.dataProyek!,
+                            // detailProyekViewModel.setDataDetaikProyek(
+                            //     proyekPerencanaanViewModel.dataProyek!,
+                            //     proyekPerencanaanViewModel.dataPelaksanaProyek!,
+                            //     proyekPerencanaanViewModel
+                            //         .datasKategoriPekerjaan!,
+                            //     proyekPerencanaanViewModel.datasHargaSatuan!,
+                            //     proyekPerencanaanViewModel.datasAHS!);
+
+                            proyekViewModel.setDataBaru(
                                 proyekPerencanaanViewModel.dataPelaksanaProyek!,
-                                proyekPerencanaanViewModel
-                                    .datasKategoriPekerjaan!,
-                                proyekPerencanaanViewModel.datasHargaSatuan!,
-                                proyekPerencanaanViewModel.datasAHS!);
+                                proyekPerencanaanViewModel.dataProyek!);
 
                             Navigator.pushNamedAndRemoveUntil(context,
-                                RouteName.detailProyek, (route) => false);
+                                RouteName.navigation, (route) => false);
                           });
                         });
                       }

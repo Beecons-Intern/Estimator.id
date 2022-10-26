@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'presentation/route/page_route.dart';
+import 'presentation/view_model/ahs_utama_view_model.dart';
+import 'presentation/view_model/alat_utama_view_model.dart';
+import 'presentation/view_model/bahan_utama_view_model.dart';
 import 'presentation/view_model/detail_proyek_view_model.dart';
 import 'presentation/view_model/kesalahan_view_model.dart';
 import 'presentation/view_model/kompetensi_view_model.dart';
@@ -12,6 +15,7 @@ import 'presentation/view_model/proyek_perencanaan_view_model.dart';
 import 'presentation/view_model/proyek_view_model.dart';
 import 'presentation/view_model/rating_pengguna_view_model.dart';
 import 'presentation/view_model/template_proyek_view_model.dart';
+import 'presentation/view_model/upah_utama_view_model.dart';
 import 'presentation/view_model/wilayah_view_model.dart';
 
 void main() {
@@ -33,6 +37,10 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
         ChangeNotifierProvider(create: (context) => WilayahViewModel()),
         ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
+        ChangeNotifierProvider(create: (context) => AHSUtamaViewModel()),
+        ChangeNotifierProvider(create: (context) => BahanUtamaViewModel()),
+        ChangeNotifierProvider(create: (context) => AlatUtamaViewModel()),
+        ChangeNotifierProvider(create: (context) => UpahUtamaViewModel()),
         ChangeNotifierProxyProvider<PenggunaViewModel, DetailProyekViewModel>(
           create: (context) => DetailProyekViewModel(),
           update: (context, pengguna, detail) =>

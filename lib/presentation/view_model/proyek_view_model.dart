@@ -1,8 +1,10 @@
-import 'package:estimator_id/data/source/pelaksana_proyek_source.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/model/pelaksana_proyek_mode.dart';
 import '../../data/model/proyek_model.dart';
+import '../../data/model/wilayah_model.dart';
 import '../../data/source/proyek_source.dart';
+import '../../data/source/wilayah_source.dart';
 
 class ProyekViewModel extends ChangeNotifier {
   int? _idPengguna;
@@ -15,18 +17,84 @@ class ProyekViewModel extends ChangeNotifier {
   List<ProyekModel>? _datasProyek;
   List<ProyekModel>? get datasProyek => _datasProyek;
 
-  List<PelaksanaProyekSource>? _datasPelaksanaProyek;
-  List<PelaksanaProyekSource>? get datasPelaksanaProyek =>
-      _datasPelaksanaProyek;
+  List<PelaksanaProyekModel>? _datasPelaksanaProyek;
+  List<PelaksanaProyekModel>? get datasPelaksanaProyek => _datasPelaksanaProyek;
+
+  List<ProyekModel>? _datasProyekUser;
+  List<ProyekModel>? get datasProyekUser => _datasProyekUser;
+
+  List<WilayahModel>? _allWilayahData;
+  List<WilayahModel>? get allWilayahData => _allWilayahData;
+
+  void setDataPelaksana(List<PelaksanaProyekModel> pelaksana) {
+    _datasPelaksanaProyek = pelaksana;
+    notifyListeners();
+  }
+
+  void setDataBaru(PelaksanaProyekModel pelaksana, ProyekModel proyek) {
+    print(proyek.idProyek);
+    if (_datasPelaksanaProyek != null) {
+      _datasPelaksanaProyek!.add(pelaksana);
+    } else {
+      _datasPelaksanaProyek = [pelaksana];
+    }
+
+    if (_datasProyek != null) {
+      _datasProyek!.add(proyek);
+    } else {
+      _datasProyek = [proyek];
+    }
+
+    notifyListeners();
+  }
 
   Future getDatas() async {
     try {
-      await ProyekSource().getDatasByPengguna(_idPengguna).then((value) {
+      await ProyekSource().getDatas().then((value) {
         if (value != null) _datasProyek = value;
       });
       notifyListeners();
     } catch (e) {
       return e;
+    }
+  }
+
+  Future getWilayah(String id) async {
+    try {
+      await WilayahSource().getData(id).then((value) {
+        if (_allWilayahData != null) {
+          _allWilayahData!.add(value);
+        } else {
+          _allWilayahData = [value];
+        }
+      });
+      notifyListeners();
+    } catch (error) {
+      return error;
+    }
+  }
+
+  void filterData() {
+    if (_datasPelaksanaProyek != null && _datasProyek != null) {
+      for (var pelaksana in _datasPelaksanaProyek!) {
+        for (var proyek in _datasProyek!) {
+          if (pelaksana.idProyek == proyek.idProyek) {
+            if (_datasProyekUser != null) {
+              _datasProyekUser!.add(proyek);
+            }
+
+            _datasProyekUser = [proyek];
+          }
+        }
+      }
+    }
+  }
+
+  Future<void> getWilayahNama() async {
+    if (_datasProyekUser != null) {
+      for (var proyek in _datasProyekUser!) {
+        await getWilayah(proyek.idWilayah);
+      }
     }
   }
 }

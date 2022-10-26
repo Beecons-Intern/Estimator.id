@@ -12,8 +12,17 @@ class PenggunaFields {
     website,
     hargaMin,
     hargaMax,
+    nego,
     username,
-    foto
+    password,
+    foto,
+    kategoriAkun,
+    jenisAkun,
+    status,
+    kodeVerifikasi,
+    statusVerifikasi,
+    tglDaftar,
+    jamDaftar
   ];
 
   static const String idPengguna = "id_pengguna";
@@ -28,12 +37,22 @@ class PenggunaFields {
   static const String website = "website";
   static const String hargaMin = "harga_min";
   static const String hargaMax = "harga_max";
+  static const String nego = "nego";
   static const String username = "username";
+  static const String password = "password";
   static const String foto = "foto";
+  static const String kategoriAkun = "kategori_akun";
+  static const String jenisAkun = "jenis_akun";
+  static const String status = "status";
+  static const String kodeVerifikasi = "kode_verifikasi";
+  static const String statusVerifikasi = "status_verifikasi";
+  static const String tglDaftar = "tgl_daftar";
+  static const String jamDaftar = "jam_daftar";
 }
 
 class PenggunaModel {
   int? idPengguna;
+  double hargaMin, hargaMax;
   String namaPengguna,
       profil,
       alamat,
@@ -43,10 +62,17 @@ class PenggunaModel {
       noTelp,
       noWa,
       website,
-      hargaMin,
-      hargaMax,
+      nego,
       username,
-      foto;
+      password,
+      foto,
+      kategoriAkun,
+      jenisAkun,
+      status,
+      kodeVerifikasi,
+      statusVerifikasi,
+      tglDaftar,
+      jamDaftar;
 
   PenggunaModel(
       {this.idPengguna,
@@ -61,8 +87,17 @@ class PenggunaModel {
       required this.website,
       required this.hargaMin,
       required this.hargaMax,
+      required this.nego,
       required this.username,
-      required this.foto});
+      required this.password,
+      required this.foto,
+      required this.kategoriAkun,
+      required this.jenisAkun,
+      required this.status,
+      required this.kodeVerifikasi,
+      required this.statusVerifikasi,
+      required this.tglDaftar,
+      required this.jamDaftar});
 
   PenggunaModel copy(
           {int? idPengguna,
@@ -75,10 +110,19 @@ class PenggunaModel {
           String? noTelp,
           String? noWa,
           String? website,
-          String? hargaMin,
-          String? hargaMax,
+          double? hargaMin,
+          double? hargaMax,
+          String? nego,
           String? username,
-          String? foto}) =>
+          String? password,
+          String? foto,
+          String? kategoriAkun,
+          String? jenisAkun,
+          String? status,
+          String? kodeVerifikasi,
+          String? statusVerifikasi,
+          String? tglDaftar,
+          String? jamDaftar}) =>
       PenggunaModel(
           idPengguna: idPengguna ?? this.idPengguna,
           namaPengguna: namaPengguna ?? this.namaPengguna,
@@ -92,8 +136,17 @@ class PenggunaModel {
           website: website ?? this.website,
           hargaMin: hargaMin ?? this.hargaMin,
           hargaMax: hargaMax ?? this.hargaMax,
+          nego: nego ?? this.nego,
           username: username ?? this.username,
-          foto: foto ?? this.foto);
+          password: password ?? this.password,
+          foto: foto ?? this.foto,
+          kategoriAkun: kategoriAkun ?? this.kategoriAkun,
+          jenisAkun: jenisAkun ?? this.jenisAkun,
+          status: status ?? this.status,
+          kodeVerifikasi: kodeVerifikasi ?? this.kodeVerifikasi,
+          statusVerifikasi: statusVerifikasi ?? this.statusVerifikasi,
+          tglDaftar: tglDaftar ?? this.tglDaftar,
+          jamDaftar: jamDaftar ?? this.jamDaftar);
 
   static PenggunaModel fromJson(Map<String, Object?> json) {
     return PenggunaModel(
@@ -107,10 +160,19 @@ class PenggunaModel {
       noTelp: json[PenggunaFields.noTelp].toString(),
       noWa: json[PenggunaFields.noWa].toString(),
       website: json[PenggunaFields.website].toString(),
-      hargaMin: json[PenggunaFields.hargaMin].toString(),
-      hargaMax: json[PenggunaFields.hargaMax].toString(),
+      hargaMin: json[PenggunaFields.hargaMin].runtimeType == double ? json[PenggunaFields.hargaMin] as double : double.parse("${json[PenggunaFields.hargaMin] != null ? json[PenggunaFields.hargaMin].toString() : "0"}.0"),
+      hargaMax: json[PenggunaFields.hargaMax].runtimeType == double ? json[PenggunaFields.hargaMax] as double : double.parse("${json[PenggunaFields.hargaMax] != null ? json[PenggunaFields.hargaMax].toString() : "0"}.0"),
+      nego: json[PenggunaFields.nego].toString(),
       username: json[PenggunaFields.username].toString(),
+      password: json[PenggunaFields.password].toString(),
       foto: json[PenggunaFields.foto].toString(),
+      kategoriAkun: json[PenggunaFields.kategoriAkun].toString(),
+      jenisAkun: json[PenggunaFields.jenisAkun].toString(),
+      status: json[PenggunaFields.status].toString(),
+      kodeVerifikasi: json[PenggunaFields.kodeVerifikasi].toString(),
+      statusVerifikasi: json[PenggunaFields.statusVerifikasi].toString(),
+      tglDaftar: json[PenggunaFields.tglDaftar].toString(),
+      jamDaftar: json[PenggunaFields.jamDaftar].toString()
     );
   }
 
@@ -126,7 +188,16 @@ class PenggunaModel {
         PenggunaFields.website: website.toString(),
         PenggunaFields.hargaMin: hargaMin.toString(),
         PenggunaFields.hargaMax: hargaMax.toString(),
+        PenggunaFields.nego: nego.toString(),
         PenggunaFields.username: username.toString(),
+        PenggunaFields.password: password.toString(),
         PenggunaFields.foto: foto.toString(),
+        PenggunaFields.kategoriAkun: kategoriAkun.toString(),
+        PenggunaFields.jenisAkun: jenisAkun.toString(),
+        PenggunaFields.status: status.toString(),
+        PenggunaFields.kodeVerifikasi: kodeVerifikasi.toString(),
+        PenggunaFields.statusVerifikasi: statusVerifikasi.toString(),
+        PenggunaFields.tglDaftar: tglDaftar.toString(),
+        PenggunaFields.jamDaftar: jamDaftar.toString()
       };
 }

@@ -29,84 +29,84 @@ class _BodyState extends State<Body> {
       padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
       child: Column(
         children: [
-          const SizedBox(
-            height: 16,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteName.buatKategori);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.edit,
-                          color: neutral100,
-                          size: 16,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Ubah Kategori",
-                          style: text3(neutral100, regular),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => const BuildModalUpgradeAccount());
-                    /* showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>
-                          ImporVolume(size: size),
-                    ); */
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.upload,
-                          color: neutral100,
-                          size: 16,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Impor Volume",
-                          style: text3(neutral100, regular),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // const SizedBox(
+          //   height: 16,
+          // ),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: GestureDetector(
+          //         onTap: () {
+          //           Navigator.pushNamed(context, RouteName.buatKategori);
+          //         },
+          //         child: Container(
+          //           margin: const EdgeInsets.symmetric(horizontal: 8),
+          //           padding:
+          //               const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+          //           decoration: BoxDecoration(
+          //               color: primary,
+          //               borderRadius: BorderRadius.circular(10)),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children: [
+          //               const Icon(
+          //                 Icons.edit,
+          //                 color: neutral100,
+          //                 size: 16,
+          //               ),
+          //               const SizedBox(
+          //                 width: 5,
+          //               ),
+          //               Text(
+          //                 "Ubah Kategori",
+          //                 style: text3(neutral100, regular),
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: GestureDetector(
+          //         onTap: () {
+          //           showDialog(
+          //               context: context,
+          //               builder: (context) => const BuildModalUpgradeAccount());
+          //           /* showDialog(
+          //             context: context,
+          //             builder: (BuildContext context) =>
+          //                 ImporVolume(size: size),
+          //           ); */
+          //         },
+          //         child: Container(
+          //           margin: const EdgeInsets.symmetric(horizontal: 8),
+          //           padding:
+          //               const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+          //           decoration: BoxDecoration(
+          //               color: primary,
+          //               borderRadius: BorderRadius.circular(10)),
+          //           child: Row(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children: [
+          //               const Icon(
+          //                 Icons.upload,
+          //                 color: neutral100,
+          //                 size: 16,
+          //               ),
+          //               const SizedBox(
+          //                 width: 5,
+          //               ),
+          //               Text(
+          //                 "Impor Volume",
+          //                 style: text3(neutral100, regular),
+          //               ),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           const SizedBox(
             height: 16,
           ),

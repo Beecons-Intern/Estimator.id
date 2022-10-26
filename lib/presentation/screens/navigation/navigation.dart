@@ -1,13 +1,18 @@
+import 'package:estimator_id/presentation/view_model/ahs_utama_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
+import '../../view_model/alat_utama_view_model.dart';
+import '../../view_model/bahan_utama_view_model.dart';
 import '../../view_model/kesalahan_view_model.dart';
 import '../../view_model/pelaksana_proyek_view_model.dart';
 import '../../view_model/pengguna_view_model.dart';
+import '../../view_model/proyek_view_model.dart';
 import '../../view_model/rating_pengguna_view_model.dart';
 import '../../view_model/template_proyek_view_model.dart';
+import '../../view_model/upah_utama_view_model.dart';
 import '../../widgets/widgets.dart';
 import '../home_screen/home_screen.dart';
 import '../koleksi_screen/koleksi_screen.dart';
@@ -31,7 +36,16 @@ class _NavigationState extends State<Navigation> {
         Provider.of<KesalahanViewModel>(context, listen: false).getKesalahan(),
         Provider.of<RatingPenggunaViewModel>(context, listen: false)
             .getRating(),
-        Provider.of<PelaksanaProyekViewModel>(context, listen: false).getDatas()
+        Provider.of<PelaksanaProyekViewModel>(context, listen: false)
+            .getDatas(),
+        Provider.of<ProyekViewModel>(context, listen: false).getDatas(),
+        Provider.of<AHSUtamaViewModel>(context, listen: false)
+            .getDatasPekerjaan(),
+        Provider.of<BahanUtamaViewModel>(context, listen: false).getDatas(),
+        Provider.of<BahanUtamaViewModel>(context, listen: false)
+            .getDatasProduk(),
+        Provider.of<UpahUtamaViewModel>(context, listen: false).getDatas(),
+        Provider.of<AlatUtamaViewModel>(context, listen: false).getDatas(),
       ]);
     });
     super.initState();
@@ -48,6 +62,10 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     final templateProyekViewModel =
         Provider.of<TemplateProyekViewModel>(context, listen: false);
+    final proyekViewModel =
+        Provider.of<ProyekViewModel>(context, listen: false);
+    final pelaksanaProyekViewModel =
+        Provider.of<PelaksanaProyekViewModel>(context);
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -70,7 +88,7 @@ class _NavigationState extends State<Navigation> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Tambah",
+                        "Tambah Proyek",
                         style: text1(neutral500, bold),
                       ),
                       const SizedBox(
@@ -100,19 +118,6 @@ class _NavigationState extends State<Navigation> {
                             builder: (context) =>
                                 const BuildModalUpgradeAccount());
                       }),
-                      buildOptionProyek(
-                          size,
-                          "assets/img/koleksi.png",
-                          "Koleksi",
-                          "Catatan proyek yang berguna bagi kontraktor untuk penawaran nilai pagu proyek",
-                          () {
-                        Navigator.pop(context);
-                        showDialog(
-                            context: context,
-                            builder: (context) =>
-                                const BuildModalUpgradeAccount());
-                        /* Navigator.pushNamed(context, RouteName.profileProyek); */
-                      })
                     ],
                   ),
                 );
@@ -166,6 +171,14 @@ class _NavigationState extends State<Navigation> {
                       ),
                       NavigationButton(
                           onPressed: () {
+                            if (pelaksanaProyekViewModel.datasPelaksanaProyek !=
+                                null) {
+                              proyekViewModel.setDataPelaksana(
+                                  pelaksanaProyekViewModel
+                                      .datasPelaksanaProyek!);
+                            }
+                            proyekViewModel.filterData();
+                            proyekViewModel.getWilayahNama();
                             setState(() {
                               index = 1;
                             });

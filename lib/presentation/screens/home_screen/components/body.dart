@@ -200,55 +200,55 @@ class _BodyState extends State<Body> {
                 ],
               ),
               const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                child: Text(
-                  "Kategori Proyek",
-                  style: text2(neutral500, semibold),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                height: 55,
-                width: size.width,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    BuildKategoriProyek(
-                      text: "Rumah Tinggal",
-                      total: "120 Proyek",
-                      initialIndex: 0,
-                      size: size,
-                    ),
-                    BuildKategoriProyek(
-                      text: "Rumah Tinggal",
-                      total: "120 Proyek",
-                      size: size,
-                    ),
-                    BuildKategoriProyek(
-                      text: "Rumah Tinggal",
-                      total: "120 Proyek",
-                      size: size,
-                    ),
-                    BuildKategoriProyek(
-                      text: "Rumah Tinggal",
-                      total: "120 Proyek",
-                      size: size,
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
                 height: 18,
               ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+              //   child: Text(
+              //     "Kategori Proyek",
+              //     style: text2(neutral500, semibold),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // SizedBox(
+              //   height: 55,
+              //   width: size.width,
+              //   child: ListView(
+              //     scrollDirection: Axis.horizontal,
+              //     children: [
+              //       BuildKategoriProyek(
+              //         text: "Rumah Tinggal",
+              //         total: "120 Proyek",
+              //         initialIndex: 0,
+              //         size: size,
+              //       ),
+              //       BuildKategoriProyek(
+              //         text: "Rumah Tinggal",
+              //         total: "120 Proyek",
+              //         size: size,
+              //       ),
+              //       BuildKategoriProyek(
+              //         text: "Rumah Tinggal",
+              //         total: "120 Proyek",
+              //         size: size,
+              //       ),
+              //       BuildKategoriProyek(
+              //         text: "Rumah Tinggal",
+              //         total: "120 Proyek",
+              //         size: size,
+              //       )
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 18,
+              // ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
                 child: Text(
-                  "Total Jenis Proyek",
+                  "Jenis Proyek",
                   style: text2(neutral500, semibold),
                 ),
               ),
@@ -274,14 +274,14 @@ class _BodyState extends State<Body> {
                   children: const [
                     BuildTotalJenisProyek(
                       text: "Perancangan",
-                      total: "120 Proyek",
+                      total: "0 Proyek",
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     BuildTotalJenisProyek(
                       text: "Penawaran",
-                      total: "120 Proyek",
+                      total: "0 Proyek",
                     )
                   ],
                 ),
@@ -301,21 +301,21 @@ class _BodyState extends State<Body> {
                         child: ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset("assets/img/banner.jpg")),
+                            child: Image.asset("assets/img/1.jpeg", fit: BoxFit.cover,)),
                       ),
                       Container(
                         margin: const EdgeInsets.only(right: 10),
                         child: ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset("assets/img/banner.jpg")),
+                            child: Image.asset("assets/img/2.jpeg")),
                       ),
                       Container(
                         margin: const EdgeInsets.only(right: 10),
                         child: ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset("assets/img/banner.jpg")),
+                            child: Image.asset("assets/img/3.jpeg")),
                       )
                     ],
                   )),

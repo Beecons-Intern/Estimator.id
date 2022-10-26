@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/pelaksana_proyek_view_model.dart';
 import '../../../view_model/proyek_view_model.dart';
 
 class Body extends StatelessWidget {
@@ -23,6 +24,8 @@ class Body extends StatelessWidget {
     ];
     final Size size = MediaQuery.of(context).size;
     final proyekViewModel = Provider.of<ProyekViewModel>(context);
+    print(proyekViewModel.datasProyek);
+    print(proyekViewModel.datasProyekUser);
     return Stack(
       children: [
         Container(
@@ -77,9 +80,9 @@ class Body extends StatelessWidget {
                       left: size.width * 0.05,
                       right: size.width * 0.05,
                       bottom: 20),
-                  itemCount: proyekViewModel.datasProyek != null &&
-                          proyekViewModel.datasProyek!.isNotEmpty
-                      ? proyekViewModel.datasProyek!.length
+                  itemCount: proyekViewModel.datasProyekUser != null &&
+                          proyekViewModel.datasPelaksanaProyek!.isNotEmpty
+                      ? proyekViewModel.datasProyekUser!.length
                       : 0,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -171,7 +174,8 @@ class Body extends StatelessWidget {
                                 height: 2,
                               ),
                               Text(
-                                "Rumah Tinggal Sederhana",
+                                proyekViewModel
+                                    .datasProyekUser![index].namaProyek,
                                 style: text3(neutral500, bold),
                                 textAlign: TextAlign.center,
                               ),
@@ -194,7 +198,8 @@ class Body extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      "Estimator.id",
+                                      proyekViewModel
+                                          .datasProyekUser![index].pemilik,
                                       style: text4(neutral500, semibold),
                                     ),
                                   )
@@ -215,7 +220,10 @@ class Body extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      "Kab. Sleman",
+                                      proyekViewModel.allWilayahData != null
+                                          ? proyekViewModel
+                                              .allWilayahData![index].wilayah
+                                          : "",
                                       style: text4(neutral500, semibold),
                                     ),
                                   )
@@ -236,7 +244,8 @@ class Body extends StatelessWidget {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      "2022",
+                                      proyekViewModel
+                                          .datasProyekUser![index].tahun,
                                       style: text4(neutral500, semibold),
                                     ),
                                   )

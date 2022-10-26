@@ -32,4 +32,22 @@ class PenggunaSource {
       return throw Exception("Error $error");
     }
   }
+
+  Future<PenggunaModel?> checkAcc(String email, String password) async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final data = await db.query(table,
+          columns: PenggunaFields.values,
+          where:
+              '${PenggunaFields.email} = ? and ${PenggunaFields.password} = ?',
+          whereArgs: [email, password]);
+      if (data.isNotEmpty) {
+        return PenggunaModel.fromJson(data.first);
+      }
+
+      return null;
+    } catch (error) {
+      return throw Exception("Error $error");
+    }
+  }
 }
