@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../../../utilities/utilities.dart';
-import 'build_kategori_proyek.dart';
 import 'build_month.dart';
 import 'build_price.dart';
 import 'build_total_jenis_proyek.dart';

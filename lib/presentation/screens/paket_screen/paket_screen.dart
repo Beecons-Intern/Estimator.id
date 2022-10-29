@@ -24,7 +24,7 @@ class PaketScreen extends StatelessWidget {
             )),
         centerTitle: true,
       ),
-      body: const Body(),
+      body: Body(),
     );
   }
 }

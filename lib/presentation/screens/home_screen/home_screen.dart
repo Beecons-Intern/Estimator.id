@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../view_model/pengguna_view_model.dart';
@@ -35,10 +37,15 @@ class HomeScreen extends StatelessWidget {
                   ],
                   shape: BoxShape.circle,
                   color: Colors.white,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                       scale: 0.5,
-                      fit: BoxFit.contain,
-                      image: AssetImage("assets/img/profil.jpg")),
+                      fit: BoxFit.cover,
+                      image: penggunaViewModel.dataPengguna != null &&
+                              penggunaViewModel.dataPengguna!.foto != ""
+                          ? FileImage(
+                                  File(penggunaViewModel.dataPengguna!.foto))
+                              as ImageProvider
+                          : const AssetImage("assets/icon/avatar.png")),
                 ),
               ),
               const SizedBox(
@@ -55,7 +62,8 @@ class HomeScreen extends StatelessWidget {
                     penggunaViewModel.dataPengguna != null
                         ? penggunaViewModel.dataPengguna!.namaPengguna
                         : "-",
-                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

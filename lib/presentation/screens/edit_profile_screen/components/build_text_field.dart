@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../../../../utilities/utilities.dart';
 
-class BuildTextField extends StatelessWidget {
+class BuildTextField extends StatefulWidget {
   const BuildTextField(
       {Key? key,
       required this.title,
@@ -10,7 +10,8 @@ class BuildTextField extends StatelessWidget {
       required this.isRequired,
       required this.initialValue,
       required this.capitalization,
-      required this.keyboardType})
+      required this.keyboardType,
+      this.isPassword = false})
       : super(key: key);
 
   final String title;
@@ -19,7 +20,14 @@ class BuildTextField extends StatelessWidget {
   final String initialValue;
   final TextCapitalization capitalization;
   final TextInputType keyboardType;
+  final bool isPassword;
 
+  @override
+  State<BuildTextField> createState() => _BuildTextFieldState();
+}
+
+class _BuildTextFieldState extends State<BuildTextField> {
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,11 +35,11 @@ class BuildTextField extends StatelessWidget {
       children: [
         Text.rich(TextSpan(children: [
           TextSpan(
-            text: title,
+            text: widget.title,
             style: text3(neutral500, regular),
           ),
           TextSpan(
-            text: isRequired == true ? "*" : "",
+            text: widget.isRequired == true ? "*" : "",
             style: text3(accentOrange500, regular),
           )
         ])),
@@ -39,13 +47,29 @@ class BuildTextField extends StatelessWidget {
           height: 5,
         ),
         FormBuilderTextField(
-          textCapitalization: capitalization,
-          readOnly: name == "email" ? true : false,
-          keyboardType: keyboardType,
-          name: name,
+          obscureText: widget.isPassword == true ? isVisible : false,
+          textCapitalization: widget.capitalization,
+          readOnly: widget.name == "email" ? true : false,
+          keyboardType: widget.keyboardType,
+          name: widget.name,
           cursorColor: primary,
-          initialValue: initialValue,
+          initialValue: widget.initialValue,
           decoration: InputDecoration(
+            suffixIcon: widget.isPassword == true
+                ? GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isVisible = !isVisible;
+                      });
+                    },
+                    child: Icon(
+                      isVisible
+                          ? Icons.visibility_rounded
+                          : Icons.visibility_off_rounded,
+                      color: neutral200,
+                    ),
+                  )
+                : null,
             hintStyle: text3(primary, regular),
             isDense: true,
             contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),

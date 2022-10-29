@@ -59,32 +59,91 @@ class PenggunaViewModel extends ChangeNotifier {
     }
   }
 
-  // Future getAllWilayah() async {
-  //   _allWilayahData = null;
-  //   try {
-  //     final dataAllWilayah = await WilayahSource().getAll();
-  //     _allWilayahData = dataAllWilayah;
-  //     notifyListeners();
-  //   } catch (e) {
-  //     return e;
-  //   }
-  // }
-
-  // Future changeWilayah(WilayahModel data) async {
-  //   try {
-  //     _dataPengguna!.idWilayah = data.idWilayah;
-  //     _tempWilayahData = data;
-  //     notifyListeners();
-  //   } catch (e) {
-  //     return e;
-  //   }
-  // }
-
-  Future updateData(PenggunaModel pengguna) async {
+  Future updateData(
+      String nama,
+      String username,
+      String profil,
+      String alamat,
+      String wilayah,
+      String perusahaan,
+      String email,
+      String telp,
+      String wa,
+      String website,
+      String password,
+      String foto) async {
     try {
+      final pengguna = PenggunaModel(
+          idPengguna: _dataPengguna!.idPengguna,
+          namaPengguna: nama,
+          profil: profil,
+          alamat: alamat,
+          idWilayah: wilayah,
+          perusahaan: perusahaan,
+          email: email,
+          noTelp: telp,
+          noWa: wa,
+          website: website,
+          hargaMin: _dataPengguna!.hargaMin,
+          hargaMax: _dataPengguna!.hargaMax,
+          nego: _dataPengguna!.nego,
+          username: username,
+          password: password,
+          foto: foto,
+          kategoriAkun: _dataPengguna!.kategoriAkun,
+          jenisAkun: _dataPengguna!.jenisAkun,
+          status: _dataPengguna!.status,
+          kodeVerifikasi: _dataPengguna!.kodeVerifikasi,
+          statusVerifikasi: _dataPengguna!.statusVerifikasi,
+          tglDaftar: _dataPengguna!.tglDaftar,
+          jamDaftar: _dataPengguna!.jamDaftar);
       final data = await PenggunaSource().updateData(pengguna);
-      notifyListeners();
-      return data;
+      if (data == 1) {
+        _dataPengguna = pengguna;
+        notifyListeners();
+        return true;
+      }
+
+      return false;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future updateKompetensi(double hargaMin, double hargaMax) async {
+    try {
+      final pengguna = PenggunaModel(
+          idPengguna: _dataPengguna!.idPengguna,
+          namaPengguna: _dataPengguna!.namaPengguna,
+          profil: _dataPengguna!.profil,
+          alamat: _dataPengguna!.alamat,
+          idWilayah: _dataPengguna!.idWilayah,
+          perusahaan: _dataPengguna!.perusahaan,
+          email: _dataPengguna!.email,
+          noTelp: _dataPengguna!.noTelp,
+          noWa: _dataPengguna!.noWa,
+          website: _dataPengguna!.website,
+          hargaMin: hargaMin,
+          hargaMax: hargaMax,
+          nego: _dataPengguna!.nego,
+          username: _dataPengguna!.username,
+          password: _dataPengguna!.password,
+          foto: _dataPengguna!.foto,
+          kategoriAkun: _dataPengguna!.kategoriAkun,
+          jenisAkun: _dataPengguna!.jenisAkun,
+          status: _dataPengguna!.status,
+          kodeVerifikasi: _dataPengguna!.kodeVerifikasi,
+          statusVerifikasi: _dataPengguna!.statusVerifikasi,
+          tglDaftar: _dataPengguna!.tglDaftar,
+          jamDaftar: _dataPengguna!.jamDaftar);
+      final data = await PenggunaSource().updateData(pengguna);
+      if (data == 1) {
+        _dataPengguna = pengguna;
+        notifyListeners();
+        return true;
+      }
+
+      return false;
     } catch (e) {
       return e;
     }

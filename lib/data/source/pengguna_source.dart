@@ -51,13 +51,12 @@ class PenggunaSource {
     }
   }
 
-    Future<PenggunaModel?> checkEmail(String email) async {
+  Future<PenggunaModel?> checkEmail(String email) async {
     try {
       final db = await DatabaseService.instance.database;
       final data = await db.query(table,
           columns: PenggunaFields.values,
-          where:
-              '${PenggunaFields.email} = ?',
+          where: '${PenggunaFields.email} = ?',
           whereArgs: [email]);
       if (data.isNotEmpty) {
         return PenggunaModel.fromJson(data.first);
@@ -69,7 +68,7 @@ class PenggunaSource {
     }
   }
 
-    Future<PenggunaModel> addData(PenggunaModel pengguna) async {
+  Future<PenggunaModel> addData(PenggunaModel pengguna) async {
     try {
       final db = await DatabaseService.instance.database;
       final id = await db.insert(table, pengguna.toJson());

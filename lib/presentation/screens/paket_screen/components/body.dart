@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
 import 'build_card.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  Body({Key? key}) : super(key: key);
+  final Uri _url = Uri.parse(
+      "https://api.whatsapp.com/send?phone=628112585566&text=Halo%20Tim%20Estimator.id%2C%0ASaya%20ingin%20berlangganan%20*Paket%20Enterprise*.%0AApakah%20saya%20bisa%20mendapatkan%20informasi%20lebih%20lanjut%3F%0ATerima%20kasih");
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +106,9 @@ class Body extends StatelessWidget {
               colorBottom: const Color(0xFF6BFDC9),
               text: "Hubungi Kami",
               backgroundColor: const Color(0xFFE92C24),
-              onTap: () {}),
+              onTap: () {
+                _launchUrl();
+              }),
           const SizedBox(
             height: 30,
           ),

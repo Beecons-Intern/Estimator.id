@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:estimator_id/presentation/view_model/pengguna_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -67,10 +69,15 @@ class _BodyState extends State<Body> {
                   ],
                   shape: BoxShape.circle,
                   color: Colors.white,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                       scale: 0.5,
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/img/profil.jpg")),
+                      image: penggunaViewModel.dataPengguna != null &&
+                              penggunaViewModel.dataPengguna!.foto != ""
+                          ? FileImage(
+                                  File(penggunaViewModel.dataPengguna!.foto))
+                              as ImageProvider
+                          : const AssetImage("assets/icon/avatar.png")),
                 ),
               ),
             ),

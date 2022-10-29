@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../../data/model/dokumen_model.dart';
 import '../../../../utilities/utilities.dart';
@@ -24,29 +27,49 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  File? file;
-  // List<String> nameFiles = [];
+  XFile? pickedFile;
+  String? nameFile;
+
   Future selectImage() async {
-    final result = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['jpg', 'png']);
+    final ImagePicker _picker = ImagePicker();
+    final XFile? result = await _picker.pickImage(source: ImageSource.gallery);
     if (result == null) return;
 
-    PlatformFile pickedFile = result.files.first;
     setState(() {
-      file = File(pickedFile.path!);
+      pickedFile = result;
+      if (pickedFile != null) {
+        nameFile = basename(pickedFile!.path);
+      }
     });
   }
 
-  Future selectFiles() async {
+  Future<String> saveImage() async {
+    final File image = File(pickedFile!.path);
+    final Directory extDir = await getApplicationDocumentsDirectory();
+    String dirPath = extDir.path;
+    final File newImage = await image.copy("$dirPath/$nameFile");
+    print(newImage);
+    return newImage.path;
+  }
+
+  Future selectFile() async {
     final result = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
     if (result != null) {
       PlatformFile pickedFile = result.files.first;
-      String nameFiles = basename(pickedFile.path!);
-      return nameFiles;
+      return File(pickedFile.path!);
     } else {
       return;
     }
+  }
+
+  Future<String> saveFile(File value) async {
+    final String nameDoc = basename(value.path);
+    final Directory extDir = await getApplicationDocumentsDirectory();
+    String dirPath = extDir.path;
+    final File newFile = await value.copy("$dirPath/$nameDoc");
+    print(newFile);
+    return newFile.path;
   }
 
   final _formKey = GlobalKey<FormBuilderState>();
@@ -70,8 +93,8 @@ class _BodyState extends State<Body> {
                 height: 80,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: file != null
-                        ? FileImage(file!) as ImageProvider
+                    image: pickedFile != null
+                        ? FileImage(File(pickedFile!.path)) as ImageProvider
                         : const AssetImage("assets/img/no-foto.jpg"),
                     fit: BoxFit.cover,
                   ),
@@ -253,9 +276,14 @@ class _BodyState extends State<Body> {
             ...widget.profileProyekViewModel.datasDokumen!
                 .map((item) => Row(
                       children: [
-                        Text(
-                          item.dokumen,
-                          style: text4(neutral500, semibold),
+                        GestureDetector(
+                          onTap: () {
+                            OpenFilex.open(item.dokumen);
+                          },
+                          child: Text(
+                            basename(item.dokumen),
+                            style: text4(neutral500, semibold),
+                          ),
                         ),
                         const SizedBox(
                           width: 10,
@@ -279,8 +307,14 @@ class _BodyState extends State<Body> {
           ),
           GestureDetector(
             onTap: () async {
-              await selectFiles().then((value) => widget.profileProyekViewModel
-                  .addItem(DokumenModel(idProyek: 0, dokumen: value)));
+              await selectFile().then((value) async {
+                if (value == null) return;
+
+                String fileName = await saveFile(value);
+
+                widget.profileProyekViewModel
+                    .addItem(DokumenModel(idProyek: 0, dokumen: fileName));
+              });
             },
             child: Center(
               child: DottedBorder(

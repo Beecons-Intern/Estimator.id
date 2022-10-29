@@ -1,5 +1,6 @@
 import 'package:estimator_id/presentation/view_model/kompetensi_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:provider/provider.dart';
 import '../../../view_model/pengguna_view_model.dart';
 import '../../../../utilities/utilities.dart';
@@ -36,6 +37,8 @@ class _KompetensiState extends State<Kompetensi> {
     "MEP",
     "Pelaksana"
   ];
+
+  final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     final kompetensiViewModel = Provider.of<KompetensiViewModel>(context);
@@ -151,34 +154,39 @@ class _KompetensiState extends State<Kompetensi> {
             const SizedBox(
               height: 5,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: BuildTextFieldKompetensi(
-                  name: "hargaMin",
-                  initialValue: penggunaViewModel.dataPengguna!.hargaMin.toString(),
-                )),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Text(
-                    "-",
-                    style: text3(neutral500, bold),
+            FormBuilder(
+              key: _formKey,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                      child: BuildTextFieldKompetensi(
+                    name: "hargaMin",
+                    initialValue:
+                        penggunaViewModel.dataPengguna!.hargaMin.toString(),
+                  )),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      "-",
+                      style: text3(neutral500, bold),
+                    ),
                   ),
-                ),
-                Expanded(
-                    child: BuildTextFieldKompetensi(
-                  name: "hargaMax",
-                  initialValue: penggunaViewModel.dataPengguna!.hargaMax.toString(),
-                )),
-              ],
+                  Expanded(
+                      child: BuildTextFieldKompetensi(
+                    name: "hargaMax",
+                    initialValue:
+                        penggunaViewModel.dataPengguna!.hargaMax.toString(),
+                  )),
+                ],
+              ),
             ),
             const SizedBox(
               height: 100,
             ),
             RoundedButton(
               ontap: () async {
-                await kompetensiViewModel.insertData();
+                  await kompetensiViewModel.insertData();
                 await kompetensiViewModel.deleteData();
               },
               text: "Simpan",

@@ -52,6 +52,9 @@ dependencies:
   intl: any
   flutter_rating_bar: ^4.0.1
   validators: ^3.0.0
+  image_picker: ^0.8.6
+  open_filex: ^4.2.2
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:

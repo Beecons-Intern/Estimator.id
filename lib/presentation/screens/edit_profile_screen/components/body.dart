@@ -1,10 +1,13 @@
 import 'dart:io';
-import 'package:estimator_id/data/model/pengguna_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../view_model/pengguna_view_model.dart';
 import '../../../view_model/wilayah_view_model.dart';
@@ -21,16 +24,29 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormBuilderState>();
-  File? file;
-  Future selectImage() async {
-    final result = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['jpg', 'png']);
+  XFile? pickedFile;
+  String? nameFile;
+
+  Future selectFile() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? result = await _picker.pickImage(source: ImageSource.gallery);
     if (result == null) return;
 
-    PlatformFile pickedFile = result.files.first;
     setState(() {
-      file = File(pickedFile.path!);
+      pickedFile = result;
+      if (pickedFile != null) {
+        nameFile = basename(pickedFile!.path);
+      }
     });
+  }
+
+  Future<String> saveImage() async {
+    final File image = File(pickedFile!.path);
+    final Directory extDir = await getApplicationDocumentsDirectory();
+    String dirPath = extDir.path;
+    final File newImage = await image.copy("$dirPath/$nameFile");
+    print(newImage);
+    return newImage.path;
   }
 
   @override
@@ -65,9 +81,14 @@ class _BodyState extends State<Body> {
                     color: Colors.white,
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: file != null
-                            ? FileImage(file!) as ImageProvider
-                            : const AssetImage("assets/img/profil.jpg")),
+                        image: penggunaViewModel.dataPengguna != null &&
+                                penggunaViewModel.dataPengguna!.foto != ""
+                            ? FileImage(
+                                File(penggunaViewModel.dataPengguna!.foto))
+                            : pickedFile != null
+                                ? FileImage(File(pickedFile!.path))
+                                    as ImageProvider
+                                : const AssetImage("assets/icon/avatar.png")),
                   ),
                 ),
                 Positioned(
@@ -75,7 +96,7 @@ class _BodyState extends State<Body> {
                     right: 0,
                     child: GestureDetector(
                       onTap: () async {
-                        await selectImage();
+                        await selectFile();
                       },
                       child: Container(
                         height: 40,
@@ -267,91 +288,90 @@ class _BodyState extends State<Body> {
                 const SizedBox(
                   height: 16,
                 ),
-                const BuildTextField(
+                BuildTextField(
                   title: "Password",
                   name: "password",
                   isRequired: true,
-                  initialValue: "",
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.password
+                      : "",
                   capitalization: TextCapitalization.none,
                   keyboardType: TextInputType.visiblePassword,
+                  isPassword: true,
                 ),
                 const SizedBox(
                   height: 16,
                 ),
-                const BuildTextField(
+                BuildTextField(
                   title: "Ulangi Password",
                   name: "repeat_password",
                   isRequired: true,
-                  initialValue: "",
+                  initialValue: penggunaViewModel.dataPengguna != null
+                      ? penggunaViewModel.dataPengguna!.password
+                      : "",
                   capitalization: TextCapitalization.none,
                   keyboardType: TextInputType.visiblePassword,
+                  isPassword: true,
                 ),
                 const SizedBox(
                   height: 32,
                 ),
                 RoundedButton(
                   text: "Perbarui Data",
-                  ontap: () {
-                    // _formKey.currentState!.save();
-                    // if (_formKey.currentState!.value["namaPengguna"] != "" &&
-                    //     _formKey.currentState!.value["username"] != "" &&
-                    //     _formKey.currentState!.value["alamat"] != "" &&
-                    //     _formKey.currentState!.value["email"] != "" &&
-                    //     _formKey.currentState!.value["noTelp"] != "") {
-                    //   penggunaViewModel
-                    //       .updateData(PenggunaModel(
-                    //           idPengguna: penggunaViewModel.idPengguna,
-                    //           namaPengguna: _formKey
-                    //               .currentState!.value["namaPengguna"]
-                    //               .toString(),
-                    //           profil: _formKey.currentState!.value["profil"]
-                    //               .toString(),
-                    //           alamat: _formKey.currentState!.value["alamat"]
-                    //               .toString(),
-                    //           idWilayah: wilayahViewModel.wilayahData!.idWilayah
-                    //               .toString(),
-                    //           perusahaan: _formKey
-                    //               .currentState!.value["perusahaan"]
-                    //               .toString(),
-                    //           email: _formKey.currentState!.value["email"]
-                    //               .toString(),
-                    //           noTelp: _formKey.currentState!.value["noTelp"]
-                    //               .toString(),
-                    //           noWa: _formKey.currentState!.value["noWa"]
-                    //               .toString(),
-                    //           website: _formKey.currentState!.value["website"]
-                    //               .toString(),
-                    //           hargaMin: penggunaViewModel.dataPengguna!.hargaMin
-                    //               .toString(),
-                    //           hargaMax: penggunaViewModel.dataPengguna!.hargaMax
-                    //               .toString(),
-                    //           username: _formKey.currentState!.value["username"]
-                    //               .toString(),
-                    //           foto: penggunaViewModel.dataPengguna!.foto))
-                    //       // penggunaViewModel
-                    //       //     .updateData(
-                    //       //   namaPengguna:
-                    //       //       _formKey.currentState!.value["namaPengguna"],
-                    //       //   username: _formKey.currentState!.value["username"],
-                    //       //   profil: _formKey.currentState!.value["profil"],
-                    //       //   alamat: _formKey.currentState!.value["alamat"],
-                    //       //   idWilayah: penggunaViewModel.tempWilayahData!.idWilayah,
-                    //       //   perusahaan: _formKey.currentState!.value["perusahaan"],
-                    //       //   email: _formKey.currentState!.value["email"],
-                    //       //   noTelp: _formKey.currentState!.value["noTelp"],
-                    //       //   noWA: _formKey.currentState!.value["noWa"],
-                    //       //   website: _formKey.currentState!.value["website"],
-                    //       // )
-                    //       .then((value) {
-                    //     ScaffoldMessenger.of(context).showSnackBar(
-                    //         snackbarAlert(
-                    //             size, value != null || value != 0 ? 1 : 2));
-                    //     Navigator.pop(context);
-                    //   });
-                    // } else {
-                    //   ScaffoldMessenger.of(context)
-                    //       .showSnackBar(snackbarAlert(size, 3));
-                    // }
+                  ontap: () async {
+                    _formKey.currentState!.save();
+                    if (_formKey.currentState!.value["namaPengguna"] != null &&
+                        _formKey.currentState!.value["namaPengguna"] != "" &&
+                        _formKey.currentState!.value["username"] != null &&
+                        _formKey.currentState!.value["username"] != "" &&
+                        _formKey.currentState!.value["alamat"] != null &&
+                        _formKey.currentState!.value["alamat"] != "" &&
+                        _formKey.currentState!.value["email"] != null &&
+                        _formKey.currentState!.value["email"] != "" &&
+                        _formKey.currentState!.value["noTelp"] != null &&
+                        _formKey.currentState!.value["noTelp"] != "") {
+                      if (!isEmail(_formKey.currentState!.value["email"])) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(snackbarAlert(size, 4));
+                        return;
+                      }
+
+                      String? foto;
+
+                      if (pickedFile != null) {
+                        foto = await saveImage();
+                      }
+
+                      penggunaViewModel
+                          .updateData(
+                              _formKey.currentState!.value["namaPengguna"],
+                              _formKey.currentState!.value["username"],
+                              _formKey.currentState!.value["profil"],
+                              _formKey.currentState!.value["alamat"],
+                              penggunaViewModel.tempWilayahData!.idWilayah,
+                              _formKey.currentState!.value["perusahaan"],
+                              _formKey.currentState!.value["email"],
+                              _formKey.currentState!.value["noTelp"],
+                              _formKey.currentState!.value["noWa"],
+                              _formKey.currentState!.value["website"],
+                              _formKey.currentState!.value["password"],
+                              foto ?? penggunaViewModel.dataPengguna!.foto)
+                          .then((value) {
+                        if (value == true) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackbarAlert(size, 1));
+                          return;
+                        }
+
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(snackbarAlert(size, 2));
+                        return;
+                      });
+                    } else {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackbarAlert(size, 3));
+                      return;
+                    }
                   },
                 ),
                 const SizedBox(
@@ -382,6 +402,10 @@ class _BodyState extends State<Body> {
         message = "Input yang anda masukkan tidak lengkap!";
         image = "assets/lotie/error.json";
         break;
+      case 4:
+        message = "Email yang anda masukkan tidak valid!";
+        image = "assets/lotie/error.json";
+        break;
       default:
     }
 
@@ -398,8 +422,7 @@ class _BodyState extends State<Body> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            LottieBuilder.asset(image,
-                width: 80, height: 80),
+            LottieBuilder.asset(image, width: 80, height: 80),
             Text(message,
                 style: text3(neutral500, regular), textAlign: TextAlign.center),
           ],
