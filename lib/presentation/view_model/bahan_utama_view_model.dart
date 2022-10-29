@@ -64,7 +64,6 @@ class BahanUtamaViewModel extends ChangeNotifier {
 
   Future updateDataProduk(int start, int length,
       {bool isRestart = false}) async {
-    print("mulai");
     if (isRestart == true) {
       _dataProdukTemp!.clear();
     }

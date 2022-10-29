@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'presentation/route/page_route.dart';
+import 'presentation/screens/navigation/navigation.dart';
+import 'presentation/screens/onboarding_screen/onboarding_screen.dart';
 import 'presentation/view_model/ahs_utama_view_model.dart';
 import 'presentation/view_model/alat_utama_view_model.dart';
+import 'presentation/view_model/auth_view_model.dart';
 import 'presentation/view_model/bahan_utama_view_model.dart';
 import 'presentation/view_model/detail_proyek_view_model.dart';
 import 'presentation/view_model/kesalahan_view_model.dart';
@@ -34,210 +37,85 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => PenggunaViewModel()),
+        ChangeNotifierProvider(create: (context) => AuthViewModel()),
         ChangeNotifierProvider(create: (context) => WilayahViewModel()),
         ChangeNotifierProvider(create: (context) => TemplateProyekViewModel()),
         ChangeNotifierProvider(create: (context) => AHSUtamaViewModel()),
         ChangeNotifierProvider(create: (context) => BahanUtamaViewModel()),
         ChangeNotifierProvider(create: (context) => AlatUtamaViewModel()),
         ChangeNotifierProvider(create: (context) => UpahUtamaViewModel()),
-        ChangeNotifierProxyProvider<PenggunaViewModel, DetailProyekViewModel>(
+        ChangeNotifierProxyProvider<AuthViewModel, PenggunaViewModel>(
+          create: (context) => PenggunaViewModel(),
+          update: (context, pengguna, detail) =>
+              detail!..setUser(pengguna.userId),
+        ),
+        ChangeNotifierProxyProvider<AuthViewModel, DetailProyekViewModel>(
           create: (context) => DetailProyekViewModel(),
           update: (context, pengguna, detail) =>
-              detail!..updateData(pengguna.idPengguna),
+              detail!..updateData(pengguna.userId),
         ),
-        ChangeNotifierProxyProvider<PenggunaViewModel,
+        ChangeNotifierProxyProvider<AuthViewModel,
             ProyekPerencanaanViewModel>(
           create: (context) => ProyekPerencanaanViewModel(),
           update: (context, pengguna, perencanaan) =>
-              perencanaan!..updateData(pengguna.idPengguna),
+              perencanaan!..updateData(pengguna.userId),
         ),
-        ChangeNotifierProxyProvider<PenggunaViewModel,
+        ChangeNotifierProxyProvider<AuthViewModel,
             PelaksanaProyekViewModel>(
           create: (context) => PelaksanaProyekViewModel(),
           update: (context, pengguna, pelaksana) =>
-              pelaksana!..updateData(pengguna.idPengguna),
+              pelaksana!..updateData(pengguna.userId),
         ),
-        ChangeNotifierProxyProvider<PenggunaViewModel, ProfileProyekViewModel>(
+        ChangeNotifierProxyProvider<AuthViewModel, ProfileProyekViewModel>(
           create: (context) => ProfileProyekViewModel(),
           update: (context, pengguna, profile) =>
-              profile!..updateData(pengguna.idPengguna),
+              profile!..updateData(pengguna.userId),
         ),
-        ChangeNotifierProxyProvider<PenggunaViewModel,
+        ChangeNotifierProxyProvider<AuthViewModel,
             PengalamanProyekViewModel>(
           create: (context) => PengalamanProyekViewModel(),
           update: (context, pengguna, pengalaman) =>
-              pengalaman!..updateData(pengguna.idPengguna),
+              pengalaman!..updateData(pengguna.userId),
         ),
-        ChangeNotifierProxyProvider<PenggunaViewModel, KompetensiViewModel>(
+        ChangeNotifierProxyProvider<AuthViewModel, KompetensiViewModel>(
             create: (context) => KompetensiViewModel(),
             update: (context, pengguna, kompetensi) =>
-                kompetensi!..updateData(pengguna.idPengguna)),
-        ChangeNotifierProxyProvider<PenggunaViewModel, ProyekViewModel>(
+                kompetensi!..updateData(pengguna.userId)),
+        ChangeNotifierProxyProvider<AuthViewModel, ProyekViewModel>(
             create: (context) => ProyekViewModel(),
             update: (context, pengguna, proyek) =>
-                proyek!..updateData(pengguna.idPengguna)),
-        ChangeNotifierProxyProvider<PenggunaViewModel, KesalahanViewModel>(
+                proyek!..updateData(pengguna.userId)),
+        ChangeNotifierProxyProvider<AuthViewModel, KesalahanViewModel>(
             create: (context) => KesalahanViewModel(),
             update: (context, pengguna, kesalahan) =>
-                kesalahan!..updateData(pengguna.idPengguna)),
-        ChangeNotifierProxyProvider<PenggunaViewModel, RatingPenggunaViewModel>(
+                kesalahan!..updateData(pengguna.userId)),
+        ChangeNotifierProxyProvider<AuthViewModel, RatingPenggunaViewModel>(
             create: (context) => RatingPenggunaViewModel(),
             update: (context, pengguna, ratingPengguna) =>
-                ratingPengguna!..updateData(pengguna.idPengguna)),
+                ratingPengguna!..updateData(pengguna.userId)),
       ],
-      builder: (context, child) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Estimator',
-        theme: ThemeData(fontFamily: 'Quicksand'),
-        routes: AppPage.pages,
-        initialRoute: '/',
-        // home: MyHomePage(),
-      ),
+      builder: (context, child) => Consumer<AuthViewModel>(
+          builder: (context, auth, child) => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Estimator.id',
+              theme: ThemeData(fontFamily: 'Quicksand'),
+              routes: AppPage.pages,
+              home: auth.isAuth
+                  ? const Navigation()
+                  : FutureBuilder(
+                      future: auth.autoLogin(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Scaffold(
+                            body: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        }
+
+                        return const OnBoardingScreen();
+                      }))),
     );
   }
 }
-
-// class MyHomePage extends StatelessWidget {
-//   const MyHomePage({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     Size size = MediaQuery.of(context).size;
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: primary,
-//         title: Text(
-//           "Detail Bahan",
-//           style: text1(neutral100, bold),
-//         ),
-//         leading: IconButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             icon: const Icon(
-//               Icons.arrow_back_ios_new_rounded,
-//               color: neutral100,
-//             )),
-//         centerTitle: true,
-//       ),
-//       body: Column(
-//         children: [
-//           Image.asset(
-//             "assets/img/led.jpg",
-//             height: size.height * 0.35,
-//             width: size.width,
-//           ),
-//           Expanded(
-//             child: Container(
-//               padding: EdgeInsets.only(
-//                   top: 40, left: size.width * 0.05, right: size.width * 0.05),
-//               decoration: const BoxDecoration(
-//                 color: accentGreen100,
-//                 borderRadius: BorderRadius.only(
-//                   topLeft: Radius.circular(30),
-//                   topRight: Radius.circular(30),
-//                 ),
-//               ),
-//               child: SingleChildScrollView(
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       "LED-E1-P45-E27-3W-3000K-CT-V7",
-//                       style: text2(neutral500, bold),
-//                     ),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     Container(
-//                       padding: const EdgeInsets.all(5),
-//                       decoration: const BoxDecoration(
-//                         color: primary,
-//                         borderRadius: BorderRadius.only(
-//                           bottomLeft: Radius.circular(10),
-//                           topRight: Radius.circular(10),
-//                         ),
-//                       ),
-//                       child: Text(
-//                         "Opple",
-//                         style: text3(neutral100, regular),
-//                       ),
-//                     ),
-//                     const SizedBox(
-//                       height: 8,
-//                     ),
-//                     const DottedLine(
-//                       dashColor: neutral300,
-//                     ),
-//                     const SizedBox(
-//                       height: 8,
-//                     ),
-//                     Text.rich(TextSpan(
-//                         text: "Rp24.000,00",
-//                         style: text2(accentOrange500, bold),
-//                         children: [
-//                           TextSpan(
-//                               text: " / buah", style: text4(neutral500, light))
-//                         ])),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     Row(
-//                       children: [
-//                         const Icon(
-//                           Icons.location_pin,
-//                           color: primary,
-//                           size: 16,
-//                         ),
-//                         Text(
-//                           "Kab Aceh Selatan",
-//                           style: text4(primary, regular),
-//                         ),
-//                       ],
-//                     ),
-//                     const SizedBox(
-//                       height: 16,
-//                     ),
-//                     Text(
-//                       "LED Blub EcoMax",
-//                       style: text4(neutral500, regular),
-//                     ),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     Text(
-//                       "LED-P-HPB-E40-90W-4000K-70D-CT",
-//                       style: text4(neutral500, regular),
-//                     ),
-//                     const SizedBox(
-//                       height: 8,
-//                     ),
-//                     const DottedLine(
-//                       dashColor: neutral300,
-//                     ),
-//                     const SizedBox(
-//                       height: 8,
-//                     ),
-//                     Text(
-//                       "PT Opple Lighting Indonesia",
-//                       style: text4(neutral500, regular),
-//                     ),
-//                     const SizedBox(
-//                       height: 5,
-//                     ),
-//                     Text(
-//                       "Opple merupakan perusahaan lighting multinational terbesar di China yang memiliki fasilitas pabrikasi terbesar di China dan sudah beroperasi di 70 negara.",
-//                       textAlign: TextAlign.justify,
-//                       style: text4(neutral500, regular),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

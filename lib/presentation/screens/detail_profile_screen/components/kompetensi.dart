@@ -157,7 +157,7 @@ class _KompetensiState extends State<Kompetensi> {
                 Expanded(
                     child: BuildTextFieldKompetensi(
                   name: "hargaMin",
-                  initialValue: penggunaViewModel.dataPengguna!.hargaMin,
+                  initialValue: penggunaViewModel.dataPengguna!.hargaMin.toString(),
                 )),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -169,7 +169,7 @@ class _KompetensiState extends State<Kompetensi> {
                 Expanded(
                     child: BuildTextFieldKompetensi(
                   name: "hargaMax",
-                  initialValue: penggunaViewModel.dataPengguna!.hargaMax,
+                  initialValue: penggunaViewModel.dataPengguna!.hargaMax.toString(),
                 )),
               ],
             ),

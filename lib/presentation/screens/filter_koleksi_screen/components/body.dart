@@ -25,6 +25,8 @@ class Body extends StatelessWidget {
           ),
           const BuildTextField(
             hint: "Masukkan nama pekerjaan",
+            name: "pekerjaan",
+            keyboardType: TextInputType.none,
           ),
           const SizedBox(
             height: 16,
@@ -38,6 +40,8 @@ class Body extends StatelessWidget {
           ),
           const BuildTextField(
             hint: "Pilih satuan",
+            name: "satuan",
+            keyboardType: TextInputType.none,
           ),
         ],
       ),

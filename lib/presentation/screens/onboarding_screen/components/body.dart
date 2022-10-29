@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
 import 'build_content.dart';
 
@@ -26,111 +27,139 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-        child: Column(
-      children: [
-        SizedBox(
-          height: size.height * 0.5,
-          width: size.width,
-          child: Center(
-            child: SvgPicture.asset(
-              "assets/logo/estimator_white.svg",
-              width: size.width * 0.6,
+        child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          SvgPicture.asset("assets/logo/estimator_white.svg"),
+          const SizedBox(
+            height: 16,
+          ),
+          Expanded(
+            flex: 6,
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: controller,
+              children: [
+                BuildContent(
+                  size: size,
+                  subtitle:
+                      "Buat RAB onlinemu dengan dukungan database harga terbaru dan pembaharuan secara realtime",
+                  image: "assets/logo/1.svg",
+                ),
+                BuildContent(
+                  size: size,
+                  subtitle:
+                      "Seluruh data proyek yang telah dibuat dapat dengan mudah digunakan kembali untuk proyek lainnya",
+                  image: "assets/logo/2.svg",
+                ),
+                BuildContent(
+                  size: size,
+                  subtitle:
+                      "Membuat RAB kapanpun di manapun secara online dan gratis. Ayo gabung sekarang!",
+                  image: "assets/logo/3.svg",
+                )
+              ],
             ),
           ),
-        ),
-        Expanded(
-            child: Container(
-          width: size.width,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 30, left: size.width * 0.05),
-                child: SmoothPageIndicator(
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, RouteName.welcome);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 16),
+                    decoration: BoxDecoration(
+                      color: neutral100,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
+                            offset: const Offset(0, 1)),
+                      ],
+                    ),
+                    child: const Text(
+                      "Skip",
+                      style: TextStyle(
+                          color: primary, fontSize: 14, fontWeight: semibold),
+                    ),
+                  ),
+                ),
+                SmoothPageIndicator(
                   controller: controller,
                   count: 3,
-                  effect: const ExpandingDotsEffect(
+                  effect: const JumpingDotEffect(
                       spacing: 5,
-                      dotColor: Color(0xFFD0D0D0),
-                      activeDotColor: Color(0xFFDA9210),
+                      dotColor: Color(0xFFBCBCBC),
+                      activeDotColor: neutral100,
                       dotWidth: 8,
                       dotHeight: 8),
                 ),
-              ),
-              Expanded(
-                child: PageView(
-                  controller: controller,
-                  children: [
-                    BuildContent(
-                      size: size,
-                      title: "Halo! Selamat datang di Estimator.id",
-                      subtitle:
-                          "Buat RAB onlinemu dengan dukungan database harga terbaru dan pembaharuan secara realtime",
-                      ontap: () {
-                        if (index == 0) {
-                          setState(() {
-                            index++;
-                          });
+                GestureDetector(
+                  onTap: () {
+                    switch (index) {
+                      case 0:
+                        setState(() {
+                          index++;
+                        });
 
-                          controller.animateToPage(index,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.easeIn);
-                        } else {
-                          setState(() {
-                            index = 1;
-                          });
-                          controller.animateToPage(index,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.easeIn);
-                        }
-                      },
-                    ),
-                    BuildContent(
-                      size: size,
-                      title: "Nikmati berbagai fitur menarik",
-                      subtitle:
-                          "Seluruh data proyek yang telah dibuat dapat dengan mudah digunakan kembali untuk proyek lainnya",
-                      ontap: () {
-                        if (index == 1) {
-                          setState(() {
-                            index++;
-                          });
+                        controller.animateToPage(index,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
+                        break;
+                      case 1:
+                        setState(() {
+                          index++;
+                        });
 
-                          controller.animateToPage(index,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.easeIn);
-                        } else {
-                          setState(() {
-                            index = 2;
-                          });
-                          controller.animateToPage(index,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.easeIn);
-                        }
-                      },
-                    ),
-                    BuildContent(
-                      size: size,
-                      title: "Temukan kemudahan perancangan RAB",
-                      subtitle:
-                          "Membuat RAB kapanpun di manapun secara online dan gratis. Ayo gabung sekarang!",
-                      isLast: true,
-                      ontap: () {
+                        controller.animateToPage(index,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
+                        break;
+                      case 2:
                         Navigator.pushReplacementNamed(
-                            context, RouteName.loginScreen);
-                      },
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ))
-      ],
+                            context, RouteName.welcome);
+                        break;
+                      default:
+                    }
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 16),
+                    decoration: BoxDecoration(
+                      color: neutral100,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
+                            offset: const Offset(0, 1)),
+                      ],
+                    ),
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(
+                          color: primary, fontSize: 14, fontWeight: semibold),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     ));
   }
 }

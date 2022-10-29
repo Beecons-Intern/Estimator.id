@@ -1,5 +1,5 @@
 abstract class RouteName {
-  static const onBoardingScreen = '/';
+  static const onBoardingScreen = '/onBoardingScreen';
   static const loginScreen = '/loginScreen';
   static const registerScreen = '/registerScreen';
   static const homeScreen = '/homeScreen';
@@ -37,4 +37,5 @@ abstract class RouteName {
   static const ulasan = "/ulasan";
   static const kesalahan = "/kesalahan";
   static const detailTemplate = "/detailTemplate";
+  static const welcome = "/welcome";
 }

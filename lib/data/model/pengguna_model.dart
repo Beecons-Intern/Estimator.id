@@ -150,30 +150,35 @@ class PenggunaModel {
 
   static PenggunaModel fromJson(Map<String, Object?> json) {
     return PenggunaModel(
-      idPengguna: json[PenggunaFields.idPengguna] as int?,
-      namaPengguna: json[PenggunaFields.namaPengguna].toString(),
-      profil: json[PenggunaFields.profil].toString(),
-      alamat: json[PenggunaFields.alamat].toString(),
-      idWilayah: json[PenggunaFields.idWilayah].toString(),
-      perusahaan: json[PenggunaFields.perusahaan].toString(),
-      email: json[PenggunaFields.email].toString(),
-      noTelp: json[PenggunaFields.noTelp].toString(),
-      noWa: json[PenggunaFields.noWa].toString(),
-      website: json[PenggunaFields.website].toString(),
-      hargaMin: json[PenggunaFields.hargaMin].runtimeType == double ? json[PenggunaFields.hargaMin] as double : double.parse("${json[PenggunaFields.hargaMin] != null ? json[PenggunaFields.hargaMin].toString() : "0"}.0"),
-      hargaMax: json[PenggunaFields.hargaMax].runtimeType == double ? json[PenggunaFields.hargaMax] as double : double.parse("${json[PenggunaFields.hargaMax] != null ? json[PenggunaFields.hargaMax].toString() : "0"}.0"),
-      nego: json[PenggunaFields.nego].toString(),
-      username: json[PenggunaFields.username].toString(),
-      password: json[PenggunaFields.password].toString(),
-      foto: json[PenggunaFields.foto].toString(),
-      kategoriAkun: json[PenggunaFields.kategoriAkun].toString(),
-      jenisAkun: json[PenggunaFields.jenisAkun].toString(),
-      status: json[PenggunaFields.status].toString(),
-      kodeVerifikasi: json[PenggunaFields.kodeVerifikasi].toString(),
-      statusVerifikasi: json[PenggunaFields.statusVerifikasi].toString(),
-      tglDaftar: json[PenggunaFields.tglDaftar].toString(),
-      jamDaftar: json[PenggunaFields.jamDaftar].toString()
-    );
+        idPengguna: json[PenggunaFields.idPengguna] as int?,
+        namaPengguna: json[PenggunaFields.namaPengguna].toString(),
+        profil: json[PenggunaFields.profil].toString(),
+        alamat: json[PenggunaFields.alamat].toString(),
+        idWilayah: json[PenggunaFields.idWilayah].toString(),
+        perusahaan: json[PenggunaFields.perusahaan].toString(),
+        email: json[PenggunaFields.email].toString(),
+        noTelp: json[PenggunaFields.noTelp].toString(),
+        noWa: json[PenggunaFields.noWa].toString(),
+        website: json[PenggunaFields.website].toString(),
+        hargaMin: json[PenggunaFields.hargaMin].runtimeType == double
+            ? json[PenggunaFields.hargaMin] as double
+            : double.parse(
+                "${json[PenggunaFields.hargaMin] != null ? json[PenggunaFields.hargaMin].toString() : "0"}.0"),
+        hargaMax: json[PenggunaFields.hargaMax].runtimeType == double
+            ? json[PenggunaFields.hargaMax] as double
+            : double.parse(
+                "${json[PenggunaFields.hargaMax] != null ? json[PenggunaFields.hargaMax].toString() : "0"}.0"),
+        nego: json[PenggunaFields.nego].toString(),
+        username: json[PenggunaFields.username].toString(),
+        password: json[PenggunaFields.password].toString(),
+        foto: json[PenggunaFields.foto].toString(),
+        kategoriAkun: json[PenggunaFields.kategoriAkun].toString(),
+        jenisAkun: json[PenggunaFields.jenisAkun].toString(),
+        status: json[PenggunaFields.status].toString(),
+        kodeVerifikasi: json[PenggunaFields.kodeVerifikasi].toString(),
+        statusVerifikasi: json[PenggunaFields.statusVerifikasi].toString(),
+        tglDaftar: json[PenggunaFields.tglDaftar].toString(),
+        jamDaftar: json[PenggunaFields.jamDaftar].toString());
   }
 
   Map<String, Object?> toJson() => {

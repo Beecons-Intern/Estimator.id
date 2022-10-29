@@ -292,66 +292,66 @@ class _BodyState extends State<Body> {
                 RoundedButton(
                   text: "Perbarui Data",
                   ontap: () {
-                    _formKey.currentState!.save();
-                    if (_formKey.currentState!.value["namaPengguna"] != "" &&
-                        _formKey.currentState!.value["username"] != "" &&
-                        _formKey.currentState!.value["alamat"] != "" &&
-                        _formKey.currentState!.value["email"] != "" &&
-                        _formKey.currentState!.value["noTelp"] != "") {
-                      penggunaViewModel
-                          .updateData(PenggunaModel(
-                              idPengguna: penggunaViewModel.idPengguna,
-                              namaPengguna: _formKey
-                                  .currentState!.value["namaPengguna"]
-                                  .toString(),
-                              profil: _formKey.currentState!.value["profil"]
-                                  .toString(),
-                              alamat: _formKey.currentState!.value["alamat"]
-                                  .toString(),
-                              idWilayah: wilayahViewModel.wilayahData!.idWilayah
-                                  .toString(),
-                              perusahaan: _formKey
-                                  .currentState!.value["perusahaan"]
-                                  .toString(),
-                              email: _formKey.currentState!.value["email"]
-                                  .toString(),
-                              noTelp: _formKey.currentState!.value["noTelp"]
-                                  .toString(),
-                              noWa: _formKey.currentState!.value["noWa"]
-                                  .toString(),
-                              website: _formKey.currentState!.value["website"]
-                                  .toString(),
-                              hargaMin: penggunaViewModel.dataPengguna!.hargaMin
-                                  .toString(),
-                              hargaMax: penggunaViewModel.dataPengguna!.hargaMax
-                                  .toString(),
-                              username: _formKey.currentState!.value["username"]
-                                  .toString(),
-                              foto: penggunaViewModel.dataPengguna!.foto))
-                          // penggunaViewModel
-                          //     .updateData(
-                          //   namaPengguna:
-                          //       _formKey.currentState!.value["namaPengguna"],
-                          //   username: _formKey.currentState!.value["username"],
-                          //   profil: _formKey.currentState!.value["profil"],
-                          //   alamat: _formKey.currentState!.value["alamat"],
-                          //   idWilayah: penggunaViewModel.tempWilayahData!.idWilayah,
-                          //   perusahaan: _formKey.currentState!.value["perusahaan"],
-                          //   email: _formKey.currentState!.value["email"],
-                          //   noTelp: _formKey.currentState!.value["noTelp"],
-                          //   noWA: _formKey.currentState!.value["noWa"],
-                          //   website: _formKey.currentState!.value["website"],
-                          // )
-                          .then((value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            snackbarAlert(
-                                size, value != null || value != 0 ? 1 : 2));
-                        Navigator.pop(context);
-                      });
-                    } else {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(snackbarAlert(size, 3));
-                    }
+                    // _formKey.currentState!.save();
+                    // if (_formKey.currentState!.value["namaPengguna"] != "" &&
+                    //     _formKey.currentState!.value["username"] != "" &&
+                    //     _formKey.currentState!.value["alamat"] != "" &&
+                    //     _formKey.currentState!.value["email"] != "" &&
+                    //     _formKey.currentState!.value["noTelp"] != "") {
+                    //   penggunaViewModel
+                    //       .updateData(PenggunaModel(
+                    //           idPengguna: penggunaViewModel.idPengguna,
+                    //           namaPengguna: _formKey
+                    //               .currentState!.value["namaPengguna"]
+                    //               .toString(),
+                    //           profil: _formKey.currentState!.value["profil"]
+                    //               .toString(),
+                    //           alamat: _formKey.currentState!.value["alamat"]
+                    //               .toString(),
+                    //           idWilayah: wilayahViewModel.wilayahData!.idWilayah
+                    //               .toString(),
+                    //           perusahaan: _formKey
+                    //               .currentState!.value["perusahaan"]
+                    //               .toString(),
+                    //           email: _formKey.currentState!.value["email"]
+                    //               .toString(),
+                    //           noTelp: _formKey.currentState!.value["noTelp"]
+                    //               .toString(),
+                    //           noWa: _formKey.currentState!.value["noWa"]
+                    //               .toString(),
+                    //           website: _formKey.currentState!.value["website"]
+                    //               .toString(),
+                    //           hargaMin: penggunaViewModel.dataPengguna!.hargaMin
+                    //               .toString(),
+                    //           hargaMax: penggunaViewModel.dataPengguna!.hargaMax
+                    //               .toString(),
+                    //           username: _formKey.currentState!.value["username"]
+                    //               .toString(),
+                    //           foto: penggunaViewModel.dataPengguna!.foto))
+                    //       // penggunaViewModel
+                    //       //     .updateData(
+                    //       //   namaPengguna:
+                    //       //       _formKey.currentState!.value["namaPengguna"],
+                    //       //   username: _formKey.currentState!.value["username"],
+                    //       //   profil: _formKey.currentState!.value["profil"],
+                    //       //   alamat: _formKey.currentState!.value["alamat"],
+                    //       //   idWilayah: penggunaViewModel.tempWilayahData!.idWilayah,
+                    //       //   perusahaan: _formKey.currentState!.value["perusahaan"],
+                    //       //   email: _formKey.currentState!.value["email"],
+                    //       //   noTelp: _formKey.currentState!.value["noTelp"],
+                    //       //   noWA: _formKey.currentState!.value["noWa"],
+                    //       //   website: _formKey.currentState!.value["website"],
+                    //       // )
+                    //       .then((value) {
+                    //     ScaffoldMessenger.of(context).showSnackBar(
+                    //         snackbarAlert(
+                    //             size, value != null || value != 0 ? 1 : 2));
+                    //     Navigator.pop(context);
+                    //   });
+                    // } else {
+                    //   ScaffoldMessenger.of(context)
+                    //       .showSnackBar(snackbarAlert(size, 3));
+                    // }
                   },
                 ),
                 const SizedBox(
@@ -367,16 +367,20 @@ class _BodyState extends State<Body> {
 
   SnackBar snackbarAlert(Size size, int condition) {
     late String message;
+    late String image;
 
     switch (condition) {
       case 1:
         message = "Data berhasil diperbarui!";
+        image = "assets/lotie/success_primary.json";
         break;
       case 2:
         message = "Data gagal diperbarui!";
+        image = "assets/lotie/error.json";
         break;
       case 3:
         message = "Input yang anda masukkan tidak lengkap!";
+        image = "assets/lotie/error.json";
         break;
       default:
     }
@@ -394,7 +398,7 @@ class _BodyState extends State<Body> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            LottieBuilder.asset("assets/lotie/success_primary.json",
+            LottieBuilder.asset(image,
                 width: 80, height: 80),
             Text(message,
                 style: text3(neutral500, regular), textAlign: TextAlign.center),

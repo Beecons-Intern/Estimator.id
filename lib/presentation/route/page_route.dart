@@ -35,6 +35,7 @@ import '../screens/tukar_pulsa_screen/tukar_pulsa_screen.dart';
 import '../screens/tukar_wallet_screen/tukar_wallet_screen.dart';
 import '../screens/ubah_spesifikasi_screen/ubah_spesifikasi_screen.dart';
 import '../screens/ulasan_screen/ulasan_screen.dart';
+import '../screens/welcome_screen/welcome_screen.dart';
 import 'route_name.dart';
 
 class AppPage {
@@ -75,6 +76,7 @@ class AppPage {
     RouteName.detailBahan: (context) => const DetailBahanScreen(),
     RouteName.ulasan: (context) => const UlasanScreen(),
     RouteName.kesalahan: (context) => const KesalahanScreen(),
-    RouteName.detailTemplate: (context) => const DetailTemplateScreen()
+    RouteName.detailTemplate: (context) => const DetailTemplateScreen(),
+    RouteName.welcome: (context) => const WelcomeScreen()
   };
 }

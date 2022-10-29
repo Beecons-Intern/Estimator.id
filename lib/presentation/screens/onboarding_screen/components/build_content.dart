@@ -1,75 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../utilities/utilities.dart';
-import '../../../route/route_name.dart';
-import '../../../widgets/widgets.dart';
 
 class BuildContent extends StatelessWidget {
   const BuildContent(
       {Key? key,
       required this.size,
-      required this.title,
       required this.subtitle,
-      this.isLast = false,
-      required this.ontap})
+      required this.image})
       : super(key: key);
 
   final Size size;
-  final String title;
   final String subtitle;
-  final bool isLast;
-  final void Function()? ontap;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(
-          top: 20, left: size.width * 0.05, right: size.width * 0.05),
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: heading4(neutral500, semibold),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            subtitle,
-            style: body(neutral500, regular),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: Stack(
-              children: [
-                Positioned(
-                    bottom: isLast == true ? 62 : 10,
-                    left: 0,
-                    right: 0,
-                    child: RoundedButton(
-                      text: isLast == true ? "Masuk" : "Lanjutkan",
-                      ontap: ontap,
-                    )),
-                if (isLast == true) ...[
-                  Positioned(
-                    bottom: 10,
-                    left: 0,
-                    right: 0,
-                    child: OutlineButton(
-                      text: "Daftar",
-                      ontap: () {
-                        Navigator.pushReplacementNamed(
-                            context, RouteName.registerScreen);
-                      },
-                    ),
-                  ),
-                ]
-              ],
-            ),
-          )
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          subtitle,
+          style: body(neutral100, medium),
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Center(child: SvgPicture.asset(image, height: size.height * 0.5, )),
+        SizedBox(
+          height: size.height * 0.1,
+        ),
+      ],
     );
   }
 }

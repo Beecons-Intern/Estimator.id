@@ -50,4 +50,32 @@ class PenggunaSource {
       return throw Exception("Error $error");
     }
   }
+
+    Future<PenggunaModel?> checkEmail(String email) async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final data = await db.query(table,
+          columns: PenggunaFields.values,
+          where:
+              '${PenggunaFields.email} = ?',
+          whereArgs: [email]);
+      if (data.isNotEmpty) {
+        return PenggunaModel.fromJson(data.first);
+      }
+
+      return null;
+    } catch (error) {
+      return throw Exception("Error $error");
+    }
+  }
+
+    Future<PenggunaModel> addData(PenggunaModel pengguna) async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final id = await db.insert(table, pengguna.toJson());
+      return pengguna.copy(idPengguna: id);
+    } catch (error) {
+      return throw Exception("Error $error");
+    }
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/auth_view_model.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -39,6 +40,7 @@ class _BodyState extends State<Body> {
   ];
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final penggunaViewModel = Provider.of<PenggunaViewModel>(context);
     Size size = MediaQuery.of(context).size;
     return Stack(
@@ -312,8 +314,9 @@ class _BodyState extends State<Body> {
                                         context, RouteName.kesalahan);
                                     break;
                                   case 4:
-                                    Navigator.pushNamed(
-                                        context, RouteName.loginScreen);
+                                    authViewModel.logOut();
+                                    Navigator.pushNamedAndRemoveUntil(context,
+                                        RouteName.welcome, (route) => false);
                                     break;
                                   default:
                                 }

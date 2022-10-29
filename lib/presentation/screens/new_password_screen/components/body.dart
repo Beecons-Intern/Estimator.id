@@ -43,6 +43,8 @@ class Body extends StatelessWidget {
             const BuildTextField(
               hint: "example@gmail.com",
               isPassword: true,
+              name: "email",
+              keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(
               height: 16,
@@ -50,6 +52,8 @@ class Body extends StatelessWidget {
             const BuildTextField(
               hint: "example@gmail.com",
               isPassword: true,
+              name: "password",
+              keyboardType: TextInputType.visiblePassword,
             ),
             const SizedBox(
               height: 80,

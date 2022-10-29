@@ -42,6 +42,8 @@ class Body extends StatelessWidget {
             ),
             const BuildTextField(
               hint: "example@gmail.com",
+              name: "email",
+              keyboardType: TextInputType.none,
             ),
             const SizedBox(
               height: 80,

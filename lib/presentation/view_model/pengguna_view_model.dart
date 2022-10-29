@@ -15,8 +15,12 @@ class PenggunaViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  final int _idPengguna = 110;
-  int get idPengguna => _idPengguna;
+  int? _idPengguna;
+
+  void setUser(uid) {
+    _idPengguna = uid;
+    notifyListeners();
+  }
 
   PenggunaModel? _dataPengguna;
   PenggunaModel? get dataPengguna => _dataPengguna;
@@ -39,7 +43,7 @@ class PenggunaViewModel extends ChangeNotifier {
     _dataPengguna = null;
 
     try {
-      await PenggunaSource().getData(idPengguna).then((value) async {
+      await PenggunaSource().getData(_idPengguna).then((value) async {
         _dataPengguna = value;
         final dataWilayah = await WilayahSource().getData(value.idWilayah);
         _wilayahData = dataWilayah;

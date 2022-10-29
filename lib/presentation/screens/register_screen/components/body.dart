@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 
 import '../../../route/route_name.dart';
+import '../../../view_model/auth_view_model.dart';
 import '../../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  Body({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final authViewModel = Provider.of<AuthViewModel>(context, listen: false);
     return SafeArea(
       child: Stack(
         fit: StackFit.expand,
@@ -55,35 +62,124 @@ class Body extends StatelessWidget {
                             const SizedBox(
                               height: 20,
                             ),
-                            const BuildTextField(hint: "Nama"),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            const BuildTextField(hint: "Email"),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            const BuildTextField(
-                              hint: "Password",
-                              isPassword: true,
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            const BuildTextField(
-                              hint: "Ulangi Password",
-                              isPassword: true,
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            RoundedButton(
-                              text: "Daftar",
-                              ontap: () {
-                                Navigator.pushNamedAndRemoveUntil(context,
-                                    RouteName.navigation, (route) => false);
-                              },
-                            ),
+                            FormBuilder(
+                                key: _formKey,
+                                child: Column(
+                                  children: [
+                                    const BuildTextField(
+                                      hint: "Nama",
+                                      name: "nama",
+                                      keyboardType: TextInputType.name,
+                                    ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    const BuildTextField(
+                                      hint: "Email",
+                                      name: "email",
+                                      keyboardType: TextInputType.emailAddress,
+                                    ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    const BuildTextField(
+                                      hint: "Password",
+                                      isPassword: true,
+                                      name: "password",
+                                      keyboardType:
+                                          TextInputType.visiblePassword,
+                                    ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    const BuildTextField(
+                                      hint: "Ulangi Password",
+                                      isPassword: true,
+                                      name: "passwordConfirmation",
+                                      keyboardType:
+                                          TextInputType.visiblePassword,
+                                    ),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    RoundedButton(
+                                      text: "Daftar",
+                                      ontap: () {
+                                        _formKey.currentState!.save();
+                                        if (_formKey.currentState!
+                                                    .value["nama"] !=
+                                                null &&
+                                            _formKey.currentState!
+                                                    .value["nama"] !=
+                                                "" &&
+                                            _formKey.currentState!
+                                                    .value["email"] !=
+                                                null &&
+                                            _formKey.currentState!
+                                                    .value["email"] !=
+                                                "" &&
+                                            _formKey.currentState!
+                                                    .value["password"] !=
+                                                null &&
+                                            _formKey.currentState!
+                                                    .value["password"] !=
+                                                "" &&
+                                            _formKey.currentState!.value[
+                                                    "passwordConfirmation"] !=
+                                                null &&
+                                            _formKey.currentState!.value[
+                                                    "passwordConfirmation"] !=
+                                                "") {
+                                          if (!isEmail(_formKey
+                                              .currentState!.value["email"]
+                                              .toString()
+                                              .toLowerCase())) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                                    snackbarAlert(size, 2));
+                                            return;
+                                          }
+
+                                          if (_formKey.currentState!
+                                                  .value["password"] !=
+                                              _formKey.currentState!.value[
+                                                  "passwordConfirmation"]) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                                    snackbarAlert(size, 3));
+                                            return;
+                                          }
+
+                                          authViewModel.email = _formKey
+                                              .currentState!.value["email"];
+                                          authViewModel.username = _formKey
+                                              .currentState!.value["nama"];
+                                          authViewModel.password = _formKey
+                                              .currentState!.value["password"];
+
+                                          authViewModel.signUp().then((value) {
+                                            if (value != true) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                      snackbarAlert(size, 5));
+                                              return;
+                                            }
+
+                                            Navigator.pushNamedAndRemoveUntil(
+                                                context,
+                                                RouteName.navigation,
+                                                (route) => false);
+                                          });
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                                  snackbarAlert(size, 4));
+                                          return;
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                )),
                             const SizedBox(
                               height: 10,
                             ),
@@ -96,20 +192,23 @@ class Body extends StatelessWidget {
                             const SizedBox(
                               height: 10,
                             ),
-                            RoundedContainer(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset("assets/logo/google.svg"),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Google",
-                                  style: text2(neutral500, regular),
-                                )
-                              ],
-                            )),
+                            GestureDetector(
+                              onTap: () {},
+                              child: RoundedContainer(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset("assets/logo/google.svg"),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    "Google",
+                                    style: text2(neutral500, regular),
+                                  )
+                                ],
+                              )),
+                            ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -143,5 +242,53 @@ class Body extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  SnackBar snackbarAlert(Size size, int condition) {
+    late String message;
+    late String image;
+
+    switch (condition) {
+      case 1:
+        message = "Register berhasil!";
+        image = "assets/lotie/success_primary.json";
+        break;
+      case 2:
+        message = "Format email salah!";
+        image = "assets/lotie/error.json";
+        break;
+      case 3:
+        message = "Password tidak sama!";
+        image = "assets/lotie/error.json";
+        break;
+      case 4:
+        message = "Input yang anda masukkan tidak lengkap!";
+        image = "assets/lotie/error.json";
+        break;
+      case 5:
+        message = "Email sudah pernah didaftarkan!";
+        image = "assets/lotie/error.json";
+        break;
+      default:
+    }
+
+    return SnackBar(
+        duration: const Duration(seconds: 2),
+        margin: EdgeInsets.only(
+            bottom: size.height * 0.5,
+            left: size.width * 0.2,
+            right: size.width * 0.2),
+        backgroundColor: neutral100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        behavior: SnackBarBehavior.floating,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LottieBuilder.asset(image, width: 80, height: 80),
+            Text(message,
+                style: text3(neutral500, regular), textAlign: TextAlign.center),
+          ],
+        ));
   }
 }
