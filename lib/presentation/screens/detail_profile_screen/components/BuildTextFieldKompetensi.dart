@@ -20,6 +20,7 @@ class _BuildTextFieldKompetensiState extends State<BuildTextFieldKompetensi> {
   @override
   Widget build(BuildContext context) {
     return FormBuilderTextField(
+      keyboardType: TextInputType.number,
       initialValue: widget.initialValue,
       name: widget.name,
       style: text3(neutral500, regular),

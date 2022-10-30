@@ -1,7 +1,9 @@
 import 'package:estimator_id/presentation/view_model/kompetensi_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/validators.dart';
 import '../../../view_model/pengguna_view_model.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../widgets/rounded_button.dart';
@@ -162,8 +164,12 @@ class _KompetensiState extends State<Kompetensi> {
                   Expanded(
                       child: BuildTextFieldKompetensi(
                     name: "hargaMin",
-                    initialValue:
-                        penggunaViewModel.dataPengguna!.hargaMin.toString(),
+                    initialValue: penggunaViewModel.dataPengguna!.hargaMin
+                                .toString() !=
+                            "0.0"
+                        ? penggunaViewModel.dataPengguna!.hargaMin.toString()
+                        : penggunaViewModel.dataPengguna!.hargaMin
+                            .toString()[0],
                   )),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5),
@@ -175,8 +181,12 @@ class _KompetensiState extends State<Kompetensi> {
                   Expanded(
                       child: BuildTextFieldKompetensi(
                     name: "hargaMax",
-                    initialValue:
-                        penggunaViewModel.dataPengguna!.hargaMax.toString(),
+                    initialValue: penggunaViewModel.dataPengguna!.hargaMax
+                                .toString() !=
+                            "0.0"
+                        ? penggunaViewModel.dataPengguna!.hargaMax.toString()
+                        : penggunaViewModel.dataPengguna!.hargaMax
+                            .toString()[0],
                   )),
                 ],
               ),
@@ -186,7 +196,46 @@ class _KompetensiState extends State<Kompetensi> {
             ),
             RoundedButton(
               ontap: () async {
-                  await kompetensiViewModel.insertData();
+                _formKey.currentState!.save();
+                if (_formKey.currentState!.value["hargaMin"] != null &&
+                    _formKey.currentState!.value["hargaMin"] != "" &&
+                    _formKey.currentState!.value["hargaMax"] != null &&
+                    _formKey.currentState!.value["hargaMax"] != "") {
+                  if (isNumeric(_formKey.currentState!.value["hargaMin"]
+                          .toString()) &&
+                      isNumeric(_formKey.currentState!.value["hargaMax"]
+                          .toString())) {
+                    penggunaViewModel
+                        .updateKompetensi(
+                            _formKey.currentState!.value["hargaMin"]
+                                        .runtimeType ==
+                                    double
+                                ? _formKey.currentState!.value["hargaMin"]
+                                    as double
+                                : double.parse(
+                                    "${_formKey.currentState!.value["hargaMin"]}.0"),
+                            _formKey.currentState!.value["hargaMax"]
+                                        .runtimeType ==
+                                    double
+                                ? _formKey.currentState!.value["hargaMax"]
+                                    as double
+                                : double.parse(
+                                    "${_formKey.currentState!.value["hargaMax"]}.0"))
+                        .then((value) {
+                      if (value == true) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(snackbarAlert(size, 1));
+                        return;
+                      }
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackbarAlert(size, 2));
+                    return;
+                  }
+                }
+
+                await kompetensiViewModel.insertData();
                 await kompetensiViewModel.deleteData();
               },
               text: "Simpan",
@@ -195,5 +244,45 @@ class _KompetensiState extends State<Kompetensi> {
         ),
       ),
     );
+  }
+
+  SnackBar snackbarAlert(Size size, int condition) {
+    late String message;
+    late String image;
+
+    switch (condition) {
+      case 1:
+        message = "Data berhasil disimpan!";
+        image = "assets/lotie/success_primary.json";
+        break;
+      case 2:
+        message = "Pastikan inputan harga jasa berupa numerik!";
+        image = "assets/lotie/error.json";
+        break;
+      case 3:
+        message = "Data gagal disimpan";
+        image = "assets/lotie/error.json";
+        break;
+      default:
+    }
+
+    return SnackBar(
+        duration: const Duration(seconds: 2),
+        margin: EdgeInsets.only(
+            bottom: size.height * 0.5,
+            left: size.width * 0.2,
+            right: size.width * 0.2),
+        backgroundColor: neutral100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        behavior: SnackBarBehavior.floating,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LottieBuilder.asset(image, width: 80, height: 80),
+            Text(message,
+                style: text3(neutral500, regular), textAlign: TextAlign.center),
+          ],
+        ));
   }
 }
