@@ -10,6 +10,9 @@ class WilayahViewModel extends ChangeNotifier {
   List<WilayahModel>? _allWilayahData;
   List<WilayahModel>? get allWilayahData => _allWilayahData;
 
+  List<WilayahModel>? _allWilayahDataTemp;
+  List<WilayahModel>? get allWilayahDataTemp => _allWilayahDataTemp;
+
   Future getWilayah(String id) async {
     try {
       await WilayahSource().getData(id).then((value) => _wilayahData = value);
@@ -34,9 +37,28 @@ class WilayahViewModel extends ChangeNotifier {
     try {
       final dataAllWilayah = await WilayahSource().getAll();
       _allWilayahData = dataAllWilayah;
+      _allWilayahDataTemp = dataAllWilayah;
       notifyListeners();
     } catch (e) {
       return e;
+    }
+  }
+
+  Future searchData(String? data) async {
+    try {
+      if (data != null && data != "") {
+        print(data);
+        final dataWilayah = _allWilayahData!
+            .where((element) =>
+                element.wilayah.toLowerCase().contains(data.toLowerCase()))
+            .toList();
+        _allWilayahDataTemp = dataWilayah;
+      } else {
+        _allWilayahDataTemp = _allWilayahData;
+      }
+      notifyListeners();
+    } catch (error) {
+      return error;
     }
   }
 }
