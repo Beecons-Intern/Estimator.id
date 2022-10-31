@@ -75,19 +75,25 @@ class ProyekViewModel extends ChangeNotifier {
   }
 
   void filterData() {
+    if (_datasProyekUser != null) {
+      _datasProyekUser!.clear();
+    }
+
     if (_datasPelaksanaProyek != null && _datasProyek != null) {
       for (var pelaksana in _datasPelaksanaProyek!) {
         for (var proyek in _datasProyek!) {
           if (pelaksana.idProyek == proyek.idProyek) {
             if (_datasProyekUser != null) {
               _datasProyekUser!.add(proyek);
+            } else {
+              _datasProyekUser = [proyek];
             }
-
-            _datasProyekUser = [proyek];
           }
         }
       }
     }
+
+    notifyListeners();
   }
 
   Future<void> getWilayahNama() async {

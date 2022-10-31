@@ -97,7 +97,7 @@ class DetailItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   currencyFormatter
-                      .format(double.parse(hargaSatuan.totalHarga)),
+                      .format(double.parse(hargaSatuan.totalHarga.toString())),
                   style: text3(neutral500, medium),
                   textAlign: TextAlign.end,
                 ),
@@ -118,7 +118,7 @@ class DetailItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   currencyFormatter
-                      .format(double.parse(hargaSatuan.totalHarga)),
+                      .format(double.parse(hargaSatuan.tempTotalHarga.toString())),
                   style: text3(neutral500, medium),
                   textAlign: TextAlign.end,
                 ),

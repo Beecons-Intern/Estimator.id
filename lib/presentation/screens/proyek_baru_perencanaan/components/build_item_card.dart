@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../../data/model/template_proyek_model.dart';
+import '../../../../utilities/strings.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
 import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/template_proyek_view_model.dart';
+import '../../../view_model/wilayah_view_model.dart';
 
 class BuildItemCard extends StatelessWidget {
   const BuildItemCard(
@@ -13,13 +15,15 @@ class BuildItemCard extends StatelessWidget {
       required this.items,
       required this.templateProyekModel,
       required this.templateProyekViewModel,
-      required this.profileProyekViewModel});
+      required this.profileProyekViewModel,
+      required this.wilayahViewModel});
 
   final Size size;
   final List<String> items;
   final TemplateProyekModel templateProyekModel;
   final TemplateProyekViewModel templateProyekViewModel;
   final ProfileProyekViewModel profileProyekViewModel;
+  final WilayahViewModel wilayahViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +58,18 @@ class BuildItemCard extends StatelessWidget {
                               });
                               break;
                             case 1:
-                              Navigator.pushNamed(
-                                  context, RouteName.profileProyek,
-                                  arguments: true);
+                              templateProyekViewModel
+                                  .getDetailTemplate(templateProyekModel)
+                                  .then((value) {
+                                profileProyekViewModel.setDataProyek(
+                                    templateProyekModel.namaProyek,
+                                    templateProyekModel.jasaKontraktor,
+                                    templateProyekModel.pajak);
+                                wilayahViewModel.getWilayah(wilayahSleman);
+                                Navigator.pushNamed(
+                                    context, RouteName.profileProyek,
+                                    arguments: true);
+                              });
                               break;
                             default:
                           }

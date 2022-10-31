@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:estimator_id/presentation/view_model/pengguna_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
@@ -321,9 +322,44 @@ class _BodyState extends State<Body> {
                                         context, RouteName.kesalahan);
                                     break;
                                   case 4:
-                                    authViewModel.logOut();
-                                    Navigator.pushNamedAndRemoveUntil(context,
-                                        RouteName.welcome, (route) => false);
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              title: const Text("Keluar"),
+                                              content: const Text(
+                                                  "Apakah anda yakin untuk keluar dari aplikasi ini?"),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: const Text(
+                                                      "Batal",
+                                                      style: TextStyle(
+                                                          color:
+                                                              accentOrange500),
+                                                    )),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      authViewModel.logOut();
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                              snackbarAlert(
+                                                                  size, 1));
+                                                      Navigator
+                                                          .pushNamedAndRemoveUntil(
+                                                              context,
+                                                              RouteName.welcome,
+                                                              (route) => false);
+                                                    },
+                                                    child: const Text(
+                                                      "Keluar",
+                                                      style: TextStyle(
+                                                          color: primary),
+                                                    )),
+                                              ],
+                                            ));
                                     break;
                                   default:
                                 }
@@ -354,5 +390,37 @@ class _BodyState extends State<Body> {
         ),
       ],
     );
+  }
+
+  SnackBar snackbarAlert(Size size, int condition) {
+    late String message;
+    late String image;
+
+    switch (condition) {
+      case 1:
+        message = "Anda berhasil keluar!";
+        image = "assets/lotie/success_primary.json";
+        break;
+      default:
+    }
+
+    return SnackBar(
+        duration: const Duration(seconds: 1),
+        margin: EdgeInsets.only(
+            bottom: size.height * 0.5,
+            left: size.width * 0.2,
+            right: size.width * 0.2),
+        backgroundColor: neutral100,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        behavior: SnackBarBehavior.floating,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LottieBuilder.asset(image, width: 80, height: 80),
+            Text(message,
+                style: text3(neutral500, regular), textAlign: TextAlign.center),
+          ],
+        ));
   }
 }

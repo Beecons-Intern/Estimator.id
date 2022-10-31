@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../data/model/dokumen_model.dart';
 import '../../data/model/proyek_model.dart';
@@ -14,6 +15,7 @@ class ProfileProyekViewModel extends ChangeNotifier {
   String? pajak;
   String? keteranganLain = "";
   String foto = noPhoto;
+  XFile? newPhoto;
 
   List<DokumenModel>? _datasDokumen;
   List<DokumenModel>? get datasDokumen => _datasDokumen;
@@ -31,10 +33,16 @@ class ProfileProyekViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  set proyekSet(ProyekModel proyek) {
+    _dataProyek = proyek;
+    notifyListeners();
+  }
+
   void setDataProyek(String namaProyek, String jasaKontraktor, String pajak) {
     this.namaProyek = namaProyek;
     this.jasaKontraktor = jasaKontraktor;
     this.pajak = pajak;
+    notifyListeners();
   }
 
   Future insertDataProyek() async {
@@ -54,6 +62,7 @@ class ProfileProyekViewModel extends ChangeNotifier {
           tglDibuat: tglDibuat,
           jamDibuat: jamDibuat);
       final data = await ProyekSource().addData(dataProyekBaru);
+      print(data.idProyek);
       _dataProyek = data;
       notifyListeners();
     } catch (e) {

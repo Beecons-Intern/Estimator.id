@@ -79,7 +79,7 @@ class KesalahanScreen extends StatelessWidget {
         icon = "assets/lotie/success_primary.json";
         break;
       case false:
-        message = "Data gagal disimpan, pastikan laporan diisi lengkap!";
+        message = "Laporan gagal disimpan, pastikan laporan diisi lengkap!";
         icon = "assets/lotie/error.json";
         break;
       default:

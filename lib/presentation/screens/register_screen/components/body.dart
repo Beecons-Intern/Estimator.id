@@ -169,6 +169,10 @@ class Body extends StatelessWidget {
                                                 context,
                                                 RouteName.navigation,
                                                 (route) => false);
+
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                                    snackbarAlert(size, 1));
                                           });
                                         } else {
                                           ScaffoldMessenger.of(context)

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
+import '../../../view_model/wilayah_view_model.dart';
 import 'build_item_card.dart';
 
 class Body extends StatelessWidget {
@@ -15,6 +16,8 @@ class Body extends StatelessWidget {
         Provider.of<TemplateProyekViewModel>(context, listen: false);
     final profileProyekViewModel =
         Provider.of<ProfileProyekViewModel>(context, listen: false);
+    final wilayahViewModel =
+        Provider.of<WilayahViewModel>(context, listen: false);
     List<String> items = ["Lihat", "Gunakan Template"];
     Size size = MediaQuery.of(context).size;
     return GridView(
@@ -32,6 +35,12 @@ class Body extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+              profileProyekViewModel.namaProyek = null;
+              profileProyekViewModel.idWilayah = null;
+              profileProyekViewModel.pemilik = null;
+              profileProyekViewModel.jasaKontraktor = null;
+              profileProyekViewModel.pajak = null;
+              profileProyekViewModel.keteranganLain = "";
               Navigator.pushNamed(context, RouteName.profileProyek,
                   arguments: true);
             },
@@ -66,6 +75,7 @@ class Body extends StatelessWidget {
                       templateProyekModel: templateProyek,
                       templateProyekViewModel: templateProyekViewModel,
                       profileProyekViewModel: profileProyekViewModel,
+                      wilayahViewModel: wilayahViewModel,
                     ))
                 .toList(),
         ]);

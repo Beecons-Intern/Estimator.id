@@ -125,6 +125,10 @@ class Body extends StatelessWidget {
                                                 context,
                                                 RouteName.navigation,
                                                 (route) => false);
+
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                                    snackbarAlert(size, 1));
                                           });
                                         } else {
                                           ScaffoldMessenger.of(context)
@@ -218,7 +222,7 @@ class Body extends StatelessWidget {
     }
 
     return SnackBar(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 1),
         margin: EdgeInsets.only(
             bottom: size.height * 0.5,
             left: size.width * 0.2,

@@ -36,14 +36,13 @@ class HargaSatuanFields {
 class HargaSatuanModel {
   int? idHargaSatuan;
   int idProyek, idPelaksana;
+  double totalHarga, tempTotalHarga;
   String idPekerjaan,
       namaPekerjaan,
       satuan,
       idKategori,
       level,
       haveSub,
-      totalHarga,
-      tempTotalHarga,
       sumber,
       tglDibuat,
       jamDibuat;
@@ -74,8 +73,8 @@ class HargaSatuanModel {
           String? idKategori,
           String? level,
           String? haveSub,
-          String? totalHarga,
-          String? tempTotalHarga,
+          double? totalHarga,
+          double? tempTotalHarga,
           String? sumber,
           String? tglDibuat,
           String? jamDibuat}) =>
@@ -106,8 +105,8 @@ class HargaSatuanModel {
           idKategori: json[HargaSatuanFields.idKategori] as String,
           level: json[HargaSatuanFields.level] as String,
           haveSub: json[HargaSatuanFields.haveSub] as String,
-          totalHarga: json[HargaSatuanFields.totalHarga] as String,
-          tempTotalHarga: json[HargaSatuanFields.tempTotalHarga] as String,
+          totalHarga: json[HargaSatuanFields.totalHarga].runtimeType == double ? json[HargaSatuanFields.totalHarga] as double : double.parse("${json[HargaSatuanFields.totalHarga] != "" ? json[HargaSatuanFields.totalHarga].toString() : "0"}.0"),
+          tempTotalHarga: json[HargaSatuanFields.tempTotalHarga].runtimeType == double ? json[HargaSatuanFields.tempTotalHarga] as double : double.parse("${json[HargaSatuanFields.tempTotalHarga] != "" ? json[HargaSatuanFields.tempTotalHarga].toString() : "0"}.0"),
           sumber: json[HargaSatuanFields.sumber] as String,
           tglDibuat: json[HargaSatuanFields.tglDibuat] as String,
           jamDibuat: json[HargaSatuanFields.jamDibuat] as String);

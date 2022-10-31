@@ -18,7 +18,7 @@ class HargaSatuanSource {
 
       return null;
     } catch (error) {
-      print(error);
+      print("Harga satuan $error");
       return throw Exception("Error $error");
     }
   }

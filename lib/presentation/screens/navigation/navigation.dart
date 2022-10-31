@@ -170,7 +170,8 @@ class _NavigationState extends State<Navigation> {
                         ),
                       ),
                       NavigationButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            await pelaksanaProyekViewModel.getDatas();
                             if (pelaksanaProyekViewModel.datasPelaksanaProyek !=
                                 null) {
                               proyekViewModel.setDataPelaksana(

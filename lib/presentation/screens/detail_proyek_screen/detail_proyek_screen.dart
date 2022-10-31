@@ -11,7 +11,6 @@ class DetailProyekScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final detailProyekViewModel = Provider.of<DetailProyekViewModel>(context);
-    print(detailProyekViewModel.datasHargaSatuan);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -23,7 +22,7 @@ class DetailProyekScreen extends StatelessWidget {
         ),
         leading: IconButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, RouteName.proyek);
+              Navigator.pop(context);
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,

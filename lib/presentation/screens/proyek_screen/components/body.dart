@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../utilities/strings.dart';
 import '../../../route/route_name.dart';
 import '../../../../utilities/utilities.dart';
-import '../../../view_model/pelaksana_proyek_view_model.dart';
+import '../../../view_model/detail_proyek_view_model.dart';
+import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/proyek_view_model.dart';
 
 class Body extends StatelessWidget {
@@ -16,16 +20,17 @@ class Body extends StatelessWidget {
     final items = [
       "Lihat",
       "Profil Proyek",
-      "Laporan",
-      "Bagikan",
-      "Duplikat",
-      "Hapus",
-      "Proyek Selesai"
+      // "Laporan",
+      // "Bagikan",
+      // "Duplikat",
+      // "Hapus",
+      // "Proyek Selesai"
     ];
     final Size size = MediaQuery.of(context).size;
     final proyekViewModel = Provider.of<ProyekViewModel>(context);
-    print(proyekViewModel.datasProyek);
-    print(proyekViewModel.datasProyekUser);
+    final profileProyekViewModel = Provider.of<ProfileProyekViewModel>(context);
+    final detailProyekViewModel =
+        Provider.of<DetailProyekViewModel>(context, listen: false);
     return Stack(
       children: [
         Container(
@@ -80,8 +85,7 @@ class Body extends StatelessWidget {
                       left: size.width * 0.05,
                       right: size.width * 0.05,
                       bottom: 20),
-                  itemCount: proyekViewModel.datasProyekUser != null &&
-                          proyekViewModel.datasPelaksanaProyek!.isNotEmpty
+                  itemCount: proyekViewModel.datasProyekUser != null
                       ? proyekViewModel.datasProyekUser!.length
                       : 0,
                   scrollDirection: Axis.vertical,
@@ -121,63 +125,93 @@ class Body extends StatelessWidget {
                                         horizontal: size.width * 0.05),
                                     child: ListView.separated(
                                         shrinkWrap: true,
-                                        itemBuilder: (context, index) {
+                                        itemBuilder: (context, indexList) {
                                           return GestureDetector(
                                             onTap: () {
                                               Navigator.pop(context);
-                                              switch (index) {
+                                              switch (indexList) {
                                                 case 0:
-                                                  Navigator.pushNamed(context,
-                                                      RouteName.detailProyek,
-                                                      arguments: false);
+                                                  detailProyekViewModel
+                                                      .getDetail(proyekViewModel
+                                                              .datasProyekUser![
+                                                          index])
+                                                      .then((value) =>
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              RouteName
+                                                                  .detailProyek,
+                                                              arguments:
+                                                                  false));
+
                                                   break;
                                                 case 1:
+                                                  profileProyekViewModel
+                                                          .proyekSet =
+                                                      proyekViewModel
+                                                              .datasProyekUser![
+                                                          index];
                                                   Navigator.pushNamed(context,
                                                       RouteName.profileProyek,
                                                       arguments: false);
                                                   break;
-                                                case 2:
-                                                  Navigator.pushNamed(context,
-                                                      RouteName.laporanRAB);
-                                                  break;
-                                                case 4:
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                          snackbarCopyDuplikat(
-                                                              size,
-                                                              "diduplikat"));
-                                                  break;
+                                                // case 2:
+                                                //   Navigator.pushNamed(context,
+                                                //       RouteName.laporanRAB);
+                                                //   break;
+                                                // case 4:
+                                                //   ScaffoldMessenger.of(context)
+                                                //       .showSnackBar(
+                                                //           snackbarCopyDuplikat(
+                                                //               size,
+                                                //               "diduplikat"));
+                                                //   break;
                                                 default:
                                               }
                                             },
                                             child: Text(
-                                              items[index],
+                                              items[indexList],
                                               style: text2(neutral500, regular),
                                             ),
                                           );
                                         },
-                                        separatorBuilder: (context, index) =>
-                                            const Divider(
-                                              thickness: 1,
-                                            ),
+                                        separatorBuilder:
+                                            (context, indexList) =>
+                                                const Divider(
+                                                  thickness: 1,
+                                                ),
                                         itemCount: items.length)));
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                "assets/img/no-foto.jpg",
-                                width: size.width,
-                                fit: BoxFit.fill,
-                              ),
+                              if (proyekViewModel
+                                      .datasProyekUser![index].foto !=
+                                  noPhoto) ...[
+                                SizedBox(
+                                  height: 150,
+                                  child: Image.file(
+                                    File(proyekViewModel
+                                        .datasProyekUser![index].foto),
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              ] else ...[
+                                Image.asset(
+                                  "assets/img/no-foto.jpg",
+                                  width: size.width,
+                                  fit: BoxFit.fill,
+                                ),
+                              ],
                               const SizedBox(
                                 height: 2,
                               ),
-                              Text(
-                                proyekViewModel
-                                    .datasProyekUser![index].namaProyek,
-                                style: text3(neutral500, bold),
-                                textAlign: TextAlign.center,
+                              Center(
+                                child: Text(
+                                  proyekViewModel
+                                      .datasProyekUser![index].namaProyek,
+                                  style: text3(neutral500, bold),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
                               const Divider(
                                 thickness: 1,

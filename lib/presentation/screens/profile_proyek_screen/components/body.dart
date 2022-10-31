@@ -9,6 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../../data/model/dokumen_model.dart';
+import '../../../../utilities/strings.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/wilayah_view_model.dart';
@@ -28,7 +29,6 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   XFile? pickedFile;
-  String? nameFile;
 
   Future selectImage() async {
     final ImagePicker _picker = ImagePicker();
@@ -37,19 +37,7 @@ class _BodyState extends State<Body> {
 
     setState(() {
       pickedFile = result;
-      if (pickedFile != null) {
-        nameFile = basename(pickedFile!.path);
-      }
     });
-  }
-
-  Future<String> saveImage() async {
-    final File image = File(pickedFile!.path);
-    final Directory extDir = await getApplicationDocumentsDirectory();
-    String dirPath = extDir.path;
-    final File newImage = await image.copy("$dirPath/$nameFile");
-    print(newImage);
-    return newImage.path;
   }
 
   Future selectFile() async {
@@ -93,9 +81,16 @@ class _BodyState extends State<Body> {
                 height: 80,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: pickedFile != null
-                        ? FileImage(File(pickedFile!.path)) as ImageProvider
-                        : const AssetImage("assets/img/no-foto.jpg"),
+                    image: widget.isNew == true
+                        ? (pickedFile != null
+                            ? FileImage(File(pickedFile!.path)) as ImageProvider
+                            : const AssetImage("assets/img/no-foto.jpg"))
+                        : (widget.profileProyekViewModel.dataProyek!.foto !=
+                                noPhoto
+                            ? FileImage(
+                                    File(widget.profileProyekViewModel.foto))
+                                as ImageProvider
+                            : const AssetImage("assets/img/no-foto.jpg")),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -104,6 +99,9 @@ class _BodyState extends State<Body> {
               GestureDetector(
                 onTap: () async {
                   await selectImage();
+                  if (pickedFile != null) {
+                    widget.profileProyekViewModel.newPhoto = pickedFile!;
+                  }
                 },
                 child: SizedBox(
                   width: 80,
@@ -144,6 +142,11 @@ class _BodyState extends State<Body> {
                           ? widget.profileProyekViewModel.dataProyek!.namaProyek
                           : ""),
                   isRequired: true,
+                  onChanged: (String? value) {
+                    if (value != null) {
+                      widget.profileProyekViewModel.namaProyek = value;
+                    }
+                  },
                 ),
                 const SizedBox(
                   height: 20,
@@ -213,51 +216,68 @@ class _BodyState extends State<Body> {
                             ? widget
                                 .profileProyekViewModel.dataProyek!.namaProyek
                             : ""),
-                    isRequired: true),
+                    isRequired: true,
+                    onChanged: (String? value) {
+                      if (value != null) {
+                        widget.profileProyekViewModel.pemilik = value;
+                      }
+                    }),
                 const SizedBox(
                   height: 20,
                 ),
                 BuildTextField(
-                  title: "Jasa Kontraktor (%)",
-                  name: "jasaKontraktor",
-                  hint: "Masukkan nama pemilik proyek",
-                  initialValue: widget.isNew == true
-                      ? (widget.profileProyekViewModel.jasaKontraktor ?? "")
-                      : (widget.profileProyekViewModel.dataProyek != null
-                          ? widget
-                              .profileProyekViewModel.dataProyek!.jasaKontraktor
-                          : ""),
-                  isRequired: true,
-                ),
+                    title: "Jasa Kontraktor (%)",
+                    name: "jasaKontraktor",
+                    hint: "Masukkan nama pemilik proyek",
+                    initialValue: widget.isNew == true
+                        ? (widget.profileProyekViewModel.jasaKontraktor ?? "")
+                        : (widget.profileProyekViewModel.dataProyek != null
+                            ? widget.profileProyekViewModel.dataProyek!
+                                .jasaKontraktor
+                            : ""),
+                    isRequired: true,
+                    onChanged: (String? value) {
+                      if (value != null) {
+                        widget.profileProyekViewModel.jasaKontraktor = value;
+                      }
+                    }),
                 const SizedBox(
                   height: 20,
                 ),
                 BuildTextField(
-                  title: "Pajak (%)",
-                  name: "pajak",
-                  hint: "Masukkan nama pemilik proyek",
-                  initialValue: widget.isNew == true
-                      ? (widget.profileProyekViewModel.pajak ?? "")
-                      : (widget.profileProyekViewModel.dataProyek != null
-                          ? widget.profileProyekViewModel.dataProyek!.pajak
-                          : ""),
-                  isRequired: true,
-                ),
+                    title: "Pajak (%)",
+                    name: "pajak",
+                    hint: "Masukkan nama pemilik proyek",
+                    initialValue: widget.isNew == true
+                        ? (widget.profileProyekViewModel.pajak ?? "")
+                        : (widget.profileProyekViewModel.dataProyek != null
+                            ? widget.profileProyekViewModel.dataProyek!.pajak
+                            : ""),
+                    isRequired: true,
+                    onChanged: (String? value) {
+                      if (value != null) {
+                        widget.profileProyekViewModel.pajak = value;
+                      }
+                    }),
                 const SizedBox(
                   height: 20,
                 ),
                 BuildTextField(
-                  title: "Keterangan Lain",
-                  name: "keteranganLain",
-                  hint: "Masukkan keterangan tambahan",
-                  initialValue: widget.isNew == true
-                      ? (widget.profileProyekViewModel.keteranganLain ?? "")
-                      : (widget.profileProyekViewModel.dataProyek != null
-                          ? widget
-                              .profileProyekViewModel.dataProyek!.keteranganLain
-                          : ""),
-                  isRequired: false,
-                ),
+                    title: "Keterangan Lain",
+                    name: "keteranganLain",
+                    hint: "Masukkan keterangan tambahan",
+                    initialValue: widget.isNew == true
+                        ? (widget.profileProyekViewModel.keteranganLain ?? "")
+                        : (widget.profileProyekViewModel.dataProyek != null
+                            ? widget.profileProyekViewModel.dataProyek!
+                                .keteranganLain
+                            : ""),
+                    isRequired: false,
+                    onChanged: (String? value) {
+                      if (value != null) {
+                        widget.profileProyekViewModel.keteranganLain = value;
+                      }
+                    }),
                 const SizedBox(
                   height: 20,
                 ),

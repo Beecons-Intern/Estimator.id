@@ -148,63 +148,63 @@ class _BodyState extends State<Body> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(10),
-                                            topRight: Radius.circular(10))),
-                                    context: context,
-                                    builder: (context) => Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            vertical: 20),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: size.width * 0.05),
-                                        child: ListView.separated(
-                                            shrinkWrap: true,
-                                            itemBuilder: (context, index) {
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pop(context);
-                                                  switch (index) {
-                                                    case 0:
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          RouteName
-                                                              .tambahPekerjaan);
-                                                      break;
-                                                    case 1:
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (context) =>
-                                                              const HapusKategori());
-                                                      break;
-                                                    default:
-                                                  }
-                                                },
-                                                child: Text(
-                                                  itemsKategori[index],
-                                                  style: text2(
-                                                      neutral500, regular),
-                                                ),
-                                              );
-                                            },
-                                            separatorBuilder:
-                                                (context, index) =>
-                                                    const Divider(
-                                                      thickness: 1,
-                                                    ),
-                                            itemCount: itemsKategori.length)));
-                              },
-                              child: const Icon(
-                                Icons.settings,
-                                size: 16,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
+                            // GestureDetector(
+                            //   onTap: () {
+                            //     showModalBottomSheet(
+                            //         shape: const RoundedRectangleBorder(
+                            //             borderRadius: BorderRadius.only(
+                            //                 topLeft: Radius.circular(10),
+                            //                 topRight: Radius.circular(10))),
+                            //         context: context,
+                            //         builder: (context) => Container(
+                            //             margin: const EdgeInsets.symmetric(
+                            //                 vertical: 20),
+                            //             padding: EdgeInsets.symmetric(
+                            //                 horizontal: size.width * 0.05),
+                            //             child: ListView.separated(
+                            //                 shrinkWrap: true,
+                            //                 itemBuilder: (context, index) {
+                            //                   return GestureDetector(
+                            //                     onTap: () {
+                            //                       Navigator.pop(context);
+                            //                       switch (index) {
+                            //                         case 0:
+                            //                           Navigator.pushNamed(
+                            //                               context,
+                            //                               RouteName
+                            //                                   .tambahPekerjaan);
+                            //                           break;
+                            //                         case 1:
+                            //                           showDialog(
+                            //                               context: context,
+                            //                               builder: (context) =>
+                            //                                   const HapusKategori());
+                            //                           break;
+                            //                         default:
+                            //                       }
+                            //                     },
+                            //                     child: Text(
+                            //                       itemsKategori[index],
+                            //                       style: text2(
+                            //                           neutral500, regular),
+                            //                     ),
+                            //                   );
+                            //                 },
+                            //                 separatorBuilder:
+                            //                     (context, index) =>
+                            //                         const Divider(
+                            //                           thickness: 1,
+                            //                         ),
+                            //                 itemCount: itemsKategori.length)));
+                            //   },
+                            //   child: const Icon(
+                            //     Icons.settings,
+                            //     size: 16,
+                            //   ),
+                            // ),
+                            // const SizedBox(
+                            //   width: 10,
+                            // ),
                             GestureDetector(
                               onTap: () {
                                 if (analisa == index) {
@@ -387,20 +387,25 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 18,
           ),
-          const TotalAnggaranBelanja(
+          TotalAnggaranBelanja(
             totalName: "Jumlah Harga",
-            harga: "Rp. 876.107.550,00",
+            harga: "Rp. ${widget.detailProyekViewModel.jumlahHarga.toString()}",
           ),
           const SizedBox(
             height: 10,
           ),
-          const TotalAnggaranBelanja(
-              totalName: "PPN 11%", harga: "Rp.96.371.830,50"),
+          TotalAnggaranBelanja(
+              totalName:
+                  "PPN ${widget.detailProyekViewModel.dataProyek!.pajak}",
+              harga:
+                  "Rp. ${widget.detailProyekViewModel.jumlahPajak.toString()}"),
           const SizedBox(
             height: 10,
           ),
-          const TotalAnggaranBelanja(
-              totalName: "Total Harga", harga: "972.379.380,50"),
+          TotalAnggaranBelanja(
+              totalName: "Total Harga",
+              harga:
+                  "Rp. ${(widget.detailProyekViewModel.jumlahHarga + widget.detailProyekViewModel.jumlahPajak).toString()}"),
           const SizedBox(
             height: 50,
           ),

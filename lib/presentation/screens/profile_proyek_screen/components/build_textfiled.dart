@@ -9,7 +9,8 @@ class BuildTextField extends StatelessWidget {
       required this.name,
       required this.hint,
       required this.initialValue,
-      required this.isRequired})
+      required this.isRequired,
+      required this.onChanged})
       : super(key: key);
 
   final String title;
@@ -17,6 +18,7 @@ class BuildTextField extends StatelessWidget {
   final String hint;
   final String? initialValue;
   final bool isRequired;
+  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class BuildTextField extends StatelessWidget {
             style: text3(neutral500, regular),
             name: name,
             cursorColor: primary,
+            onChanged: onChanged,
             decoration: InputDecoration(
               isDense: true,
               contentPadding: const EdgeInsets.fromLTRB(0, 10, 12, 5),

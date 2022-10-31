@@ -119,8 +119,8 @@ class ProyekPerencanaanViewModel extends ChangeNotifier {
             idKategori: idKategori.toString(),
             level: template.level,
             haveSub: template.haveSub,
-            totalHarga: template.totalHarga,
-            tempTotalHarga: template.tempTotalHarga,
+            totalHarga: template.totalHarga.runtimeType == double ? template.totalHarga as double : double.parse("${template.totalHarga.toString()}.0"),
+            tempTotalHarga: template.tempTotalHarga.runtimeType == double ? template.tempTotalHarga as double : double.parse("${template.tempTotalHarga.toString()}.0"),
             sumber: template.sumber,
             tglDibuat: tglDibuat,
             jamDibuat: jamDibuat);

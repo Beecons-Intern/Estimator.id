@@ -9,7 +9,7 @@ class KategoriPekerjaanSource {
       final db = await DatabaseService.instance.database;
       final data = await db.query(table,
           columns: KategoriPekerjaanFields.values,
-          where: '${KategoriPekerjaanFields.idKategori} = ?',
+          where: '${KategoriPekerjaanFields.idProyek} = ?',
           whereArgs: [id]);
       if (data.isNotEmpty) {
         return data
@@ -29,6 +29,7 @@ class KategoriPekerjaanSource {
     try {
       final db = await DatabaseService.instance.database;
       final id = await db.insert(table, kategoriPekerjaan.toJson());
+      print(kategoriPekerjaan.copy(idKategori: id));
       return kategoriPekerjaan.copy(idKategori: id);
     } catch (error) {
       return throw Exception("Error $error");

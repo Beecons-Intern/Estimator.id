@@ -22,7 +22,7 @@ class PelaksanaProyekViewModel extends ChangeNotifier {
           await PelaksanaProyekSource().getDataByPengguna(_idPengguna);
 
       if (dataAllPelaksanaProyek != null && dataAllPelaksanaProyek.isNotEmpty) {
-        _datasPelaksanaProyek = datasPelaksanaProyek;
+        _datasPelaksanaProyek = dataAllPelaksanaProyek;
       }
 
       notifyListeners();
