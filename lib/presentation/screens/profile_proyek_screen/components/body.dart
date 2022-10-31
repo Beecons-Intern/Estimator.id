@@ -96,33 +96,35 @@ class _BodyState extends State<Body> {
                 ),
               ),
               const SizedBox(width: 10),
-              GestureDetector(
-                onTap: () async {
-                  await selectImage();
-                  if (pickedFile != null) {
-                    widget.profileProyekViewModel.newPhoto = pickedFile!;
-                  }
-                },
-                child: SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: DottedBorder(
-                    color: primary,
-                    strokeWidth: 1,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Ganti Foto",
-                            style: text4(primary, regular),
-                          ),
-                        ],
+              if (widget.isNew == true) ...[
+                GestureDetector(
+                  onTap: () async {
+                    await selectImage();
+                    if (pickedFile != null) {
+                      widget.profileProyekViewModel.newPhoto = pickedFile!;
+                    }
+                  },
+                  child: SizedBox(
+                    width: 80,
+                    height: 80,
+                    child: DottedBorder(
+                      color: primary,
+                      strokeWidth: 1,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Ganti Foto",
+                              style: text4(primary, regular),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ],
           ),
           const SizedBox(
@@ -325,38 +327,40 @@ class _BodyState extends State<Body> {
           const SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            onTap: () async {
-              await selectFile().then((value) async {
-                if (value == null) return;
+          if (widget.isNew == true) ...[
+            GestureDetector(
+              onTap: () async {
+                await selectFile().then((value) async {
+                  if (value == null) return;
 
-                String fileName = await saveFile(value);
+                  String fileName = await saveFile(value);
 
-                widget.profileProyekViewModel
-                    .addItem(DokumenModel(idProyek: 0, dokumen: fileName));
-              });
-            },
-            child: Center(
-              child: DottedBorder(
-                  padding: const EdgeInsets.all(5),
-                  borderType: BorderType.RRect,
-                  radius: const Radius.circular(5),
-                  color: Colors.green,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        "assets/img/import_doc.png",
-                      ),
-                      const SizedBox(width: 10),
-                      Text(
-                        "Upload Document",
-                        style: text3(primary, regular),
-                      )
-                    ],
-                  )),
+                  widget.profileProyekViewModel
+                      .addItem(DokumenModel(idProyek: 0, dokumen: fileName));
+                });
+              },
+              child: Center(
+                child: DottedBorder(
+                    padding: const EdgeInsets.all(5),
+                    borderType: BorderType.RRect,
+                    radius: const Radius.circular(5),
+                    color: Colors.green,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          "assets/img/import_doc.png",
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "Upload Document",
+                          style: text3(primary, regular),
+                        )
+                      ],
+                    )),
+              ),
             ),
-          ),
+          ],
           const SizedBox(
             height: 80,
           ),

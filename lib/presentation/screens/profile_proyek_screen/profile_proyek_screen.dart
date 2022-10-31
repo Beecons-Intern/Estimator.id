@@ -61,7 +61,7 @@ class ProfileProyekScreen extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        bottomSheet: Container(
+        bottomSheet: isNew == true ? Container(
           padding: EdgeInsets.symmetric(
               horizontal: size.width * 0.05, vertical: size.height * 0.015),
           width: size.width,
@@ -76,71 +76,60 @@ class ProfileProyekScreen extends StatelessWidget {
                   offset: const Offset(0, 1)),
             ],
           ),
-          child: isNew == true
-              ? RoundedButton(
-                  ontap: () async {
-                    if (isNew == true) {
-                      if (profileProyekViewModel.namaProyek != null &&
-                          profileProyekViewModel.namaProyek != "" &&
-                          profileProyekViewModel.idWilayah != null &&
-                          profileProyekViewModel.pemilik != null &&
-                          profileProyekViewModel.pemilik != "" &&
-                          profileProyekViewModel.jasaKontraktor != null &&
-                          profileProyekViewModel.jasaKontraktor != "" &&
-                          profileProyekViewModel.pajak != null &&
-                          profileProyekViewModel.pajak != "") {
-                        if (profileProyekViewModel.newPhoto != null) {
-                          await saveImage(profileProyekViewModel.newPhoto!)
-                              .then((value) =>
-                                  profileProyekViewModel.foto = value);
-                        }
+          child: RoundedButton(
+            ontap: () async {
+              if (isNew == true) {
+                if (profileProyekViewModel.namaProyek != null &&
+                    profileProyekViewModel.namaProyek != "" &&
+                    profileProyekViewModel.idWilayah != null &&
+                    profileProyekViewModel.pemilik != null &&
+                    profileProyekViewModel.pemilik != "" &&
+                    profileProyekViewModel.jasaKontraktor != null &&
+                    profileProyekViewModel.jasaKontraktor != "" &&
+                    profileProyekViewModel.pajak != null &&
+                    profileProyekViewModel.pajak != "") {
+                  if (profileProyekViewModel.newPhoto != null) {
+                    await saveImage(profileProyekViewModel.newPhoto!)
+                        .then((value) => profileProyekViewModel.foto = value);
+                  }
 
-                        profileProyekViewModel.insertDataProyek().then((value) {
-                          proyekPerencanaanViewModel.setDataProyek(
-                              profileProyekViewModel.dataProyek!,
-                              templateProyekViewModel
-                                  .datasTemplateKategoriPekerjaan!,
-                              templateProyekViewModel
-                                  .datasTemplateHargaSatuanList!,
-                              templateProyekViewModel.datasTemplateAhs!);
+                  profileProyekViewModel.insertDataProyek().then((value) {
+                    proyekPerencanaanViewModel.setDataProyek(
+                        profileProyekViewModel.dataProyek!,
+                        templateProyekViewModel.datasTemplateKategoriPekerjaan!,
+                        templateProyekViewModel.datasTemplateHargaSatuanList!,
+                        templateProyekViewModel.datasTemplateAhs!);
 
-                          proyekPerencanaanViewModel
-                              .insertPerencanaa()
-                              .then((value) {
-                            // detailProyekViewModel.setDataDetaikProyek(
-                            //     proyekPerencanaanViewModel.dataProyek!,
-                            //     proyekPerencanaanViewModel.dataPelaksanaProyek!,
-                            //     proyekPerencanaanViewModel
-                            //         .datasKategoriPekerjaan!,
-                            //     proyekPerencanaanViewModel.datasHargaSatuan!,
-                            //     proyekPerencanaanViewModel.datasAHS!);
+                    proyekPerencanaanViewModel.insertPerencanaa().then((value) {
+                      // detailProyekViewModel.setDataDetaikProyek(
+                      //     proyekPerencanaanViewModel.dataProyek!,
+                      //     proyekPerencanaanViewModel.dataPelaksanaProyek!,
+                      //     proyekPerencanaanViewModel
+                      //         .datasKategoriPekerjaan!,
+                      //     proyekPerencanaanViewModel.datasHargaSatuan!,
+                      //     proyekPerencanaanViewModel.datasAHS!);
 
-                            proyekViewModel.setDataBaru(
-                                proyekPerencanaanViewModel.dataPelaksanaProyek!,
-                                proyekPerencanaanViewModel.dataProyek!);
+                      proyekViewModel.setDataBaru(
+                          proyekPerencanaanViewModel.dataPelaksanaProyek!,
+                          proyekPerencanaanViewModel.dataProyek!);
 
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackbarAlert(size, 1));
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(snackbarAlert(size, 1));
 
-                            Navigator.pushNamedAndRemoveUntil(context,
-                                RouteName.navigation, (route) => false);
-                          });
-                        });
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(snackbarAlert(size, 2));
-                        return;
-                      }
-                    }
-                  },
-                  text: "Simpan",
-                )
-              : null,
-          // RoundedButton(
-          //     ontap: () {},
-          //     text: "Perbarui Data",
-          //   ),
-        ),
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, RouteName.navigation, (route) => false);
+                    });
+                  });
+                } else {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(snackbarAlert(size, 2));
+                  return;
+                }
+              }
+            },
+            text: "Simpan",
+          ),
+        ) : null,
         body: Body(
           isNew: isNew,
           profileProyekViewModel: profileProyekViewModel,

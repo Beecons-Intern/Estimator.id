@@ -23,6 +23,9 @@ class ProyekViewModel extends ChangeNotifier {
   List<ProyekModel>? _datasProyekUser;
   List<ProyekModel>? get datasProyekUser => _datasProyekUser;
 
+  List<ProyekModel>? _datasProyekUserTemp;
+  List<ProyekModel>? get datasProyekUserTemp => _datasProyekUserTemp;
+
   List<WilayahModel>? _allWilayahData;
   List<WilayahModel>? get allWilayahData => _allWilayahData;
 
@@ -93,6 +96,10 @@ class ProyekViewModel extends ChangeNotifier {
       }
     }
 
+    if (_datasProyekUser != null) {
+      _datasProyekUserTemp = _datasProyekUser;
+    }
+
     notifyListeners();
   }
 
@@ -101,6 +108,24 @@ class ProyekViewModel extends ChangeNotifier {
       for (var proyek in _datasProyekUser!) {
         await getWilayah(proyek.idWilayah);
       }
+    }
+  }
+
+  Future searchData(String? data) async {
+    try {
+      if (data != null && data != "") {
+        final dataProyek = _datasProyekUser!
+            .where((element) => element.namaProyek
+                .toLowerCase()
+                .contains(data.toLowerCase()))
+            .toList();
+        _datasProyekUserTemp = dataProyek;
+      } else {
+        _datasProyekUserTemp = _datasProyekUser;
+      }
+      notifyListeners();
+    } catch (error) {
+      return error;
     }
   }
 }

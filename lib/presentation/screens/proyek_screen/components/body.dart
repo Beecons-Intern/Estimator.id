@@ -13,7 +13,8 @@ import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/proyek_view_model.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  Body({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,19 +64,25 @@ class Body extends StatelessWidget {
                           offset: const Offset(0, 5)),
                     ],
                     borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: FormBuilderTextField(
-                  name: "search",
-                  cursorColor: primary,
-                  style: text2(neutral500, regular),
-                  decoration: InputDecoration(
-                    isDense: false,
-                    icon: const Icon(
-                      Icons.search,
-                      color: primary,
+                child: FormBuilder(
+                  key: _formKey,
+                  child: FormBuilderTextField(
+                    onSubmitted: (String? value) {
+                      proyekViewModel.searchData(value!);
+                    },
+                    name: "search",
+                    cursorColor: primary,
+                    style: text2(neutral500, regular),
+                    decoration: InputDecoration(
+                      isDense: false,
+                      icon: const Icon(
+                        Icons.search,
+                        color: primary,
+                      ),
+                      border: InputBorder.none,
+                      hintText: "Ketik apa yang kamu ingin cari",
+                      hintStyle: text2(neutral200, regular),
                     ),
-                    border: InputBorder.none,
-                    hintText: "Ketik apa yang kamu ingin cari",
-                    hintStyle: text2(neutral200, regular),
                   ),
                 )),
             Expanded(
@@ -85,8 +92,8 @@ class Body extends StatelessWidget {
                       left: size.width * 0.05,
                       right: size.width * 0.05,
                       bottom: 20),
-                  itemCount: proyekViewModel.datasProyekUser != null
-                      ? proyekViewModel.datasProyekUser!.length
+                  itemCount: proyekViewModel.datasProyekUserTemp != null
+                      ? proyekViewModel.datasProyekUserTemp!.length
                       : 0,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
@@ -133,7 +140,7 @@ class Body extends StatelessWidget {
                                                 case 0:
                                                   detailProyekViewModel
                                                       .getDetail(proyekViewModel
-                                                              .datasProyekUser![
+                                                              .datasProyekUserTemp![
                                                           index])
                                                       .then((value) =>
                                                           Navigator.pushNamed(
@@ -148,7 +155,7 @@ class Body extends StatelessWidget {
                                                   profileProyekViewModel
                                                           .proyekSet =
                                                       proyekViewModel
-                                                              .datasProyekUser![
+                                                              .datasProyekUserTemp![
                                                           index];
                                                   Navigator.pushNamed(context,
                                                       RouteName.profileProyek,
@@ -185,13 +192,13 @@ class Body extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (proyekViewModel
-                                      .datasProyekUser![index].foto !=
+                                      .datasProyekUserTemp![index].foto !=
                                   noPhoto) ...[
                                 SizedBox(
                                   height: 150,
                                   child: Image.file(
                                     File(proyekViewModel
-                                        .datasProyekUser![index].foto),
+                                        .datasProyekUserTemp![index].foto),
                                     fit: BoxFit.cover,
                                   ),
                                 )
@@ -208,7 +215,7 @@ class Body extends StatelessWidget {
                               Center(
                                 child: Text(
                                   proyekViewModel
-                                      .datasProyekUser![index].namaProyek,
+                                      .datasProyekUserTemp![index].namaProyek,
                                   style: text3(neutral500, bold),
                                   textAlign: TextAlign.center,
                                 ),
@@ -233,7 +240,7 @@ class Body extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       proyekViewModel
-                                          .datasProyekUser![index].pemilik,
+                                          .datasProyekUserTemp![index].pemilik,
                                       style: text4(neutral500, semibold),
                                     ),
                                   )
@@ -279,7 +286,7 @@ class Body extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       proyekViewModel
-                                          .datasProyekUser![index].tahun,
+                                          .datasProyekUserTemp![index].tahun,
                                       style: text4(neutral500, semibold),
                                     ),
                                   )

@@ -78,7 +78,7 @@ class ProyekScreen extends StatelessWidget {
           ],
         ), */
       ),
-      body: const Body(),
+      body: Body(),
     );
   }
 }
