@@ -10,6 +10,8 @@ class AlatUtamaViewModel extends ChangeNotifier {
   List<AlatUtamaModel>? _dataAlatUtamaTemp;
   List<AlatUtamaModel>? get dataAlatUtamaTemp => _dataAlatUtamaTemp;
 
+  bool isSearching = false;
+
   Future getDatas() async {
     try {
       await AlatUtamaSource().getDatas().then((value) {
@@ -47,6 +49,26 @@ class AlatUtamaViewModel extends ChangeNotifier {
       await AlatUtamaSource().getDatasBySumber(sumber).then((value) {
         if (value != null) _dataAlatUtama = value;
       });
+      notifyListeners();
+    } catch (error) {
+      return error;
+    }
+  }
+
+  Future searchData(String? data) async {
+    try {
+      if (data != null && data != "") {
+        final dataAlat = _dataAlatUtama!
+            .where((element) => element.namaAlat
+                .toLowerCase()
+                .contains(data.toLowerCase()))
+            .toList();
+        _dataAlatUtamaTemp = dataAlat;
+        isSearching = true;
+      } else {
+        _dataAlatUtamaTemp = _dataAlatUtama;
+        isSearching = false;
+      }
       notifyListeners();
     } catch (error) {
       return error;

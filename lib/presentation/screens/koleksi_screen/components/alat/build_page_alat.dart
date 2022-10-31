@@ -8,9 +8,12 @@ import '../../../../widgets/widgets.dart';
 import 'build_list_view_alat.dart';
 
 class BuildPageAlat extends StatefulWidget {
-  const BuildPageAlat({Key? key, required this.size}) : super(key: key);
+  const BuildPageAlat(
+      {Key? key, required this.size, required this.alatUtamaViewModel})
+      : super(key: key);
 
   final Size size;
+  final AlatUtamaViewModel alatUtamaViewModel;
 
   @override
   State<BuildPageAlat> createState() => _BuildPageAlatState();
@@ -39,7 +42,6 @@ class _BuildPageAlatState extends State<BuildPageAlat> {
 
   @override
   Widget build(BuildContext context) {
-    final alatUtamaViewModel = Provider.of<AlatUtamaViewModel>(context);
     return Column(
       children: [
         const SizedBox(
@@ -70,10 +72,10 @@ class _BuildPageAlatState extends State<BuildPageAlat> {
                                     switch (index) {
                                       case 0:
                                         if (categorySelected != 0) {
-                                          alatUtamaViewModel
+                                          widget.alatUtamaViewModel
                                               .getDatas()
                                               .then((value) async {
-                                            await alatUtamaViewModel.updateData(
+                                            await widget.alatUtamaViewModel.updateData(
                                                 0, 10,
                                                 isRestart: true);
                                             setState(() {
@@ -84,15 +86,14 @@ class _BuildPageAlatState extends State<BuildPageAlat> {
                                         break;
                                       case 1:
                                         if (categorySelected != 1) {
-                                          alatUtamaViewModel
+                                          widget.alatUtamaViewModel
                                               .filterData(1)
                                               .then((value) async {
-                                            await alatUtamaViewModel.updateData(
+                                            await widget.alatUtamaViewModel.updateData(
                                                 0, 10,
                                                 isRestart: true);
                                             setState(() {
                                               categorySelected = index;
-                                              
                                             });
                                           });
                                         }
@@ -157,7 +158,7 @@ class _BuildPageAlatState extends State<BuildPageAlat> {
         Expanded(
             child: BuildListViewAlat(
           size: widget.size,
-          alatUtamaViewModel: alatUtamaViewModel,
+          alatUtamaViewModel: widget.alatUtamaViewModel,
         )),
       ],
     );

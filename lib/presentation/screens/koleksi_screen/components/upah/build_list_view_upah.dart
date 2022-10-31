@@ -49,7 +49,7 @@ class _BuildListViewUpahState extends State<BuildListViewUpah> {
           horizontal: widget.size.width * 0.05,
         ),
         itemCount: widget.upahUtamaViewModel.dataUpahUtamaTemp != null
-            ? widget.upahUtamaViewModel.dataUpahUtamaTemp!.length + 1
+            ? widget.upahUtamaViewModel.dataUpahUtamaTemp!.length + (widget.upahUtamaViewModel.isSearching == false ? 1 : 0)
             : 0,
         shrinkWrap: true,
         separatorBuilder: (context, index) => const Divider(thickness: 1),
@@ -266,7 +266,7 @@ class _BuildListViewUpahState extends State<BuildListViewUpah> {
                 ],
               ],
             );
-          } else {
+          } else if (widget.upahUtamaViewModel.isSearching == false){
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: Center(
@@ -278,6 +278,7 @@ class _BuildListViewUpahState extends State<BuildListViewUpah> {
               ),
             );
           }
+          return null;
         });
   }
 }

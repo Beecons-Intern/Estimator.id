@@ -16,6 +16,8 @@ class AHSUtamaViewModel extends ChangeNotifier {
   List<PekerjaanUtamaModel>? get dataPekerjaanUtamaTemp =>
       _dataPekerjaanUtamaTemp;
 
+  bool isSearching = false;
+
   Future getDatasPekerjaan() async {
     try {
       await PekerjaanUtamaSource().getDatas().then((value) {
@@ -80,13 +82,20 @@ class AHSUtamaViewModel extends ChangeNotifier {
     }
   }
 
-  Future searchData(String data) async {
+  Future searchData(String? data) async {
     try {
-      final dataPekerjaan = _dataPekerjaanUtama!
-          .where((element) =>
-              element.namaPekerjaan.toLowerCase().contains(data.toLowerCase()))
-          .toList();
-      _dataPekerjaanUtamaTemp = dataPekerjaan;
+      if (data != null && data != "") {
+        final dataPekerjaan = _dataPekerjaanUtama!
+            .where((element) => element.namaPekerjaan
+                .toLowerCase()
+                .contains(data.toLowerCase()))
+            .toList();
+        _dataPekerjaanUtamaTemp = dataPekerjaan;
+        isSearching = true;
+      } else {
+        _dataPekerjaanUtamaTemp = _dataPekerjaanUtama;
+        isSearching = false;
+      }
       notifyListeners();
     } catch (error) {
       return error;

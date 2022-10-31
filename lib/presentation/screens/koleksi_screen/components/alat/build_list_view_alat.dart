@@ -50,7 +50,7 @@ class _BuildListViewAlatState extends State<BuildListViewAlat> {
           horizontal: widget.size.width * 0.05,
         ),
         itemCount: widget.alatUtamaViewModel.dataAlatUtamaTemp != null
-            ? widget.alatUtamaViewModel.dataAlatUtamaTemp!.length + 1
+            ? widget.alatUtamaViewModel.dataAlatUtamaTemp!.length + (widget.alatUtamaViewModel.isSearching == false ? 0 : 1)
             : 0,
         shrinkWrap: true,
         separatorBuilder: (context, index) => const Divider(thickness: 1),
@@ -278,7 +278,7 @@ class _BuildListViewAlatState extends State<BuildListViewAlat> {
                 ],
               ],
             );
-          } else {
+          } else if (widget.alatUtamaViewModel.isSearching == false){
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: Center(

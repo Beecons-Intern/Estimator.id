@@ -89,10 +89,10 @@ class ProfileProyekScreen extends StatelessWidget {
                           profileProyekViewModel.jasaKontraktor != "" &&
                           profileProyekViewModel.pajak != null &&
                           profileProyekViewModel.pajak != "") {
-
                         if (profileProyekViewModel.newPhoto != null) {
-                          await saveImage(profileProyekViewModel.newPhoto!).then(
-                              (value) => profileProyekViewModel.foto = value);
+                          await saveImage(profileProyekViewModel.newPhoto!)
+                              .then((value) =>
+                                  profileProyekViewModel.foto = value);
                         }
 
                         profileProyekViewModel.insertDataProyek().then((value) {
@@ -135,10 +135,11 @@ class ProfileProyekScreen extends StatelessWidget {
                   },
                   text: "Simpan",
                 )
-              : RoundedButton(
-                  ontap: () {},
-                  text: "Perbarui Data",
-                ),
+              : null,
+          // RoundedButton(
+          //     ontap: () {},
+          //     text: "Perbarui Data",
+          //   ),
         ),
         body: Body(
           isNew: isNew,

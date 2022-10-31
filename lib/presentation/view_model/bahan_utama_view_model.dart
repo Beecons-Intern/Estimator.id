@@ -18,6 +18,8 @@ class BahanUtamaViewModel extends ChangeNotifier {
   List<ProdukModel>? _dataProdukTemp;
   List<ProdukModel>? get dataProdukTemp => _dataProdukTemp;
 
+  bool isSearching = false;
+
   Future getDatas() async {
     try {
       await BahanUtamaSource().getDatas().then((value) {
@@ -89,6 +91,26 @@ class BahanUtamaViewModel extends ChangeNotifier {
       await BahanUtamaSource().getDatasBySumber(sumber).then((value) {
         if (value != null) _dataBahanUtama = value;
       });
+      notifyListeners();
+    } catch (error) {
+      return error;
+    }
+  }
+
+  Future searchData(String? data) async {
+    try {
+      if (data != null && data != "") {
+        final dataBahan = _dataBahanUtama!
+            .where((element) => element.namaBahan
+                .toLowerCase()
+                .contains(data.toLowerCase()))
+            .toList();
+        _dataBahanUtamaTemp = dataBahan;
+        isSearching = true;
+      } else {
+        _dataBahanUtamaTemp = _dataBahanUtama;
+        isSearching = false;
+      }
       notifyListeners();
     } catch (error) {
       return error;

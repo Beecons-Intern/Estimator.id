@@ -10,6 +10,8 @@ class UpahUtamaViewModel extends ChangeNotifier {
   List<UpahUtamaModel>? _dataUpahUtamaTemp;
   List<UpahUtamaModel>? get dataUpahUtamaTemp => _dataUpahUtamaTemp;
 
+  bool isSearching = false;
+
   Future getDatas() async {
     try {
       await UpahUtamaSource().getDatas().then((value) {
@@ -47,6 +49,26 @@ class UpahUtamaViewModel extends ChangeNotifier {
       await UpahUtamaSource().getDatasBySumber(sumber).then((value) {
         if (value != null) _dataUpahUtama = value;
       });
+      notifyListeners();
+    } catch (error) {
+      return error;
+    }
+  }
+
+  Future searchData(String? data) async {
+    try {
+      if (data != null && data != "") {
+        final dataUpah = _dataUpahUtama!
+            .where((element) => element.namaUpah
+                .toLowerCase()
+                .contains(data.toLowerCase()))
+            .toList();
+        _dataUpahUtamaTemp = dataUpah;
+        isSearching = true;
+      } else {
+        _dataUpahUtamaTemp = _dataUpahUtama;
+        isSearching = false;
+      }
       notifyListeners();
     } catch (error) {
       return error;

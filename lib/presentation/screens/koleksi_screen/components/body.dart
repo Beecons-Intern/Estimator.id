@@ -3,6 +3,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../view_model/ahs_utama_view_model.dart';
+import '../../../view_model/alat_utama_view_model.dart';
+import '../../../view_model/bahan_utama_view_model.dart';
+import '../../../view_model/upah_utama_view_model.dart';
 import 'ahs/build_page_ahs.dart';
 import 'alat/build_page_alat.dart';
 import 'bahan/build_page_bahan.dart';
@@ -15,6 +18,9 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ahsUtamaViewModel = Provider.of<AHSUtamaViewModel>(context);
+    final bahanUtamaViewModel = Provider.of<BahanUtamaViewModel>(context);
+    final upahUtamaViewModel = Provider.of<UpahUtamaViewModel>(context);
+    final alatUtamaViewModel = Provider.of<AlatUtamaViewModel>(context);
     Size size = MediaQuery.of(context).size;
     List<Widget> pages = [
       BuildPageAHS(
@@ -23,12 +29,15 @@ class Body extends StatelessWidget {
       ),
       BuildPageBahan(
         size: size,
+        bahanUtamaViewModel: bahanUtamaViewModel,
       ),
       BuildPageUpah(
         size: size,
+        upahUtamaViewModel : upahUtamaViewModel
       ),
       BuildPageAlat(
         size: size,
+        alatUtamaViewModel : alatUtamaViewModel
       )
     ];
     return Stack(
@@ -69,16 +78,16 @@ class Body extends StatelessWidget {
                     onSubmitted: (String? value) {
                       switch (pageActive) {
                         case 0:
-                        print("0");
+                          ahsUtamaViewModel.searchData(value!);
                           break;
                         case 1:
-                          print("1");
+                          bahanUtamaViewModel.searchData(value!);
                           break;
                         case 2:
-                          print("2");
+                          upahUtamaViewModel.searchData(value!);
                           break;
                         case 3:
-                          print("3");
+                          alatUtamaViewModel.searchData(value!);
                           break;
                         default:
                       }

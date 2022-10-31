@@ -8,9 +8,10 @@ import '../../../../widgets/widgets.dart';
 import 'build_list_view_upah.dart';
 
 class BuildPageUpah extends StatefulWidget {
-  const BuildPageUpah({Key? key, required this.size}) : super(key: key);
+  const BuildPageUpah({Key? key, required this.size, required this.upahUtamaViewModel}) : super(key: key);
 
   final Size size;
+  final UpahUtamaViewModel upahUtamaViewModel;
 
   @override
   State<BuildPageUpah> createState() => _BuildPageUpahState();
@@ -39,7 +40,6 @@ class _BuildPageUpahState extends State<BuildPageUpah> {
 
   @override
   Widget build(BuildContext context) {
-    final upahUtamaViewModel = Provider.of<UpahUtamaViewModel>(context);
     return Column(
       children: [
         const SizedBox(
@@ -70,11 +70,12 @@ class _BuildPageUpahState extends State<BuildPageUpah> {
                                     switch (index) {
                                       case 0:
                                         if (categorySelected != 0) {
-                                          upahUtamaViewModel
+                                          widget.upahUtamaViewModel
                                               .getDatas()
                                               .then((value) async {
-                                            await upahUtamaViewModel.updateData(
-                                                0, 10, isRestart: true);
+                                            await widget.upahUtamaViewModel.updateData(
+                                                0, 10,
+                                                isRestart: true);
                                             setState(() {
                                               categorySelected = index;
                                             });
@@ -83,10 +84,10 @@ class _BuildPageUpahState extends State<BuildPageUpah> {
                                         break;
                                       case 1:
                                         if (categorySelected != 1) {
-                                          upahUtamaViewModel
+                                          widget.upahUtamaViewModel
                                               .filterData(1)
                                               .then((value) async {
-                                            await upahUtamaViewModel.updateData(
+                                            await widget.upahUtamaViewModel.updateData(
                                                 0, 10,
                                                 isRestart: true);
                                             setState(() {
@@ -155,7 +156,7 @@ class _BuildPageUpahState extends State<BuildPageUpah> {
         Expanded(
             child: BuildListViewUpah(
           size: widget.size,
-          upahUtamaViewModel: upahUtamaViewModel,
+          upahUtamaViewModel: widget.upahUtamaViewModel,
         )),
         const SizedBox(
           height: 10,

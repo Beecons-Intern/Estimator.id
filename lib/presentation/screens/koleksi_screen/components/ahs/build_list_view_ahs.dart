@@ -50,7 +50,8 @@ class _BuildListViewAHSState extends State<BuildListViewAHS> {
           horizontal: widget.size.width * 0.05,
         ),
         itemCount: widget.ahasUtamaViewModel.dataPekerjaanUtamaTemp != null
-            ? widget.ahasUtamaViewModel.dataPekerjaanUtamaTemp!.length + 1
+            ? widget.ahasUtamaViewModel.dataPekerjaanUtamaTemp!.length +
+                (widget.ahasUtamaViewModel.isSearching == false ? 1 : 0)
             : 0,
         shrinkWrap: true,
         // physics: const NeverScrollableScrollPhysics(),
@@ -759,7 +760,7 @@ class _BuildListViewAHSState extends State<BuildListViewAHS> {
                 ],
               ],
             );
-          } else {
+          } else if (widget.ahasUtamaViewModel.isSearching == false) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: Center(

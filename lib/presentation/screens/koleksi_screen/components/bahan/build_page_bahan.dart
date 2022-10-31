@@ -9,9 +9,12 @@ import 'build_list_view_bahan.dart';
 import 'build_list_view_supllier.dart';
 
 class BuildPageBahan extends StatefulWidget {
-  const BuildPageBahan({Key? key, required this.size}) : super(key: key);
+  const BuildPageBahan(
+      {Key? key, required this.size, required this.bahanUtamaViewModel})
+      : super(key: key);
 
   final Size size;
+  final BahanUtamaViewModel bahanUtamaViewModel;
 
   @override
   State<BuildPageBahan> createState() => _BuildPageBahanState();
@@ -43,7 +46,6 @@ class _BuildPageBahanState extends State<BuildPageBahan> {
 
   @override
   Widget build(BuildContext context) {
-    final bahanUtamaViewModel = Provider.of<BahanUtamaViewModel>(context);
     return Column(
       children: [
         const SizedBox(
@@ -74,10 +76,10 @@ class _BuildPageBahanState extends State<BuildPageBahan> {
                                     switch (index) {
                                       case 0:
                                         if (categorySelected != 0) {
-                                          bahanUtamaViewModel
+                                          widget.bahanUtamaViewModel
                                               .getDatas()
                                               .then((value) async {
-                                            await bahanUtamaViewModel
+                                            await widget.bahanUtamaViewModel
                                                 .updateData(0, 10,
                                                     isRestart: true);
                                             setState(() {
@@ -93,10 +95,10 @@ class _BuildPageBahanState extends State<BuildPageBahan> {
                                         break;
                                       case 2:
                                         if (categorySelected != 2) {
-                                          bahanUtamaViewModel
+                                          widget.bahanUtamaViewModel
                                               .filterData(1)
                                               .then((value) async {
-                                            await bahanUtamaViewModel
+                                            await widget.bahanUtamaViewModel
                                                 .updateData(0, 10,
                                                     isRestart: true);
                                             setState(() {
@@ -166,11 +168,11 @@ class _BuildPageBahanState extends State<BuildPageBahan> {
           child: categorySelected == 1
               ? BuildListViewSupplier(
                   size: widget.size,
-                  bahanUtamaViewModel: bahanUtamaViewModel,
+                  bahanUtamaViewModel: widget.bahanUtamaViewModel,
                 )
               : BuildListViewBahan(
                   size: widget.size,
-                  bahanUtamaViewModel: bahanUtamaViewModel,
+                  bahanUtamaViewModel: widget.bahanUtamaViewModel,
                 ),
         ),
       ],

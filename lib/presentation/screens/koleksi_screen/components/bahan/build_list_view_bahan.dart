@@ -50,7 +50,8 @@ class _BuildListViewBahanState extends State<BuildListViewBahan> {
           horizontal: widget.size.width * 0.05,
         ),
         itemCount: widget.bahanUtamaViewModel.dataBahanUtamaTemp != null
-            ? widget.bahanUtamaViewModel.dataBahanUtamaTemp!.length + 1
+            ? widget.bahanUtamaViewModel.dataBahanUtamaTemp!.length +
+                (widget.bahanUtamaViewModel.isSearching == false ? 1 : 0)
             : 0,
         shrinkWrap: true,
         separatorBuilder: (context, index) => const Divider(thickness: 1),
@@ -280,7 +281,7 @@ class _BuildListViewBahanState extends State<BuildListViewBahan> {
                 ],
               ],
             );
-          } else {
+          } else if (widget.bahanUtamaViewModel.isSearching == false){
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: Center(
