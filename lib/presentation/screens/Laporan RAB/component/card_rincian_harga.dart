@@ -62,7 +62,7 @@ class _CardRincianHargaState extends State<CardRincianHarga> {
                           : Icons.add_circle,
                       color: rincian != null && rincian == index
                           ? Colors.red
-                          : Color.fromRGBO(8, 158, 20, 1),
+                          : const Color.fromRGBO(8, 158, 20, 1),
                     ),
                   )
                 ],
@@ -228,8 +228,8 @@ class _CardRincianHargaState extends State<CardRincianHarga> {
                     const Text("A. Bahan"),
                     const Divider(thickness: 2),
                     Container(
-                      padding: EdgeInsets.all(5),
-                      color: Color.fromARGB(255, 182, 236, 184),
+                      padding: const EdgeInsets.all(5),
+                      color: const Color.fromARGB(255, 182, 236, 184),
                       child: Column(
                         children: [
                           const ItemDetailRincianHargaSatuan(),
@@ -309,8 +309,8 @@ class _CardRincianHargaState extends State<CardRincianHarga> {
                     const Text("B. Upah"),
                     const Divider(thickness: 2),
                     Container(
-                      padding: EdgeInsets.all(5),
-                      color: Color.fromARGB(255, 182, 236, 184),
+                      padding: const EdgeInsets.all(5),
+                      color: const Color.fromARGB(255, 182, 236, 184),
                       child: Column(
                         children: [
                           const ItemDetailRincianHargaSatuan(),
@@ -390,8 +390,8 @@ class _CardRincianHargaState extends State<CardRincianHarga> {
                     const Text("C. Alat"),
                     const Divider(thickness: 2),
                     Container(
-                      padding: EdgeInsets.all(5),
-                      color: Color.fromARGB(255, 182, 236, 184),
+                      padding: const EdgeInsets.all(5),
+                      color: const Color.fromARGB(255, 182, 236, 184),
                       child: Column(
                         children: [
                           const ItemDetailRincianHargaSatuan(),
@@ -475,7 +475,7 @@ class ItemDetailRincianHargaSatuan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           border: Border.all(

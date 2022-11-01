@@ -13,8 +13,8 @@ import '../../../view_model/profile_proyek_view_model.dart';
 import '../../../view_model/proyek_view_model.dart';
 
 class Body extends StatelessWidget {
-  Body({Key? key}) : super(key: key);
-  final _formKey = GlobalKey<FormBuilderState>();
+  const Body({Key? key}) : super(key: key);
+  static final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -153,9 +153,13 @@ class Body extends StatelessWidget {
                                                   break;
                                                 case 1:
                                                   profileProyekViewModel
-                                                          .proyekSet =
+                                                      .proyekSet = proyekViewModel
+                                                          .datasProyekUserTemp![
+                                                      index];
+                                                  profileProyekViewModel
+                                                          .wilayahSet =
                                                       proyekViewModel
-                                                              .datasProyekUserTemp![
+                                                              .allWilayahData![
                                                           index];
                                                   Navigator.pushNamed(context,
                                                       RouteName.profileProyek,
@@ -218,6 +222,8 @@ class Body extends StatelessWidget {
                                       .datasProyekUserTemp![index].namaProyek,
                                   style: text3(neutral500, bold),
                                   textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               const Divider(

@@ -14,7 +14,7 @@ class AlatUtamaSource {
       }
 
       return null;
-    } catch (error, stacktrace) {
+    } catch (error) {
       return throw Exception("Error $error");
     }
   }

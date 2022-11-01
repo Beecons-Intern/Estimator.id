@@ -39,7 +39,7 @@ class CardItemUpah extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.7,
                 child: Text(
                   title,

@@ -18,16 +18,20 @@ class WilayahSource {
     }
   }
 
-  Future<WilayahModel> getData(id) async {
-    final db = await DatabaseService.instance.database;
-    final data = await db.query(table,
-        columns: WilayahFields.values,
-        where: '${WilayahFields.idWilayah} = ?',
-        whereArgs: [id]);
-    if (data.isNotEmpty) {
-      return WilayahModel.fromJson(data.first);
-    } else {
-      throw Exception("Data with $id is empty");
+  Future<WilayahModel?> getData(id) async {
+    try {
+      final db = await DatabaseService.instance.database;
+      final data = await db.query(table,
+          columns: WilayahFields.values,
+          where: '${WilayahFields.idWilayah} = ?',
+          whereArgs: [id]);
+      if (data.isNotEmpty) {
+        return WilayahModel.fromJson(data.first);
+      }
+
+      return null;
+    } catch (error) {
+      return throw Exception("Error $error");
     }
   }
 

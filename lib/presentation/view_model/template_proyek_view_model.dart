@@ -28,11 +28,10 @@ class TemplateProyekViewModel extends ChangeNotifier {
   List<TemplateProyekModel>? _datasTemplateProyek;
   List<TemplateProyekModel>? get datasTemplateProyek => _datasTemplateProyek;
 
-  TemplateProyekModel? _selectedTemplateProyek;
-  TemplateProyekModel? get selectedTemplateProyek => _selectedTemplateProyek;
+  TemplateProyekModel? selectedTemplateProyek;
 
   void setSelectedTemplateProyek(TemplateProyekModel templateProyek) {
-    _selectedTemplateProyek = templateProyek;
+    selectedTemplateProyek = templateProyek;
   }
 
   Future getAllDatas() async {
@@ -57,7 +56,7 @@ class TemplateProyekViewModel extends ChangeNotifier {
     _datasTemplateKategoriPekerjaan = null;
     _datasTemplateHargaSatuan = null;
     _datasTemplateAhs = null;
-    _selectedTemplateProyek = null;
+    selectedTemplateProyek = null;
   }
 
   Future getDataKategori(id) async {

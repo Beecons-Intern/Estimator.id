@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:image_picker/image_picker.dart';
@@ -45,7 +44,6 @@ class _BodyState extends State<Body> {
     final Directory extDir = await getApplicationDocumentsDirectory();
     String dirPath = extDir.path;
     final File newImage = await image.copy("$dirPath/$nameFile");
-    print(newImage);
     return newImage.path;
   }
 

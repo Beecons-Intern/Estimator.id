@@ -12,9 +12,9 @@ import 'bahan/build_page_bahan.dart';
 import 'upah/build_page_upah.dart';
 
 class Body extends StatelessWidget {
-  Body({Key? key, required this.pageActive}) : super(key: key);
+  const Body({Key? key, required this.pageActive}) : super(key: key);
   final int pageActive;
-  final _formKey = GlobalKey<FormBuilderState>();
+  static final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
     final ahsUtamaViewModel = Provider.of<AHSUtamaViewModel>(context);

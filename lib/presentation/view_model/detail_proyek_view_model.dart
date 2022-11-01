@@ -77,12 +77,12 @@ class DetailProyekViewModel extends ChangeNotifier {
   // }
 
   Future getDetail(ProyekModel proyek) async {
+    _dataProyek = proyek;
     await getDataKategori(proyek.idProyek);
     await getDataHargaSatuan(proyek.idProyek);
     await getDataAhs(proyek.idProyek);
     getJumlahHarga();
     getJumlahPajak();
-    _dataProyek = proyek;
   }
 
   Future getDataKategori(id) async {

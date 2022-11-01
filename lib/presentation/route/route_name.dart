@@ -38,4 +38,5 @@ abstract class RouteName {
   static const kesalahan = "/kesalahan";
   static const detailTemplate = "/detailTemplate";
   static const welcome = "/welcome";
+  static const editPerencanaan = "editPerencanaan";
 }

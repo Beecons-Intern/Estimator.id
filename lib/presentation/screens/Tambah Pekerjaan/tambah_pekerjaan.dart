@@ -11,11 +11,11 @@ class TambahPekerjaan extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
+        leading: const Icon(
           Icons.arrow_back_ios,
           color: Colors.black,
         ),
-        title: Center(
+        title: const Center(
           child: Text(
             "Tambah Pekerjaan",
             style: TextStyle(
@@ -30,12 +30,12 @@ class TambahPekerjaan extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(
                 horizontal: size.width * 0.05, vertical: size.height * 0.01),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.green,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
                   "item pekerjaan persiapan",
                   style: TextStyle(
@@ -59,8 +59,8 @@ class TambahPekerjaan extends StatelessWidget {
             ),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   "Pekerjaan:",
                   style: TextStyle(
@@ -71,7 +71,7 @@ class TambahPekerjaan extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   left: 10,
                   top: 15,
                   right: 10,
@@ -79,14 +79,14 @@ class TambahPekerjaan extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Color.fromRGBO(8, 158, 20, 1),
+                    color: const Color.fromRGBO(8, 158, 20, 1),
                     width: 1,
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Text(
                       "Masukan nama perkerjaan",
                       style: TextStyle(
@@ -113,8 +113,8 @@ class TambahPekerjaan extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
+                const Padding(
+                  padding: EdgeInsets.all(5.0),
                   child: Text(
                     "Sumber:",
                     style: TextStyle(
@@ -125,7 +125,7 @@ class TambahPekerjaan extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 10,
                     top: 15,
                     right: 10,
@@ -133,14 +133,14 @@ class TambahPekerjaan extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color.fromRGBO(8, 158, 20, 1),
+                      color: const Color.fromRGBO(8, 158, 20, 1),
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         "",
                         style: TextStyle(
@@ -156,7 +156,7 @@ class TambahPekerjaan extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             padding: EdgeInsets.symmetric(
               horizontal: size.width * 0.05,
             ),
@@ -164,7 +164,7 @@ class TambahPekerjaan extends StatelessWidget {
               "menampilkan 2,094 data",
             ),
           ),
-          Container(
+          SizedBox(
             width: size.width * 1,
             height: size.height * 0.52,
             child: ListView(
@@ -173,27 +173,27 @@ class TambahPekerjaan extends StatelessWidget {
                 CardTambahPekerjaan(
                   size: size,
                   title: "Pengukuran dan pemasangan bauwplank",
-                  background: Color.fromRGBO(237, 251, 235, 1),
+                  background: const Color.fromRGBO(237, 251, 235, 1),
                 ),
                 CardTambahPekerjaan(
                   size: size,
                   title: "Pengukuran",
-                  background: Color.fromRGBO(255, 255, 255, 1),
+                  background: const Color.fromRGBO(255, 255, 255, 1),
                 ),
                 CardTambahPekerjaan(
                   size: size,
                   title: "Pengukuran ",
-                  background: Color.fromRGBO(237, 251, 235, 1),
+                  background: const Color.fromRGBO(237, 251, 235, 1),
                 ),
                 CardTambahPekerjaan(
                   size: size,
                   title: "Pengukuran ",
-                  background: Color.fromRGBO(237, 251, 235, 1),
+                  background: const Color.fromRGBO(237, 251, 235, 1),
                 ),
                 CardTambahPekerjaan(
                   size: size,
                   title: "Pengukuran ",
-                  background: Color.fromRGBO(237, 251, 235, 1),
+                  background: const Color.fromRGBO(237, 251, 235, 1),
                 ),
               ],
             ),
@@ -205,10 +205,10 @@ class TambahPekerjaan extends StatelessWidget {
                   vertical: size.height * 0.01, horizontal: size.width * 0.05),
               padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
               decoration: BoxDecoration(
-                color: Color.fromRGBO(8, 158, 20, 1),
+                color: const Color.fromRGBO(8, 158, 20, 1),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text(
+              child: const Text(
                 "Selesai & Simpan",
                 style: TextStyle(
                   fontSize: 16,

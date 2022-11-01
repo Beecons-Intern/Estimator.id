@@ -1,60 +1,53 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class buildPenawaran extends StatefulWidget {
-  const buildPenawaran({Key? key}) : super(key: key);
+class BuildPenawaran extends StatefulWidget {
+  const BuildPenawaran({Key? key}) : super(key: key);
 
   @override
-  State<buildPenawaran> createState() => _buildPenawaranState();
+  State<BuildPenawaran> createState() => _BuildPenawaranState();
 }
 
-class _buildPenawaranState extends State<buildPenawaran> {
+class _BuildPenawaranState extends State<BuildPenawaran> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            // height: size.height,
-            child: TextField(
-              onTap: () {},
-              decoration: InputDecoration(
-                suffixIcon: Icon(
-                  Icons.search,
-                  color: Color(0xFF969696),
-                  size: 25,
-                ),
-                hintText: 'Masukkan kata kunci',
-                isDense: true,
+          TextField(
+            onTap: () {},
+            decoration: const InputDecoration(
+              suffixIcon: Icon(
+                Icons.search,
+                color: Color(0xFF969696),
+                size: 25,
               ),
+              hintText: 'Masukkan kata kunci',
+              isDense: true,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             children: [
               ElevatedButton.icon(
                 onPressed: () {},
-                label: Text('atur kategori'),
-                icon: Icon(Icons.edit_note_outlined),
+                label: const Text('atur kategori'),
+                icon: const Icon(Icons.edit_note_outlined),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               ElevatedButton.icon(
                 onPressed: () {},
-                label: Text('impor penawaran'),
-                icon: Icon(Icons.drive_folder_upload_outlined),
+                label: const Text('impor penawaran'),
+                icon: const Icon(Icons.drive_folder_upload_outlined),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           //kudune gowo listview
@@ -68,7 +61,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Uraian Pekerjaan',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -79,15 +72,15 @@ class _buildPenawaranState extends State<buildPenawaran> {
                           children: [
                             GestureDetector(
                                 onTap: () {},
-                                child: Icon(Icons.add_circle_outline)),
+                                child: const Icon(Icons.add_circle_outline)),
                             // SizedBox(
                             //   width: 5,
                             // ),
                             GestureDetector(
-                                onTap: () {}, child: Icon(Icons.delete)),
+                                onTap: () {}, child: const Icon(Icons.delete)),
                             GestureDetector(
                               onTap: () {},
-                              child: Icon(
+                              child: const Icon(
                                 Icons.expand_more,
                                 // size: 30,
                               ),
@@ -99,11 +92,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 'Harga',
                                 style: TextStyle(
@@ -122,11 +115,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 '%',
                                 style: TextStyle(
@@ -147,7 +140,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       indent: 2,
                       color: Color(0xFFB1B1B1),
@@ -157,7 +150,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Uraian Pekerjaan',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -168,15 +161,15 @@ class _buildPenawaranState extends State<buildPenawaran> {
                           children: [
                             GestureDetector(
                                 onTap: () {},
-                                child: Icon(Icons.add_circle_outline)),
+                                child: const Icon(Icons.add_circle_outline)),
                             // SizedBox(
                             //   width: 5,
                             // ),
                             GestureDetector(
-                                onTap: () {}, child: Icon(Icons.delete)),
+                                onTap: () {}, child: const Icon(Icons.delete)),
                             GestureDetector(
                               onTap: () {},
-                              child: Icon(
+                              child: const Icon(
                                 Icons.expand_more,
                                 // size: 30,
                               ),
@@ -188,11 +181,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 'Harga',
                                 style: TextStyle(
@@ -211,11 +204,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 '%',
                                 style: TextStyle(
@@ -236,7 +229,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       indent: 2,
                       color: Color(0xFFB1B1B1),
@@ -244,7 +237,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Uraian Pekerjaan',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -255,15 +248,15 @@ class _buildPenawaranState extends State<buildPenawaran> {
                           children: [
                             GestureDetector(
                                 onTap: () {},
-                                child: Icon(Icons.add_circle_outline)),
+                                child: const Icon(Icons.add_circle_outline)),
                             // SizedBox(
                             //   width: 5,
                             // ),
                             GestureDetector(
-                                onTap: () {}, child: Icon(Icons.delete)),
+                                onTap: () {}, child: const Icon(Icons.delete)),
                             GestureDetector(
                               onTap: () {},
-                              child: Icon(
+                              child: const Icon(
                                 Icons.expand_more,
                                 // size: 30,
                               ),
@@ -275,11 +268,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 'Harga',
                                 style: TextStyle(
@@ -298,11 +291,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 '%',
                                 style: TextStyle(
@@ -323,7 +316,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       indent: 2,
                       color: Color(0xFFB1B1B1),
@@ -331,7 +324,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Uraian Pekerjaan',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -342,15 +335,15 @@ class _buildPenawaranState extends State<buildPenawaran> {
                           children: [
                             GestureDetector(
                                 onTap: () {},
-                                child: Icon(Icons.add_circle_outline)),
+                                child: const Icon(Icons.add_circle_outline)),
                             // SizedBox(
                             //   width: 5,
                             // ),
                             GestureDetector(
-                                onTap: () {}, child: Icon(Icons.delete)),
+                                onTap: () {}, child: const Icon(Icons.delete)),
                             GestureDetector(
                               onTap: () {},
-                              child: Icon(
+                              child: const Icon(
                                 Icons.expand_more,
                                 // size: 30,
                               ),
@@ -362,11 +355,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 'Harga',
                                 style: TextStyle(
@@ -385,11 +378,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 '%',
                                 style: TextStyle(
@@ -410,7 +403,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       indent: 2,
                       color: Color(0xFFB1B1B1),
@@ -419,7 +412,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Uraian Pekerjaan',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
@@ -430,15 +423,15 @@ class _buildPenawaranState extends State<buildPenawaran> {
                           children: [
                             GestureDetector(
                                 onTap: () {},
-                                child: Icon(Icons.add_circle_outline)),
+                                child: const Icon(Icons.add_circle_outline)),
                             // SizedBox(
                             //   width: 5,
                             // ),
                             GestureDetector(
-                                onTap: () {}, child: Icon(Icons.delete)),
+                                onTap: () {}, child: const Icon(Icons.delete)),
                             GestureDetector(
                               onTap: () {},
-                              child: Icon(
+                              child: const Icon(
                                 Icons.expand_more,
                                 // size: 30,
                               ),
@@ -450,11 +443,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 'Harga',
                                 style: TextStyle(
@@ -473,11 +466,11 @@ class _buildPenawaranState extends State<buildPenawaran> {
                             ],
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 100,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                            children: const [
                               Text(
                                 '%',
                                 style: TextStyle(
@@ -498,7 +491,7 @@ class _buildPenawaranState extends State<buildPenawaran> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1,
                       indent: 2,
                       color: Color(0xFFB1B1B1),
@@ -510,36 +503,36 @@ class _buildPenawaranState extends State<buildPenawaran> {
           ),
           Positioned(
               child: Container(
-            padding: EdgeInsets.all(8),
-            color: Color.fromARGB(255, 149, 232, 152),
+            padding: const EdgeInsets.all(8),
+            color: const Color.fromARGB(255, 149, 232, 152),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Expanded(child: Text("JUMLAH HARGA")),
                     Expanded(child: Center(child: Text("Rp. -"))),
                     Expanded(child: Center(child: Text("100.00%"))),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Expanded(child: Text("PPN 11.00%")),
                     Expanded(child: Center(child: Text("Rp. -"))),
                     Expanded(child: Center(child: Text(""))),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Expanded(child: Text("TOTAL HARGA")),
                     Expanded(child: Center(child: Text("Rp. -"))),
                     Expanded(child: Center(child: Text(""))),
@@ -559,12 +552,12 @@ class _buildPenawaranState extends State<buildPenawaran> {
               // height: 20,
               child: ElevatedButton(
                 onPressed: () {},
-                child: Container(
+                child: const SizedBox(
+                  width: 340,
                   child: Text(
                     'Lihat Laporan',
                     textAlign: TextAlign.center,
                   ),
-                  width: 340,
                 ),
               ),
             ),

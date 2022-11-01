@@ -15,6 +15,7 @@ class KesalahanScreen extends StatelessWidget {
     final kesalahanViewModel = Provider.of<KesalahanViewModel>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: primary,
         title: Text(

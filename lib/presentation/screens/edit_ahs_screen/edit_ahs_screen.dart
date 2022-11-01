@@ -24,7 +24,7 @@ class EditAHSScreen extends StatelessWidget {
             )),
         centerTitle: true,
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

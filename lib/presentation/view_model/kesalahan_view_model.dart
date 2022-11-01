@@ -45,7 +45,6 @@ class KesalahanViewModel extends ChangeNotifier {
 
       return false;
     } catch (error) {
-      print(error);
       return error;
     }
   }
@@ -69,7 +68,6 @@ class KesalahanViewModel extends ChangeNotifier {
 
       return false;
     } catch (error) {
-      print(error);
       return error;
     }
   }

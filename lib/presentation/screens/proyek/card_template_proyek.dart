@@ -17,7 +17,7 @@ class CardTemplateProyek extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-            color: Color.fromARGB(26, 175, 171, 171),
+            color: const Color.fromARGB(26, 175, 171, 171),
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
@@ -36,7 +36,7 @@ class CardTemplateProyek extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.02),
-              child: Text(
+              child: const Text(
                 "Rumah Tinggal Sederhana",
                 style: TextStyle(
                   fontSize: 16,
@@ -45,14 +45,14 @@ class CardTemplateProyek extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: size.width * 0.05,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Jenis"),
                   Text(
                     "Rumah",
@@ -69,7 +69,7 @@ class CardTemplateProyek extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Kaegori"),
                   Text(
                     "1 Lantai",
@@ -86,7 +86,7 @@ class CardTemplateProyek extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Struktur"),
                   Text(
                     "Beton Bertulang",
@@ -103,7 +103,7 @@ class CardTemplateProyek extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Lantai"),
                   Text(
                     "Keramik",
@@ -120,7 +120,7 @@ class CardTemplateProyek extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Dinding"),
                   Text(
                     "Bata Merah",
@@ -137,7 +137,7 @@ class CardTemplateProyek extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Atap"),
                   Text(
                     "Genteng",
@@ -148,7 +148,7 @@ class CardTemplateProyek extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20)
+            const SizedBox(height: 20)
           ],
         ),
       ),

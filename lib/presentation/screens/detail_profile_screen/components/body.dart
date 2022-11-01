@@ -130,8 +130,8 @@ class _BodyState extends State<Body> {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       Profile(penggunaViewModel: penggunaViewModel),
-                      Pengalaman(),
-                      Kompetensi()
+                      const Pengalaman(),
+                      const Kompetensi()
                     ]),
               ),
             ],

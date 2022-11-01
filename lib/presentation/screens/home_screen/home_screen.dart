@@ -51,22 +51,24 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 width: 16,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Welcome to estimator.id 👋",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  Text(
-                    penggunaViewModel.dataPengguna != null
-                        ? penggunaViewModel.dataPengguna!.namaPengguna
-                        : "-",
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Welcome to estimator.id 👋",
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    Text(
+                      penggunaViewModel.dataPengguna != null
+                          ? penggunaViewModel.dataPengguna!.namaPengguna
+                          : "-",
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

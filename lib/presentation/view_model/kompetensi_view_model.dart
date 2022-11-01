@@ -71,7 +71,6 @@ class KompetensiViewModel extends ChangeNotifier {
       _datasKompetensi!.remove(kompetensi);
     } else {
       _newDatas.add(kompetensi);
-      print(_newDatas);
       if (_datasKompetensi != null) {
         _datasKompetensi!.add(kompetensi);
       } else {

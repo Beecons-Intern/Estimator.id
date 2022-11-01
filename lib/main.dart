@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => BahanUtamaViewModel()),
         ChangeNotifierProvider(create: (context) => AlatUtamaViewModel()),
         ChangeNotifierProvider(create: (context) => UpahUtamaViewModel()),
+        ChangeNotifierProvider(create: (context) => ProfileProyekViewModel()),
         ChangeNotifierProxyProvider<AuthViewModel, PenggunaViewModel>(
           create: (context) => PenggunaViewModel(),
           update: (context, pengguna, detail) =>
@@ -65,11 +66,6 @@ class _MyAppState extends State<MyApp> {
           create: (context) => PelaksanaProyekViewModel(),
           update: (context, pengguna, pelaksana) =>
               pelaksana!..updateData(pengguna.userId),
-        ),
-        ChangeNotifierProxyProvider<AuthViewModel, ProfileProyekViewModel>(
-          create: (context) => ProfileProyekViewModel(),
-          update: (context, pengguna, profile) =>
-              profile!..updateData(pengguna.userId),
         ),
         ChangeNotifierProxyProvider<AuthViewModel,
             PengalamanProyekViewModel>(

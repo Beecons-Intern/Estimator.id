@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../data/model/ahs_model.dart';
+import '../../data/model/dokumen_model.dart';
 import '../../data/model/harga_satuan_model.dart';
 import '../../data/model/kategori_pekerjaan_model.dart';
 import '../../data/model/pelaksana_proyek_mode.dart';
@@ -9,12 +13,26 @@ import '../../data/model/template_ahs_model.dart';
 import '../../data/model/template_harga_satuan_model.dart';
 import '../../data/model/template_kategori_pekerjaan_model.dart';
 import '../../data/source/ahs_source.dart';
+import '../../data/source/dokumen_source.dart';
 import '../../data/source/harga_satuan_source.dart';
 import '../../data/source/kategori_pekerjaan_source.dart';
 import '../../data/source/pelaksana_proyek_source.dart';
+import '../../data/source/proyek_source.dart';
 import '../../utilities/strings.dart';
 
 class ProyekPerencanaanViewModel extends ChangeNotifier {
+  String? namaProyek;
+  String? idWilayah = wilayahSleman;
+  String? pemilik = "Estimator.id";
+  String? jasaKontraktor;
+  String? pajak;
+  String? keteranganLain = "";
+  String foto = noPhoto;
+  XFile? newPhoto;
+
+  List<File>? _datasDokumen;
+  List<File>? get datasDokumen => _datasDokumen;
+
   ProyekModel? _dataProyek;
   ProyekModel? get dataProyek => _dataProyek;
 
@@ -42,16 +60,26 @@ class ProyekPerencanaanViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setDataProyek(
-      ProyekModel proyek,
-      List<TemplateKategoriPekerjaanModel> templateKategoriPekerjaan,
-      List<TemplateHargaSatuanModel> templateHargaSatuan,
-      List<TemplateAHSModel> templateAhs) {
-    _dataProyek = proyek;
-    _datasTemplateKategoriPekerjaan = templateKategoriPekerjaan;
-    _datasTemplateHargaSatuan = templateHargaSatuan;
-    _datasTemplateAhs = templateAhs;
+  void isNew() {
+    newPhoto = null;
+    _datasDokumen = null;
+    foto = noPhoto;
+  }
+
+  void setDataProyek(namaProyek, jasaKontraktor, pajak) {
+    this.namaProyek = namaProyek;
+    this.jasaKontraktor = jasaKontraktor;
+    this.pajak = pajak;
     notifyListeners();
+  }
+
+  void insertDataPerencanaan(
+      List<TemplateKategoriPekerjaanModel> templateKategori,
+      List<TemplateHargaSatuanModel> templateHargaSatuan,
+      List<TemplateAHSModel> templateAHS) {
+    _datasTemplateKategoriPekerjaan = templateKategori;
+    _datasTemplateHargaSatuan = templateHargaSatuan;
+    _datasTemplateAhs = templateAHS;
   }
 
   Future<PelaksanaProyekModel> insertPelaksanaProyek() async {
@@ -119,8 +147,8 @@ class ProyekPerencanaanViewModel extends ChangeNotifier {
             idKategori: idKategori.toString(),
             level: template.level,
             haveSub: template.haveSub,
-            totalHarga: template.totalHarga.runtimeType == double ? template.totalHarga as double : double.parse("${template.totalHarga.toString()}.0"),
-            tempTotalHarga: template.tempTotalHarga.runtimeType == double ? template.tempTotalHarga as double : double.parse("${template.tempTotalHarga.toString()}.0"),
+            totalHarga: template.totalHarga,
+            tempTotalHarga: template.tempTotalHarga,
             sumber: template.sumber,
             tglDibuat: tglDibuat,
             jamDibuat: jamDibuat);
@@ -180,15 +208,78 @@ class ProyekPerencanaanViewModel extends ChangeNotifier {
     }
   }
 
-  Future insertPerencanaa() async {
+  Future insertDokumen(String savedDokumen, int idProyek) async {
+    try {
+      final dokumen = DokumenModel(idProyek: idProyek, dokumen: savedDokumen);
+      await DokumenSource().addData(dokumen);
+    } catch (error) {
+      return error;
+    }
+  }
+
+  Future insertPerencanaan() async {
     try {
       await insertPelaksanaProyek();
       await insertKategoriPekerjaan();
       await insertHargaSatuan();
       await insertAHS();
-    } catch (error, stacktrace) {
-      print(stacktrace);
-      print(error);
+    } catch (error) {
+      return error;
     }
+  }
+
+  Future insertDataProyek() async {
+    try {
+      final dataProyekBaru = ProyekModel(
+          idPengguna: _idPengguna!,
+          namaProyek: namaProyek!,
+          idWilayah: idWilayah!,
+          pemilik: pemilik!,
+          tahun: tahun,
+          jasaKontraktor: jasaKontraktor!,
+          pajak: pajak!,
+          keteranganLain: keteranganLain!,
+          status: status,
+          kategoriProyek: proyekPerencanaan,
+          foto: foto,
+          tglDibuat: tglDibuat,
+          jamDibuat: jamDibuat);
+      final data = await ProyekSource().addData(dataProyekBaru);
+      _dataProyek = data;
+      notifyListeners();
+    } catch (e) {
+      return e;
+    }
+  }
+
+  void addItem(File dokumen) {
+    File? temp;
+    if (_datasDokumen != null) {
+      _datasDokumen!.map((item) => item == dokumen ? null : temp = dokumen);
+    } else {
+      temp = dokumen;
+    }
+
+    if (temp != null) {
+      _datasDokumen == null
+          ? _datasDokumen = [dokumen]
+          : _datasDokumen!.add(dokumen);
+    }
+
+    notifyListeners();
+  }
+
+  void removeItem(File dokumen) {
+    if (_datasDokumen == null || _datasDokumen!.isEmpty) {
+      return;
+    }
+
+    if (_datasDokumen!.length > 1) {
+      _datasDokumen!.remove(dokumen);
+    } else {
+      _datasDokumen = null;
+    }
+
+    notifyListeners();
   }
 }

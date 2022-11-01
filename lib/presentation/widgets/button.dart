@@ -25,7 +25,7 @@ class Button extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: Color.fromRGBO(255, 255, 255, 1),
+            color: const Color.fromRGBO(255, 255, 255, 1),
           ),
           SizedBox(
             width: size.width * 0.01,

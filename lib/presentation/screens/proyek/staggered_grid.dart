@@ -40,10 +40,10 @@ Widget quiltedLayout(BuildContext context) {
       mainAxisSpacing: 6,
       crossAxisSpacing: 6,
       pattern: [
-        QuiltedGridTile(2, 1),
-        QuiltedGridTile(1, 1),
-        QuiltedGridTile(1, 1),
-        QuiltedGridTile(1, 2),
+        const QuiltedGridTile(2, 1),
+        const QuiltedGridTile(1, 1),
+        const QuiltedGridTile(1, 1),
+        const QuiltedGridTile(1, 2),
       ],
     ),
     childrenDelegate: SliverChildBuilderDelegate(

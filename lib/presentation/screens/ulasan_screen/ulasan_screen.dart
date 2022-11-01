@@ -16,6 +16,7 @@ class UlasanScreen extends StatelessWidget {
         Provider.of<RatingPenggunaViewModel>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: primary,
         title: Text(

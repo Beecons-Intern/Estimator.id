@@ -24,7 +24,7 @@ class ProfileProyek extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text("Cari Proyek Saya"),
                   Icon(Icons.search),
                 ],

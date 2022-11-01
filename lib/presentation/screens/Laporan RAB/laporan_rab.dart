@@ -230,7 +230,7 @@ class LaporanRab extends StatelessWidget {
                             icon: Icons.refresh,
                             title: "Reload",
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Button(
                             size: size,
                             icon: Icons.upload,
@@ -326,36 +326,36 @@ class LaporanRab extends StatelessWidget {
                                 width: size.width * 0.4,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
+                                  children: const [
+                                    Text(
                                       "Rp. 7.600.000",
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       "Rp. 863.000",
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       "Rp. 8.436.000",
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       "Rp. 8.436.000",
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const Text(
+                                    Text(
                                       "Delapan Juta empat ratus tiga puluh enam rupiah",
                                       style: TextStyle(
                                         fontSize: 12,
@@ -463,7 +463,7 @@ class LaporanRab extends StatelessWidget {
                       merk: "standard",
                     ),
                     Container(
-                      color: Color.fromARGB(134, 8, 215, 15),
+                      color: const Color.fromARGB(134, 8, 215, 15),
                       margin: EdgeInsets.symmetric(
                           horizontal: size.width * 0.05,
                           vertical: size.height * 0.01),
@@ -540,7 +540,7 @@ class LaporanRab extends StatelessWidget {
                       merk: "standard",
                     ),
                     Container(
-                      color: Color.fromARGB(134, 8, 215, 15),
+                      color: const Color.fromARGB(134, 8, 215, 15),
                       margin: EdgeInsets.symmetric(
                           horizontal: size.width * 0.05,
                           vertical: size.height * 0.01),

@@ -23,7 +23,7 @@ class ContentEmptyLaporan extends StatelessWidget {
                 icon: Icons.refresh,
                 title: "Reload",
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Button(
                 size: size,
                 icon: Icons.upload,

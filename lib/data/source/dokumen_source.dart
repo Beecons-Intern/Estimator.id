@@ -25,7 +25,7 @@ class DokumenSource {
     try {
       final db = await DatabaseService.instance.database;
       final id = await db.insert(table, dokumen.toJson());
-      return dokumen.copy(idProyek: id);
+      return dokumen.copy(idDokumen: id);
     } catch (error) {
       return throw Exception("Error $error");
     }

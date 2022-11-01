@@ -33,6 +33,7 @@ class TemplateHargaSatuanFields {
 class TemplateHargaSatuanModel {
   int? idHargaSatuan;
   int idTemplate;
+  double totalHarga, tempTotalHarga;
   String idPekerjaan,
       namaPekerjaan,
       satuan,
@@ -40,8 +41,6 @@ class TemplateHargaSatuanModel {
       level,
       haveSub,
       sumber,
-      totalHarga,
-      tempTotalHarga,
       tglDibuat,
       jamDibuat;
 
@@ -71,9 +70,17 @@ class TemplateHargaSatuanModel {
           idKategori: json[TemplateHargaSatuanFields.idKategori] as String,
           level: json[TemplateHargaSatuanFields.level] as String,
           haveSub: json[TemplateHargaSatuanFields.haveSub] as String,
-          totalHarga: json[TemplateHargaSatuanFields.totalHarga].toString(),
-          tempTotalHarga:
-              json[TemplateHargaSatuanFields.tempTotalHarga].toString(),
+          totalHarga: json[TemplateHargaSatuanFields.totalHarga].runtimeType ==
+                  double
+              ? json[TemplateHargaSatuanFields.totalHarga] as double
+              : double.parse(
+                  "${json[TemplateHargaSatuanFields.totalHarga] != null && json[TemplateHargaSatuanFields.totalHarga] != "" ? json[TemplateHargaSatuanFields.totalHarga] : "0"}.0"),
+          tempTotalHarga: json[TemplateHargaSatuanFields.tempTotalHarga]
+                      .runtimeType ==
+                  double
+              ? json[TemplateHargaSatuanFields.tempTotalHarga] as double
+              : double.parse(
+                  "${json[TemplateHargaSatuanFields.tempTotalHarga] != null && json[TemplateHargaSatuanFields.tempTotalHarga] != "" ? json[TemplateHargaSatuanFields.tempTotalHarga] : "0"}.0"),
           sumber: json[TemplateHargaSatuanFields.sumber] as String,
           tglDibuat: json[TemplateHargaSatuanFields.tglDibuat] as String,
           jamDibuat: json[TemplateHargaSatuanFields.jamDibuat] as String);

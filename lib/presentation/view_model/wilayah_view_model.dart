@@ -47,7 +47,6 @@ class WilayahViewModel extends ChangeNotifier {
   Future searchData(String? data) async {
     try {
       if (data != null && data != "") {
-        print(data);
         final dataWilayah = _allWilayahData!
             .where((element) =>
                 element.wilayah.toLowerCase().contains(data.toLowerCase()))

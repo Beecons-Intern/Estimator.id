@@ -11,7 +11,7 @@ class ListProjek extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100,
       height: 300,
       child: masonaryLayout(context),
@@ -22,7 +22,7 @@ class ListProjek extends StatelessWidget {
 Widget masonaryLayout(BuildContext context) {
   return MasonryGridView.builder(
     gridDelegate:
-        SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
     itemCount: 10,
     itemBuilder: (context, index) {
       return ClipRRect(

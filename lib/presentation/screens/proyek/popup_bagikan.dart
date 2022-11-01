@@ -17,10 +17,10 @@ class PopupBagikan extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: Icon(Icons.arrow_back_ios),
+              child: const Icon(Icons.arrow_back_ios),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Column(
                 children: [
                   RichText(
@@ -100,13 +100,13 @@ class PopupBagikan extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Container(
             width: 241,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(5)),
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.all(5),
               child: Text(
                 "ketik nama tim proyek",
@@ -117,7 +117,7 @@ class PopupBagikan extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           Row(
             children: const [
               Text(
@@ -137,13 +137,13 @@ class PopupBagikan extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Container(
             width: 241,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(5)),
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.all(5),
               child: Text(
                 "tambahkan posisi anda",
@@ -154,15 +154,15 @@ class PopupBagikan extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Container(
             width: 125,
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(color: Colors.green),
+            margin: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(color: Colors.green),
             child: Padding(
-              padding: EdgeInsets.all(4),
+              padding: const EdgeInsets.all(4),
               child: Row(
-                children: [
+                children: const [
                   Icon(
                     Icons.person_add,
                     size: 13,
@@ -176,21 +176,21 @@ class PopupBagikan extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16),
-          TimProyek(),
+          const SizedBox(height: 16),
+          const TimProyek(),
           Align(
             alignment: Alignment.center,
             child: Container(
-              margin: EdgeInsets.symmetric(vertical: 16),
+              margin: const EdgeInsets.symmetric(vertical: 16),
               width: 90,
               decoration: BoxDecoration(
                 color: Colors.green,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Padding(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 child: Row(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.share,
                       size: 18,

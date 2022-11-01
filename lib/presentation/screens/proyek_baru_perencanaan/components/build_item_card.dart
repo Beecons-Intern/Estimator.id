@@ -4,7 +4,7 @@ import '../../../../data/model/template_proyek_model.dart';
 import '../../../../utilities/strings.dart';
 import '../../../../utilities/utilities.dart';
 import '../../../route/route_name.dart';
-import '../../../view_model/profile_proyek_view_model.dart';
+import '../../../view_model/proyek_perencanaan_view_model.dart';
 import '../../../view_model/template_proyek_view_model.dart';
 import '../../../view_model/wilayah_view_model.dart';
 
@@ -15,15 +15,15 @@ class BuildItemCard extends StatelessWidget {
       required this.items,
       required this.templateProyekModel,
       required this.templateProyekViewModel,
-      required this.profileProyekViewModel,
-      required this.wilayahViewModel});
+      required this.wilayahViewModel,
+      required this.proyekPerencanaanViewModel});
 
   final Size size;
   final List<String> items;
   final TemplateProyekModel templateProyekModel;
   final TemplateProyekViewModel templateProyekViewModel;
-  final ProfileProyekViewModel profileProyekViewModel;
   final WilayahViewModel wilayahViewModel;
+  final ProyekPerencanaanViewModel proyekPerencanaanViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -49,25 +49,26 @@ class BuildItemCard extends StatelessWidget {
                               templateProyekViewModel
                                   .getDetailTemplate(templateProyekModel)
                                   .then((value) {
-                                profileProyekViewModel.setDataProyek(
-                                    templateProyekModel.namaProyek,
-                                    templateProyekModel.jasaKontraktor,
-                                    templateProyekModel.pajak);
                                 Navigator.pushNamed(
                                     context, RouteName.detailTemplate);
                               });
                               break;
                             case 1:
+                              proyekPerencanaanViewModel.isNew();
                               templateProyekViewModel
                                   .getDetailTemplate(templateProyekModel)
                                   .then((value) {
-                                profileProyekViewModel.setDataProyek(
-                                    templateProyekModel.namaProyek,
-                                    templateProyekModel.jasaKontraktor,
-                                    templateProyekModel.pajak);
                                 wilayahViewModel.getWilayah(wilayahSleman);
+                                proyekPerencanaanViewModel.namaProyek =
+                                    templateProyekModel.namaProyek;
+                                proyekPerencanaanViewModel.pajak =
+                                    templateProyekModel.pajak;
+                                proyekPerencanaanViewModel.jasaKontraktor =
+                                    templateProyekModel.jasaKontraktor;
+                                proyekPerencanaanViewModel.keteranganLain = "";
+                                proyekPerencanaanViewModel.pemilik = "Estimator.id";
                                 Navigator.pushNamed(
-                                    context, RouteName.profileProyek,
+                                    context, RouteName.editPerencanaan,
                                     arguments: true);
                               });
                               break;

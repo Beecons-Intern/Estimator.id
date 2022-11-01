@@ -7,7 +7,6 @@ class ProyekScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -78,7 +77,7 @@ class ProyekScreen extends StatelessWidget {
           ],
         ), */
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

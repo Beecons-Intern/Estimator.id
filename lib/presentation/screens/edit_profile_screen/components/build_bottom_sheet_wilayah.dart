@@ -6,13 +6,13 @@ import 'package:provider/provider.dart';
 import '../../../../utilities/utilities.dart';
 
 class BuildBottomSheetWilayah extends StatelessWidget {
-  BuildBottomSheetWilayah(
+  const BuildBottomSheetWilayah(
       {Key? key, required this.size, required this.wilayahViewModel})
       : super(key: key);
 
   final Size size;
   final WilayahViewModel wilayahViewModel;
-  final _formKey = GlobalKey<FormBuilderState>();
+  static final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,9 @@ class BuildBottomSheetWilayah extends StatelessWidget {
         ),
         Expanded(
           child: FutureBuilder(
-              future: wilayahViewModel.getAllWilayah(),
+              future: wilayahViewModel.allWilayahData != null
+                  ? null
+                  : wilayahViewModel.getAllWilayah(),
               builder: ((context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Align(
@@ -83,37 +85,33 @@ class BuildBottomSheetWilayah extends StatelessWidget {
                         shrinkWrap: true,
                         itemBuilder: (context, index) => wilayah
                                     .allWilayahDataTemp![index].idWilayah ==
-                                wilayah
-                                    .allWilayahDataTemp![index].idProv
+                                wilayah.allWilayahDataTemp![index].idProv
                             ? Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.05),
                                 child: Text(
-                                  wilayah
-                                      .allWilayahDataTemp![index].wilayah,
+                                  wilayah.allWilayahDataTemp![index].wilayah,
                                   style: text3(neutral500, medium),
                                 ),
                               )
                             : GestureDetector(
                                 onTap: () {
                                   wilayah
-                                      .changeWilayah(wilayah
-                                          .allWilayahDataTemp![index])
+                                      .changeWilayah(
+                                          wilayah.allWilayahDataTemp![index])
                                       .then((value) => Navigator.pop(context));
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: size.width * 0.07),
                                   child: Text(
-                                    wilayah
-                                        .allWilayahDataTemp![index].wilayah,
+                                    wilayah.allWilayahDataTemp![index].wilayah,
                                     style: text3(neutral500, light),
                                   ),
                                 ),
                               ),
                         separatorBuilder: (context, index) => const Divider(),
-                        itemCount:
-                            wilayah.allWilayahDataTemp!.length));
+                        itemCount: wilayah.allWilayahDataTemp!.length));
                 // return ListView.separated(
                 //     padding: const EdgeInsets.symmetric(vertical: 16),
                 //     shrinkWrap: true,

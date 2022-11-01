@@ -13,7 +13,7 @@ class TemplateProyek extends StatelessWidget {
           backgroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text(
                 "Template Proyek",
                 style: TextStyle(

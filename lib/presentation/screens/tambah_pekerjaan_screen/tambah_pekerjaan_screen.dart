@@ -47,7 +47,7 @@ class TambahPekerjaanScreen extends StatelessWidget {
           text: "Tambahkan Item",
         ),
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

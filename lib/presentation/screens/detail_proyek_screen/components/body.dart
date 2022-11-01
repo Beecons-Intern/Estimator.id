@@ -7,7 +7,6 @@ import '../../../widgets/widgets.dart';
 import '../../../../utilities/utilities.dart';
 import 'detail_item.dart';
 import 'hapus_item.dart';
-import 'hapus_kategori.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key, required this.detailProyekViewModel}) : super(key: key);

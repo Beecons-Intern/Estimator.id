@@ -3,19 +3,19 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../utilities/utilities.dart';
-import '../../../view_model/profile_proyek_view_model.dart';
+import '../../../view_model/proyek_perencanaan_view_model.dart';
 import '../../../view_model/wilayah_view_model.dart';
 
 class BuildBottomSheetWilayah extends StatelessWidget {
   BuildBottomSheetWilayah(
       {Key? key,
       required this.size,
-      required this.profileProyekViewModel,
+      required this.proyekPerencanaanViewModel,
       required this.wilayahViewModel})
       : super(key: key);
 
   final Size size;
-  final ProfileProyekViewModel profileProyekViewModel;
+  final ProyekPerencanaanViewModel proyekPerencanaanViewModel;
   final WilayahViewModel wilayahViewModel;
   final _formKey = GlobalKey<FormBuilderState>();
 
@@ -103,7 +103,7 @@ class BuildBottomSheetWilayah extends StatelessWidget {
                                       .changeWilayah(
                                           wilayah.allWilayahDataTemp![index])
                                       .then((value) {
-                                    profileProyekViewModel.idWilayah = wilayah
+                                    proyekPerencanaanViewModel.idWilayah = wilayah
                                         .allWilayahDataTemp![index].idWilayah;
                                     Navigator.pop(context);
                                   });

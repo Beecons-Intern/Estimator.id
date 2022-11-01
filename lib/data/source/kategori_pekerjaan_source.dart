@@ -19,7 +19,6 @@ class KategoriPekerjaanSource {
 
       return null;
     } catch (error) {
-      print(error);
       return throw Exception("Error $error");
     }
   }
@@ -29,7 +28,6 @@ class KategoriPekerjaanSource {
     try {
       final db = await DatabaseService.instance.database;
       final id = await db.insert(table, kategoriPekerjaan.toJson());
-      print(kategoriPekerjaan.copy(idKategori: id));
       return kategoriPekerjaan.copy(idKategori: id);
     } catch (error) {
       return throw Exception("Error $error");

@@ -15,7 +15,6 @@ class AHSSource {
 
       return null;
     } catch (error) {
-      print(error);
       return throw Exception("Error $error");
     }
   }
@@ -26,7 +25,6 @@ class AHSSource {
       final id = await db.insert(table, ahs.toJson());
       return ahs.copy(idAhs: id);
     } catch (error) {
-      print(error);
       return throw Exception("Error $error");
     }
   }

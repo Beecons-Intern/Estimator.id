@@ -37,7 +37,6 @@ class BahanUtamaViewModel extends ChangeNotifier {
         if (value != null) _dataProduk = value;
       });
       notifyListeners();
-      print(_dataProduk);
     } catch (error) {
       return error;
     }

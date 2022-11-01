@@ -34,22 +34,22 @@ class ProyekViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setDataBaru(PelaksanaProyekModel pelaksana, ProyekModel proyek) {
-    print(proyek.idProyek);
-    if (_datasPelaksanaProyek != null) {
-      _datasPelaksanaProyek!.add(pelaksana);
-    } else {
-      _datasPelaksanaProyek = [pelaksana];
-    }
+  // void setDataBaru(PelaksanaProyekModel pelaksana, ProyekModel proyek) {
+  //   print(proyek.idProyek);
+  //   if (_datasPelaksanaProyek != null) {
+  //     _datasPelaksanaProyek!.add(pelaksana);
+  //   } else {
+  //     _datasPelaksanaProyek = [pelaksana];
+  //   }
 
-    if (_datasProyek != null) {
-      _datasProyek!.add(proyek);
-    } else {
-      _datasProyek = [proyek];
-    }
+  //   if (_datasProyek != null) {
+  //     _datasProyek!.add(proyek);
+  //   } else {
+  //     _datasProyek = [proyek];
+  //   }
 
-    notifyListeners();
-  }
+  //   notifyListeners();
+  // }
 
   Future getDatas() async {
     try {
@@ -65,12 +65,15 @@ class ProyekViewModel extends ChangeNotifier {
   Future getWilayah(String id) async {
     try {
       await WilayahSource().getData(id).then((value) {
-        if (_allWilayahData != null) {
-          _allWilayahData!.add(value);
-        } else {
-          _allWilayahData = [value];
+        if (value != null) {
+          if (_allWilayahData != null) {
+            _allWilayahData!.add(value);
+          } else {
+            _allWilayahData = [value];
+          }
         }
       });
+
       notifyListeners();
     } catch (error) {
       return error;
@@ -104,20 +107,25 @@ class ProyekViewModel extends ChangeNotifier {
   }
 
   Future<void> getWilayahNama() async {
+    if (_allWilayahData != null) {
+      _allWilayahData = null;
+    }
+
     if (_datasProyekUser != null) {
       for (var proyek in _datasProyekUser!) {
         await getWilayah(proyek.idWilayah);
       }
     }
+
+    notifyListeners();
   }
 
   Future searchData(String? data) async {
     try {
       if (data != null && data != "") {
         final dataProyek = _datasProyekUser!
-            .where((element) => element.namaProyek
-                .toLowerCase()
-                .contains(data.toLowerCase()))
+            .where((element) =>
+                element.namaProyek.toLowerCase().contains(data.toLowerCase()))
             .toList();
         _datasProyekUserTemp = dataProyek;
       } else {

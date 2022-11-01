@@ -18,7 +18,6 @@ class HargaSatuanSource {
 
       return null;
     } catch (error) {
-      print("Harga satuan $error");
       return throw Exception("Error $error");
     }
   }
@@ -29,7 +28,6 @@ class HargaSatuanSource {
       final id = await db.insert(table, hargaSatuan.toJson());
       return hargaSatuan.copy(idHargaSatuan: id);
     } catch (error) {
-      print(error);
       return throw Exception("Error $error");
     }
   }

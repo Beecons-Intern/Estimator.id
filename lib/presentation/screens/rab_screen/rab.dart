@@ -19,20 +19,20 @@ class _penawaranScreenState extends State<penawaranScreen> {
       theme: CustomThem.lightTheme,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Estimator Anggaran",
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: Icon(
+          leading: const Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
         ),
         resizeToAvoidBottomInset: false,
-        body: buildPenawaran(),
+        body: const BuildPenawaran(),
       ),
     );
   }

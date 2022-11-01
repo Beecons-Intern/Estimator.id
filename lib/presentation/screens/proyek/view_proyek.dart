@@ -10,8 +10,8 @@ class ViewProyek extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(244, 255, 255, 255),
-        title: Center(
+        backgroundColor: const Color.fromARGB(244, 255, 255, 255),
+        title: const Center(
           child: Text(
             "Rumah Gaya Eropa",
             style: TextStyle(
@@ -24,7 +24,7 @@ class ViewProyek extends StatelessWidget {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
               'Profil Proyek',
@@ -34,43 +34,43 @@ class ViewProyek extends StatelessWidget {
               ),
             ),
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Nama Proyek",
             edit: "Rumah Gaya Eropa",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Lokasi Proyek",
             edit: "Sleman D.I Yogyakarta",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Pemilik Proyek",
             edit: "Joko Santoso",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Tahun",
             edit: "2022",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Jasa Kontraktor",
             edit: "10.00 %",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Pajak",
             edit: "11.00 %",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Dokumen Proyek",
             edit: "eropan style.xlxs",
           ),
-          ItemProfilProyek(
+          const ItemProfilProyek(
             nama: "Keterangan",
             edit: "Rumahku Surgaku fix no debat",
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
                   "Rancangan Anggaran Belanja",
                   style: TextStyle(
@@ -107,29 +107,29 @@ class ViewProyek extends StatelessWidget {
               ],
             ),
           ),
-          ItemAnggaranBelanja(
+          const ItemAnggaranBelanja(
             namaAnggaran: "Pekerjaan PErsiapan",
             harga: "Rp. 115.303.500,00",
             persen: "11.5%",
           ),
-          ItemAnggaranBelanja(
+          const ItemAnggaranBelanja(
               namaAnggaran: "Pekerjaan Struktural",
               harga: "Rp. 303.950.000,00",
               persen: "30.3%"),
-          ItemAnggaranBelanja(
+          const ItemAnggaranBelanja(
               namaAnggaran: "Pekerjaan Arsitektural",
               harga: "Rp. 253.700.750,00",
               persen: "25,3%"),
-          ItemAnggaranBelanja(
+          const ItemAnggaranBelanja(
               namaAnggaran: "Pekerjaan MEP",
               harga: "Rp. 203.253.000,00",
               persen: "20.3%"),
-          TotalAnggaranBelanja(
+          const TotalAnggaranBelanja(
             totalName: "Jumlah Harga",
             harga: "Rp. 876.107.550,00",
           ),
-          TotalAnggaranBelanja(totalName: "PPN 11%", harga: "Rp.96.371.830,50"),
-          TotalAnggaranBelanja(
+          const TotalAnggaranBelanja(totalName: "PPN 11%", harga: "Rp.96.371.830,50"),
+          const TotalAnggaranBelanja(
               totalName: "Total Harga", harga: "972.379.380,50")
         ],
       ),

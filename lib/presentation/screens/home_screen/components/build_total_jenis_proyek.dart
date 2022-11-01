@@ -15,9 +15,9 @@ class BuildTotalJenisProyek extends StatelessWidget {
     return Expanded(
         child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: accentGreen200,
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
+        borderRadius: BorderRadius.all(Radius.circular(5)),
         // border: Border.all(color: neutral200)
         // boxShadow: [
         //   BoxShadow(

@@ -6,9 +6,9 @@ import '../../../../utilities/utilities.dart';
 import '../../../view_model/rating_pengguna_view_model.dart';
 
 class Body extends StatelessWidget {
-  Body({super.key, required this.ratingPenggunaViewModel});
+  const Body({super.key, required this.ratingPenggunaViewModel});
   final RatingPenggunaViewModel ratingPenggunaViewModel;
-  final _formKey = GlobalKey<FormBuilderState>();
+  static final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {

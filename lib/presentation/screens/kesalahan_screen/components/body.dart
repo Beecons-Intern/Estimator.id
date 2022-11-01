@@ -5,9 +5,9 @@ import '../../../../utilities/utilities.dart';
 import '../../../view_model/kesalahan_view_model.dart';
 
 class Body extends StatelessWidget {
-  Body({super.key, required this.kesalahanViewModel});
+  const Body({super.key, required this.kesalahanViewModel});
   final KesalahanViewModel kesalahanViewModel;
-  final _formKey = GlobalKey<FormBuilderState>();
+  static final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {

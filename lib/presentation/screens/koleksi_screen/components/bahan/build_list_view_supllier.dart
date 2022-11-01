@@ -43,7 +43,6 @@ class _BuildListViewSupplierState extends State<BuildListViewSupplier> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.bahanUtamaViewModel.dataProdukTemp);
     return GridView.builder(
         controller: controller,
         padding: EdgeInsets.only(

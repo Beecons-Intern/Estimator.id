@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class TimProyek extends StatelessWidget {
@@ -19,8 +17,8 @@ class TimProyek extends StatelessWidget {
         children: [
           Container(
             width: 241,
-            decoration: BoxDecoration(color: Colors.green),
-            child: Padding(
+            decoration: const BoxDecoration(color: Colors.green),
+            child: const Padding(
               padding: EdgeInsets.all(5),
               child: Text(
                 "Tim Proyek",
@@ -32,10 +30,10 @@ class TimProyek extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
             child: Container(
               width: 229,
-              padding: EdgeInsets.all(3),
+              padding: const EdgeInsets.all(3),
               color: Colors.green,
               child: Row(
                 children: const [
@@ -79,26 +77,26 @@ class TimProyek extends StatelessWidget {
             height: 44,
             width: 229,
             child: ListView(
-              children: [
-                listTimProyek(
+              children: const [
+                ListTimProyek(
                   number: "1",
                   nama: "lorem ipsum dolor",
                   posisi: "Admin Proyek",
                   aksi: "delete",
                 ),
-                listTimProyek(
+                ListTimProyek(
                   number: "2",
                   nama: "lorem ipsum dolor",
                   posisi: "Admin Proyek",
                   aksi: "delete",
                 ),
-                listTimProyek(
+                ListTimProyek(
                   number: "3",
                   nama: "lorem ipsum dolor",
                   posisi: "Admin Proyek",
                   aksi: "delete",
                 ),
-                listTimProyek(
+                ListTimProyek(
                   number: "4",
                   nama: "lorem ipsum dolor",
                   posisi: "Admin Proyek",
@@ -113,13 +111,13 @@ class TimProyek extends StatelessWidget {
   }
 }
 
-class listTimProyek extends StatelessWidget {
+class ListTimProyek extends StatelessWidget {
   final String number;
   final String nama;
   final String posisi;
   final String aksi;
 
-  const listTimProyek({
+  const ListTimProyek({
     Key? key,
     required this.number,
     required this.nama,
@@ -130,48 +128,48 @@ class listTimProyek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 1),
+      padding: const EdgeInsets.symmetric(vertical: 1),
       child: Container(
         width: 229,
-        padding: EdgeInsets.all(2),
+        padding: const EdgeInsets.all(2),
         color: Colors.grey,
         child: Row(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(
                 number,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 7,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               nama,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 7,
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Text(
               posisi,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 7,
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 30),
+            const SizedBox(width: 30),
             Text(
               aksi,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 7,
                 color: Colors.white,
               ),
             ),
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
           ],
         ),
       ),

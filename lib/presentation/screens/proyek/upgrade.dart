@@ -16,7 +16,7 @@ class Upgrade extends StatelessWidget {
               onTap: () => Navigator.pop(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ViewProyek(),
+                  builder: (context) => const ViewProyek(),
                 ),
               ),
               child: Align(
@@ -25,7 +25,7 @@ class Upgrade extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.lightGreen,
                       borderRadius: BorderRadius.circular(20)),
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.all(7),
                     child: Icon(
                       Icons.close,
@@ -42,19 +42,19 @@ class Upgrade extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 0.2,
               child: Image.asset("assets/Images/Zoom_meeting.png"),
             ),
-            Text(
+            const Text(
               "Saatnya Upgrade \nPaket Anda!",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text.rich(
+            const Text.rich(
               TextSpan(
                 text:
                     "fitur duplikat proyek hanya tersedia untuk akun premium. Nikmati fitur tanpa batas dengan beralih ke akun premium dan dapatkan harga spesial",
@@ -74,14 +74,14 @@ class Upgrade extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
                     color: Colors.lightGreen,
                     borderRadius: BorderRadius.circular(20)),
-                child: Text(
+                child: const Text(
                   "UPGRADE SEKARANG",
                   style: TextStyle(
                     fontSize: 12,
@@ -91,7 +91,7 @@ class Upgrade extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20)
+            const SizedBox(height: 20)
           ],
         ));
   }

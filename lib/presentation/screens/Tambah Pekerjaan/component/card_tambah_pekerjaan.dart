@@ -34,7 +34,7 @@ class CardTambahPekerjaan extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.65,
                 child: Text(
                   title,
@@ -45,7 +45,7 @@ class CardTambahPekerjaan extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: size.width * 0.12,
                 child: Row(
                   children: [
@@ -58,7 +58,7 @@ class CardTambahPekerjaan extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.topRight,
                                     child: Container(
-                                      padding: EdgeInsets.all(5),
+                                      padding: const EdgeInsets.all(5),
                                       decoration: BoxDecoration(
                                           border:
                                               Border.all(color: Colors.amber),
@@ -91,10 +91,10 @@ class CardTambahPekerjaan extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(
                                         vertical: size.height * 0.01),
                                     decoration: BoxDecoration(
-                                      color: Color.fromRGBO(8, 158, 20, 1),
+                                      color: const Color.fromRGBO(8, 158, 20, 1),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       "Selesai & Simpan",
                                       style: TextStyle(
                                         fontSize: 16,
@@ -130,7 +130,7 @@ class CardTambahPekerjaan extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-          Container(
+          SizedBox(
             width: size.width * 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

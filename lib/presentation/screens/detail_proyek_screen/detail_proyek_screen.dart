@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../route/route_name.dart';
 import '../../view_model/detail_proyek_view_model.dart';
 import 'components/body.dart';
 import '../../../../utilities/utilities.dart';

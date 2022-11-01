@@ -1,5 +1,3 @@
-import 'ahs_utama_model.dart';
-
 class PekerjaanUtamaFields {
   static final List<String> values = [
     urut,

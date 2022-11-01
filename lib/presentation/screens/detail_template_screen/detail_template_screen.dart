@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../utilities/strings.dart';
 import '../../../utilities/utilities.dart';
 import '../../route/route_name.dart';
+import '../../view_model/proyek_perencanaan_view_model.dart';
 import '../../view_model/template_proyek_view_model.dart';
 import '../../view_model/wilayah_view_model.dart';
 import '../../widgets/widgets.dart';
@@ -19,6 +20,8 @@ class DetailTemplateScreen extends StatelessWidget {
         Provider.of<TemplateProyekViewModel>(context, listen: false);
     final wilayahViewModel =
         Provider.of<WilayahViewModel>(context, listen: false);
+    final proyekPerencanaanViewModel =
+        Provider.of<ProyekPerencanaanViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -55,8 +58,17 @@ class DetailTemplateScreen extends StatelessWidget {
         ),
         child: RoundedButton(
           ontap: () {
+            proyekPerencanaanViewModel.isNew();
+            proyekPerencanaanViewModel.namaProyek =
+                templateProyekViewModel.selectedTemplateProyek!.namaProyek;
+            proyekPerencanaanViewModel.pajak =
+                templateProyekViewModel.selectedTemplateProyek!.pajak;
+            proyekPerencanaanViewModel.jasaKontraktor =
+                templateProyekViewModel.selectedTemplateProyek!.pajak;
+            proyekPerencanaanViewModel.keteranganLain = "";
+            proyekPerencanaanViewModel.pemilik = "Estimator.id";
             wilayahViewModel.getWilayah(wilayahSleman).then((value) =>
-                Navigator.pushNamed(context, RouteName.profileProyek,
+                Navigator.pushNamed(context, RouteName.editPerencanaan,
                     arguments: true));
           },
           text: "Gunakan Template",
